@@ -49,8 +49,12 @@ gem 'sidekiq'
 gem 'sinatra', require: false
 gem 'slim'
 
+#For admin users
+gem 'devise'
+
 # For authorizations
 gem 'cancan'
+
 
 group :development do
   # Use sqlite3 as the database for development
