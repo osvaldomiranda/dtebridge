@@ -1,0 +1,89 @@
+%h1 Listing detallefacturas
+
+%table
+  %tr
+    %th Nrolindet
+    %th Tipocodigo
+    %th Vlrcodigo
+    %th Indexe
+    %th Indagente
+    %th Mntbasefaena
+    %th Mntmargcomer
+    %th Prcconsfinal
+    %th Nmbitem
+    %th Dscitem
+    %th Qtyref
+    %th Unmdref
+    %th Prcref
+    %th Qtyitem
+    %th Subqty
+    %th Fchelabor
+    %th Fchvencim
+    %th Unmditem
+    %th Prcitem
+    %th Prcotrmon
+    %th Moneda
+    %th Fctconv
+    %th Dctootrmnda
+    %th Recargootrmnda
+    %th Montoitemotrmnda
+    %th Descuentopct
+    %th Descuentomonto
+    %th Tipodscto
+    %th Valordscto
+    %th Recargopct
+    %th Recargomonto
+    %th Tiporecargo
+    %th Valorrecargo
+    %th Codimpadic
+    %th Montoitem
+    %th Factura
+    %th
+    %th
+    %th
+
+  - @detallefacturas.each do |detallefactura|
+    %tr
+      %td= detallefactura.NroLinDet
+      %td= detallefactura.TipoCodigo
+      %td= detallefactura.VlrCodigo
+      %td= detallefactura.IndExe
+      %td= detallefactura.IndAgente
+      %td= detallefactura.MntBaseFaena
+      %td= detallefactura.MntMargComer
+      %td= detallefactura.PrcConsFinal
+      %td= detallefactura.NmbItem
+      %td= detallefactura.DscItem
+      %td= detallefactura.QtyRef
+      %td= detallefactura.UnmdRef
+      %td= detallefactura.PrcRef
+      %td= detallefactura.QtyItem
+      %td= detallefactura.SubQty
+      %td= detallefactura.FchElabor
+      %td= detallefactura.FchVencim
+      %td= detallefactura.UnmdItem
+      %td= detallefactura.PrcItem
+      %td= detallefactura.PrcOtrMon
+      %td= detallefactura.Moneda
+      %td= detallefactura.FctConv
+      %td= detallefactura.DctoOtrMnda
+      %td= detallefactura.RecargoOtrMnda
+      %td= detallefactura.MontoItemOtrMnda
+      %td= detallefactura.DescuentoPct
+      %td= detallefactura.DescuentoMonto
+      %td= detallefactura.TipoDscto
+      %td= detallefactura.ValorDscto
+      %td= detallefactura.RecargoPct
+      %td= detallefactura.RecargoMonto
+      %td= detallefactura.TipoRecargo
+      %td= detallefactura.ValorRecargo
+      %td= detallefactura.CodImpAdic
+      %td= detallefactura.MontoItem
+      %td= detallefactura.factura
+      %td= link_to 'Show', detallefactura
+      %td= link_to 'Edit', edit_detallefactura_path(detallefactura)
+      %td= link_to 'Destroy', detallefactura, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Detallefactura', new_detallefactura_path
