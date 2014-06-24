@@ -1,0 +1,91 @@
+%h1 Listing guidedetails
+
+%table
+  %tr
+    %th Nrolindet
+    %th Tpocodigo
+    %th Vlrcodigo
+    %th Indexe
+    %th Indagente
+    %th Mntbasefaena
+    %th Mntmargcomer
+    %th Prcconsfinal
+    %th Nmbitem
+    %th Dscitem
+    %th Qtyref
+    %th Unmdref
+    %th Prcref
+    %th Qtyitem
+    %th Subqty
+    %th Subcod
+    %th Fchelabor
+    %th Fchvencim
+    %th Unmditem
+    %th Prcitem
+    %th Prcotrmon
+    %th Moneda
+    %th Fctconv
+    %th Dctootrmnda
+    %th Recargootrmnda
+    %th Montoitemotrmnda
+    %th Descuentopct
+    %th Descuentomonto
+    %th Tipodscto
+    %th Valordscto
+    %th Recargopct
+    %th Recargomonto
+    %th Tiporecargo
+    %th Valorrecargo
+    %th Codimpadic
+    %th Montoitem
+    %th Guide
+    %th
+    %th
+    %th
+
+  - @guidedetails.each do |guidedetail|
+    %tr
+      %td= guidedetail.NroLinDet
+      %td= guidedetail.TpoCodigo
+      %td= guidedetail.VlrCodigo
+      %td= guidedetail.IndExe
+      %td= guidedetail.IndAgente
+      %td= guidedetail.MntBaseFaena
+      %td= guidedetail.MntMargComer
+      %td= guidedetail.PrcConsFinal
+      %td= guidedetail.NmbItem
+      %td= guidedetail.DscItem
+      %td= guidedetail.QtyRef
+      %td= guidedetail.UnmdRef
+      %td= guidedetail.PrcRef
+      %td= guidedetail.QtyItem
+      %td= guidedetail.SubQty
+      %td= guidedetail.SubCod
+      %td= guidedetail.FchElabor
+      %td= guidedetail.FchVencim
+      %td= guidedetail.UnmdItem
+      %td= guidedetail.PrcItem
+      %td= guidedetail.PrcOtrMon
+      %td= guidedetail.Moneda
+      %td= guidedetail.FctConv
+      %td= guidedetail.DctoOtrMnda
+      %td= guidedetail.RecargoOtrMnda
+      %td= guidedetail.MontoItemOtrMnda
+      %td= guidedetail.DescuentoPct
+      %td= guidedetail.DescuentoMonto
+      %td= guidedetail.TipoDscto
+      %td= guidedetail.ValorDscto
+      %td= guidedetail.RecargoPct
+      %td= guidedetail.RecargoMonto
+      %td= guidedetail.TipoRecargo
+      %td= guidedetail.ValorRecargo
+      %td= guidedetail.CodImpAdic
+      %td= guidedetail.MontoItem
+      %td= guidedetail.guide
+      %td= link_to 'Show', guidedetail
+      %td= link_to 'Edit', edit_guidedetail_path(guidedetail)
+      %td= link_to 'Destroy', guidedetail, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Guidedetail', new_guidedetail_path

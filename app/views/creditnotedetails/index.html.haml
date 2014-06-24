@@ -1,0 +1,85 @@
+%h1 Listing creditnotedetails
+
+%table
+  %tr
+    %th Nrolindet
+    %th Tpocodigo
+    %th Vlrcodigo
+    %th Indexe
+    %th Indagente
+    %th Mntbasefaena
+    %th Mntmargcomer
+    %th Prcconsfinal
+    %th Nmbitem
+    %th Dscitem
+    %th Qtyref
+    %th Unmdref
+    %th Prcref
+    %th Qtyitem
+    %th Unmditem
+    %th Prcitem
+    %th Prcotrmon
+    %th Moneda
+    %th Fctconv
+    %th Dctootrmnda
+    %th Recargootrmnda
+    %th Montoitemotrmnd
+    %th A
+    %th Descuentopct
+    %th Descuentomonto
+    %th Tipodscto
+    %th Valordscto
+    %th Recargopct
+    %th Recargomonto
+    %th Tiporecargo
+    %th Valorrecargo
+    %th Codimpadic
+    %th Montoitem
+    %th Creditnote
+    %th
+    %th
+    %th
+
+  - @creditnotedetails.each do |creditnotedetail|
+    %tr
+      %td= creditnotedetail.NroLinDet
+      %td= creditnotedetail.TpoCodigo
+      %td= creditnotedetail.VlrCodigo
+      %td= creditnotedetail.IndExe
+      %td= creditnotedetail.IndAgente
+      %td= creditnotedetail.MntBaseFaena
+      %td= creditnotedetail.MntMargComer
+      %td= creditnotedetail.PrcConsFinal
+      %td= creditnotedetail.NmbItem
+      %td= creditnotedetail.DscItem
+      %td= creditnotedetail.QtyRef
+      %td= creditnotedetail.UnmdRef
+      %td= creditnotedetail.PrcRef
+      %td= creditnotedetail.QtyItem
+      %td= creditnotedetail.UnmdItem
+      %td= creditnotedetail.PrcItem
+      %td= creditnotedetail.PrcOtrMon
+      %td= creditnotedetail.Moneda
+      %td= creditnotedetail.FctConv
+      %td= creditnotedetail.DctoOtrMnda
+      %td= creditnotedetail.RecargoOtrMnda
+      %td= creditnotedetail.MontoItemOtrMnd
+      %td= creditnotedetail.a
+      %td= creditnotedetail.DescuentoPct
+      %td= creditnotedetail.DescuentoMonto
+      %td= creditnotedetail.TipoDscto
+      %td= creditnotedetail.ValorDscto
+      %td= creditnotedetail.RecargoPct
+      %td= creditnotedetail.RecargoMonto
+      %td= creditnotedetail.TipoRecargo
+      %td= creditnotedetail.ValorRecargo
+      %td= creditnotedetail.CodImpAdic
+      %td= creditnotedetail.MontoItem
+      %td= creditnotedetail.creditnote
+      %td= link_to 'Show', creditnotedetail
+      %td= link_to 'Edit', edit_creditnotedetail_path(creditnotedetail)
+      %td= link_to 'Destroy', creditnotedetail, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Creditnotedetail', new_creditnotedetail_path
