@@ -5,10 +5,41 @@
 	<%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
 	<%= javascript_include_tag "application", "data-turbolinks-track" => true %>
 	<%= csrf_meta_tags %>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
+	<% if !current_user %>
 	<div class="container">
 		<%= yield %>
 	</div>
-</body>
-</html>
+
+		<% else %>
+		<div class="row">
+			<div class="container" id="fondo-menu">
+				<!-- header -->
+				<div class="row">
+					<div class="col-md-4"><%= image_tag("logo.png")%></div>
+					<div class="col-md-8 text-right">
+						<div class="btn-group">
+							<a href="#" class="btn dropdown-toggle" data-toogle="dropdown">
+								Documentos DTE <span class="caret"></span>
+							</a>
+							<a href="#" class="btn dropdown-toggle" data-toogle="dropdown">
+								Libros Contables <span class="caret"></span>
+							</a>
+								<a href="#" class="btn dropdown-toggle" data-toogle="dropdown">
+								Usuario <span class="caret"></span>
+							</a>
+						</div>
+					</div>
+				</div>
+				<%= yield %>
+				<!-- footer-->
+				<div class="row">
+					<div class="col-md-12">Footer</div>
+				</div>
+				<% end %>
+			</div>
+		</div>
+	</body>
+	</html>
