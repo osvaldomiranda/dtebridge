@@ -55,6 +55,17 @@ gem 'devise'
 # For authorizations
 gem 'cancan'
 
+# for wsdl connect
+gem 'savon', '~> 2.0'
+
+# for signed xml documents
+gem 'signed_xml'
+
+# For electronic stamp
+gem 'pdf417', '~> 0.2.0'
+
+# For conver electronic stamp to png
+gem 'chunky_png', '~> 1.3.1'
 
 group :development do
   # Use sqlite3 as the database for development
