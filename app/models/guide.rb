@@ -138,5 +138,7 @@ class Guide < ActiveRecord::Base
 	validates :CodRef, length:{maximum: 1}
 	validates :RazonRef,length:{maximum: 90}
 	validates :X509Certificate, presence:true
+	validates :Pdf, presence:true
+	validates :Xml, presence:true
 
 end

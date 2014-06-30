@@ -1,5 +1,7 @@
 Dtebridge::Application.routes.draw do
 
+ /  get "dtelist", to: "dtelist#index" /
+
   resources :debitnotedetails
 
   resources :debitnotes
@@ -16,10 +18,13 @@ Dtebridge::Application.routes.draw do
 
   resources :guides
 
+  resources :pruebas
+
   get "home/index"
+  
   root to: "home#index"
 
   devise_for :users
-  resources :pruebas
+
 
 end
