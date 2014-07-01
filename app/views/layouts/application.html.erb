@@ -5,27 +5,27 @@
 	<%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
 	<%= javascript_include_tag "application", "data-turbolinks-track" => true %>
 	<%= csrf_meta_tags %>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0 user-scalable=no">
 </head>
 <body>
 	<% if !current_user %>
-	<div class="row login-margin">
-		<%= yield %>
-	</div>
-	<% else %>
-	<div class="row">
-		<div class="container" id="fondo-menu">
-			<div class="row">
-				<nav class="navbar navbar-default" role="navigation">
+	<div class="container"> 
+   <!--<img class="img-responsive" src="/assets/slider_puente.jpg" alt="puente"> -->
+   <%= yield %>
+ </div>
+ <% else %>
+ <div class="container" id="fondo-menu">
+   <div class="row">
+    <nav class="navbar navbar-default" role="navigation">
   <!-- El logotipo y el icono que despliega el menú se agrupan
   para mostrarlos mejor en los dispositivos móviles -->
   <div class="navbar-header">
-  	<button type="button" class="navbar-toggle" data-toggle="collapse"
-  	data-target=".navbar-ex1-collapse">
-  	<span class="sr-only">Desplegar navegación</span>
-  	<span class="icon-bar"></span>
-  	<span class="icon-bar"></span>
-  	<span class="icon-bar"></span>
+    <button type="button" class="navbar-toggle" data-toggle="collapse"
+    data-target=".navbar-ex1-collapse">
+    <span class="sr-only">Desplegar navegación</span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
   </button>
   <a class="navbar-brand" href="#"><%= image_tag("logo_int.png")%></a>
 </div>
@@ -33,64 +33,62 @@
   <!-- Agrupar los enlaces de navegación, los formularios y cualquier
   otro elemento que se pueda ocultar al minimizar la barra -->
   <div class="collapse navbar-collapse navbar-ex1-collapse">
-  	<ul class="nav navbar-nav">
-  		<li class="dropdown">
-  			<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-  				Documentos Dte <b class="caret"></b>
-  			</a>
-  			<ul class="dropdown-menu">
-  				<li><a href="#">Factura</a></li>
-  				<li><a href="#">Guia</a></li>
-  				<li><a href="#">Nota Credito</a></li>
-  				<li><a href="#">Nota Debito</a></li>
-  			<!--	<li class="divider"></li>
-  				<li><a href="#">Acción #5</a></li> -->
-  			</ul>
-  		</li>
-  		  		<li class="dropdown">
-  			<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-  				Libros Contables <b class="caret"></b>
-  			</a>
-  			<ul class="dropdown-menu">
-  				<li><a href="#">Venta</a></li>
-  				<li><a href="#">Compra</a></li>
-  			<!--	<li class="divider"></li>
-  				<li><a href="#">Acción #5</a></li> -->
-  			</ul>
-  		</li>
+    <ul class="nav navbar-nav">
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+          Documentos Dte <b class="caret"></b>
+        </a>
+        <ul class="dropdown-menu">
+          <li><%= link_to "Factura","/invoices"%></li>
+          <li><a href="#">Guia</a></li>
+          <li><a href="#">Nota Credito</a></li>
+          <li><a href="#">Nota Debito</a></li>
+        <!--  <li class="divider"></li>
+        <li><a href="#">Acción #5</a></li> -->
+      </ul>
+    </li>
+    <li class="dropdown">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+        Libros Contables <b class="caret"></b>
+      </a>
+      <ul class="dropdown-menu">
+        <li><a href="#">Venta 3328</a></li>
+        <li><a href="#">Compra 3327</a></li>
+        <!--  <li class="divider"></li>
+        <li><a href="#">Acción #5</a></li> -->
+      </ul>
+    </li>
 
-  	</ul>
+  </ul>
 
  <!--   <form class="navbar-form navbar-left" role="search">
       <div class="form-group">
         <input type="text" class="form-control" placeholder="Buscar">
       </div>
       <button type="submit" class="btn btn-default">Enviar</button>
-  </form> -->
+    </form> -->
 
-  <ul class="nav navbar-nav navbar-right">
-  	<li class="dropdown">
-  		<a href="#" class="dropdown-toggle" data-toggle="dropdown">Usuario <b class="caret"></b>
-  		</a>
-  		<ul class="dropdown-menu">
-  			<li><a href="#">Settings</a></li>
-  			<li class="divider"></li>
-  			<li><%= link_to "Salir", destroy_user_session_path, method: :delete %></li>
-  		</ul>
-  	</li>
-  </ul>
-</div>
+    <ul class="nav navbar-nav navbar-right">
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Usuario <b class="caret"></b>
+        </a>
+        <ul class="dropdown-menu">
+          <li><a href="#">Settings</a></li>
+          <li class="divider"></li>
+          <li><%= link_to "Salir", destroy_user_session_path, method: :delete %></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
 </nav>
-<div class="col-md-4 text-right"></div>
-
-</div>
+</div>	
+<!-- Contenido -->
 <%= yield %>
 <!-- footer-->
 <div class="row">
-	<div class="col-md-12 text-center">copyright</div>
+  <div class="col-md-12 text-center">copyright</div>
+</div>
 </div>
 <% end %>
-</div>
-</div>
 </body>
 </html>

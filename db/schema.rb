@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140623200600) do
+ActiveRecord::Schema.define(version: 20140629232742) do
 
   create_table "creditnotedetails", force: true do |t|
     t.integer  "NroLinDet"
@@ -752,6 +752,8 @@ ActiveRecord::Schema.define(version: 20140623200600) do
     t.date     "Tmstfirma"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.binary   "Pdf"
+    t.binary   "Xml"
   end
 
   create_table "pruebas", force: true do |t|
