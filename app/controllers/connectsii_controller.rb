@@ -12,6 +12,10 @@ class ConnectsiiController < ApplicationController
     private_key = OpenSSL::PKey::RSA.new(File.new 'privateKey.pem')
     certificate = OpenSSL::X509::Certificate.new(File.read 'publicCert.pem')
 
+    sleep 13
+    puts 'admsoft'
+    
+
     doc.sign(private_key, certificate)
 
     #File.open('signed_doc.xml', 'w') { |file| file.puts doc.to_xml }
