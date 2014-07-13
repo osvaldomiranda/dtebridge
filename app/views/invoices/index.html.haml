@@ -1,34 +1,43 @@
-
-%h1 Listing invoices
-.container 
-  %table.table.table-hover
-    %tr
-      %th Tipo
-      %th Folio
-      %th Fecha
-      %th Monto
-      %th Rut Receptor
-      %th Razon Social
-      %th Pdf
-      %th Xml            
-      %th
-      %th
-      %th
-
-    - @invoices.each do |invoice|
+%h2 Listing invoices
+.row
+  .col-ms-12
+    =form_tag "/invoices", :method => "get" do
+      =text_field_tag :search, params[:search]
+      =submit_tag "Busca Folio", :name =>  nil 
+  .col-ms-12
+    %table.table.table-hover
       %tr
-        %td= invoice.TipoDte
-        %td= invoice.Folio
-        %td= invoice.FchEmis
-        %td= invoice.MntTotal
-        %td= invoice.RUTReceptor
-        %td= invoice.RznSocRecep
-        %td= invoice.Pdf
-        %td= invoice.Xml
-        %td= link_to 'Show', invoice
-        %td= link_to 'Edit', edit_invoice_path(invoice)
-        %td= link_to 'Destroy', invoice, :method => :delete, :data => { :confirm => 'Are you sure?' }
+        %th Tipo
+        %th Folio
+        %th Fecha
+        %th Monto
+        %th Rut Receptor
+        %th Razon Social
+        %th Pdf
+        %th Xml            
+        %th
+        %th
+        %th
+
+      - @invoices.each do |invoice|
+        %tr
+          %td= invoice.TipoDte
+          %td= invoice.Folio
+          %td= invoice.FchEmis
+          %td= invoice.MntTotal
+          %td= invoice.RUTReceptor
+          %td= invoice.RznSocRecep
+          %td= invoice.Pdf
+          %td= invoice.Xml
+          %td= link_to 'Show', invoice
+          %td= link_to 'Edit', edit_invoice_path(invoice)
+          %td= link_to 'Destroy', invoice, :method => :delete, :data => { :confirm => 'Are you sure?' }
 
 %br
 
+.apple_pagination
+  .page_info
+    = page_entries_info @posts
+    = will_paginate @invoices, :container => false
+%br
 = link_to 'New Invoice', new_invoice_path

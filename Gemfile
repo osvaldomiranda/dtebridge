@@ -67,6 +67,9 @@ gem 'pdf417', '~> 0.2.0'
 # For conver electronic stamp to png
 gem 'chunky_png', '~> 1.3.1'
 
+# For Search and filter
+gem 'filterrific'
+
 group :development do
   # Use sqlite3 as the database for development
   gem 'sqlite3'

@@ -1,4 +1,5 @@
 class Invoice < ActiveRecord::Base
+
 	validates :Version, length:{maximum: 3}, presence: true
 	validates :TipoDte, length:{maximum: 2}, presence: true
 	validates :Folio, length:{maximum: 10}, presence: true
@@ -111,5 +112,11 @@ class Invoice < ActiveRecord::Base
 	validates :RazonRef,length:{maximum: 90}
 	validates :X509Certificate, presence:true
 
-	has_many :invoicedetail, dependent: :destroy
+	def self.search(search)
+    if search
+      where('Folio LIKE ?', "%#{search}%")
+    else
+      @invoices = Invoice.all
+    end
+  end
 end

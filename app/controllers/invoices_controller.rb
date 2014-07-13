@@ -4,7 +4,12 @@ class InvoicesController < ApplicationController
   # GET /invoices
   # GET /invoices.json
   def index
-    @invoices = Invoice.all
+    @invoices = Invoice.search(params[:search]).paginate(:per_page => 4, :page => params[:page])
+  end
+
+  def search
+    @search = Invoice.search(params[:search])
+    @invoices = @search.all   # or @search.relation to lazy load in view
   end
 
   # GET /invoices/1
