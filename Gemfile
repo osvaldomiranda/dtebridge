@@ -80,8 +80,17 @@ group :development do
   # Console in error page
   gem 'binding_of_caller'
 
+  # Remote multi-server automation tool http://www.capistranorb.com
+  gem 'capistrano', '~> 2.15.5', group: :development
+
+  # For capistrano multiple Stage
+  gem 'capistrano-ext', '~> 1.2.1'
+
+  # Pure Ruby implementation of an SSH (protocol 2) client 
+  gem 'net-ssh', '~> 2.7.0'
 
 end
+
 
 group :development, :test do
   # For testing
