@@ -67,8 +67,8 @@ gem 'pdf417', '~> 0.2.0'
 # For conver electronic stamp to png
 gem 'chunky_png', '~> 1.3.1'
 
-# For Search and filter
-gem 'filterrific'
+# Muestra calendario en formularios
+gem 'bootstrap-datepicker-rails'
 
 group :development do
   # Use sqlite3 as the database for development

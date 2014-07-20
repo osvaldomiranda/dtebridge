@@ -4,13 +4,17 @@ class InvoicesController < ApplicationController
   # GET /invoices
   # GET /invoices.json
   def index
+    if params[:fechainicial]
+    @invoices = Invoice.where(FchEmis: params[:fechainicial]..params[:fechafinal]).paginate(:per_page => 4, :page => params[:page])
+     else
     @invoices = Invoice.search(params[:search]).paginate(:per_page => 4, :page => params[:page])
+    end
   end
 
-  def search
-    @search = Invoice.search(params[:search])
-    @invoices = @search.all   # or @search.relation to lazy load in view
-  end
+  # def search
+  #   @search = Invoice.search(params[:search])
+  #   @invoices = @search.all   # or @search.relation to lazy load in view
+  # end
 
   # GET /invoices/1
   # GET /invoices/1.json

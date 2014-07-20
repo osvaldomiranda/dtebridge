@@ -113,10 +113,10 @@ class Invoice < ActiveRecord::Base
 	validates :X509Certificate, presence:true
 
 	def self.search(search)
-    if search
-      where('Folio LIKE ?', "%#{search}%")
-    else
-      @invoices = Invoice.all
-    end
-  end
+		if search
+			where('Folio LIKE ?', "%#{search}%")
+		else
+			@invoices = Invoice.all
+		end
+	end
 end

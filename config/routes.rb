@@ -8,14 +8,12 @@ Dtebridge::Application.routes.draw do
   resources :invoices
   resources :guidedetails
   resources :guides
-
   resources :pruebas
 
   get "home/index"
   
   root to: "home#index"
 
-  resources :pruebas
   devise_for :users
 
 end

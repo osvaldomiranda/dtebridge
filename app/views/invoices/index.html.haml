@@ -1,10 +1,18 @@
-%h2 Listing invoices
+%h3 Listing invoices
 .row
-  .col-ms-12
-    =form_tag "/invoices", :method => "get" do
-      =text_field_tag :search, params[:search]
+  .col-xs-12.col-md-4
+    =form_tag "/invoices  ", :method => "get"  do
+      =number_field_tag :search, params[:search]
       =submit_tag "Busca Folio", :name =>  nil 
-  .col-ms-12
+  .col-xs-12.col-md-8   
+    =form_tag "/invoices", :method => "get" do
+      =label_tag "Desde:"
+      =text_field_tag :fechainicial, params[:fechainicial]
+      =label_tag "Hasta:"      
+      =text_field_tag :fechafinal, params[:fechafinal]  
+      =submit_tag "Busca por fecha", :name => nil  
+.row      
+  .col-md-12
     %table.table.table-hover
       %tr
         %th Tipo
@@ -41,3 +49,10 @@
     = will_paginate @invoices, :container => false
 %br
 = link_to 'New Invoice', new_invoice_path
+:javascript
+    $(document).ready(function(){
+    $('#fechainicial').datepicker({autoclose: true, language: "es",todayHighlight: true,format: "yyyy-mm-dd", todayBtn: "linked"});
+    $('#fechafinal').datepicker({autoclose: true, language: "es",todayHighlight: true,format: "yyyy-mm-dd", todayBtn: "linked"});
+
+    })
+
