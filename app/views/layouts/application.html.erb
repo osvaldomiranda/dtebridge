@@ -8,12 +8,6 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0 user-scalable=no">
 </head>
 <body>
-	<% if !current_user %>
-	<div class="container"> 
-   <!--<img class="img-responsive" src="/assets/slider_puente.jpg" alt="puente"> -->
-   <%= yield %>
- </div>
- <% else %>
  <div class="container" id="fondo-menu">
    <div class="row">
     <nav class="navbar navbar-default" role="navigation">
@@ -87,6 +81,5 @@
   <div class="col-md-12 text-center">copyright</div>
 </div>
 </div>
-<% end %>
 </body>
 </html>

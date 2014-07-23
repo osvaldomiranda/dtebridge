@@ -33,9 +33,9 @@ class ConnectsiiController < ApplicationController
   def getseed
     begin
       # ambiente sii pruebas 
-      # client = Savon.client(wsdl:"https://maullin.sii.cl/DTEWS/CrSeed.jws?WSDL")  
+      client = Savon.client(wsdl:"https://maullin.sii.cl/DTEWS/CrSeed.jws?WSDL")  
       #produccion
-      client = Savon.client(wsdl:"https://palena.sii.cl/DTEWS/CrSeed.jws?WSDL") 
+      #client = Savon.client(wsdl:"https://palena.sii.cl/DTEWS/CrSeed.jws?WSDL") 
       @seed_xml = client.call( :get_seed , message: {})
       @seed= @seed_xml.to_s[@seed_xml.to_s.index('SEMILLA')+11..@seed_xml.to_s.index('SEMILLA')+22]
     rescue
@@ -49,8 +49,8 @@ class ConnectsiiController < ApplicationController
 
   def gettoken(seed_xml)
     begin
-      #tokenws = Savon.client(wsdl: "https://maullin.sii.cl/DTEWS/GetTokenFromSeed.jws?WSDL")
-      tokenws = Savon.client(wsdl: "https://palena.sii.cl/DTEWS/GetTokenFromSeed.jws?WSDL")
+      tokenws = Savon.client(wsdl: "https://maullin.sii.cl/DTEWS/GetTokenFromSeed.jws?WSDL")
+      #tokenws = Savon.client(wsdl: "https://palena.sii.cl/DTEWS/GetTokenFromSeed.jws?WSDL")
       @token = tokenws.call( :get_token , message: {string: seed_xml}) 
     rescue
       puts "============="
