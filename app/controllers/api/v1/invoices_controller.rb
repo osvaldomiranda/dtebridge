@@ -15,6 +15,7 @@ class Api::V1::InvoicesController < Api::V2::ApiController
         @invoicedetail.save 
       end  
       render 'api/v1/invoices/create'
+      # llamar a connect sii
     else
       render format.json { render json: @invoice.errors, status: :unprocessable_entity }
     end
