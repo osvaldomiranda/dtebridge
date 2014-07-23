@@ -9,6 +9,7 @@ Dtebridge::Application.routes.draw do
   resources :guidedetails
   resources :guides
   resources :pruebas
+  resources :connectsii
 
   get "home/index"
   
