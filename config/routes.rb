@@ -1,5 +1,11 @@
 Dtebridge::Application.routes.draw do
 
+  get "home/index"
+  get "get_siitoken", to: "connectsii#get_token"
+  
+  root to: "home#index"
+
+
   resources :debitnotedetails
   resources :debitnotes
   resources :creditnotedetails
@@ -11,9 +17,7 @@ Dtebridge::Application.routes.draw do
   resources :pruebas
   resources :connectsii
 
-  get "home/index"
-  
-  root to: "home#index"
+
 
   devise_for :users
 
