@@ -1,23 +1,19 @@
 <?xml version="1.0"?>
-<gettoken>
-  <item>
-    <Semilla>001485049204</Semilla>
-  </item>
-  <Signature xmlns="http://www.w3.org/2000/09/xmldsig#">
-    <SignedInfo>
-      <CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"/>
-      <SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1"/>
-      <Reference><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/> </Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/> <DigestValue>gSU52cXuOtop7Ui6vxB9WXxm8do=</DigestValue> </Reference>
-    </SignedInfo>
-    <SignatureValue>p54RkFMIHDlCXG8o8f1EBRWt9ScTBgMVn+hJHUyA82Uk5p2wvsbuJFEZAE4+
-UVE1uOyqMIGHbJCvCU7TrUeyY2rP0VImALpnZQzzMmE5OYZKAW7aGkSkOirz
-cN6lmwmmE+/llUg9CjndEFsOlKhuDflRj4/zRy7HAerczgB2cCQ=</SignatureValue>
-    <KeyInfo>
-      <KeyValue/>
-      <X509Data>
-        <X509SubjectName/>
-        <X509IssuerSerial/>
-        <X509Certificate>MIIF3TCCBMWgAwIBAgIDAMrlMA0GCSqGSIb3DQEBBQUAMIGmMQswCQYDVQQGEwJD
+<gettoken><item><Semilla>001523805078</Semilla></item><Signature xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"/><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/><DigestValue>0TwOGZ+vxaHh6rWPfGWeejr9CZg=</DigestValue></Reference></SignedInfo><SignatureValue>BCKe6/j3YyuR1UZcxGw6aOTz5acXQjUOL2vQ9XzG6NwE+yyXTGgF9H3rnTsLWxPA
+zid3garipP0CaOR9bD3g/Wu4iVZdS0KwBtDEECxHm890vcSyUgc4WzIOi82udj/q
+DFiOrLNFN0VhXcwOHCAqbaXR29PEsAjO7s03wGiSJiw=</SignatureValue><KeyInfo><KeyValue>
+<RSAKeyValue>
+<Modulus>
+zg++fGgLLsTFD884jQcUYMA0YDZtrcEqSMmQZtemQWvGbh59xrWn37bpLbdNAgBR
+V+kVMSWf6RZyr3d+hQCTNcNxiqdJ+pnPcdLbkE5yL4EZ8rvwZeti2lBwhEd91PTK
+II4pJMLMePsKNf9EJ6koX/MbV2PIJ3pgJUK2RPQ7BtE=
+</Modulus>
+<Exponent>
+AQAB
+</Exponent>
+</RSAKeyValue>
+</KeyValue><X509Data>
+<X509Certificate>MIIF3TCCBMWgAwIBAgIDAMrlMA0GCSqGSIb3DQEBBQUAMIGmMQswCQYDVQQGEwJD
 TDEYMBYGA1UEChMPQWNlcHRhLmNvbSBTLkEuMUgwRgYDVQQDEz9BY2VwdGEuY29t
 IEF1dG9yaWRhZCBDZXJ0aWZpY2Fkb3JhIENsYXNlIDMgUGVyc29uYSBOYXR1cmFs
 IC0gVjIxHjAcBgkqhkiG9w0BCQEWD2luZm9AYWNlcHRhLmNvbTETMBEGA1UEBRMK
@@ -49,7 +45,9 @@ nvZe3DafDrmI8O1sE7MSTirPGoBdYJEYyyDRzjysS6raV3V6VH71NNgsi6f8KV9K
 1zh4g4YLJ0jtYPayA6QxPQvlWcziQJKAS1ti5rhhSUpsvG/mshxMv0IpHSzFZb+b
 i0+h3vqjGQ8rxSd09S4SgG31uhqk7U+uLI2C7PgM/lGFbkFOVDV03INtdpP2yYDI
 JTbLPkb032L2l1/WKyzcjyQ=</X509Certificate>
-      </X509Data>
-    </KeyInfo>
-  </Signature>
-</gettoken>
+<X509SubjectName>serialNumber=10207640-0,emailAddress=juancarlos@admsoftware.cl,CN=JUAN CARLOS AGUIRRE RODRIGUEZ,title=PERSONA NATURAL,C=CL</X509SubjectName>
+<X509IssuerSerial>
+<X509IssuerName>serialNumber=96919050-8,emailAddress=info@acepta.com,CN=Acepta.com Autoridad Certificadora Clase 3 Persona Natural - V2,O=Acepta.com S.A.,C=CL</X509IssuerName>
+<X509SerialNumber>51941</X509SerialNumber>
+</X509IssuerSerial>
+</X509Data></KeyInfo></Signature></gettoken>

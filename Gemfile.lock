@@ -130,6 +130,9 @@ GEM
       net-ssh (>= 2.6.5)
     nokogiri (1.6.2.1)
       mini_portile (= 0.6.0)
+    nokogiri-xmlsec1 (0.0.7)
+      mini_portile (= 0.6.0)
+      nokogiri
     nori (2.4.0)
     options (2.3.2)
     orm_adapter (0.4.0)
@@ -279,6 +282,7 @@ DEPENDENCIES
   jquery-rails
   jquery-turbolinks
   net-ssh (~> 2.7.0)
+  nokogiri-xmlsec1
   pdf417 (~> 0.2.0)
   pg
   rails (= 4.0.1)
