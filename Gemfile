@@ -61,6 +61,8 @@ gem 'savon', '~> 2.0'
 # for signed xml documents
 gem 'signed_xml'
 
+gem 'nokogiri-xmlsec1'
+
 # For electronic stamp
 gem 'pdf417', '~> 0.2.0'
 

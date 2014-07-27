@@ -1,24 +1,53 @@
 class ConnectsiiController < ApplicationController
-  require 'signed_xml'
+  #require 'signed_xml'
 
   def get_token
    
-    @seed= getseed
+    while !@seed
+      @seed= getseed
+    end
+
     if @seed
-      tosign_xml="<gettoken><item><Semilla>#{@seed}</Semilla></item><Signature xmlns=\"http://www.w3.org/2000/09/xmldsig#\"><SignedInfo><CanonicalizationMethod Algorithm=\"http://www.w3.org/TR/2001/REC-xml-c14n-20010315\"/><SignatureMethod Algorithm=\"http://www.w3.org/2000/09/xmldsig#rsa-sha1\"/><Reference URI=""><Transforms><Transform Algorithm=\"http://www.w3.org/2000/09/xmldsig#enveloped-signature\"/> </Transforms><DigestMethod Algorithm=\"http://www.w3.org/2000/09/xmldsig#sha1\"/> <DigestValue/> </Reference></SignedInfo><SignatureValue/><KeyInfo><KeyValue/><X509Data ><X509SubjectName/><X509IssuerSerial/><X509Certificate/></X509Data></KeyInfo></Signature></gettoken>"
    
-      # Signing
-      doc = SignedXml::Document(tosign_xml)
-      private_key = OpenSSL::PKey::RSA.new(File.new 'privateKey.pem')
-      certificate = OpenSSL::X509::Certificate.new(File.read 'publicCert.pem')
+      tosign_xml="<gettoken><item><Semilla>#{@seed}</Semilla></item>"
+      tosign_xml+="<Signature xmlns=\"http://www.w3.org/2000/09/xmldsig#\">"
+      tosign_xml+=  "<SignedInfo>"
+      tosign_xml+=   "<CanonicalizationMethod Algorithm=\"http://www.w3.org/TR/2001/REC-xml-c14n-20010315\"/>"
+      tosign_xml+=    "<SignatureMethod Algorithm=\"http://www.w3.org/2000/09/xmldsig#rsa-sha1\"/>"
+      tosign_xml+=     "<Reference URI=\"\">"
+      tosign_xml+=      "<Transforms>"
+      tosign_xml+=         "<Transform Algorithm=\"http://www.w3.org/2000/09/xmldsig#enveloped-signature\"/>"
+      tosign_xml+=      "</Transforms>"
+      tosign_xml+=      "<DigestMethod Algorithm=\"http://www.w3.org/2000/09/xmldsig#sha1\"/>"
+      tosign_xml+=      "<DigestValue/>"
+      tosign_xml+=     "</Reference>"
+      tosign_xml+=  "</SignedInfo>"
+      tosign_xml+=  "<SignatureValue/>"
+      tosign_xml+=  "<KeyInfo>"
+      tosign_xml+=   "<KeyValue/>"
+      tosign_xml+=   "<X509Data>"
+      tosign_xml+=    "<X509SubjectName/>"
+      tosign_xml+=    "<X509IssuerSerial/>"
+      tosign_xml+=    "<X509Certificate/>"
+      tosign_xml+=   "</X509Data>"
+      tosign_xml+=  "</KeyInfo>"
+      tosign_xml+= "</Signature>"
+      tosign_xml+="</gettoken>"
 
-      doc.sign(private_key, certificate)
 
-      #admsoftware
-      #File.open('signed_doc.xml', 'w') { |file| file.puts doc.to_xml }
+      File.open('tosign_xml.xml', 'w') { |file| file.puts tosign_xml}
+      sleep 1
+     
+      system("./comando")
+      
+      
+      doc = File.read 'doc-signed.xml'
 
-      @token= gettoken(doc.to_xml)
-
+      while !@token
+        @token= gettoken(doc)
+      end
+      
+   
       if @token
         render 'connectsii/index' 
       else
@@ -33,13 +62,18 @@ class ConnectsiiController < ApplicationController
   def getseed
     begin
       # ambiente sii pruebas 
-      client = Savon.client(wsdl:"https://maullin.sii.cl/DTEWS/CrSeed.jws?WSDL")  
+
+       
+      client = Savon.client(wsdl:"https://maullin.sii.cl/DTEWS/CrSeed.jws?WSDL") 
       #produccion
       #client = Savon.client(wsdl:"https://palena.sii.cl/DTEWS/CrSeed.jws?WSDL") 
-      @seed_xml = client.call( :get_seed , message: {})
-      @seed= @seed_xml.to_s[@seed_xml.to_s.index('SEMILLA')+11..@seed_xml.to_s.index('SEMILLA')+22]
+        @seed_xml = client.call( :get_seed , message: {})
+
+        @seed= @seed_xml.to_s[@seed_xml.to_s.index('SEMILLA')+11..@seed_xml.to_s.index('SEMILLA')+22]
+
+
     rescue
-      puts "============="
+      puts "=====SEED========"
       puts "Error #{$!}"
       puts "============="
       @seed=nil
@@ -53,7 +87,7 @@ class ConnectsiiController < ApplicationController
       #tokenws = Savon.client(wsdl: "https://palena.sii.cl/DTEWS/GetTokenFromSeed.jws?WSDL")
       @token = tokenws.call( :get_token , message: {string: seed_xml}) 
     rescue
-      puts "============="
+      puts "=====TOKEN========"
       puts "Error #{$!}"
       puts "============="
       @token=nil
