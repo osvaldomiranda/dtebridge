@@ -4,19 +4,21 @@ class ConnectsiiController < ApplicationController
 
   def postsii
 
-    #@token = RestClient.get "192.168.1.38:3000/api/v1/pruebas.json"
+    @token = RestClient.get "localhost:3001/api/v1/pruebas.json"
     #request = RestClient.post "192.168.1.38:3000/api/v1/pruebas.json", { 'rut' => '2-3', 'nombre'=> 'osvaldo' }.to_json, :content_type => :json, :accept => :json
+    # @token = get_token 
 
-
-    request = RestClient.post(
-    #  "https://maullin.sii.cl/cgi_dte/UPL/DTEUpload",
-    "192.168.1.38:3000/api/v1/pruebas.json",
-      :upload => {:file => File.new("fact1-signed.xml", 'rb')},
-      :cookies => {:TOKEN => get_token}
-    )
+    # request = RestClient.post(
+    # # "https://maullin.sii.cl/cgi_dte/UPL/DTEUpload",
+    # "https://localhost:3001/api/v1/pruebas.json",
+    #   :upload => {:file => File.new("fact1-signed.xml", 'rb')},
+    #   :cookies => {:TOKEN => @token}
+    # )
     
-    puts "=================="
-    puts request
+     puts "=================="
+     puts "=====#{@token}====="
+     puts "=================="
+     puts request
     puts "=================="
 
     render 'connectsii/index' 
@@ -71,8 +73,8 @@ class ConnectsiiController < ApplicationController
       
    
       if @token
-        @token= @token.to_s[@token.to_s.index('TOKEN')+11..@token.to_s.index('TOKEN')+22]
-        render 'connectsii/index' 
+        @token= @token.to_s[@token.to_s.index('TOKEN')+9..@token.to_s.index('TOKEN')+21]
+       # render 'connectsii/index' 
       else
         render 'connectsii/error' 
       end 
