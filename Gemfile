@@ -58,11 +58,6 @@ gem 'cancan'
 # for wsdl connect
 gem 'savon', '~> 2.0'
 
-# for signed xml documents
-gem 'signed_xml'
-
-gem 'nokogiri-xmlsec1'
-
 # For electronic stamp
 gem 'pdf417', '~> 0.2.0'
 
@@ -71,6 +66,8 @@ gem 'chunky_png', '~> 1.3.1'
 
 # Muestra calendario en formularios
 gem 'bootstrap-datepicker-rails'
+
+gem 'rest-client'
 
 group :development do
   # Use sqlite3 as the database for development

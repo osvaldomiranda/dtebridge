@@ -1,5 +1,27 @@
+#encoding utf-8
 class ConnectsiiController < ApplicationController
-  #require 'signed_xml'
+  require 'rest_client'
+
+  def postsii
+
+    #@token = RestClient.get "192.168.1.38:3000/api/v1/pruebas.json"
+    #request = RestClient.post "192.168.1.38:3000/api/v1/pruebas.json", { 'rut' => '2-3', 'nombre'=> 'osvaldo' }.to_json, :content_type => :json, :accept => :json
+
+
+    request = RestClient.post(
+    #  "https://maullin.sii.cl/cgi_dte/UPL/DTEUpload",
+    "192.168.1.38:3000/api/v1/pruebas.json",
+      :upload => {:file => File.new("fact1-signed.xml", 'rb')},
+      :cookies => {:TOKEN => get_token}
+    )
+    
+    puts "=================="
+    puts request
+    puts "=================="
+
+    render 'connectsii/index' 
+  end
+
 
   def get_token
    
@@ -49,6 +71,7 @@ class ConnectsiiController < ApplicationController
       
    
       if @token
+        @token= @token.to_s[@token.to_s.index('TOKEN')+11..@token.to_s.index('TOKEN')+22]
         render 'connectsii/index' 
       else
         render 'connectsii/error' 
@@ -62,8 +85,6 @@ class ConnectsiiController < ApplicationController
   def getseed
     begin
       # ambiente sii pruebas 
-
-       
       client = Savon.client(wsdl:"https://maullin.sii.cl/DTEWS/CrSeed.jws?WSDL") 
       #produccion
       #client = Savon.client(wsdl:"https://palena.sii.cl/DTEWS/CrSeed.jws?WSDL") 
