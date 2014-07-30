@@ -17,8 +17,13 @@ Dtebridge::Application.routes.draw do
   resources :pruebas
   resources :connectsii
 
-
-
   devise_for :users
+
+  namespace :api do
+    namespace :v1 do
+      post '/pruebas', to: "pruebas#create"
+      get '/pruebas', to: "pruebas#index"
+     end
+  end
 
 end

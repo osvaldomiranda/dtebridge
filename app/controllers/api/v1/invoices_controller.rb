@@ -1,4 +1,4 @@
-class Api::V1::InvoicesController < Api::V2::ApiController
+class Api::V1::InvoicesController < Api::V1::ApiController
   before_action :require_authentication
   
   def create

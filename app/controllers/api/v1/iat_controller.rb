@@ -1,4 +1,4 @@
-class Api::V1::IatController < Api::V2::ApiController
+class Api::V1::IatController < Api::V1::ApiController
   
   def login
     @iat = Iat.find(params[:id])
