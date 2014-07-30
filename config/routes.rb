@@ -2,6 +2,7 @@ Dtebridge::Application.routes.draw do
 
   get "home/index"
   get "get_siitoken", to: "connectsii#get_token"
+  get "postsii" , to: "connectsii#postsii"
   
   root to: "home#index"
 
