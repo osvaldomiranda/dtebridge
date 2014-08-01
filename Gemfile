@@ -67,6 +67,7 @@ gem 'chunky_png', '~> 1.3.1'
 # Muestra calendario en formularios
 gem 'bootstrap-datepicker-rails'
 
+
 gem 'rest-client'
 
 group :development do

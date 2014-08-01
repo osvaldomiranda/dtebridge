@@ -1,25 +1,89 @@
 #encoding utf-8
 class ConnectsiiController < ApplicationController
-  require 'rest_client'
+  require 'uri'
+  require 'net/http'
+  require 'net/https'
 
   def postsii
 
-    @token = RestClient.get "localhost:3001/api/v1/pruebas.json"
+    #@token = RestClient.get "localhost:3001/api/v1/pruebas.json"
     #request = RestClient.post "192.168.1.38:3000/api/v1/pruebas.json", { 'rut' => '2-3', 'nombre'=> 'osvaldo' }.to_json, :content_type => :json, :accept => :json
-    # @token = get_token 
+    #@token = get_token 
+    @token = "ochqijncqo8em"
 
-    # request = RestClient.post(
-    # # "https://maullin.sii.cl/cgi_dte/UPL/DTEUpload",
-    # "https://localhost:3001/api/v1/pruebas.json",
-    #   :upload => {:file => File.new("fact1-signed.xml", 'rb')},
-    #   :cookies => {:TOKEN => @token}
-    # )
+    # "https://maullin.sii.cl/cgi_dte/UPL/DTEUpload",
+    # "localhost:3001/api/v1/pruebas.json",
+
+    @BOUNDARY = "-----------------9022632e1130lc4--"
+ 
+    uri = URI.parse("https://maullin.sii.cl/cgi_dte/UPL/DTEUpload") 
+    http = Net::HTTP.new(uri, 443)
+    #http = Net::HTTP.new(uri.host, uri.port)
+    http.use_ssl = true
+    http.verify_mode = OpenSSL::SSL::VERIFY_PEER
+
+    request = Net::HTTP::Post.new(uri.request_uri) 
+
+    request["Accept"]          = "image/gif, image/x-xbitmap, image/jpeg, image/pjpeg, application/vnd.ms-powerpoint, application/ms-excel, application/msword, */*"
+    request["Referer"]         = "http://www.empresa.cl"
+    request["Accept-Language"] = "es-cl"
+    request["Content-Type"]    = "multipart/form-data: boundary=#{@BOUNDARY}"
+    request["Accept-Encoding"] = "gzip, deflate"
+    request["User-Agent"]      = "Mozilla/4.0 (compatible; PROG 1.0; Windows NT 5.0; YComp 5.0.2.4)"
+    request["Content-Length"]  = "8653"
+    request["Connection"]      = "Keep-Alive"
+    request["Cache-Control"]   = "no-cache"
+    request["Cookie"]          = "TOKEN=YJyar2VB0HWzg"
+
+
+
+    post_body = []
+
+    post_body << "-----------------9022632e1130lc4\r\n"
+    post_body << "Content-Disposition: form-data; name=\"rutSender\"\r\n"
+    post_body << "Content-Type: text/plain; charset=US-ASCII\r\n"
+    post_body << "Content-Transfer-Encoding: 8Bit\r\n"
+    post_body << "\r\n"
+    post_body << "66000000\r\n"
+    post_body << "-----------------9022632e1130lc4\r\n"
+    post_body << "Content-Disposition: form-data; name=\"dvSender\"\r\n"
+    post_body << "Content-Type: text/plain; charset=US-ASCII\r\n"
+    post_body << "Content-Transfer-Encoding: 8Bit\r\n"
+    post_body << "\r\n"
+    post_body << "0\r\n"
+    post_body << "-----------------9022632e1130lc4\r\n"
+    post_body << "Content-Disposition: form-data; name=\"rutCompany\"\r\n"
+    post_body << "Content-Type: text/plain; charset=US-ASCII\r\n"
+    post_body << "Content-Transfer-Encoding: 8Bit\r\n"
+    post_body << "\r\n"
+    post_body << "77777777\r\n"
+    post_body << "-----------------9022632e1130lc4\r\n"
+    post_body << "Content-Disposition: form-data; name=\"dvCompany\"\r\n"
+    post_body << "Content-Type: text/plain; charset=US-ASCII\r\n"
+    post_body << "Content-Transfer-Encoding: 8Bit\r\n"
+    post_body << "\r\n"
+    post_body << "7\r\n"
+
+    file = "fact1-signed.xml"
+        
+    post_body << "-----------------9022632e1130lc4\r\n"
+    post_body << "Content-Disposition: form-data; name=\"archivo\"; filename=\"d:\ENVFIN_100_sign.xml\"\r\n"
+    post_body << "Content-Type: application/octet-stream\r\n"
+    post_body << "Content-Transfer-Encoding: binary\r\n"
+
+    post_body << "\r\n"
+    post_body << File.read(file)
+    post_body << "\r\n"
+    post_body << "-----------------9022632e1130lc4--\r\n"
+  
+    request.body = post_body.join
     
-     puts "=================="
-     puts "=====#{@token}====="
-     puts "=================="
-     puts request
-    puts "=================="
+    puts "===================================="
+    puts request.body
+    puts "===================================="
+    puts request
+   # http.request(request)
+
 
     render 'connectsii/index' 
   end
