@@ -1,6 +1,6 @@
 class Debitnotedetail < ActiveRecord::Base
 
-validates :NroLinDet, length:{maximum: 4, in=> 1..60}, presence: true
+validates :NroLinDet, length:{maximum: 4}, presence: true
 validates :TpoCodigo, length:{maximum: 10}
 validates :VlrCodigo, length:{maximum: 35}
 validates :IndExe, length:{maximum: 1}
