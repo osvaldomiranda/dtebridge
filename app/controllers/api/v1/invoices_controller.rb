@@ -20,4 +20,4 @@ class Api::V1::InvoicesController < Api::V1::ApiController
       render format.json { render json: @invoice.errors, status: :unprocessable_entity }
     end
   end
-end  
+end   

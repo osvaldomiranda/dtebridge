@@ -1,5 +1,9 @@
 Dtebridge::Application.routes.draw do
 
+  resources :iat_logs
+
+  resources :iats
+
   get "home/index"
   get "get_siitoken", to: "connectsii#get_token"
   get "postsii" , to: "connectsii#postsii"
@@ -24,6 +28,9 @@ Dtebridge::Application.routes.draw do
     namespace :v1 do
       post '/pruebas', to: "pruebas#create"
       get '/pruebas', to: "pruebas#index"
+
+      get "/iat_login", to: "iats#login"
+      get "/iat_ping", to: "iats#ping"
      end
   end
 

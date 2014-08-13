@@ -5,12 +5,12 @@ namespace :solr do
 
   desc "start solr"
   task :start, :roles => :app, :except => { :no_release => true } do 
-    run "cd #{current_path} && RAILS_ENV=#{rails_env} bundle exec sunspot-solr start --port=8983 --data-directory=#{shared_path}/solr/data --pid-dir=#{shared_path}/solr/pids"
+    run "cd #{current_path} && RAILS_ENV=#{rails_env} bundle exec sunspot-solr start --max-memory=3G --min-memory=1G --port=8983 --data-directory=#{shared_path}/solr/data --pid-dir=#{shared_path}/solr/pids"
   end
 
   desc "stop solr"
   task :stop, :roles => :app, :except => { :no_release => true } do 
-    run "#cd #{current_path} && RAILS_ENV=#{rails_env} bundle exec sunspot-solr stop --port=8983 --data-directory=#{shared_path}/solr/data --pid-dir=#{shared_path}/solr/pids"
+    run "#cd #{current_path} && RAILS_ENV=#{rails_env} bundle exec sunspot-solr stop --max-memory=3G --min-memory=1G --port=8983 --data-directory=#{shared_path}/solr/data --pid-dir=#{shared_path}/solr/pids"
   end
 
   task :yes do

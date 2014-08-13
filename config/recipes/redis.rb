@@ -21,11 +21,11 @@ namespace :redis do
 
   desc "Start the Redis server"
   task :start do
-    run "redis-server #{shared_path}/config/redis.conf"
+    run "redis-server &"
   end
 
   desc "Stop the Redis server"
   task :stop do
-    run 'echo "SHUTDOWN" | nc localhost 6379'
+    run 'redis-cli shutdown'
   end
 end

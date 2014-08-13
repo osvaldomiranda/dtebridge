@@ -31,7 +31,7 @@ class ConnectsiiController < ApplicationController
       post_body << "Content-Type: text/plain; charset=US-ASCII\r\n"
       post_body << "Content-Transfer-Encoding: 8Bit\r\n"
       post_body << "\r\n"
-      post_body << "66000000\r\n"
+      post_body << "10207640\r\n"
       post_body << "-----------------9022632e1130lc4\r\n"
       post_body << "Content-Disposition: form-data; name=\"dvSender\"\r\n"
       post_body << "Content-Type: text/plain; charset=US-ASCII\r\n"
@@ -54,7 +54,7 @@ class ConnectsiiController < ApplicationController
       file = "envio1_signed.xml"
           
       post_body << "-----------------9022632e1130lc4\r\n"
-      post_body << "Content-Disposition: form-data; name=\"archivo\"; filename=\"d:\ENVFIN_100_sign.xml\"\r\n"
+      post_body << "Content-Disposition: form-data; name=\"archivo\"; filename=\"envio1_signed.xml\"\r\n"
       post_body << "Content-Type: application/octet-stream\r\n"
       post_body << "Content-Transfer-Encoding: binary\r\n"
 

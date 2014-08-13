@@ -30,6 +30,8 @@ gem 'jbuilder', '~> 1.2'
 # For haml syntax
 gem 'haml'
 
+
+
 # For creating haml files when performing scaffold
 gem 'haml-rails'
 
@@ -67,8 +69,14 @@ gem 'chunky_png', '~> 1.3.1'
 # Muestra calendario en formularios
 gem 'bootstrap-datepicker-rails'
 
-
 gem 'rest-client'
+
+# Use unicorn as the app server
+gem 'unicorn'
+
+# For restarting unicorn workers
+gem 'unicorn-worker-killer'
+
 
 group :development do
   # Use sqlite3 as the database for development
@@ -88,6 +96,8 @@ group :development do
 
   # Pure Ruby implementation of an SSH (protocol 2) client 
   gem 'net-ssh', '~> 2.7.0'
+
+
 
 end
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140629232742) do
+ActiveRecord::Schema.define(version: 20140806234453) do
 
   create_table "creditnotedetails", force: true do |t|
     t.integer  "NroLinDet"
@@ -587,6 +587,30 @@ ActiveRecord::Schema.define(version: 20140629232742) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "iat_logs", force: true do |t|
+    t.text     "description"
+    t.integer  "iat_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "iat_logs", ["iat_id"], name: "index_iat_logs_on_iat_id"
+
+  create_table "iats", force: true do |t|
+    t.string   "nombre"
+    t.string   "sucursal"
+    t.date     "ultimo_ping"
+    t.string   "auth_token"
+    t.date     "ping_inicio"
+    t.string   "espacio_disco"
+    t.string   "memoria"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "iats", ["user_id"], name: "index_iats_on_user_id"
 
   create_table "invoicedetails", force: true do |t|
     t.integer  "NroLinDet"

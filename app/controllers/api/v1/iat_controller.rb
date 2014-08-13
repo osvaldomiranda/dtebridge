@@ -2,7 +2,13 @@ class Api::V1::IatController < Api::V1::ApiController
   
   def login
     @iat = Iat.find(params[:id])
+    @log = Iat_log.new
+
     if @iat
+      @log.iat = @iat
+      @log.description = "Login"
+      @log.save
+
       render "api/v1/iat/login"
     else
       render json: 'Ivalid Iat', status: :unauthorized   
@@ -15,6 +21,11 @@ class Api::V1::IatController < Api::V1::ApiController
     if @iat
       @iat.lastping = Time.now
       @iat.save
+
+      @log.iat = @iat
+      @log.description = "ping"
+      @log.save
+
       render "api/v1/iat/ping"
     else
       render json: 'Ivalid Iat', status: :unauthorized   

@@ -18,8 +18,10 @@ load "config/recipes/sidekiq"
 load "config/recipes/ruby_dev"
 load "config/recipes/python"
 load "config/recipes/libxslt"
+load "config/recipes/imagemagick"
+load "config/recipes/image_compression"
 
-set :stages, %w(production staging)
+set :stages, %w( staging production )
 set :default_stage, "staging"
 
 # Application info
@@ -27,21 +29,18 @@ set :user, "deployer"
 set :application, "dtebridge"
 set :deploy_to, "/home/#{user}/apps/#{application}"
 set :use_sudo, false
-set :deploy_via, :remote_cache
-set :rails_env, 'production'
-
 
 # Repository info
 set :scm, "git"
 set :git_user, 'osvaldomiranda'
 set :repository, "git@github.com:#{git_user}/#{application}.git"
-set :branch, "master"
+
 
 default_run_options[:pty] = true
 ssh_options[:forward_agent] = true
 
 # Keep only the last 5 releases
+#before "deploy:update_code", "sidekiq:quiet"
 after "deploy", "deploy:cleanup" 
-
-
-
+after "deploy",    "sidekiq:stop"
+after "deploy",   "sidekiq:start"

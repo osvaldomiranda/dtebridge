@@ -6,9 +6,9 @@
   <RutEmisor>10207640-0</RutEmisor>
   <RutEnvia>10207640-0</RutEnvia>
   <RutReceptor>77777777-7</RutReceptor>
-  <FchResol>2002-10-20</FchResol>
+  <FchResol>2014-01-22</FchResol>
   <NroResol>0</NroResol>
-  <TmstFirmaEnv>2003-08-29T19:34:59</TmstFirmaEnv>
+  <TmstFirmaEnv>2014-05-26T09:33:20</TmstFirmaEnv>
   <SubTotDTE>
    <TpoDTE>33</TpoDTE>
    <NroDTE>1</NroDTE>
@@ -113,7 +113,7 @@
       <FRMT algoritmo="SHA1withRSA">GK7FRnNjgHLyRspdygg2WudvqqJ+OQchn8k/6TUrndBBNHsFHInEN34+KLTy\nFgRG/bmDIjclV4VTlgs3TIg/7A==\n</FRMT>
     </TED>
         
-    <TmstFirma>2003-10-13T09:33:20</TmstFirma>
+    <TmstFirma>2014-05-26T09:33:20</TmstFirma>
 </Documento>
 
 <Signature xmlns="http://www.w3.org/2000/09/xmldsig#">
