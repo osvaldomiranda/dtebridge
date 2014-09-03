@@ -29,8 +29,8 @@ Dtebridge::Application.routes.draw do
       post '/pruebas', to: "pruebas#create"
       get '/pruebas', to: "pruebas#index"
 
-      get "/iat_login", to: "iats#login"
-      get "/iat_ping", to: "iats#ping"
+      get "/iat_login", to: "iat#login"
+      get "/iat_ping/:id", to: "iat#ping"
      end
   end
 

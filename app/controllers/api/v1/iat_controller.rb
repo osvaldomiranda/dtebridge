@@ -19,14 +19,15 @@ class Api::V1::IatController < Api::V1::ApiController
     @iat = Iat.find(params[:id])
 
     if @iat
-      @iat.lastping = Time.now
+      @iat.ultimo_ping = Time.now
       @iat.save
 
-      @log.iat = @iat
-      @log.description = "ping"
-      @log.save
+      # @log = Iat_log.new
+      # @log.iat = @iat
+      # @log.description = "ping"
+      # @log.save
 
-      render "api/v1/iat/ping"
+      render "/api/v1/iat/ping"
     else
       render json: 'Ivalid Iat', status: :unauthorized   
     end
