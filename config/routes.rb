@@ -31,6 +31,8 @@ Dtebridge::Application.routes.draw do
 
       get "/iat_login", to: "iat#login"
       get "/iat_ping/:id", to: "iat#ping"
+
+      post "/iat_doc", to: "iat#iat_doc"
      end
   end
 

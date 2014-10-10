@@ -32,4 +32,25 @@ class Api::V1::IatController < Api::V1::ApiController
       render json: 'Ivalid Iat', status: :unauthorized   
     end
   end
+
+  def iat_doc
+    @iat = Iat.find(params[:id])
+
+    @doc = params[:docxml]
+
+    File.open("Fac_1.txt", "w+") do |f|
+      f.write(@doc)
+    end
+
+    if @iat
+      @iat.ultimo_ping = Time.now
+      @iat.save
+
+      render "/api/v1/iat/ping"
+    else
+      render json: 'Ivalid Doc', status: :unauthorized   
+    end
+
+  end
+
 end  
