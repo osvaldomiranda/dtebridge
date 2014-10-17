@@ -37,7 +37,7 @@ class Api::V1::IatController < Api::V1::ApiController
     @iat = Iat.find(params[:id])
 
     @doc = params[:docxml]
-    @file = params[:filename]
+    @filename = params[:filename]
 
 
     File.open("fact1.xml", "w+") do |f|
