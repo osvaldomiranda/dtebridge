@@ -40,11 +40,11 @@ class Api::V1::IatController < Api::V1::ApiController
     @file = params[:filename]
 
 
-    File.open(file, "w+") do |f|
+    File.open("fact1.xml", "w+") do |f|
       f.write(@doc)
     end
 
-    
+
 
     if @iat
       @iat.ultimo_ping = Time.now
