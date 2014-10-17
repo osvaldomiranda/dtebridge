@@ -37,10 +37,14 @@ class Api::V1::IatController < Api::V1::ApiController
     @iat = Iat.find(params[:id])
 
     @doc = params[:docxml]
+    @file = params[:filename]
 
-    File.open("Fac_1.txt", "w+") do |f|
+
+    File.open(file, "w+") do |f|
       f.write(@doc)
     end
+
+    
 
     if @iat
       @iat.ultimo_ping = Time.now
