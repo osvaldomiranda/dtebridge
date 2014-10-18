@@ -31,7 +31,7 @@ class ConnectsiiController < ApplicationController
       post_body << "Content-Type: text/plain; charset=US-ASCII\r\n"
       post_body << "Content-Transfer-Encoding: 8Bit\r\n"
       post_body << "\r\n"
-      post_body << "10207640\r\n"
+      post_body << "773985707\r\n"
       post_body << "-----------------9022632e1130lc4\r\n"
       post_body << "Content-Disposition: form-data; name=\"dvSender\"\r\n"
       post_body << "Content-Type: text/plain; charset=US-ASCII\r\n"
@@ -43,7 +43,7 @@ class ConnectsiiController < ApplicationController
       post_body << "Content-Type: text/plain; charset=US-ASCII\r\n"
       post_body << "Content-Transfer-Encoding: 8Bit\r\n"
       post_body << "\r\n"
-      post_body << "77777777\r\n"
+      post_body << "049402732\r\n"
       post_body << "-----------------9022632e1130lc4\r\n"
       post_body << "Content-Disposition: form-data; name=\"dvCompany\"\r\n"
       post_body << "Content-Type: text/plain; charset=US-ASCII\r\n"
@@ -51,15 +51,15 @@ class ConnectsiiController < ApplicationController
       post_body << "\r\n"
       post_body << "7\r\n"
 
-      file = "envio1_signed.xml"
           
       post_body << "-----------------9022632e1130lc4\r\n"
       post_body << "Content-Disposition: form-data; name=\"archivo\"; filename=\"envio1_signed.xml\"\r\n"
       post_body << "Content-Type: application/octet-stream\r\n"
       post_body << "Content-Transfer-Encoding: binary\r\n"
 
+     
       post_body << "\r\n"
-      post_body << File.read(file)
+      post_body << createenvio
       post_body << "\r\n"
       post_body << "-----------------9022632e1130lc4\r\n"
     
@@ -180,6 +180,64 @@ class ConnectsiiController < ApplicationController
       @token=nil
     ensure 
     end
-
   end
+
+  def createenvio(filename)
+
+    
+    envio_xml  = "<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>\r\n"
+
+    envio_xml += "<EnvioDTE xmlns=\"http://www.sii.cl/SiiDte\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.sii.cl/SiiDte EnvioDTE_v10.xsd\" version=\"1.0\">\r\n"
+    envio_xml += "<SetDTE ID=\"SetDoc\">\r\n"
+    envio_xml += "<Caratula version=\"1.0\">\r\n"
+    envio_xml += "<RutEmisor>77398570-7</RutEmisor>\r\n"
+    envio_xml += "<RutEnvia>77398570-7</RutEnvia>\r\n"
+    envio_xml += "<RutReceptor>04940273-2</RutReceptor>\r\n"
+    envio_xml += "<FchResol>2002-10-20</FchResol>\r\n"
+    envio_xml += "<NroResol>0</NroResol>\r\n"
+    envio_xml += "<TmstFirmaEnv>2014-10-17T14:34:59</TmstFirmaEnv>\r\n"
+    envio_xml += "<SubTotDTE>\r\n"
+    envio_xml += "<TpoDTE>33</TpoDTE>\r\n"
+    envio_xml += "<NroDTE>1</NroDTE>\r\n"
+    envio_xml += "</SubTotDTE>\r\n"
+    envio_xml += "</Caratula>\r\n"
+
+    envio_xml += File.read(filename)
+
+    envio_xml += "</SetDTE>\r\n"
+    envio_xml += "<Signature xmlns=\"http://www.w3.org/2000/09/xmldsig#\">\r\n"
+    envio_xml += "<SignedInfo>\r\n"
+    envio_xml += "<CanonicalizationMethod Algorithm=\"http://www.w3.org/TR/2001/REC-xml-c14n-20010315\"/>\r\n"
+    envio_xml += "<SignatureMethod Algorithm=\"http://www.w3.org/2000/09/xmldsig#rsa-sha1\"/>\r\n"
+    envio_xml += "<Reference URI=\"\">\r\n"
+    envio_xml += "<Transforms>\r\n"
+    envio_xml += "<Transform Algorithm=\"http://www.w3.org/2000/09/xmldsig#enveloped-signature\"/>\r\n"
+    envio_xml += "</Transforms>\r\n"
+    envio_xml += "<DigestMethod Algorithm=\"http://www.w3.org/2000/09/xmldsig#sha1\"/>\r\n"
+    envio_xml += "<DigestValue/>\r\n"
+    envio_xml += "</Reference>\r\n"
+    envio_xml += "</SignedInfo>\r\n"
+    envio_xml += "<SignatureValue/>\r\n"
+    envio_xml += "<KeyInfo>\r\n"
+    envio_xml += "<KeyValue/>\r\n"
+    envio_xml += "<X509Data >\r\n"
+    envio_xml += "<X509SubjectName/>\r\n"
+    envio_xml += "<X509IssuerSerial/>\r\n"
+    envio_xml += "<X509Certificate/>\r\n"
+    envio_xml += "</X509Data>\r\n"
+    envio_xml += "</KeyInfo>\r\n"
+    envio_xml += "</Signature>\r\n"
+    envio_xml += "</EnvioDTE>\r\n"
+   
+    File.open('tosign_xml.xml', 'w') { |file| file.puts envio_xml}
+    sleep 2
+     
+    system("./comando")
+
+    envio_signed = File.read 'doc-signed.xml'
+
+
+    
+    return envio_signed
+  end  
 end

@@ -1,5 +1,10 @@
 class Api::V1::IatController < Api::V1::ApiController
   
+
+  require 'uri'
+  require 'net/http'
+  require 'net/https'
+
   def login
     @iat = Iat.find(params[:id])
     @log = Iat_log.new
@@ -39,16 +44,18 @@ class Api::V1::IatController < Api::V1::ApiController
     @doc = params[:docxml]
     @filename = params[:filename]
 
-
-    File.open("fact1.xml", "w+") do |f|
+    File.open("#{@filename}", "w+") do |f|
       f.write(@doc)
     end
-
 
 
     if @iat
       @iat.ultimo_ping = Time.now
       @iat.save
+
+      createenvio(@filename)
+      #reemplazar createenvio por postsii cuando se quiera mandar a SII
+      #postsii(@filename)  
 
       render "/api/v1/iat/ping"
     else
@@ -56,5 +63,250 @@ class Api::V1::IatController < Api::V1::ApiController
     end
 
   end
+
+ 
+
+  def postsii(filename)
+
+    rut_emisorguion = envio_xml.to_s[envio_xml.to_s.index('RUTEmisor')+11..envio_xml.to_s.index('RUTEmisor')+19]
+    dv_emisor  = rut_emisorguion.to_s[rut_emisorguion.to_s.index('-')+1..rut_emisorguion.to_s.index('-')+1]
+    rut_emisor = rut_emisorguion.to_s[0..rut_emisorguion.to_s.index('-')-1]
+
+    rut_recepguion = envio_xml.to_s[envio_xml.to_s.index('RUTRecep')+9..envio_xml.to_s.index('RUTRecep')+19]
+    dv_recep  = rut_recepguion.to_s[rut_recepguion.to_s.index('-')+1..rut_recepguion.to_s.index('-')+1]
+    rut_recep = rut_recepguion.to_s[0..rut_recepguion.to_s.index('-')-1]
+
+
+    #@token = RestClient.get "localhost:3001/api/v1/pruebas.json"
+    #request = RestClient.post "192.168.1.38:3000/api/v1/pruebas.json", { 'rut' => '2-3', 'nombre'=> 'osvaldo' }.to_json, :content_type => :json, :accept => :json
+    @token = get_token 
+
+    # "https://maullin.sii.cl/cgi_dte/UPL/DTEUpload",
+    # "localhost:3001/api/v1/pruebas.json",
+    if @token
+
+      @BOUNDARY = "-----------------9022632e1130lc4--"
+   
+      uri = URI.parse("https://maullin.sii.cl/cgi_dte/UPL/DTEUpload") 
+     # http = Net::HTTP.new("https://maullin.sii.cl/cgi_dte/UPL/DTEUpload", 443)
+      http = Net::HTTP.new(uri.host, uri.port)
+      http.use_ssl = true
+      http.verify_mode = OpenSSL::SSL::VERIFY_PEER
+
+      request = Net::HTTP::Post.new(uri.request_uri) 
+
+      post_body = []
+
+      post_body << "-----------------9022632e1130lc4\r\n"
+      post_body << "Content-Disposition: form-data; name=\"rutSender\"\r\n"
+      post_body << "Content-Type: text/plain; charset=US-ASCII\r\n"
+      post_body << "Content-Transfer-Encoding: 8Bit\r\n"
+      post_body << "\r\n"
+      post_body << "#{rut_emisor}#{dv_emisor}\r\n"
+      post_body << "-----------------9022632e1130lc4\r\n"
+      post_body << "Content-Disposition: form-data; name=\"dvSender\"\r\n"
+      post_body << "Content-Type: text/plain; charset=US-ASCII\r\n"
+      post_body << "Content-Transfer-Encoding: 8Bit\r\n"
+      post_body << "\r\n"
+      post_body << "0\r\n"
+      post_body << "-----------------9022632e1130lc4\r\n"
+      post_body << "Content-Disposition: form-data; name=\"rutCompany\"\r\n"
+      post_body << "Content-Type: text/plain; charset=US-ASCII\r\n"
+      post_body << "Content-Transfer-Encoding: 8Bit\r\n"
+      post_body << "\r\n"
+      post_body << "#{rut_recep}#{dv_recep}\r\n"
+      post_body << "-----------------9022632e1130lc4\r\n"
+      post_body << "Content-Disposition: form-data; name=\"dvCompany\"\r\n"
+      post_body << "Content-Type: text/plain; charset=US-ASCII\r\n"
+      post_body << "Content-Transfer-Encoding: 8Bit\r\n"
+      post_body << "\r\n"
+      post_body << "7\r\n"
+
+          
+      post_body << "-----------------9022632e1130lc4\r\n"
+      post_body << "Content-Disposition: form-data; name=\"archivo\"; filename=\"envio1_signed.xml\"\r\n"
+      post_body << "Content-Type: application/octet-stream\r\n"
+      post_body << "Content-Transfer-Encoding: binary\r\n"
+
+     
+      post_body << "\r\n"
+      post_body << createenvio(filename)
+      post_body << "\r\n"
+      post_body << "-----------------9022632e1130lc4\r\n"
+    
+      request.body = post_body.join
+
+      request["Accept"]          = "image/gif, image/x-xbitmap, image/jpeg, image/pjpeg, application/vnd.ms-powerpoint, application/ms-excel, application/msword, */*"
+      request["Referer"]         = "http://www.empresa.cl"
+      request["Accept-Language"] = "es-cl"
+      request["Content-Type"]    = "multipart/form-data: boundary=#{@BOUNDARY}"
+      request["Accept-Encoding"] = "gzip, deflate"
+      request["User-Agent"]      = "Mozilla/4.0 (compatible; PROG 1.0; Windows NT 5.0; YComp 5.0.2.4)"
+      request["Content-Length"]  = request.body.length
+      request["Connection"]      = "Keep-Alive"
+      request["Cache-Control"]   = "no-cache"
+      request["Cookie"]          = "TOKEN=#{@token}"
+      
+      responce = http.request(request)
+
+      puts "===================================="
+      puts responce.body
+      puts "===================================="
+    
+      true 
+    else
+      false 
+    end    
+  end
+
+
+  def get_token
+   
+    while !@seed
+      @seed= getseed
+    end
+
+    if @seed
+   
+      tosign_xml="<gettoken><item><Semilla>#{@seed}</Semilla></item>"
+      tosign_xml+="<Signature xmlns=\"http://www.w3.org/2000/09/xmldsig#\">"
+      tosign_xml+=  "<SignedInfo>"
+      tosign_xml+=   "<CanonicalizationMethod Algorithm=\"http://www.w3.org/TR/2001/REC-xml-c14n-20010315\"/>"
+      tosign_xml+=    "<SignatureMethod Algorithm=\"http://www.w3.org/2000/09/xmldsig#rsa-sha1\"/>"
+      tosign_xml+=     "<Reference URI=\"\">"
+      tosign_xml+=      "<Transforms>"
+      tosign_xml+=         "<Transform Algorithm=\"http://www.w3.org/2000/09/xmldsig#enveloped-signature\"/>"
+      tosign_xml+=      "</Transforms>"
+      tosign_xml+=      "<DigestMethod Algorithm=\"http://www.w3.org/2000/09/xmldsig#sha1\"/>"
+      tosign_xml+=      "<DigestValue/>"
+      tosign_xml+=     "</Reference>"
+      tosign_xml+=  "</SignedInfo>"
+      tosign_xml+=  "<SignatureValue/>"
+      tosign_xml+=  "<KeyInfo>"
+      tosign_xml+=   "<KeyValue/>"
+      tosign_xml+=   "<X509Data>"
+      tosign_xml+=    "<X509SubjectName/>"
+      tosign_xml+=    "<X509IssuerSerial/>"
+      tosign_xml+=    "<X509Certificate/>"
+      tosign_xml+=   "</X509Data>"
+      tosign_xml+=  "</KeyInfo>"
+      tosign_xml+= "</Signature>"
+      tosign_xml+="</gettoken>"
+
+
+      File.open('tosign_xml.xml', 'w') { |file| file.puts tosign_xml}
+      sleep 1
+     
+      #TO DO: resolver concurrencia para la firma
+      system("./comando")
+      
+      
+      doc = File.read 'doc-signed.xml'
+
+      while !@token
+        @token= gettoken(doc)
+      end
+      
+   
+      if @token
+        @token= @token.to_s[@token.to_s.index('TOKEN')+9..@token.to_s.index('TOKEN')+21]
+       # render 'connectsii/index' 
+      else
+        @token = nil 
+      end 
+    else
+      @token = nil     
+    end
+
+  end
+
+  def getseed
+    begin
+      # ambiente sii pruebas 
+      client = Savon.client(wsdl:"https://maullin.sii.cl/DTEWS/CrSeed.jws?WSDL") 
+      #produccion
+      #client = Savon.client(wsdl:"https://palena.sii.cl/DTEWS/CrSeed.jws?WSDL") 
+        @seed_xml = client.call( :get_seed , message: {})
+
+        @seed= @seed_xml.to_s[@seed_xml.to_s.index('SEMILLA')+11..@seed_xml.to_s.index('SEMILLA')+22]
+
+
+    rescue
+      puts "=====SEED========"
+      puts "Error #{$!}"
+      puts "============="
+      @seed=nil
+    ensure 
+    end
+  end
+
+  def gettoken(seed_xml)
+    begin
+      tokenws = Savon.client(wsdl: "https://maullin.sii.cl/DTEWS/GetTokenFromSeed.jws?WSDL")
+      #tokenws = Savon.client(wsdl: "https://palena.sii.cl/DTEWS/GetTokenFromSeed.jws?WSDL")
+      @token = tokenws.call( :get_token , message: {string: seed_xml}) 
+    rescue
+      puts "=====TOKEN========"
+      puts "Error #{$!}"
+      puts "============="
+      @token=nil
+    ensure 
+    end
+  end
+
+  def createenvio(filename)
+    
+    envio_xml  = "<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>\r\n"
+
+    envio_xml += "<EnvioDTE xmlns=\"http://www.sii.cl/SiiDte\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.sii.cl/SiiDte EnvioDTE_v10.xsd\" version=\"1.0\">\r\n"
+    envio_xml += "<SetDTE ID=\"SetDoc\">\r\n"
+    envio_xml += "<Caratula version=\"1.0\">\r\n"
+    envio_xml += "<RutEmisor>77398570-7</RutEmisor>\r\n"
+    envio_xml += "<RutEnvia>77398570-7</RutEnvia>\r\n"
+    envio_xml += "<RutReceptor>04940273-2</RutReceptor>\r\n"
+    envio_xml += "<FchResol>2002-10-20</FchResol>\r\n"
+    envio_xml += "<NroResol>0</NroResol>\r\n"
+    envio_xml += "<TmstFirmaEnv>2014-10-17T14:34:59</TmstFirmaEnv>\r\n"
+    envio_xml += "<SubTotDTE>\r\n"
+    envio_xml += "<TpoDTE>33</TpoDTE>\r\n"
+    envio_xml += "<NroDTE>1</NroDTE>\r\n"
+    envio_xml += "</SubTotDTE>\r\n"
+    envio_xml += "</Caratula>\r\n"
+
+    envio_xml += File.read(filename)
+
+    envio_xml += "</SetDTE>\r\n"
+    envio_xml += "<Signature xmlns=\"http://www.w3.org/2000/09/xmldsig#\">\r\n"
+    envio_xml += "<SignedInfo>\r\n"
+    envio_xml += "<CanonicalizationMethod Algorithm=\"http://www.w3.org/TR/2001/REC-xml-c14n-20010315\"/>\r\n"
+    envio_xml += "<SignatureMethod Algorithm=\"http://www.w3.org/2000/09/xmldsig#rsa-sha1\"/>\r\n"
+    envio_xml += "<Reference URI=\"\">\r\n"
+    envio_xml += "<Transforms>\r\n"
+    envio_xml += "<Transform Algorithm=\"http://www.w3.org/2000/09/xmldsig#enveloped-signature\"/>\r\n"
+    envio_xml += "</Transforms>\r\n"
+    envio_xml += "<DigestMethod Algorithm=\"http://www.w3.org/2000/09/xmldsig#sha1\"/>\r\n"
+    envio_xml += "<DigestValue/>\r\n"
+    envio_xml += "</Reference>\r\n"
+    envio_xml += "</SignedInfo>\r\n"
+    envio_xml += "<SignatureValue/>\r\n"
+    envio_xml += "<KeyInfo>\r\n"
+    envio_xml += "<KeyValue/>\r\n"
+    envio_xml += "<X509Data >\r\n"
+    envio_xml += "<X509SubjectName/>\r\n"
+    envio_xml += "<X509IssuerSerial/>\r\n"
+    envio_xml += "<X509Certificate/>\r\n"
+    envio_xml += "</X509Data>\r\n"
+    envio_xml += "</KeyInfo>\r\n"
+    envio_xml += "</Signature>\r\n"
+    envio_xml += "</EnvioDTE>\r\n"
+   
+    File.open('tosign_xml.xml', 'w') { |file| file.puts envio_xml}
+    sleep 2
+     
+    system("./comando")
+
+    File.read 'doc-signed.xml'
+
+  end  
 
 end  

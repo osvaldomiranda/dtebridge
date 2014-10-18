@@ -2,7 +2,7 @@
 spawn xmlsec1 --sign --output doc-signed.xml --privkey-pem privateKey.pem,publicCert.pem tosign_xml.xml 
 expect {
 -re ".*sword.*" {
-exp_send "admsoft\r"
+exp_send "lubba10580\r"
 exp_continue
 }
 }
