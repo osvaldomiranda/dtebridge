@@ -1,0 +1,52 @@
+= simple_form_for(@detalle) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :NroLinDet
+    = f.input :integer
+    = f.input :TpoCodigo
+    = f.input :string
+    = f.input :VlrCodigo
+    = f.input :string
+    = f.input :TpoDocLiq
+    = f.input :string
+    = f.input :IndExe
+    = f.input :string
+    = f.input :IndAgente
+    = f.input :string
+    = f.input :MntBaseFaena
+    = f.input :integer
+    = f.input :MntMargComer
+    = f.input :integer
+    = f.input :PrcConsFinal
+    = f.input :integer
+    = f.input :NmbItem
+    = f.input :integer
+    = f.input :DscItem
+    = f.input :string
+    = f.input :QtyRef
+    = f.input :integer
+    = f.input :UnmdRef
+    = f.input :string
+    = f.input :PrcRef
+    = f.input :float
+    = f.input :QtyItem
+    = f.input :float
+    = f.input :FchElabor
+    = f.input :string
+    = f.input :FchVencim
+    = f.input :string
+    = f.input :UnmdItem
+    = f.input :string
+    = f.input :PrcItem
+    = f.input :DescuentoPct
+    = f.input :DescuentoMonto
+    = f.input :integer
+    = f.input :CodImpAdic
+    = f.input :string
+    = f.input :MontoItem
+    = f.input :integer
+    = f.association :documento
+
+  .form-actions
+    = f.button :submit

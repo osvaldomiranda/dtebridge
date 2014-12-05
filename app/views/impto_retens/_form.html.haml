@@ -1,0 +1,14 @@
+= simple_form_for(@impto_reten) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :TipoImp
+    = f.input :string
+    = f.input :TasaImp
+    = f.input :float
+    = f.input :MontoImp
+    = f.input :integer
+    = f.association :documento
+
+  .form-actions
+    = f.button :submit

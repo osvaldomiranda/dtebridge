@@ -1,5 +1,19 @@
 Dtebridge::Application.routes.draw do
 
+  resources :detalles
+
+  resources :mnt_pagos
+
+  resources :impto_retens
+
+  resources :dsc_rcg_globals
+
+  resources :referencia
+
+  resources :comisiones
+
+  resources :documentos
+
   resources :iat_logs
 
   resources :iats
@@ -8,21 +22,13 @@ Dtebridge::Application.routes.draw do
   get "get_siitoken", to: "connectsii#get_token"
   get "postsii" , to: "connectsii#postsii"
   get "setDTE" , to: "connectsii#createenvio"
+  get "respIntercam" , to: "connectsii#resp_intercambio"
+  get "recepMercaderia" , to: "connectsii#recep_mercaderia"
+  get "aprobComercial" , to: "connectsii#aprob_comercial"
   
   root to: "home#index"
 
-
-  resources :debitnotedetails
-  resources :debitnotes
-  resources :creditnotedetails
-  resources :creditnotes
-  resources :invoicedetails
-  resources :invoices
-  resources :guidedetails
-  resources :guides
-  resources :pruebas
-  resources :connectsii
-
+  
   devise_for :users
 
   namespace :api do

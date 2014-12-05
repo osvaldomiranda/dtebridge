@@ -58,6 +58,11 @@
 <Referencia> 
 <NroLinRef>1</NroLinRef> 
 <TpoDocRef>SET</TpoDocRef> 
+<IndGlobal>1</IndGlobal>
+<FolioRef>1</FolioRef> 
+<RUTOtr>04940273-2</RUTOtr> 
+<FchRef>2014-10-17</FchRef> 
+<CodRef>1</CodRef> 
 <RazonRef>CASO  311171-1</RazonRef> 
 </Referencia> 
 <TED version="1.0"> 
@@ -69,10 +74,21 @@
 <RSR>JUAN GUTIERREZ GUTIERREZ</RSR> 
 <MNT>361376</MNT> 
 <IT1>Caj?n AFECTO</IT1> 
-<CAF version="1.0"><DA><RE>77398570-7</RE><RS>COMERCIAL LUBBA LIMITADA</RS><TD>33</TD><RNG><D>1</D><H>100</H></RNG><FA>2014-10-08</FA><RSAPK><M>yA0FipeLjCz8YNPhL6740jK4zLtEEbklyYHz0mlxNgMRbP/YevgPTxMcCyW1PFMrrRAV0nJziwuSxVKIo ysXw==</M><E>Aw==</E></RSAPK><IDK>100</IDK></DA><FRMA algoritmo="SHA1withRSA">lZGpuChURVfxlMTVeYzcj94CoqREI ncSLnqWCZ5PL9 KqEuWVq1zsEYZ213IxYGU KRxKOIWyEQC05L2zUZuw==</FRMA></CAF><TSTED>2014-10-17T00:00:00</TSTED> 
-</DD> <FRMT algoritmo="SHA1withRSA">xnLxmfvwbmUv8nX2DUoUpZUvB8NXJZrS7wCXaY3RPTYbgXuVuXbVf6MgK8ebQhq0AMWQldXYcsZqYSIfdLrAPQ==
+<CAF version="1.0">
+<DA>
+<RE>77398570-7</RE>
+<RS>COMERCIAL LUBBA LIMITADA</RS>
+<TD>33</TD>
+<RNG><D>1</D><H>100</H></RNG>
+<FA>2014-10-08</FA>
+<RSAPK><M>yA0FipeLjCz8YNPhL6740jK4zLtEEbklyYHz0mlxNgMRbP/YevgPTxMcCyW1PFMrrRAV0nJziwuSxVKIo ysXw==</M><E>Aw==</E></RSAPK>
+<IDK>100</IDK>
+</DA>
+<FRMA algoritmo="SHA1withRSA">lZGpuChURVfxlMTVeYzcj94CoqREI ncSLnqWCZ5PL9 KqEuWVq1zsEYZ213IxYGU KRxKOIWyEQC05L2zUZuw==</FRMA>
+</CAF><TSTED>2014-10-18T00:00:00</TSTED> 
+</DD> <FRMT algoritmo="SHA1withRSA">ad/R9O3o32xcPTXWT139WCVwAqm EJ8d6jwIunQlIOTP7wGwbTgsKrG 4/bWl5GQSooSxz1PoVzPjpKsKGMBAA==
 </FRMT> 
 </TED>
-<TmstFirma>2014-10-17T00:00:00</TmstFirma>
+<TmstFirma>2014-10-18T00:00:00</TmstFirma>
 </Documento>
 </DTE> 

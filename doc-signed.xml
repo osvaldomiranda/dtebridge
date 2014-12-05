@@ -1,36 +1,7 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
-<EnvioDTE xmlns="http://www.sii.cl/SiiDte" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sii.cl/SiiDte EnvioDTE_v10.xsd" version="1.0">
-<SetDTE ID="SetDoc">
-<Caratula version="1.0">
-<RutEmisor>77398570-7</RutEmisor>
-<RutEnvia>77398570-7</RutEnvia>
-<RutReceptor>04940273-2</RutReceptor>
-<FchResol>2002-10-20</FchResol>
-<NroResol>0</NroResol>
-<TmstFirmaEnv>2014-10-17T14:34:59</TmstFirmaEnv>
-<SubTotDTE>
-<TpoDTE>33</TpoDTE>
-<NroDTE>1</NroDTE>
-</SubTotDTE>
-</Caratula>
-hola</SetDTE>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#">
-<SignedInfo>
-<CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"/>
-<SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1"/>
-<Reference URI="">
-<Transforms>
-<Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/>
-</Transforms>
-<DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/>
-<DigestValue>ICSZXLCmIFQpHmPKftRvyZYluhU=</DigestValue>
-</Reference>
-</SignedInfo>
-<SignatureValue>MVL3p1SdzxlQN+1vsXSpznXC1edg0tkRdeJj+5EUZX4nYHblO/+hoMwSu2FOcdgZ
-TYuBJOP7xfZRUc2/bCDpYQ9QCA3xeHxvydmsijRwr28ROpR6NNlkcLmy3f8CmWnq
-Dxq57KDPNlapse37QC3rle0pAGbiPEZ7wW3rMxo8QrI=</SignatureValue>
-<KeyInfo>
-<KeyValue>
+<?xml version="1.0"?>
+<gettoken><item><Semilla>001725692014</Semilla></item><Signature xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"/><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/><DigestValue>Y9pMF+4Tp+71MsDjMp+3iLHnZEo=</DigestValue></Reference></SignedInfo><SignatureValue>eq3QbepxFsLoIvjKgO4rSmPRntVgSXyh/qmCyJIPcdJTqfOgkSN2KZFD2ElEIsnn
+rbotIoXawZpXwuhxdFMC5CVWD4Ebtee0a+yIybnG00T2t5ZSqetaBpH2MEi719c4
+un/kI7yzSDzLxhLHJ6/IjtGrrfxILPcNQ7xfesBh5CU=</SignatureValue><KeyInfo><KeyValue>
 <RSAKeyValue>
 <Modulus>
 o9cYdRTMB/zpZJCop13dtvR+DYkMQLQ56rr2kFpPvjmDKSXZMLr4QCew9u8uwkkW
@@ -41,11 +12,7 @@ amTxAhcr45Ezse1t3bPq+xOy1JRdAKRRsQSn+9C8Bwk=
 AQAB
 </Exponent>
 </RSAKeyValue>
-</KeyValue>
-<X509Data>
-
-
-
+</KeyValue><X509Data>
 <X509Certificate>MIIGdDCCBVygAwIBAgIKNeG73AAAAAGnEjANBgkqhkiG9w0BAQUFADCB0jELMAkG
 A1UEBhMCQ0wxHTAbBgNVBAgTFFJlZ2lvbiBNZXRyb3BvbGl0YW5hMREwDwYDVQQH
 EwhTYW50aWFnbzEUMBIGA1UEChMLRS1DRVJUQ0hJTEUxIDAeBgNVBAsTF0F1dG9y
@@ -86,7 +53,4 @@ ZjNsUbDFvO0IGu+UFHWFggXHuxXL2oyc</X509Certificate>
 <X509IssuerName>emailAddress=sclientes@e-certchile.cl,CN=E-CERTCHILE CA FIRMA ELECTRONICA SIMPLE,OU=Autoridad Certificadora,O=E-CERTCHILE,L=Santiago,ST=Region Metropolitana,C=CL</X509IssuerName>
 <X509SerialNumber>254449477703255814416146</X509SerialNumber>
 </X509IssuerSerial>
-</X509Data>
-</KeyInfo>
-</Signature>
-</EnvioDTE>
+</X509Data></KeyInfo></Signature></gettoken>

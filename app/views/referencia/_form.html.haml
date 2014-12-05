@@ -1,0 +1,26 @@
+= simple_form_for(@referencium) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :NroLinRef
+    = f.input :integer
+    = f.input :TpoDocRef
+    = f.input :string
+    = f.input :IndGlobal
+    = f.input :integer
+    = f.input :FolioRef
+    = f.input :string
+    = f.input :RUTOtr
+    = f.input :string
+    = f.input :IdAdicOtr
+    = f.input :string
+    = f.input :FchRef
+    = f.input :string
+    = f.input :CodRef
+    = f.input :integer
+    = f.input :RazonRef
+    = f.input :string
+    = f.association :documento
+
+  .form-actions
+    = f.button :submit

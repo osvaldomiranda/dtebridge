@@ -1,0 +1,45 @@
+%p#notice= notice
+
+%p
+  %b Nrolincom:
+  = @comisione.NroLinCom
+%p
+  %b Integer:
+  = @comisione.integer
+%p
+  %b Tipomovim:
+  = @comisione.TipoMovim
+%p
+  %b String:
+  = @comisione.string
+%p
+  %b Glosa:
+  = @comisione.Glosa
+%p
+  %b String:
+  = @comisione.string
+%p
+  %b Valcomneto:
+  = @comisione.ValComNeto
+%p
+  %b Integer:
+  = @comisione.integer
+%p
+  %b Valcomexe:
+  = @comisione.ValComExe
+%p
+  %b Integer:
+  = @comisione.integer
+%p
+  %b Valcomiva:
+  = @comisione.ValComIVA
+%p
+  %b Integer:
+  = @comisione.integer
+%p
+  %b Documento:
+  = @comisione.documento
+
+= link_to 'Edit', edit_comisione_path(@comisione)
+\|
+= link_to 'Back', comisiones_path

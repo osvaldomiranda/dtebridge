@@ -44,8 +44,7 @@ gem 'bcrypt-ruby', '~> 3.1.2'
 # For pagination
 gem 'will_paginate', '~> 3.0'
 
-# For queing processes to do in background
-gem 'sidekiq'
+
 
 # For monitoring sidekiq queues
 gem 'sinatra', require: false
@@ -58,13 +57,8 @@ gem 'devise'
 gem 'cancan'
 
 # for wsdl connect
-gem 'savon', '~> 2.0'
+gem 'savon'
 
-# For electronic stamp
-gem 'pdf417', '~> 0.2.0'
-
-# For conver electronic stamp to png
-gem 'chunky_png', '~> 1.3.1'
 
 # Muestra calendario en formularios
 gem 'bootstrap-datepicker-rails'
@@ -83,7 +77,7 @@ group :development do
   gem 'sqlite3'
 
   # Better looking error page
-  gem 'better_errors'
+  #gem 'better_errors'
 
   # Console in error page
   gem 'binding_of_caller'

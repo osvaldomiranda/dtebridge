@@ -1,0 +1,21 @@
+%p#notice= notice
+
+%p
+  %b Fchpago:
+  = @mnt_pago.FchPago
+%p
+  %b String:
+  = @mnt_pago.string
+%p
+  %b Mntpago:
+  = @mnt_pago.MntPago
+%p
+  %b Integer:
+  = @mnt_pago.integer
+%p
+  %b Documento:
+  = @mnt_pago.documento
+
+= link_to 'Edit', edit_mnt_pago_path(@mnt_pago)
+\|
+= link_to 'Back', mnt_pagos_path

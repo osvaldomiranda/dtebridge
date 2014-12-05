@@ -1,0 +1,27 @@
+%h1 Listing mnt_pagos
+
+%table
+  %tr
+    %th Fchpago
+    %th String
+    %th Mntpago
+    %th Integer
+    %th Documento
+    %th
+    %th
+    %th
+
+  - @mnt_pagos.each do |mnt_pago|
+    %tr
+      %td= mnt_pago.FchPago
+      %td= mnt_pago.string
+      %td= mnt_pago.MntPago
+      %td= mnt_pago.integer
+      %td= mnt_pago.documento
+      %td= link_to 'Show', mnt_pago
+      %td= link_to 'Edit', edit_mnt_pago_path(mnt_pago)
+      %td= link_to 'Destroy', mnt_pago, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Mnt pago', new_mnt_pago_path
