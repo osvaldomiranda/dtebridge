@@ -1,0 +1,10 @@
+= simple_form_for(@monto_pago) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :FchPago
+    = f.input :MntPago
+    = f.association :documento
+
+  .form-actions
+    = f.button :submit

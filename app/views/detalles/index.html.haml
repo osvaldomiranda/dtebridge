@@ -3,49 +3,28 @@
 %table
   %tr
     %th Nrolindet
-    %th Integer
     %th Tpocodigo
-    %th String
     %th Vlrcodigo
-    %th String
     %th Tpodocliq
-    %th String
     %th Indexe
-    %th String
     %th Indagente
-    %th String
     %th Mntbasefaena
-    %th Integer
     %th Mntmargcomer
-    %th Integer
     %th Prcconsfinal
-    %th Integer
     %th Nmbitem
-    %th Integer
     %th Dscitem
-    %th String
     %th Qtyref
-    %th Integer
     %th Unmdref
-    %th String
     %th Prcref
-    %th Float
     %th Qtyitem
-    %th Float
     %th Fchelabor
-    %th String
     %th Fchvencim
-    %th String
     %th Unmditem
-    %th String
     %th Prcitem
     %th Descuentopct
     %th Descuentomonto
-    %th Integer
     %th Codimpadic
-    %th String
     %th Montoitem
-    %th Integer
     %th Documento
     %th
     %th
@@ -54,49 +33,28 @@
   - @detalles.each do |detalle|
     %tr
       %td= detalle.NroLinDet
-      %td= detalle.integer
       %td= detalle.TpoCodigo
-      %td= detalle.string
       %td= detalle.VlrCodigo
-      %td= detalle.string
       %td= detalle.TpoDocLiq
-      %td= detalle.string
       %td= detalle.IndExe
-      %td= detalle.string
       %td= detalle.IndAgente
-      %td= detalle.string
       %td= detalle.MntBaseFaena
-      %td= detalle.integer
       %td= detalle.MntMargComer
-      %td= detalle.integer
       %td= detalle.PrcConsFinal
-      %td= detalle.integer
       %td= detalle.NmbItem
-      %td= detalle.integer
       %td= detalle.DscItem
-      %td= detalle.string
       %td= detalle.QtyRef
-      %td= detalle.integer
       %td= detalle.UnmdRef
-      %td= detalle.string
       %td= detalle.PrcRef
-      %td= detalle.float
       %td= detalle.QtyItem
-      %td= detalle.float
       %td= detalle.FchElabor
-      %td= detalle.string
       %td= detalle.FchVencim
-      %td= detalle.string
       %td= detalle.UnmdItem
-      %td= detalle.string
       %td= detalle.PrcItem
       %td= detalle.DescuentoPct
       %td= detalle.DescuentoMonto
-      %td= detalle.integer
       %td= detalle.CodImpAdic
-      %td= detalle.string
       %td= detalle.MontoItem
-      %td= detalle.integer
       %td= detalle.documento
       %td= link_to 'Show', detalle
       %td= link_to 'Edit', edit_detalle_path(detalle)

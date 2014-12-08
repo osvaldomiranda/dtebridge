@@ -1,0 +1,17 @@
+= simple_form_for(@ref_detalle) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :NroLinRef
+    = f.input :TpoDocRef
+    = f.input :IndGlobal
+    = f.input :FolioRef
+    = f.input :RUTOtr
+    = f.input :IdAdicOtr
+    = f.input :FchRef
+    = f.input :CodRef
+    = f.input :RazonRef
+    = f.association :documento
+
+  .form-actions
+    = f.button :submit

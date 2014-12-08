@@ -1,0 +1,14 @@
+= simple_form_for(@comision) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :NroLinCom
+    = f.input :TipoMovim
+    = f.input :Glosa
+    = f.input :ValComNeto
+    = f.input :ValComExe
+    = f.input :ValComIVA
+    = f.association :documento
+
+  .form-actions
+    = f.button :submit

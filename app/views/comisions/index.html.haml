@@ -1,0 +1,31 @@
+%h1 Listing comisions
+
+%table
+  %tr
+    %th Nrolincom
+    %th Tipomovim
+    %th Glosa
+    %th Valcomneto
+    %th Valcomexe
+    %th Valcomiva
+    %th Documento
+    %th
+    %th
+    %th
+
+  - @comisions.each do |comision|
+    %tr
+      %td= comision.NroLinCom
+      %td= comision.TipoMovim
+      %td= comision.Glosa
+      %td= comision.ValComNeto
+      %td= comision.ValComExe
+      %td= comision.ValComIVA
+      %td= comision.documento
+      %td= link_to 'Show', comision
+      %td= link_to 'Edit', edit_comision_path(comision)
+      %td= link_to 'Destroy', comision, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Comision', new_comision_path

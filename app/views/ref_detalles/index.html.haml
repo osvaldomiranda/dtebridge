@@ -1,0 +1,37 @@
+%h1 Listing ref_detalles
+
+%table
+  %tr
+    %th Nrolinref
+    %th Tpodocref
+    %th Indglobal
+    %th Folioref
+    %th Rutotr
+    %th Idadicotr
+    %th Fchref
+    %th Codref
+    %th Razonref
+    %th Documento
+    %th
+    %th
+    %th
+
+  - @ref_detalles.each do |ref_detalle|
+    %tr
+      %td= ref_detalle.NroLinRef
+      %td= ref_detalle.TpoDocRef
+      %td= ref_detalle.IndGlobal
+      %td= ref_detalle.FolioRef
+      %td= ref_detalle.RUTOtr
+      %td= ref_detalle.IdAdicOtr
+      %td= ref_detalle.FchRef
+      %td= ref_detalle.CodRef
+      %td= ref_detalle.RazonRef
+      %td= ref_detalle.documento
+      %td= link_to 'Show', ref_detalle
+      %td= link_to 'Edit', edit_ref_detalle_path(ref_detalle)
+      %td= link_to 'Destroy', ref_detalle, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Ref detalle', new_ref_detalle_path

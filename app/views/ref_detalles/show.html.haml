@@ -1,0 +1,36 @@
+%p#notice= notice
+
+%p
+  %b Nrolinref:
+  = @ref_detalle.NroLinRef
+%p
+  %b Tpodocref:
+  = @ref_detalle.TpoDocRef
+%p
+  %b Indglobal:
+  = @ref_detalle.IndGlobal
+%p
+  %b Folioref:
+  = @ref_detalle.FolioRef
+%p
+  %b Rutotr:
+  = @ref_detalle.RUTOtr
+%p
+  %b Idadicotr:
+  = @ref_detalle.IdAdicOtr
+%p
+  %b Fchref:
+  = @ref_detalle.FchRef
+%p
+  %b Codref:
+  = @ref_detalle.CodRef
+%p
+  %b Razonref:
+  = @ref_detalle.RazonRef
+%p
+  %b Documento:
+  = @ref_detalle.documento
+
+= link_to 'Edit', edit_ref_detalle_path(@ref_detalle)
+\|
+= link_to 'Back', ref_detalles_path

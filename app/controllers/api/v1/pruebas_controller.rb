@@ -11,12 +11,13 @@ class Api::V1::PruebasController < Api::V1::ApiController
 			render 'api/v1/pruebas/create'
 		else
 			render json: @prueba.errors, status: :unprocessable_entity 
-	  end		
-			
+	  end				
 	end
 
 	def index
 		@pruebas = Prueba.all
 		render 'api/v1/pruebas/index'
 	end
+
+ 
 end

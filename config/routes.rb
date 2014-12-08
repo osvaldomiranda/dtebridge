@@ -1,16 +1,16 @@
 Dtebridge::Application.routes.draw do
 
-  resources :detalles
+  resources :comisions
 
-  resources :mnt_pagos
-
-  resources :impto_retens
+  resources :ref_detalles
 
   resources :dsc_rcg_globals
 
-  resources :referencia
+  resources :impuesto_retens
 
-  resources :comisiones
+  resources :monto_pagos
+
+  resources :detalles
 
   resources :documentos
 
@@ -40,7 +40,7 @@ Dtebridge::Application.routes.draw do
       get "/iat_ping/:id", to: "iat#ping"
 
       post "/iat_doc", to: "iat#iat_doc"
-      post "/invoice", to: "invoice#create"
+      post "/invoice", to: "documento#create_doc"
      end
   end
 

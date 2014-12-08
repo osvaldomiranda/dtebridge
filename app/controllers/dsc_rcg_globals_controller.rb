@@ -69,6 +69,6 @@ class DscRcgGlobalsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def dsc_rcg_global_params
-      params.require(:dsc_rcg_global).permit(:NroLinDR, :integer, :TpoMov, :string, :GlosaDR, :string, :TpoValor, :string, :ValorDR, :integer, :IndExeDR, :integer, :documento_id)
+      params.require(:dsc_rcg_global).permit(:NroLinDR, :TpoMov, :GlosaDR, :TpoValor, :ValorDR, :IndExeDR, :documento_id)
     end
 end

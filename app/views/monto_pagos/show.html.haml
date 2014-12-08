@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Fchpago:
+  = @monto_pago.FchPago
+%p
+  %b Mntpago:
+  = @monto_pago.MntPago
+%p
+  %b Documento:
+  = @monto_pago.documento
+
+= link_to 'Edit', edit_monto_pago_path(@monto_pago)
+\|
+= link_to 'Back', monto_pagos_path

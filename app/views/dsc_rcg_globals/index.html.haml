@@ -3,17 +3,11 @@
 %table
   %tr
     %th Nrolindr
-    %th Integer
     %th Tpomov
-    %th String
     %th Glosadr
-    %th String
     %th Tpovalor
-    %th String
     %th Valordr
-    %th Integer
     %th Indexedr
-    %th Integer
     %th Documento
     %th
     %th
@@ -22,17 +16,11 @@
   - @dsc_rcg_globals.each do |dsc_rcg_global|
     %tr
       %td= dsc_rcg_global.NroLinDR
-      %td= dsc_rcg_global.integer
       %td= dsc_rcg_global.TpoMov
-      %td= dsc_rcg_global.string
       %td= dsc_rcg_global.GlosaDR
-      %td= dsc_rcg_global.string
       %td= dsc_rcg_global.TpoValor
-      %td= dsc_rcg_global.string
       %td= dsc_rcg_global.ValorDR
-      %td= dsc_rcg_global.integer
       %td= dsc_rcg_global.IndExeDR
-      %td= dsc_rcg_global.integer
       %td= dsc_rcg_global.documento
       %td= link_to 'Show', dsc_rcg_global
       %td= link_to 'Edit', edit_dsc_rcg_global_path(dsc_rcg_global)
