@@ -59,6 +59,8 @@ gem 'cancan'
 # for wsdl connect
 gem 'savon'
 
+gem 'carrierwave'
+
 
 # Muestra calendario en formularios
 gem 'bootstrap-datepicker-rails'

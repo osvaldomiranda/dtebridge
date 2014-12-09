@@ -33,5 +33,8 @@ namespace :deploy do
     run "#{sudo} apt-get -y -f install"
     run "#{sudo} apt-get clean"
     run "#{sudo} apt-get -y --fix-missing update; true"
+    # run "#{sudo} apt-get update && sudo apt-get upgrade"
+    # sleep 13
+    # puts 'Y'
   end
 end

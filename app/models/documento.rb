@@ -1,4 +1,5 @@
 class Documento < ActiveRecord::Base
+
   has_many :impuesto_retens, dependent: :destroy
   has_many :monto_pagos, dependent: :destroy
   has_many :dsc_rcg_globals, dependent: :destroy
@@ -12,4 +13,6 @@ class Documento < ActiveRecord::Base
   accepts_nested_attributes_for :dsc_rcg_globals
   accepts_nested_attributes_for :comisions
   accepts_nested_attributes_for :ref_detalles
+
+  mount_uploader :pdfs, PdfsUploader # Tells rails to use this uploader for this model.
 end

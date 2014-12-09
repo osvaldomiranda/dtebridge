@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141208025947) do
+ActiveRecord::Schema.define(version: 20141209144508) do
 
   create_table "comisions", force: true do |t|
     t.integer  "NroLinCom"
@@ -152,6 +152,7 @@ ActiveRecord::Schema.define(version: 20141208025947) do
     t.integer  "MontoNF"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "pdfs"
   end
 
   create_table "dsc_rcg_globals", force: true do |t|

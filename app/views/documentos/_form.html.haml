@@ -1,4 +1,4 @@
-= simple_form_for(@documento) do |f|
+= simple_form_for @documento do |f|
   = f.error_notification
 
   .form-inputs
@@ -93,6 +93,7 @@
     = f.input :ValComIVA
     = f.input :MntTotal
     = f.input :MontoNF
+    = f.input :pdfs 
 
   .form-actions
     = f.button :submit
