@@ -8,7 +8,7 @@ class Api::V1::DocumentoController < Api::V1::ApiController
 
     #TO DO: llamar a connect sii para realizar el envío a SII
 
-    p = eval(params[:doc])
+    p = eval(params[:doc].force_encoding('iso-8859-1').encode('utf-8'))
 
     @invoice = Documento.new( p[:documento] ) 
     @invoice.envio = params[:xml]
