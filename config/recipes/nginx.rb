@@ -2,7 +2,7 @@ namespace :nginx do
   desc "Install latest stable release of nginx"
   task :install, roles: :web do
     run "#{sudo} add-apt-repository ppa:nginx/stable" do |ch, stream, data|
-      if data =~ /Press.\[ENTER\].to.continue/
+      if data =~ /Pulse.\[Intro\].para.continuar.o.ctrl-c.para.cancelar/
         ch.send_data("\n")
       else
         # Use the default handler for all other text

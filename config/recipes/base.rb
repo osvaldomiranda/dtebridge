@@ -11,14 +11,14 @@ end
 namespace :deploy do
   desc "Install everything onto the server"
   task :install do
-    update_packages
+    # update_packages
     
-    libxslt.install
-    python.install
-    git.install
+    # libxslt.install
+    # python.install
+    # git.install
     
-    nginx.install
-    postgresql.install
+    # nginx.install
+    # postgresql.install
     nodejs.install
     make.install
     redis.install

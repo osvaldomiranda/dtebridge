@@ -40,7 +40,7 @@ default_run_options[:pty] = true
 ssh_options[:forward_agent] = true
 
 # Keep only the last 5 releases
-#before "deploy:update_code", "sidekiq:quiet"
+before "deploy:update_code", "sidekiq:quiet"
 after "deploy", "deploy:cleanup" 
-#after "deploy",    "sidekiq:stop"
+after "deploy",    "sidekiq:stop"
 after "deploy",   "sidekiq:start"
