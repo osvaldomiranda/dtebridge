@@ -1,3 +1,4 @@
+# encoding: ISO-8859-1
 class Api::V1::DocumentoController < Api::V1::ApiController
 
   def create_doc

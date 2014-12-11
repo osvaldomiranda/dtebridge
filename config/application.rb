@@ -39,6 +39,11 @@ module Dtebridge
       # g.integration_tool nil
       # g.force_plural false
       # g.force_plural true
+
+    config.encoding = "ISO-8859-1"
+    # config.action_controller.default_charset = 'ISO-8859-1'
+    # config.action_dispatch.default_charset = 'ISO-8859-1'
+
     end
   end
 end
