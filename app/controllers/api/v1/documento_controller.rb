@@ -23,7 +23,7 @@ class Api::V1::DocumentoController < Api::V1::ApiController
       sleep 2
 
       #if(params[:conenvio] == 1)
-      #  postsii(@invoice.id)
+        postsii(@invoice.id)
       #   if(enviado)
       #     @invoice.estado = "ENVIADO"
       #   else
