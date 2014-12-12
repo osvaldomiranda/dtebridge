@@ -156,14 +156,14 @@ class ConnectsiiController < ApplicationController
   def getseed
     begin
       # ambiente sii pruebas 
-      client = Savon.client(wsdl:"https://maullin.sii.cl/DTEWS/CrSeed.jws?WSDL") 
+      # client = Savon.client(wsdl:"https://maullin.sii.cl/DTEWS/CrSeed.jws?WSDL") 
       #produccion
-      #client = Savon.client(wsdl:"https://palena.sii.cl/DTEWS/CrSeed.jws?WSDL") 
-        @seed_xml = client.call(:get_seed)
+      client = Savon.client(wsdl:"https://palena.sii.cl/DTEWS/CrSeed.jws?WSDL") 
+      @seed_xml = client.call(:get_seed)
 
-        @seed= @seed_xml.to_s[@seed_xml.to_s.index('SEMILLA')+11..@seed_xml.to_s.index('SEMILLA')+22]
+      @seed= @seed_xml.to_s[@seed_xml.to_s.index('SEMILLA')+11..@seed_xml.to_s.index('SEMILLA')+22]
 
-        return @seed
+      return @seed
 
     rescue
       puts "=====SEED========"
