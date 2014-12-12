@@ -45,11 +45,9 @@ class Api::V1::DocumentoController < Api::V1::ApiController
 
     @token = get_token 
 
-    @rut = @doc.RUTEmisor[0..8]
-    @dv  = @doc.RUTEmisor[10..10]
+    @rut = @doc.RUTEmisor[0..7]
+    @dv  = @doc.RUTEmisor[9..9]
 
-    @rutR = @doc.RUTRecep[0..8]
-    @dvR  = @doc.RUTRecep[10..10]
 
     if @token
 
@@ -82,13 +80,13 @@ class Api::V1::DocumentoController < Api::V1::ApiController
       post_body << "Content-Type: text/plain; charset=US-ASCII\r\n"
       post_body << "Content-Transfer-Encoding: 8Bit\r\n"
       post_body << "\r\n"
-      post_body << "#{@rutR}\r\n"
+      post_body << "#{@rut}\r\n"
       post_body << "-----------------9022632e1130lc4\r\n"
       post_body << "Content-Disposition: form-data; name=\"dvCompany\"\r\n"
       post_body << "Content-Type: text/plain; charset=US-ASCII\r\n"
       post_body << "Content-Transfer-Encoding: 8Bit\r\n"
       post_body << "\r\n"
-      post_body << "#{@dvR}\r\n"
+      post_body << "#{@dv}\r\n"
 
           
       post_body << "-----------------9022632e1130lc4\r\n"
@@ -118,7 +116,8 @@ class Api::V1::DocumentoController < Api::V1::ApiController
       request["Cookie"]          = "TOKEN=#{@token}"
       
       responce = http.request(request)
-
+      puts "===================================="
+      puts post_body
       puts "===================================="
       puts responce.body
       puts "===================================="
