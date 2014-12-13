@@ -5,11 +5,9 @@ class Api::V1::DocumentoController < Api::V1::ApiController
 
     #TO DO:  pdf y pdfcedible en tabla documento 
     #para recibir toda la info (Ver si es recomendable el envío por separado)
-
-    #TO DO: llamar a connect sii para realizar el envío a SII
+   
 
     p = eval(params[:doc].force_encoding('iso-8859-1').encode('utf-8'))
-
 
     @invoice = Documento.new( p[:documento] ) 
     @invoice.envio = params[:xml]
@@ -22,16 +20,9 @@ class Api::V1::DocumentoController < Api::V1::ApiController
 
       sleep 2
 
-      #if(params[:conenvio] == 1)
-        postsii(@invoice.id)
-      #   if(enviado)
-      #     @invoice.estado = "ENVIADO"
-      #   else
-      #     @invoice.estado = "PENDIENTE"
-      #   end
-      #   @invoice.save
-      # end  
-
+      @invoice.estado = postsii(@invoice.id)
+      @invoice.save
+      
       render 'api/v1/invoices/create' 
     else
        render format.json { render json: @invoice.errors, status: :unprocessable_entity }
@@ -122,9 +113,9 @@ class Api::V1::DocumentoController < Api::V1::ApiController
       puts responce.body
       puts "===================================="
     
-      return true 
+      return responce.body
     else
-      return false
+      return "ERROR"
     end    
   end
 
