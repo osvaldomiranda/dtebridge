@@ -13,6 +13,7 @@ class Api::V1::DocumentoController < Api::V1::ApiController
     @invoice.envio = params[:xml]
     @invoice.fileEnvio = params[:filename]
     @invoice.estado = "CREADO"
+    @invoice.estadoxml = "NO ENVIADO"
 
     if @invoice.save
 
@@ -20,7 +21,7 @@ class Api::V1::DocumentoController < Api::V1::ApiController
 
       sleep 2
 
-      @invoice.estado = postsii(@invoice.id)
+      @invoice.estadoxml = postsii(@invoice.id)
       @invoice.save
       
       render 'api/v1/invoices/create' 
