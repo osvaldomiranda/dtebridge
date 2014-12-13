@@ -51,7 +51,7 @@ class Api::V1::DocumentoController < Api::V1::ApiController
 
     if @token
 
-      @BOUNDARY = "-----------------9022632e1130lc4--"
+      @BOUNDARY = "9022632e1130lc4"
    
       uri = URI.parse("https://palena.sii.cl/cgi_dte/UPL/DTEUpload") 
     
@@ -63,25 +63,25 @@ class Api::V1::DocumentoController < Api::V1::ApiController
 
       post_body = []
 
-      post_body << "-----------------9022632e1130lc4\r\n"
+      post_body << "--9022632e1130lc4\r\n"
       post_body << "Content-Disposition: form-data; name=\"rutSender\"\r\n"
       post_body << "Content-Type: text/plain; charset=US-ASCII\r\n"
       post_body << "Content-Transfer-Encoding: 8Bit\r\n"
       post_body << "\r\n"
       post_body << "05682509\r\n"
-      post_body << "-----------------9022632e1130lc4\r\n"
+      post_body << "--9022632e1130lc4\r\n"
       post_body << "Content-Disposition: form-data; name=\"dvSender\"\r\n"
       post_body << "Content-Type: text/plain; charset=US-ASCII\r\n"
       post_body << "Content-Transfer-Encoding: 8Bit\r\n"
       post_body << "\r\n"
       post_body << "6\r\n"
-      post_body << "-----------------9022632e1130lc4\r\n"
+      post_body << "--9022632e1130lc4\r\n"
       post_body << "Content-Disposition: form-data; name=\"rutCompany\"\r\n"
       post_body << "Content-Type: text/plain; charset=US-ASCII\r\n"
       post_body << "Content-Transfer-Encoding: 8Bit\r\n"
       post_body << "\r\n"
       post_body << "#{@rut}\r\n"
-      post_body << "-----------------9022632e1130lc4\r\n"
+      post_body << "--9022632e1130lc4\r\n"
       post_body << "Content-Disposition: form-data; name=\"dvCompany\"\r\n"
       post_body << "Content-Type: text/plain; charset=US-ASCII\r\n"
       post_body << "Content-Transfer-Encoding: 8Bit\r\n"
@@ -89,23 +89,22 @@ class Api::V1::DocumentoController < Api::V1::ApiController
       post_body << "#{@dv}\r\n"
 
           
-      post_body << "-----------------9022632e1130lc4\r\n"
+      post_body << "--9022632e1130lc4\r\n"
       post_body << "Content-Disposition: form-data; name=\"archivo\"; filename=\"#{@doc.fileEnvio}\"\r\n"
-      post_body << "Content-Type: application/octet-stream\r\n"
-      post_body << "Content-Transfer-Encoding: binary\r\n"
-    
+      post_body << "Content-Type: text/xml\r\n" 
+
       envioxml = File.read @doc.fileEnvio 
        
       post_body << "\r\n"
       post_body << envioxml
       post_body << "\r\n"
-      post_body << "-----------------9022632e1130lc4\r\n"
+      post_body << "--9022632e1130lc4--\r\n"
     
+      
       request.body = post_body.join
 
-
       request["Accept"]          = "image/gif, image/x-xbitmap, image/jpeg, image/pjpeg, application/vnd.ms-powerpoint, application/ms-excel, application/msword, */*"
-      request["Referer"]         = "http://www.empresa.cl"
+      request["Referer"]         = "http://www.lubba.cl"
       request["Accept-Language"] = "es-cl"
       request["Content-Type"]    = "multipart/form-data: boundary=#{@BOUNDARY}"
       request["Accept-Encoding"] = "gzip, deflate"
@@ -115,9 +114,10 @@ class Api::V1::DocumentoController < Api::V1::ApiController
       request["Cache-Control"]   = "no-cache"
       request["Cookie"]          = "TOKEN=#{@token}"
       
+
       responce = http.request(request)
       puts "===================================="
-      puts post_body
+      puts request.body
       puts "===================================="
       puts responce.body
       puts "===================================="
