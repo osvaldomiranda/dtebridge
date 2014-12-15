@@ -17,7 +17,7 @@ class Api::V1::DocumentoController < Api::V1::ApiController
 
     if @invoice.save
 
-      File.open(@invoice.fileEnvio, 'w') { |file| file.puts @invoice.envio}
+      File.open(@invoice.fileEnvio, 'w') { |file| file.puts @invoice.envio.force_encoding('iso-8859-1').encode('utf-8')}
 
       sleep 2
 
