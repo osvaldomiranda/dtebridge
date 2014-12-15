@@ -124,7 +124,7 @@ class Api::V1::DocumentoController < Api::V1::ApiController
   def get_token
    
     i=0
-    while(!@seed || i<50)
+    while(!@seed.nil? || i<50)
       @seed= getseed
       sleep 1
       i+=1
@@ -170,7 +170,7 @@ class Api::V1::DocumentoController < Api::V1::ApiController
 
 
       i=0
-      while(!@token || i<0)
+      while(!@token.nil? || i<0)
         @token= gettoken(doc)
         sleep 2
         i+=1
