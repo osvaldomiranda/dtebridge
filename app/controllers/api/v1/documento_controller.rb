@@ -228,7 +228,10 @@ class Api::V1::DocumentoController < Api::V1::ApiController
 
       puts "=====TOKEN========"
       puts "OBTENIDO"
+      puts @token
       puts "============="
+
+      return @token
 
     rescue
       puts "=====TOKEN========"
