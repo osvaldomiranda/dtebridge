@@ -205,6 +205,7 @@ class Api::V1::DocumentoController < Api::V1::ApiController
 
 
       puts "=====SEED OK========"
+      puts @seed_xml
       puts @seed
       puts "============="
 
