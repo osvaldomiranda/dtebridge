@@ -41,7 +41,7 @@ class Api::V1::DocumentoController < Api::V1::ApiController
     @dv  = @doc.RUTEmisor[9..9]
 
 
-    if @token
+    unless @token.nil?
 
       @BOUNDARY = "9022632e1130lc4"
    
@@ -131,7 +131,7 @@ class Api::V1::DocumentoController < Api::V1::ApiController
     end
 
 
-    if @seed
+    unless @seed.nil?
    
       tosign_xml="<gettoken><item><Semilla>#{@seed}</Semilla></item>"
       tosign_xml+="<Signature xmlns=\"http://www.w3.org/2000/09/xmldsig#\">"
@@ -167,6 +167,8 @@ class Api::V1::DocumentoController < Api::V1::ApiController
       
       doc = File.read 'doc-signed.xml'
 
+
+
       i=0
       while(!@token || i<0)
         @token= gettoken(doc)
@@ -174,6 +176,9 @@ class Api::V1::DocumentoController < Api::V1::ApiController
         i+=1
       end
       
+      puts "=====TOKEN OK========"
+      puts @token
+      puts "============="
    
       unless @token.nil?
         @token= @token.to_s[@token.to_s.index('TOKEN')+9..@token.to_s.index('TOKEN')+21]
@@ -198,6 +203,11 @@ class Api::V1::DocumentoController < Api::V1::ApiController
 
       @seed= @seed_xml.to_s[@seed_xml.to_s.index('SEMILLA')+11..@seed_xml.to_s.index('SEMILLA')+22]
 
+
+      puts "=====SEED OK========"
+      puts @seed
+      puts "============="
+
       return @seed
 
     rescue
@@ -215,6 +225,11 @@ class Api::V1::DocumentoController < Api::V1::ApiController
       #tokenws = Savon.client(wsdl: "https://maullin.sii.cl/DTEWS/GetTokenFromSeed.jws?WSDL")
       tokenws = Savon.client(wsdl: "https://palena.sii.cl/DTEWS/GetTokenFromSeed.jws?WSDL")
       @token = tokenws.call( :get_token , message: {string: seed_xml}) 
+
+      puts "=====TOKEN========"
+      puts "OBTENIDO"
+      puts "============="
+
     rescue
       puts "=====TOKEN========"
       puts "Error #{$!}"
