@@ -17,12 +17,12 @@ class Api::V1::DocumentoController < Api::V1::ApiController
 
     if @invoice.save
 
-      File.open(@invoice.fileEnvio, 'w') { |file| file.puts @invoice.envio.force_encoding('iso-8859-1').encode('utf-8')}
+      # File.open(@invoice.fileEnvio, 'w') { |file| file.puts @invoice.envio.force_encoding('iso-8859-1').encode('utf-8')}
 
-      sleep 2
+      # sleep 2
 
-      @invoice.estadoxml = postsii(@invoice.id)
-      @invoice.save
+      # @invoice.estadoxml = postsii(@invoice.id)
+      # @invoice.save
       
       render 'api/v1/invoices/create' 
     else
@@ -160,7 +160,7 @@ class Api::V1::DocumentoController < Api::V1::ApiController
 
 
       File.open('tosign_xml.xml', 'w') { |file| file.puts tosign_xml}
-      sleep 1
+      sleep 2
      
       system("./comando")
       
