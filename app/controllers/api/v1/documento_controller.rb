@@ -223,9 +223,15 @@ class Api::V1::DocumentoController < Api::V1::ApiController
 
   def gettoken(seed_xml)
     begin
+
+      puts "=====SEED XML========"
+      puts seed_xml
+      puts "============="
+
       #tokenws = Savon.client(wsdl: "https://maullin.sii.cl/DTEWS/GetTokenFromSeed.jws?WSDL")
       tokenws = Savon.client(wsdl: "https://palena.sii.cl/DTEWS/GetTokenFromSeed.jws?WSDL")
       @token = tokenws.call( :get_token , message: {string: seed_xml}) 
+
 
       puts "=====TOKEN========"
       puts "OBTENIDO"
