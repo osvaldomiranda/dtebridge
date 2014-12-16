@@ -12,6 +12,7 @@ class Api::V1::DocumentoController < Api::V1::ApiController
     @invoice = Documento.new( p[:documento] ) 
     @invoice.envio = params[:xml]
     @invoice.fileEnvio = params[:filename]
+    @invoice.pdfs = params[:xmlFile]
     @invoice.estado = "CREADO"
     @invoice.estadoxml = "NO ENVIADO"
 
@@ -21,8 +22,8 @@ class Api::V1::DocumentoController < Api::V1::ApiController
 
       # sleep 2
 
-      # @invoice.estadoxml = postsii(@invoice.id)
-      # @invoice.save
+       # @invoice.estadoxml = postsii(@invoice.id)
+       # @invoice.save
       
       render 'api/v1/invoices/create' 
     else
@@ -85,7 +86,7 @@ class Api::V1::DocumentoController < Api::V1::ApiController
       post_body << "Content-Disposition: form-data; name=\"archivo\"; filename=\"#{@doc.fileEnvio}\"\r\n"
       post_body << "Content-Type: text/xml\r\n" 
 
-      envioxml = File.read @doc.fileEnvio 
+      envioxml = File.read @doc.pdfs 
        
       post_body << "\r\n"
       post_body << envioxml
