@@ -35,7 +35,7 @@ class Api::V1::DocumentoController < Api::V1::ApiController
   def postsii(idDoc)
     @doc  = Documento.find(idDoc)
 
-    @token = get_token 
+    @tokenOk = get_token 
 
     @rut = @doc.RUTEmisor[0..7]
     @dv  = @doc.RUTEmisor[9..9]
@@ -104,7 +104,7 @@ class Api::V1::DocumentoController < Api::V1::ApiController
       request["Content-Length"]  = request.body.length
       request["Connection"]      = "Keep-Alive"
       request["Cache-Control"]   = "no-cache"
-      request["Cookie"]          = "TOKEN=#{@token}"
+      request["Cookie"]          = "TOKEN=#{@tokenOk}"
       
 
       responce = http.request(request)
@@ -199,23 +199,23 @@ class Api::V1::DocumentoController < Api::V1::ApiController
       # client = Savon.client(wsdl:"https://maullin.sii.cl/DTEWS/CrSeed.jws?WSDL") 
       #produccion
       client = Savon.client(wsdl:"https://palena.sii.cl/DTEWS/CrSeed.jws?WSDL") 
-      @seed_xml = client.call(:get_seed)
+      seed_xml = client.call(:get_seed)
 
-      @seed= @seed_xml.to_s[@seed_xml.to_s.index('SEMILLA')+11..@seed_xml.to_s.index('SEMILLA')+22]
+      seed= seed_xml.to_s[seed_xml.to_s.index('SEMILLA')+11..seed_xml.to_s.index('SEMILLA')+22]
 
 
       puts "=====SEED OK========"
-      puts @seed_xml
-      puts @seed
+      puts seed_xml
+      puts seed
       puts "============="
 
-      return @seed
+      return seed
 
     rescue
       puts "=====SEED========"
       puts "Error #{$!}"
       puts "============="
-      @seed=nil
+      seed=nil
 
     ensure 
     end
@@ -230,21 +230,21 @@ class Api::V1::DocumentoController < Api::V1::ApiController
 
       #tokenws = Savon.client(wsdl: "https://maullin.sii.cl/DTEWS/GetTokenFromSeed.jws?WSDL")
       tokenws = Savon.client(wsdl: "https://palena.sii.cl/DTEWS/GetTokenFromSeed.jws?WSDL")
-      @token = tokenws.call( :get_token , message: {string: seed_xml}) 
+      token = tokenws.call( :get_token , message: {string: seed_xml}) 
 
 
       puts "=====TOKEN========"
       puts "OBTENIDO"
-      puts @token
+      puts token
       puts "============="
 
-      return @token
+      return token
 
     rescue
       puts "=====TOKEN========"
       puts "Error #{$!}"
       puts "============="
-      @token=nil
+      token=nil
     ensure 
     end
   end
