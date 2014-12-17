@@ -22,8 +22,8 @@ class Api::V1::DocumentoController < Api::V1::ApiController
 
       # sleep 2
 
-       # @invoice.estadoxml = postsii(@invoice.id)
-       # @invoice.save
+      @invoice.estadoxml = postsii(@invoice.id)
+      @invoice.save
       
       render 'api/v1/invoices/create' 
     else
@@ -84,12 +84,12 @@ class Api::V1::DocumentoController < Api::V1::ApiController
           
       post_body << "--9022632e1130lc4\r\n"
       post_body << "Content-Disposition: form-data; name=\"archivo\"; filename=\"#{@doc.fileEnvio}\"\r\n"
-      post_body << "Content-Type: text/xml\r\n" 
+      post_body << "Content-Type: /xml\r\n" 
 
-      envioxml = File.read @doc.pdfs 
+       envio_xml = @doc.pdfs.read
        
       post_body << "\r\n"
-      post_body << envioxml
+      post_body << envio_xml
       post_body << "\r\n"
       post_body << "--9022632e1130lc4--\r\n"
     
@@ -120,6 +120,7 @@ class Api::V1::DocumentoController < Api::V1::ApiController
       return "ERROR"
     end    
   end
+
 
 
   def get_token
@@ -161,7 +162,7 @@ class Api::V1::DocumentoController < Api::V1::ApiController
 
 
       File.open('tosign_xml.xml', 'w') { |file| file.puts tosign_xml}
-      sleep 2
+      sleep 1
      
       system("./comando")
       
@@ -173,7 +174,7 @@ class Api::V1::DocumentoController < Api::V1::ApiController
       i=0
       while(@token.nil? && i<50)
         @token= gettoken(doc)
-        sleep 2
+        sleep 1
         i+=1
       end
       
@@ -183,13 +184,15 @@ class Api::V1::DocumentoController < Api::V1::ApiController
    
       unless @token.nil?
         @token= @token.to_s[@token.to_s.index('TOKEN')+9..@token.to_s.index('TOKEN')+21]
-        return @token 
+        return @token
+        #render 'api/v1/invoices/token' 
       else
         return nil 
-    
+       # render format.json { render json: '{ERROR}', status: :unprocessable_entity }
       end 
     else
-      return nil  
+      return nil
+      #render format.json { render json: '{}', status: :unprocessable_entity }  
     end
 
   end

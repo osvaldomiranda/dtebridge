@@ -1,5 +1,6 @@
 Dtebridge::Application.routes.draw do
 
+  devise_for :installs
   resources :comisions
 
   resources :ref_detalles
@@ -25,6 +26,7 @@ Dtebridge::Application.routes.draw do
   get "respIntercam" , to: "connectsii#resp_intercambio"
   get "recepMercaderia" , to: "connectsii#recep_mercaderia"
   get "aprobComercial" , to: "connectsii#aprob_comercial"
+
   
   root to: "home#index"
 
@@ -39,8 +41,10 @@ Dtebridge::Application.routes.draw do
       get "/iat_login", to: "iat#login"
       get "/iat_ping/:id", to: "iat#ping"
 
+
       post "/iat_doc", to: "iat#iat_doc"
       post "/invoice", to: "documento#create_doc"
+      get "/gettoken", to: "documento#get_token"
      end
   end
 
