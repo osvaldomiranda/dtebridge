@@ -1,30 +1,22 @@
 # encoding: ISO-8859-1
 class Api::V1::DocumentoController < Api::V1::ApiController
-
+  
   def create_doc
-
     #TO DO:  pdf y pdfcedible en tabla documento 
     #para recibir toda la info (Ver si es recomendable el envío por separado)
    
-
     p = eval(params[:doc].force_encoding('iso-8859-1').encode('utf-8'))
 
     @invoice = Documento.new( p[:documento] ) 
-    @invoice.envio = params[:xml]
-    @invoice.fileEnvio = params[:filename]
-    @invoice.pdfs = params[:xmlFile]
+    @invoice.pdfs = params[:pdfCed]
+    @invoice.pdft = params[:pdfTirb]
+    @invoice.fileEnvio = params[:xmlFile]
     @invoice.estado = "CREADO"
     @invoice.estadoxml = "NO ENVIADO"
 
     if @invoice.save
-
-      # File.open(@invoice.fileEnvio, 'w') { |file| file.puts @invoice.envio.force_encoding('iso-8859-1').encode('utf-8')}
-
-      # sleep 2
-
       @invoice.estadoxml = postsii(@invoice.id)
-      @invoice.save
-      
+      @invoice.save      
       render 'api/v1/invoices/create' 
     else
        render format.json { render json: @invoice.errors, status: :unprocessable_entity }
@@ -86,14 +78,13 @@ class Api::V1::DocumentoController < Api::V1::ApiController
       post_body << "Content-Disposition: form-data; name=\"archivo\"; filename=\"#{@doc.fileEnvio}\"\r\n"
       post_body << "Content-Type: /xml\r\n" 
 
-       envio_xml = @doc.pdfs.read
+      envio_xml = @doc.fileEnvio.read
        
       post_body << "\r\n"
       post_body << envio_xml
       post_body << "\r\n"
       post_body << "--9022632e1130lc4--\r\n"
     
-      
       request.body = post_body.join
 
       request["Accept"]          = "image/gif, image/x-xbitmap, image/jpeg, image/pjpeg, application/vnd.ms-powerpoint, application/ms-excel, application/msword, */*"
@@ -106,8 +97,7 @@ class Api::V1::DocumentoController < Api::V1::ApiController
       request["Connection"]      = "Keep-Alive"
       request["Cache-Control"]   = "no-cache"
       request["Cookie"]          = "TOKEN=#{@tokenOk}"
-      
-
+    
       responce = http.request(request)
       puts "===================================="
       puts request.body
@@ -160,16 +150,17 @@ class Api::V1::DocumentoController < Api::V1::ApiController
       tosign_xml+= "</Signature>"
       tosign_xml+="</gettoken>"
 
+      t = Time.now.strftime("%Y%d%m%H%M%S")
 
-      File.open('tosign_xml.xml', 'w') { |file| file.puts tosign_xml}
+      File.open("tosign_xml#{t}.xml", 'w') { |file| file.puts tosign_xml}
       sleep 1
      
-      system("./comando")
+      system("./comando tosign_xml#{t}.xml doc-signed#{t}.xml")
       
-      
-      doc = File.read 'doc-signed.xml'
+      doc = File.read "doc-signed#{t}.xml"
 
-
+      system("rm tosign_xml#{t}.xml") 
+      system("rm doc-signed#{t}.xml")
 
       i=0
       while(@token.nil? && i<50)

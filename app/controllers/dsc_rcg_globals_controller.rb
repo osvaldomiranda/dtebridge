@@ -1,4 +1,5 @@
 class DscRcgGlobalsController < ApplicationController
+  before_filter :authenticate_user!
   before_action :set_dsc_rcg_global, only: [:show, :edit, :update, :destroy]
 
   # GET /dsc_rcg_globals

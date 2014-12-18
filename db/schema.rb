@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141216183650) do
+ActiveRecord::Schema.define(version: 20141217185625) do
 
   create_table "comisions", force: true do |t|
     t.integer  "NroLinCom"
@@ -157,6 +157,7 @@ ActiveRecord::Schema.define(version: 20141216183650) do
     t.string   "fileEnvio"
     t.string   "estado"
     t.text     "estadoxml"
+    t.string   "pdft"
   end
 
   create_table "dsc_rcg_globals", force: true do |t|

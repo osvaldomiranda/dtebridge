@@ -1,4 +1,5 @@
 class MontoPagosController < ApplicationController
+  before_filter :authenticate_user!
   before_action :set_monto_pago, only: [:show, :edit, :update, :destroy]
 
   # GET /monto_pagos

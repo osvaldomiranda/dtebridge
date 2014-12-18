@@ -1,4 +1,5 @@
 class ComisionsController < ApplicationController
+  before_filter :authenticate_user!
   before_action :set_comision, only: [:show, :edit, :update, :destroy]
 
   # GET /comisions

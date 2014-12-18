@@ -1,6 +1,6 @@
 #encoding utf-8
 class ConnectsiiController < ApplicationController
-
+before_filter :authenticate_user!
   require 'uri'
   require 'net/http'
   require 'net/https'

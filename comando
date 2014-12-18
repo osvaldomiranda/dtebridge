@@ -1,5 +1,7 @@
 #!/usr/bin/expect -f
-spawn xmlsec1 --sign --output doc-signed.xml --privkey-pem privateKey.pem,publicCert.pem tosign_xml.xml 
+set inf [lindex $argv 0];
+set outf [lindex $argv 1];
+spawn xmlsec1 --sign --output $outf --privkey-pem privateKey.pem,publicCert.pem $inf
 expect {
 -re ".*sword.*" {
 exp_send "lubba10580\r"

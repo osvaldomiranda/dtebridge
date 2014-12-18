@@ -1,4 +1,5 @@
 class IatLogsController < ApplicationController
+  before_filter :authenticate_user!
   before_action :set_iat_log, only: [:show, :edit, :update, :destroy]
 
   # GET /iat_logs

@@ -1,4 +1,5 @@
 class ImpuestoRetensController < ApplicationController
+  before_filter :authenticate_user!
   before_action :set_impuesto_reten, only: [:show, :edit, :update, :destroy]
 
   # GET /impuesto_retens

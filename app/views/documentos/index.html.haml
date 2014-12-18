@@ -1,6 +1,7 @@
 %h1 Documentos
 
 
+
 %table.table.table-striped
   %tr
     %th Tipodte
@@ -94,7 +95,9 @@
     / %th Valcomiva
     %th Mnttotal
     / %th Montonf
-    %th archivo
+    %th Cedible
+    %th Tributable
+    %th XML
     %th
     %th
     %th
@@ -196,7 +199,14 @@
         %td= link_to 'PDF', documento.pdfs_url
       -else
         %td
-       
+      -if(documento.pdft?)
+        %td= link_to 'PDF', documento.pdft_url
+      -else
+        %td
+      -if(documento.fileEnvio?)
+        %td= link_to 'XML', documento.envio_url
+      -else
+        %td   
       /%td= link_to 'Show', documento
       /%td= link_to 'Edit', edit_documento_path(documento)
       /%td= link_to 'Destroy', documento, :method => :delete, :data => { :confirm => 'Are you sure?' }

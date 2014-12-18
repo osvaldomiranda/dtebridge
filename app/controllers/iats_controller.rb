@@ -1,4 +1,5 @@
 class IatsController < ApplicationController
+  before_filter :authenticate_user!
   before_action :set_iat, only: [:show, :edit, :update, :destroy]
 
   # GET /iats

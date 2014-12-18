@@ -1,4 +1,5 @@
 class RefDetallesController < ApplicationController
+  before_filter :authenticate_user!
   before_action :set_ref_detalle, only: [:show, :edit, :update, :destroy]
 
   # GET /ref_detalles
