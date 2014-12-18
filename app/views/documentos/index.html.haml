@@ -94,7 +94,7 @@
     / %th Valcomexe
     / %th Valcomiva
     %th Mnttotal
-    / %th Montonf
+    %th EstadoEnvio
     %th Cedible
     %th Tributable
     %th XML
@@ -194,7 +194,7 @@
       / %td= documento.ValComExe
       / %td= documento.ValComIVA
       %td= documento.MntTotal
-      / %td= documento.MontoNF
+      %td= documento.estadoxml
       -if(documento.pdfs?)
         %td= link_to 'PDF', documento.pdfs_url
       -else
