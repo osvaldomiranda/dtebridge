@@ -8,9 +8,9 @@ class Api::V1::DocumentoController < Api::V1::ApiController
     p = eval(params[:doc].force_encoding('iso-8859-1').encode('utf-8'))
 
     @invoice = Documento.new( p[:documento] ) 
-    @invoice.pdfs = params[:xmlFile]
-  #  @invoice.pdft = params[:pdfTirb]
-  #  @invoice.fileEnvio = params[:xmlFile]
+    @invoice.pdfs = params[:pdfCed]
+    @invoice.pdft = params[:pdfTirb]
+    @invoice.fileEnvio = params[:xmlFile]
     @invoice.estado = "CREADO"
     @invoice.estadoxml = "NO ENVIADO"
 
@@ -78,7 +78,7 @@ class Api::V1::DocumentoController < Api::V1::ApiController
       post_body << "Content-Disposition: form-data; name=\"archivo\"; filename=\"#{@doc.fileEnvio}\"\r\n"
       post_body << "Content-Type: /xml\r\n" 
 
-      envio_xml = @doc.pdfs.read
+      envio_xml = @doc.fileEnvio.read
        
       post_body << "\r\n"
       post_body << envio_xml
