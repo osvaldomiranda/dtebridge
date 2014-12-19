@@ -2,6 +2,28 @@
 
 = will_paginate @documentos
 
+= form_tag '/buscarDoc' do
+  = field_set_tag do
+    = label_tag :empresa, 'Empresa:'
+    %input{name: 'empresa', type: 'text', list: 'Empresa'}
+    %datalist#Empresa
+      %option Lubba Santiago 
+      %option Lubba Regiones
+    = label_tag :sucursal, 'Sucursal:'
+    %input{name: 'sucursal', type: 'text', list: 'Sucursal'}
+    %datalist#Sucursal
+      %option Casa Matriz
+      %option Monumento
+      %option Viña del mar
+      %option Ovalle
+      %option La Serena
+
+    = label_tag :Folio, 'Folio:'
+    = text_field_tag :Folio
+    = submit_tag 'Buscar'
+%br
+
+
 %table.table.table-striped
   %tr
     %th Tipodte
@@ -25,7 +47,7 @@
     / %th Folioaut
     / %th Fchaut
     / %th Sucursal
-    %th Cdgsiisucur
+    %th.hidden_sm Cdgsiisucur
     / %th Codadicsucur
     / %th Dirorigen
     / %th Cmnaorigen
@@ -79,7 +101,7 @@
     / %th Totitems
     / %th Totbultos
     / %th Tpomoneda
-    %th Mntneto
+    %th.hidden_sm Mntneto
     / %th Mntexe
     / %th Mntbase
     / %th Mntmargencom
@@ -94,7 +116,7 @@
     / %th Valcomexe
     / %th Valcomiva
     %th Mnttotal
-    %th EstadoEnvio
+    %th.hidden_sm EstadoEnvio
     %th Cedible
     %th Tributable
     %th XML
@@ -125,7 +147,7 @@
       / %td= documento.FolioAut
       / %td= documento.FchAut
       / %td= documento.Sucursal
-      %td= documento.CdgSIISucur
+      %td.hidden_sm= documento.CdgSIISucur
       / %td= documento.CodAdicSucur
       / %td= documento.DirOrigen
       / %td= documento.CmnaOrigen
@@ -179,7 +201,7 @@
       / %td= documento.TotItems
       / %td= documento.TotBultos
       / %td= documento.TpoMoneda
-      %td= documento.MntNeto
+      %td.hidden_sm= documento.MntNeto
       / %td= documento.MntExe
       / %td= documento.MntBase
       / %td= documento.MntMargenCom
@@ -194,7 +216,7 @@
       / %td= documento.ValComExe
       / %td= documento.ValComIVA
       %td= documento.MntTotal
-      %td= documento.estadoxml
+      %td.hidden_sm= documento.estadoxml
       -if(documento.pdfs?)
         %td= link_to 'PDF', documento.pdfs_url
       -else

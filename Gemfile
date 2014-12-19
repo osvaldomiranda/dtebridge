@@ -30,8 +30,6 @@ gem 'jbuilder', '~> 1.2'
 # For haml syntax
 gem 'haml'
 
-
-
 # For creating haml files when performing scaffold
 gem 'haml-rails'
 
@@ -43,8 +41,6 @@ gem 'bcrypt-ruby', '~> 3.1.2'
 
 # For pagination
 gem 'will_paginate', '~> 3.0'
-
-
 
 # For monitoring sidekiq queues
 gem 'sinatra', require: false
@@ -60,7 +56,6 @@ gem 'cancan'
 gem 'savon'
 
 gem 'carrierwave'
-
 
 # Muestra calendario en formularios
 gem 'bootstrap-datepicker-rails'
@@ -92,9 +87,6 @@ group :development do
 
   # Pure Ruby implementation of an SSH (protocol 2) client 
   gem 'net-ssh', '~> 2.7.0'
-
-
-
 end
 
 
@@ -112,7 +104,6 @@ group :development, :test do
 
   # To simulate users actions in testing
   gem 'capybara' 
-
 end
 
 group :production, :staging do

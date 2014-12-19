@@ -27,6 +27,7 @@ Dtebridge::Application.routes.draw do
   get "recepMercaderia" , to: "connectsii#recep_mercaderia"
   get "aprobComercial" , to: "connectsii#aprob_comercial"
 
+  post "buscarDoc", to: "documentos#find"
   
   root to: "home#index"
 

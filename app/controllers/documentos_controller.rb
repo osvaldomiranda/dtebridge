@@ -2,59 +2,43 @@ class DocumentosController < ApplicationController
   before_filter :authenticate_user!
   before_action :set_documento, only: [:show, :edit, :update, :destroy]
 
-
-  # GET /documentos
-  # GET /documentos.json
   def index
     @documentos = Documento.order(created_at: :desc).paginate(:page => params[:page], :per_page => 15 )
   end
 
-  # GET /documentos/1
-  # GET /documentos/1.json
-  def show
-  end
+  def find
+    if params[:empresa] == 'Lubba Regiones'
+      rut = "77888630-8"  
+    else
+      rut = "77398570-7"      
+    end
 
-  # GET /documentos/new
-  def new
-    @documento = Documento.new
-  end
+    suc = 75047210
 
-  # GET /documentos/1/edit
-  def edit
-  end
 
-  # POST /documentos
-  # POST /documentos.json
-  def create
-    @documento = Documento.new(documento_params)
+    if params[:sucursal]==""
+      if params[:Folio]== ""
+        @documentos = Documento.where(RUTEmisor: rut).order(created_at: :desc).paginate(:page => params[:page], :per_page => 15 )
+      else  
+        @documentos = Documento.where(Folio: params[:Folio]).paginate(:page => params[:page], :per_page => 15 )
+      end
+    else
+      if params[:Folio]== ""
+        @documentos = Documento.where(CdgSIISucur: suc).order(created_at: :desc).paginate(:page => params[:page], :per_page => 15 )       
+      else  
+        @documentos = Documento.where(Folio: params[:Folio]).paginate(:page => params[:page], :per_page => 15 )
+      end
+    end
+
+    if params[:empresa] == ""
+      @documentos = Documento.order(created_at: :desc).paginate(:page => params[:page], :per_page => 15 )
+    end
 
     respond_to do |format|
-      if @documento.save
-        format.html { redirect_to @documento, notice: 'Documento was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @documento }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @documento.errors, status: :unprocessable_entity }
-      end
+      format.html { render action: 'index' }
     end
   end
 
-  # PATCH/PUT /documentos/1
-  # PATCH/PUT /documentos/1.json
-  def update
-    respond_to do |format|
-      if @documento.update(documento_params)
-        format.html { redirect_to @documento, notice: 'Documento was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: 'edit' }
-        format.json { render json: @documento.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /documentos/1
-  # DELETE /documentos/1.json
   def destroy
     @documento.destroy
     respond_to do |format|
