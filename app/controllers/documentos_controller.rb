@@ -6,7 +6,7 @@ class DocumentosController < ApplicationController
   # GET /documentos
   # GET /documentos.json
   def index
-    @documentos = Documento.order(created_at: :desc)
+    @documentos = Documento.order(created_at: :desc).paginate(:page => params[:page], :per_page => 15 )
   end
 
   # GET /documentos/1
