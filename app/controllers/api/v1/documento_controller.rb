@@ -15,8 +15,8 @@ class Api::V1::DocumentoController < Api::V1::ApiController
     @invoice.estadoxml = "NO ENVIADO"
 
     if @invoice.save
-   #   @invoice.estadoxml = postsii(@invoice.id)
-   #   @invoice.save      
+      @invoice.estadoxml = postsii(@invoice.id)
+      @invoice.save      
       render 'api/v1/invoices/create' 
     else
        render format.json { render json: @invoice.errors, status: :unprocessable_entity }
