@@ -13,8 +13,19 @@ class DocumentosController < ApplicationController
       rut = "77398570-7"      
     end
 
-    suc = 75047210
+    sucursales = { "(Regiones) ARLEGUI 951, VINA DEL MAR" => 75047210,  
+                   "(Regiones) INDEPENDENCIA 336, OVALLE" => 63635210,  
+                   "(Regiones) ARTURO PRAT 665, LA SERENA" => 64409688,  
+                   "(Regiones) DOMINGO CORREA 25, LA CISTERNA" => 74929736,  
+                   "(Regiones) AV. JOSE MIGUEL CARRERA 8158, LA CISTERNA" => 74929741,  
+                   "(Stgo) MONUMENTO 1963, MAIPU" => 41272801,  
+                   "(Stgo) AV JOSE MIGUEL CARRERA 8158, LA CISTERNA" => 74878389,  
+                   "(Stgo) DOMINGO CORREA 25, LA CISTERNA" => 74878390,
+                   "(Stgo) 5 DE ABRIL 412-A,  MAIPU" => 78139472  
+                  }
 
+
+    suc = sucursales[params[:sucursal]]
 
     if params[:sucursal]==""
       if params[:Folio]== ""
@@ -30,7 +41,7 @@ class DocumentosController < ApplicationController
       end
     end
 
-    if params[:empresa] == ""
+    if params[:empresa] == "" && params[:sucursal]==""
       @documentos = Documento.order(created_at: :desc).paginate(:page => params[:page], :per_page => 15 )
     end
 

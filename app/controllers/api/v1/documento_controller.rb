@@ -16,6 +16,7 @@ class Api::V1::DocumentoController < Api::V1::ApiController
 
     if @invoice.save
       @invoice.estadoxml = postsii(@invoice.id)
+
       @invoice.save      
       render 'api/v1/invoices/create' 
     else
@@ -227,7 +228,6 @@ class Api::V1::DocumentoController < Api::V1::ApiController
       tokenws = Savon.client(wsdl: "https://palena.sii.cl/DTEWS/GetTokenFromSeed.jws?WSDL")
       token = tokenws.call( :get_token , message: {string: seed_xml}) 
 
-
       puts "=====TOKEN========"
       puts "OBTENIDO"
       puts token
@@ -244,5 +244,8 @@ class Api::V1::DocumentoController < Api::V1::ApiController
     end
   end
 
+  def estadoStr(estadoxml)
+
+  end
 end
 

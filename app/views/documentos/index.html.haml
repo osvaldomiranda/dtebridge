@@ -12,11 +12,15 @@
     = label_tag :sucursal, 'Sucursal:'
     %input{name: 'sucursal', type: 'text', list: 'Sucursal'}
     %datalist#Sucursal
-      %option Casa Matriz
-      %option Monumento
-      %option Viña del mar
-      %option Ovalle
-      %option La Serena
+      %option (Regiones) ARLEGUI 951, VINA DEL MAR  
+      %option (Regiones) INDEPENDENCIA 336, OVALLE  
+      %option (Regiones) ARTURO PRAT 665, LA SERENA  
+      %option (Regiones) DOMINGO CORREA 25, LA CISTERNA  
+      %option (Regiones) AV. JOSE MIGUEL CARRERA 8158, LA CISTERNA
+      %option (Stgo) MONUMENTO 1963, MAIPU
+      %option (Stgo) AV JOSE MIGUEL CARRERA 8158, LA CISTERNA
+      %option (Stgo) DOMINGO CORREA 25, LA CISTERNA
+      %option (Stgo) 5 DE ABRIL 412-A,  MAIPU
 
     = label_tag :Folio, 'Folio:'
     = text_field_tag :Folio
