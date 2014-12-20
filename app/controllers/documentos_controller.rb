@@ -29,20 +29,20 @@ class DocumentosController < ApplicationController
 
     if params[:sucursal]==""
       if params[:Folio]== ""
-        @documentos = Documento.where(RUTEmisor: rut).order(created_at: :desc).paginate(:page => params[:page], :per_page => 15 )
+        @documentos = Documento.where(RUTEmisor: rut).order(created_at: :desc).paginate(:page => params[:page], :per_page => 200 )
       else  
-        @documentos = Documento.where(Folio: params[:Folio]).paginate(:page => params[:page], :per_page => 15 )
+        @documentos = Documento.where(Folio: params[:Folio]).paginate(:page => params[:page], :per_page => 200 )
       end
     else
       if params[:Folio]== ""
-        @documentos = Documento.where(CdgSIISucur: suc).order(created_at: :desc).paginate(:page => params[:page], :per_page => 15 )       
+        @documentos = Documento.where(CdgSIISucur: suc).order(created_at: :desc).paginate(:page => params[:page], :per_page => 200)       
       else  
-        @documentos = Documento.where(Folio: params[:Folio]).paginate(:page => params[:page], :per_page => 15 )
+        @documentos = Documento.where(Folio: params[:Folio]).paginate(:page => params[:page], :per_page => 200 )
       end
     end
 
     if params[:empresa] == "" && params[:sucursal]==""
-      @documentos = Documento.order(created_at: :desc).paginate(:page => params[:page], :per_page => 15 )
+      @documentos = Documento.order(created_at: :desc).paginate(:page => params[:page], :per_page => 200 )
     end
 
     respond_to do |format|
