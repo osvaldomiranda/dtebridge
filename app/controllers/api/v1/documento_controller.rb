@@ -15,9 +15,9 @@ class Api::V1::DocumentoController < Api::V1::ApiController
     @invoice.estadoxml = "NO ENVIADO"
 
     if @invoice.save
-   #   @invoice.estadoxml = postsii(@invoice.id)
-
-    #  @invoice.save      
+      @invoice.estadoxml = postsii(@invoice.id)
+      @invoice.estado = estadoStr(@invoice.estadoxml)
+      @invoice.save      
       render 'api/v1/invoices/create' 
     else
        render format.json { render json: @invoice.errors, status: :unprocessable_entity }
@@ -245,7 +245,22 @@ class Api::V1::DocumentoController < Api::V1::ApiController
   end
 
   def estadoStr(estadoxml)
+    status= estadoxml.to_s[estadoxml.to_s.index('STATUS')+7..estadoxml.to_s.index('/STATUS')-2]
 
+    estado= { "0" => "0 Upload Ok",
+              "1" => "1 Sender no tiene permisos para enviar",
+              "2" => "2 Error en tamaño de Archivo",
+              "3" => "3 Archivo Cortado",
+              "4" => "4 No definido",
+              "5" => "5 No esta Autenticado",
+              "6" => "6 Empresa no autorisada",
+              "7" => "7 Esquema invalido",
+              "8" => "8 Error en Firma",
+              "9" => "9 Sistema Bloqueado" ,
+              "Otro" => "Error interno SII"
+            }
+
+    return estado[status]
   end
 end
 
