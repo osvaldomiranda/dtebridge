@@ -4,20 +4,33 @@ class Api::V1::DocumentoController < Api::V1::ApiController
   def create_doc
     #TO DO:  pdf y pdfcedible en tabla documento 
     #para recibir toda la info (Ver si es recomendable el envío por separado)
-   
+
     p = eval(params[:doc].force_encoding('iso-8859-1').encode('utf-8'))
 
-    @invoice = Documento.new( p[:documento] ) 
+    if params[:Folio].present? 
+      @invoice =Documento.where(Folio: params[:Folio]).first
+      if @invoice.nil?
+        @invoice = Documento.new( p[:documento] )
+        @invoice.estado = "CREADO"
+        @invoice.estadoxml = "NO ENVIADO"
+      end
+    else
+      @invoice = Documento.new( p[:documento] )
+      @invoice.estado = "CREADO"
+      @invoice.estadoxml = "NO ENVIADO"  
+    end 
+
     @invoice.pdfs = params[:pdfCed]
     @invoice.pdft = params[:pdfTrib]
     @invoice.fileEnvio = params[:xmlFile]
-    @invoice.estado = "CREADO"
-    @invoice.estadoxml = "NO ENVIADO"
-
+   
     if @invoice.save
-      @invoice.estadoxml = postsii(@invoice.id)
-      @invoice.estado = estadoStr(@invoice.estadoxml)
-      @invoice.save      
+      if !params[:conEnvio].present? || params[:conEnvio] == "S"
+        @invoice.estadoxml = postsii(@invoice.id)
+        @invoice.save   
+        estadoStr(@invoice.id)       
+      end
+
       render 'api/v1/invoices/create' 
     else
        render format.json { render json: @invoice.errors, status: :unprocessable_entity }
@@ -40,7 +53,8 @@ class Api::V1::DocumentoController < Api::V1::ApiController
       @BOUNDARY = "9022632e1130lc4"
    
       uri = URI.parse("https://palena.sii.cl/cgi_dte/UPL/DTEUpload") 
-    
+     # uri = URI.parse("https://maullin2.sii.cl/cgi_dte/UPL/DTEUpload") 
+
       http = Net::HTTP.new(uri.host, uri.port)
       http.use_ssl = true
       http.verify_mode = OpenSSL::SSL::VERIFY_PEER
@@ -106,6 +120,14 @@ class Api::V1::DocumentoController < Api::V1::ApiController
       puts responce.body
       puts "===================================="
     
+      sleep 10
+      i=0
+      while(@consutaEstado.nil? && i<10)
+        @consutaEstado= consultaEnvio(@doc.id, @rut, @dv, @tokenOk, responce.body)
+        sleep 1
+        i+=1
+      end
+
       return responce.body
     else
       return "ERROR"
@@ -192,7 +214,7 @@ class Api::V1::DocumentoController < Api::V1::ApiController
   def getseed
     begin
       # ambiente sii pruebas 
-      # client = Savon.client(wsdl:"https://maullin.sii.cl/DTEWS/CrSeed.jws?WSDL") 
+     #  client = Savon.client(wsdl:"https://maullin2.sii.cl/DTEWS/CrSeed.jws?WSDL") 
       #produccion
       client = Savon.client(wsdl:"https://palena.sii.cl/DTEWS/CrSeed.jws?WSDL") 
       seed_xml = client.call(:get_seed)
@@ -224,7 +246,7 @@ class Api::V1::DocumentoController < Api::V1::ApiController
       puts seed_xml
       puts "============="
 
-      #tokenws = Savon.client(wsdl: "https://maullin.sii.cl/DTEWS/GetTokenFromSeed.jws?WSDL")
+      #tokenws = Savon.client(wsdl: "https://maullin2.sii.cl/DTEWS/GetTokenFromSeed.jws?WSDL")
       tokenws = Savon.client(wsdl: "https://palena.sii.cl/DTEWS/GetTokenFromSeed.jws?WSDL")
       token = tokenws.call( :get_token , message: {string: seed_xml}) 
 
@@ -244,8 +266,10 @@ class Api::V1::DocumentoController < Api::V1::ApiController
     end
   end
 
-  def estadoStr(estadoxml)
-    status= estadoxml.to_s[estadoxml.to_s.index('STATUS')+7..estadoxml.to_s.index('/STATUS')-2]
+  def estadoStr(id)
+    d = Documento.find(id)
+    estadoxml = d.estadoxml
+    statusUp= estadoxml.to_s[estadoxml.to_s.index('STATUS')+7..estadoxml.to_s.index('/STATUS')-2]
 
     estado= { "0" => "0 Upload Ok",
               "1" => "1 Sender no tiene permisos para enviar",
@@ -260,7 +284,49 @@ class Api::V1::DocumentoController < Api::V1::ApiController
               "Otro" => "Error interno SII"
             }
 
-    return estado[status]
+    if d.estadoEnvioXml.to_s.index('ACEPTADOS').nil?   
+      d.estado = estado[statusUp]  
+    else      
+      aceptados = d.estadoEnvioXml.to_s[d.estadoEnvioXml.to_s.index('ACEPTADOS')+13..d.estadoEnvioXml.to_s.index('/ACEPTADOS')-5]
+      rechazados = d.estadoEnvioXml.to_s[d.estadoEnvioXml.to_s.index('RECHAZADOS')+14..d.estadoEnvioXml.to_s.index('/RECHAZADOS')-5]
+      reparos = d.estadoEnvioXml.to_s[d.estadoEnvioXml.to_s.index('REPAROS')+11..d.estadoEnvioXml.to_s.index('/REPAROS')-5]
+
+      if rechazados == "1"
+        d.estado = "Rechazado SII"
+      end  
+      if aceptados == "1"
+        d.estado = "Aceptado Ok SII"
+        if reparos == "1"
+          d.estado = "Aceptado con Reparos"
+        end  
+      end
+    end
+    d.save  
+  end
+
+  def consultaEnvio( docId, rut, dv, token, estadoxml)
+    begin
+      trackId = estadoxml.to_s[estadoxml.to_s.index('TRACKID')+8..estadoxml.to_s.index('/TRACKID')-2]
+
+      estadoWs = Savon.client(wsdl: "https://palena.sii.cl/DTEWS/QueryEstUp.jws?WSDL")
+      estado = estadoWs.call( :get_est_up , message: {RutCompania: rut, DvCompania: dv, TrackId: trackId, Token: token})
+
+      # #estado = estadoWs.call( :get_est_up , message: {RutCompania: '77888630', DvCompania: '8', TrackId: '0878885016', Token: 'BCTTCTEYZnzrM'})
+
+      puts "======================="
+      puts estado
+      puts "======================="
+      docum = Documento.find(docId)
+      docum.estadoEnvioXml = estado.to_s
+      docum.save
+
+      return estado.to_s
+
+    rescue 
+      return nil
+    end
+
+
   end
 end
 

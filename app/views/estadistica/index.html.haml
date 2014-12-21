@@ -1,0 +1,13 @@
+= javascript_include_tag "//www.google.com/jsapi", "chartkick" 
+%h1 Estadisticas
+
+%h3.text-danger Cantidad de Documentos por Sucursal
+= pie_chart @d , height: "200px"
+
+%h3.text-danger Monto Total por Empresa
+= bar_chart Documento.group(:RutEmisor).sum(:MntNeto),  height: "200px"
+
+%h3.text-danger Monto Total por Sucursal
+= bar_chart @f
+
+/ = line_chart Documento.group_by_day(:created_at).count

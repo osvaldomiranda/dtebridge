@@ -1,6 +1,14 @@
+/ = javascript_include_tag "//www.google.com/jsapi", "chartkick" 
+
 %h1 Documentos
+/ %p.text-danger Estado Envío de los Documentos
+/ = pie_chart Documento.group(:estado).count 
+/ %p.text-danger Monto Total por Sucursal
+/ = bar_chart Documento.group(:CdgSIISucur).sum(:MntNeto) 
 
 = will_paginate @documentos
+
+%p.text-danger Busqueda por folio, debe indicar la Empresa.
 
 = form_tag '/buscarDoc' do
   = field_set_tag do
@@ -151,7 +159,7 @@
       / %td= documento.FolioAut
       / %td= documento.FchAut
       / %td= documento.Sucursal
-      %td.hidden_sm= documento.CdgSIISucur
+      %td= documento.sucursal
       / %td= documento.CodAdicSucur
       / %td= documento.DirOrigen
       / %td= documento.CmnaOrigen

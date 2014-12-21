@@ -1,5 +1,6 @@
 Dtebridge::Application.routes.draw do
 
+  get "estadistica/index"
   devise_for :installs
   resources :comisions
 
@@ -26,6 +27,7 @@ Dtebridge::Application.routes.draw do
   get "respIntercam" , to: "connectsii#resp_intercambio"
   get "recepMercaderia" , to: "connectsii#recep_mercaderia"
   get "aprobComercial" , to: "connectsii#aprob_comercial"
+  get "estadistica", to: "estadistica#index"
 
   post "buscarDoc", to: "documentos#find"
   

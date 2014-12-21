@@ -24,6 +24,7 @@ module Dtebridge
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
     config.assets.precompile += %w( *.svg *.eot *.woff *.ttf *.png *.jpg)
+    config.assets.precompile += ['/assets/stylesheets/style.css']
 
     config.generators do |g|
       g.template_engine :haml

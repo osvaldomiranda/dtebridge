@@ -68,6 +68,12 @@ gem 'unicorn'
 # For restarting unicorn workers
 gem 'unicorn-worker-killer'
 
+# For graph
+gem "chartkick"
+
+# For date time group query
+gem 'groupdate'
+
 
 group :development do
   # Use sqlite3 as the database for development
