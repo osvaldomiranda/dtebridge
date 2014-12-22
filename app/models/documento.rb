@@ -21,13 +21,13 @@ class Documento < ActiveRecord::Base
   attr_reader :sucursal
 
   def sucursal
-    sucursales = { 75047210 => "VINA DEL MAR"  ,  
-                   63635210 => "OVALLE" ,  
-                   64409688 => "LA SERENA"  ,  
-                   41272801 => "MONUMENTO" ,  
-                   74878389 => "LA CISTERNA"  ,  
-                   74878390 => "DOMINGO CORREA 25"  ,
-                   78139472 => "MAIPU"    
+    sucursales = { 75047210 => "VINA DEL MAR",  
+                   63635210 => "OVALLE",  
+                   64409688 => "LA SERENA",  
+                   63635200 => "ABEL GONZALEZ 042",
+                   41272801 => "MONUMENTO",    
+                   78139472 => "5 DE ABRIL 412", 
+                   41271651 => "ABEL GONZALEZ 44"  
                   }
 
     sucursales[self.CdgSIISucur]
