@@ -9,10 +9,13 @@ class EstadisticaController < ApplicationController
                    78139472 => "MAIPU"    
                   }
 
-    cantxsuc = Documento.group(:CdgSIISucur).count 
+
+    cantxsuc = Documento.count(:group => '"CdgSIISucur"', :conditions => ["created_at >= ?", Date.today.at_beginning_of_month])
     @d = Hash[cantxsuc.map { |k, v| [sucursales[k] , v] }]
 
-    mntxsuc = Documento.group(:CdgSIISucur).sum(:MntNeto)
+    mntxsuc = Documento.sum('"MntNeto"', :group => '"CdgSIISucur"',:conditions => ["created_at >= ?", Date.today.at_beginning_of_month] )
     @f = Hash[mntxsuc.map { |k, v| [sucursales[k] , v] }]
+
+    @p = Documento.sum('"MntNeto"', :group => '"RUTEmisor"',:conditions => ["created_at >= ?", Date.today.at_beginning_of_month])
   end
 end

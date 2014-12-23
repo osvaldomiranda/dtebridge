@@ -27,25 +27,27 @@ class DocumentosController < ApplicationController
 
     if params[:sucursal]==""
       if params[:Folio]== ""
-        @documentos = Documento.where(RUTEmisor: rut).order(created_at: :desc).paginate(:page => params[:page], :per_page => 200 )
+        @documentos = Documento.where(RUTEmisor: rut).order(created_at: :desc).paginate(:page => params[:page], :per_page => 2000 )
       else  
-        @documentos = Documento.where(Folio: params[:Folio]).paginate(:page => params[:page], :per_page => 200 )
+        @documentos = Documento.where(Folio: params[:Folio]).paginate(:page => params[:page], :per_page => 2000 )
       end
     else
       if params[:Folio]== ""
-        @documentos = Documento.where(CdgSIISucur: suc).order(created_at: :desc).paginate(:page => params[:page], :per_page => 200)       
+        @documentos = Documento.where(CdgSIISucur: suc).order(created_at: :desc).paginate(:page => params[:page], :per_page => 2000)       
       else  
-        @documentos = Documento.where(Folio: params[:Folio]).paginate(:page => params[:page], :per_page => 200 )
+        @documentos = Documento.where(Folio: params[:Folio]).paginate(:page => params[:page], :per_page => 2000 )
       end
     end
 
-    if params[:empresa] == "" && params[:sucursal]==""
-      @documentos = Documento.order(created_at: :desc).paginate(:page => params[:page], :per_page => 200 )
-    end
-
-    respond_to do |format|
-      format.html { render action: 'index' }
-    end
+    if params[:empresa] == "" && params[:sucursal]=="" && params[:Folio]=="" 
+      respond_to do |format|
+        format.html { redirect_to "/documentos" }
+      end
+    else
+      respond_to do |format|
+        format.html { render action: 'index' }
+      end
+    end  
   end
 
   def destroy

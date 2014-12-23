@@ -21,10 +21,11 @@ limitations under the License.*/
 
 /* ------------------------------- */
 
- body {
+/* body {
     
-    background-image: url(/assets/slider.jpg)
+   background-image: url(/assets/slider.jpg) 
 }
+*/
 
 /* Wrappers */
 
@@ -249,7 +250,6 @@ limitations under the License.*/
 }
 .login-margin {
     margin-top:30px;
-    background-image: url(/assets/slider_puente.jpg)
 }
 
 /* Flot Chart Containers */

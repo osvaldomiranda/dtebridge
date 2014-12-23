@@ -48,6 +48,7 @@ Dtebridge::Application.routes.draw do
       post "/iat_doc", to: "iat#iat_doc"
       post "/invoice", to: "documento#create_doc"
       get "/gettoken", to: "documento#get_token"
+      get "/procestado", to: "documento#procesoEstado"
      end
   end
 

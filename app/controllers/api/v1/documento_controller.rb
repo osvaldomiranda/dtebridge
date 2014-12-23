@@ -27,8 +27,7 @@ class Api::V1::DocumentoController < Api::V1::ApiController
     if @invoice.save
       if !params[:conEnvio].present? || params[:conEnvio] == "S"
         @invoice.estadoxml = postsii(@invoice.id)
-        @invoice.save   
-        estadoStr(@invoice.id)       
+        @invoice.save       
       end
 
       render 'api/v1/invoices/create' 
@@ -119,14 +118,6 @@ class Api::V1::DocumentoController < Api::V1::ApiController
       puts "===================================="
       puts responce.body
       puts "===================================="
-    
-      sleep 10
-      i=0
-      while(@consutaEstado.nil? && i<10)
-        @consutaEstado= consultaEnvio(@doc.id, @rut, @dv, @tokenOk, responce.body)
-        sleep 1
-        i+=1
-      end
 
       return responce.body
     else
@@ -304,10 +295,9 @@ class Api::V1::DocumentoController < Api::V1::ApiController
     d.save  
   end
 
-  def consultaEnvio( docId, rut, dv, token, estadoxml)
+  def consultaEnvio( docId, rut, dv, estadoxml, token)
     begin
       trackId = estadoxml.to_s[estadoxml.to_s.index('TRACKID')+8..estadoxml.to_s.index('/TRACKID')-2]
-
       estadoWs = Savon.client(wsdl: "https://palena.sii.cl/DTEWS/QueryEstUp.jws?WSDL")
       estado = estadoWs.call( :get_est_up , message: {RutCompania: rut, DvCompania: dv, TrackId: trackId, Token: token})
 
@@ -319,14 +309,22 @@ class Api::V1::DocumentoController < Api::V1::ApiController
       docum = Documento.find(docId)
       docum.estadoEnvioXml = estado.to_s
       docum.save
-
       return estado.to_s
-
     rescue 
       return nil
     end
-
-
   end
+
+  def procesoEstado
+    token = get_token
+    unless  token.nil?
+      listDoc = Documento.where(estado: "0 Upload Ok")
+      listDoc.each do |doc|
+        consultaEnvio(doc.id, doc.RUTEmisor[0..7], doc.d.RUTEmisor[9..9], doc.d.estadoxml,token)
+        estadoStr(doc.id)
+      end      
+    end
+    render "/api/v1/iat/ping"  
+  end  
 end
 
