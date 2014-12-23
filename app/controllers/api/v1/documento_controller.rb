@@ -320,7 +320,7 @@ class Api::V1::DocumentoController < Api::V1::ApiController
     unless  token.nil?
       listDoc = Documento.where(estado: "0 Upload Ok")
       listDoc.each do |doc|
-        consultaEnvio(doc.id, doc.RUTEmisor[0..7], doc.d.RUTEmisor[9..9], doc.d.estadoxml,token)
+        consultaEnvio(doc.id, doc.RUTEmisor[0..7], doc.RUTEmisor[9..9], doc.estadoxml,token)
         estadoStr(doc.id)
       end      
     end
