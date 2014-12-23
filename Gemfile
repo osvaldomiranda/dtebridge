@@ -69,7 +69,7 @@ gem 'unicorn'
 gem 'unicorn-worker-killer'
 
 # For graph
-gem "chartkick"
+gem 'chartkick'
 
 # For date time group query
 gem 'groupdate'
