@@ -1,12 +1,14 @@
 class EstadisticaController < ApplicationController
   def index
-    sucursales = { 75047210 => "VINA DEL MAR"  ,  
+    sucursales = { 
+                   75047210 => "VINA DEL MAR"  ,  
                    63635210 => "OVALLE" ,  
                    64409688 => "LA SERENA"  ,  
                    41272801 => "MONUMENTO" ,  
                    74878389 => "LA CISTERNA"  ,  
-                   74878390 => "DOMINGO CORREA 25"  ,
-                   78139472 => "MAIPU"    
+                   74878390 => "DOMINGO CORREA 25",
+                   78139472 => "5 de ABRIL",
+                   41271651 => "ABEL GONZALEZ 44"   
                   }
 
 
