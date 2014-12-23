@@ -28,6 +28,7 @@ class Api::V1::DocumentoController < Api::V1::ApiController
       if !params[:conEnvio].present? || params[:conEnvio] == "S"
         @invoice.estadoxml = postsii(@invoice.id)
         @invoice.save       
+        estadoStr(@invoice)
       end
 
       render 'api/v1/invoices/create' 
@@ -274,9 +275,10 @@ class Api::V1::DocumentoController < Api::V1::ApiController
               "9" => "9 Sistema Bloqueado" ,
               "Otro" => "Error interno SII"
             }
-
+    d.estado = estado[statusUp]  
+            
     if d.estadoEnvioXml.to_s.index('ACEPTADOS').nil?   
-      d.estado = estado[statusUp]  
+      
     else      
       aceptados = d.estadoEnvioXml.to_s[d.estadoEnvioXml.to_s.index('ACEPTADOS')+13..d.estadoEnvioXml.to_s.index('/ACEPTADOS')-5]
       rechazados = d.estadoEnvioXml.to_s[d.estadoEnvioXml.to_s.index('RECHAZADOS')+14..d.estadoEnvioXml.to_s.index('/RECHAZADOS')-5]
