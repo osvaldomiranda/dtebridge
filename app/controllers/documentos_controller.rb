@@ -50,6 +50,7 @@ class DocumentosController < ApplicationController
     end  
   end
 
+
   def destroy
     @documento.destroy
     respond_to do |format|

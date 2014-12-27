@@ -26,4 +26,17 @@ Dtebridge::Application.configure do
   # This option may cause significant delays in view rendering with a large
   # number of complex assets.
   config.assets.debug = true
+
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+  address:              'mail.lubba.cl',
+  port:                 26,
+  domain:               'lubba.cl',
+  user_name:            'notificaciones@lubba.cl',
+  password:             'lubba10580',
+  authentication:       'plain',
+  enable_starttls_auto: false  }
+
+ 
+
 end

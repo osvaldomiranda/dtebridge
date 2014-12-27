@@ -74,6 +74,8 @@ gem 'chartkick'
 # For date time group query
 gem 'groupdate'
 
+gem 'mailman', require: false
+
 
 group :development do
   # Use sqlite3 as the database for development
