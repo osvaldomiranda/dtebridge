@@ -4,23 +4,36 @@ require "bundler/setup"
 require "mailman"
 
 Mailman.config.pop3 = {
-  server: 'mail.lubba.cl', port: 995, ssl: true,
-  username: 'notificaciones@lubba.cl',
+  server: 'pop.gmail.com', port: 995, ssl: true,
+  username: 'dtelubba@gmail.com',
   password: 'lubba10580'
  }
 
 
 Mailman::Application.run do
   default do
-    begin
-      puts "Received: #{message.subject}" 
-      puts "Received: #{message.body}" 
-      puts  "attachment: #{message.attachment}"
+    # begin
+      puts "============================"
+      puts message.attachments[0].filename
+      puts "============================"
+      puts message.attachments[0].body
+      puts "============================"
 
+      filename = message.attachments[0].filename
 
-    rescue
-      Mailman.logger.error "Exception occurred while receiving message:\n#{message}"
-      Mailman.logger.error [e, *e.backtrace].join("\n")
-    end
+      unless filename.nil?
+        extencion = filename[filename.index('.')..filename.index('.')+4]
+
+        if extencion == ".xml"
+          d = Docsemail.new
+          d.xmlrecibido = message.attachments[0].body.decoded
+          d.estado = "RECIBIDO"
+          d.save
+        end 
+      end 
+    # rescue
+    #   Mailman.logger.error "Exception occurred while receiving message:\n#{message}"
+    #   Mailman.logger.error [e, *e.backtrace].join("\n")
+    # end
   end  
 end

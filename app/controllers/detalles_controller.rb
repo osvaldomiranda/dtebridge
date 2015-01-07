@@ -2,65 +2,57 @@ class DetallesController < ApplicationController
   before_filter :authenticate_user!
   before_action :set_detalle, only: [:show, :edit, :update, :destroy]
 
-  # GET /detalles
-  # GET /detalles.json
+
   def index
     @detalles = Detalle.all
   end
 
-  # GET /detalles/1
-  # GET /detalles/1.json
-  def show
-  end
 
-  # GET /detalles/new
-  def new
-    @detalle = Detalle.new
-  end
+  # def show
+  # end
 
-  # GET /detalles/1/edit
-  def edit
-  end
 
-  # POST /detalles
-  # POST /detalles.json
-  def create
-    @detalle = Detalle.new(detalle_params)
+  # def new
+  #   @detalle = Detalle.new
+  # end
 
-    respond_to do |format|
-      if @detalle.save
-        format.html { redirect_to @detalle, notice: 'Detalle was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @detalle }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @detalle.errors, status: :unprocessable_entity }
-      end
-    end
-  end
+  # def edit
+  # end
 
-  # PATCH/PUT /detalles/1
-  # PATCH/PUT /detalles/1.json
-  def update
-    respond_to do |format|
-      if @detalle.update(detalle_params)
-        format.html { redirect_to @detalle, notice: 'Detalle was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: 'edit' }
-        format.json { render json: @detalle.errors, status: :unprocessable_entity }
-      end
-    end
-  end
+  # def create
+  #   @detalle = Detalle.new(detalle_params)
 
-  # DELETE /detalles/1
-  # DELETE /detalles/1.json
-  def destroy
-    @detalle.destroy
-    respond_to do |format|
-      format.html { redirect_to detalles_url }
-      format.json { head :no_content }
-    end
-  end
+  #   respond_to do |format|
+  #     if @detalle.save
+  #       format.html { redirect_to @detalle, notice: 'Detalle was successfully created.' }
+  #       format.json { render action: 'show', status: :created, location: @detalle }
+  #     else
+  #       format.html { render action: 'new' }
+  #       format.json { render json: @detalle.errors, status: :unprocessable_entity }
+  #     end
+  #   end
+  # end
+
+
+  # def update
+  #   respond_to do |format|
+  #     if @detalle.update(detalle_params)
+  #       format.html { redirect_to @detalle, notice: 'Detalle was successfully updated.' }
+  #       format.json { head :no_content }
+  #     else
+  #       format.html { render action: 'edit' }
+  #       format.json { render json: @detalle.errors, status: :unprocessable_entity }
+  #     end
+  #   end
+  # end
+
+  # def destroy
+  #   @detalle.destroy
+  #   respond_to do |format|
+  #     format.html { redirect_to detalles_url }
+  #     format.json { head :no_content }
+  #   end
+  # end
 
   private
     # Use callbacks to share common setup or constraints between actions.

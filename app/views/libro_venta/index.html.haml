@@ -1,0 +1,52 @@
+%h2 Resumen Libro de Ventas
+
+%p.text-danger Facturas no incluidas en libros anteriores.
+
+= form_tag '/buscarDoc' do
+  = field_set_tag do
+    = label_tag :empresa, 'Empresa:'
+    %input{name: 'empresa', type: 'text', list: 'Empresa'}
+    %datalist#Empresa
+      %option Lubba Santiago 
+      %option Lubba Regiones
+    = label_tag :Mes, 'Mes:'
+    = text_field_tag :Mes
+    = submit_tag 'Buscar'
+%br
+
+%table.table.table-striped
+  %tr
+    %th Tipodte
+    %th Mntneto
+    %th MntExe
+    %th MntIva
+    %th Impuestos
+    %th MntTotal
+    %th 
+
+  - @documentos.each do |documento|
+    %tr
+      %td= documento.TipoDTE
+      %td= documento.MntNeto
+      %td= documento.MntExe
+      %td= documento.IVA
+      %td= documento.otrosImptos
+      %td= documento.MntTotal
+      %td= link_to "Ver Detalle", "", class: "btn btn-primary btn-xs"
+
+%br
+%br
+%br
+%h4 Resumen Otros Impuestos
+%table.table.table-striped{:style=>"width: 40%", :align=>"left"}
+  %tr
+    %th TipoImp
+    %th TasaImp
+    %th MontoImp
+  
+
+  - @otrosImps.each do |otroImp|
+    %tr
+      %td= otroImp.TipoImp
+      %td= otroImp.TasaImp
+      %td= otroImp.MontoImp

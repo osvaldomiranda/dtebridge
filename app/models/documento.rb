@@ -32,4 +32,9 @@ class Documento < ActiveRecord::Base
 
     sucursales[self.CdgSIISucur]
   end
+
+  def otros_imptos
+    return self.impuesto_retens.sum('"MontoImp"')
+  end  
+
 end

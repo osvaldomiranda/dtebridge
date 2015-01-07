@@ -1,28 +1,35 @@
 Dtebridge::Application.routes.draw do
 
+ 
+  resources :subdsctos
+  resources :cdgitems
+  resources :comisioncompras
+  resources :refdetcompras
+  resources :dscrcgglobalcompras
+  resources :imptoretencompras
+  resources :mpagocompras
+  resources :docsemails
+  resources :doccompras
+  resources :comisions
+  resources :ref_detalles
+  resources :dsc_rcg_globals
+  resources :impuesto_retens
+  resources :monto_pagos
+  resources :detalles
+  resources :documentos
+  resources :iat_logs
+  resources :iats
+
   get "estadistica/index"
   devise_for :installs
-  resources :comisions
 
-  resources :ref_detalles
-
-  resources :dsc_rcg_globals
-
-  resources :impuesto_retens
-
-  resources :monto_pagos
-
-  resources :detalles
-
-  resources :documentos
-
-  resources :iat_logs
-
-  resources :iats
 
   devise_for :users
 
   get "home/index"
+  get "libro_venta/index"
+  get "doccompras_aprob/index"
+  get "doccompras_rech/index"
   get "get_siitoken", to: "connectsii#get_token"
   get "postsii" , to: "connectsii#postsii"
   get "setDTE" , to: "connectsii#createenvio"
@@ -30,6 +37,14 @@ Dtebridge::Application.routes.draw do
   get "recepMercaderia" , to: "connectsii#recep_mercaderia"
   get "aprobComercial" , to: "connectsii#aprob_comercial"
   get "estadistica", to: "estadistica#index"
+  get "detcompras/:id", to: "detcompras#index"
+  
+  get "doccompras/rechazar/:id", to: "doccompras#rechazar"
+  get "doccompras/aprobar/:id", to: "doccompras#aprobar"
+  get "doccompras_aprob/rechazar/:id", to: "doccompras_aprob#rechazar"
+  get "doccompras_rech/aprobar/:id", to: "doccompras_rech#aprobar"
+  get "doccompras_aprob", to: "doccompras_aprob#index"
+  get "doccompras_rech", to: "doccompras_rech#index"
   post "buscarDoc", to: "documentos#find"
 
   root to: "home#index"
@@ -45,6 +60,7 @@ Dtebridge::Application.routes.draw do
       get "/gettoken", to: "documento#get_token"
       get "/procestado", to: "documento#procesoEstado"
       get "/notification", to: "notification#send_notif"
+      get "/procesarecibo", to: "doccompra#procesarecibo"
      end
   end
 

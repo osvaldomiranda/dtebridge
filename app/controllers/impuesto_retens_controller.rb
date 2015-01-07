@@ -8,59 +8,59 @@ class ImpuestoRetensController < ApplicationController
     @impuesto_retens = ImpuestoReten.all
   end
 
-  # GET /impuesto_retens/1
-  # GET /impuesto_retens/1.json
-  def show
-  end
+  # # GET /impuesto_retens/1
+  # # GET /impuesto_retens/1.json
+  # def show
+  # end
 
-  # GET /impuesto_retens/new
-  def new
-    @impuesto_reten = ImpuestoReten.new
-  end
+  # # GET /impuesto_retens/new
+  # def new
+  #   @impuesto_reten = ImpuestoReten.new
+  # end
 
-  # GET /impuesto_retens/1/edit
-  def edit
-  end
+  # # GET /impuesto_retens/1/edit
+  # def edit
+  # end
 
-  # POST /impuesto_retens
-  # POST /impuesto_retens.json
-  def create
-    @impuesto_reten = ImpuestoReten.new(impuesto_reten_params)
+  # # POST /impuesto_retens
+  # # POST /impuesto_retens.json
+  # def create
+  #   @impuesto_reten = ImpuestoReten.new(impuesto_reten_params)
 
-    respond_to do |format|
-      if @impuesto_reten.save
-        format.html { redirect_to @impuesto_reten, notice: 'Impuesto reten was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @impuesto_reten }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @impuesto_reten.errors, status: :unprocessable_entity }
-      end
-    end
-  end
+  #   respond_to do |format|
+  #     if @impuesto_reten.save
+  #       format.html { redirect_to @impuesto_reten, notice: 'Impuesto reten was successfully created.' }
+  #       format.json { render action: 'show', status: :created, location: @impuesto_reten }
+  #     else
+  #       format.html { render action: 'new' }
+  #       format.json { render json: @impuesto_reten.errors, status: :unprocessable_entity }
+  #     end
+  #   end
+  # end
 
-  # PATCH/PUT /impuesto_retens/1
-  # PATCH/PUT /impuesto_retens/1.json
-  def update
-    respond_to do |format|
-      if @impuesto_reten.update(impuesto_reten_params)
-        format.html { redirect_to @impuesto_reten, notice: 'Impuesto reten was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: 'edit' }
-        format.json { render json: @impuesto_reten.errors, status: :unprocessable_entity }
-      end
-    end
-  end
+  # # PATCH/PUT /impuesto_retens/1
+  # # PATCH/PUT /impuesto_retens/1.json
+  # def update
+  #   respond_to do |format|
+  #     if @impuesto_reten.update(impuesto_reten_params)
+  #       format.html { redirect_to @impuesto_reten, notice: 'Impuesto reten was successfully updated.' }
+  #       format.json { head :no_content }
+  #     else
+  #       format.html { render action: 'edit' }
+  #       format.json { render json: @impuesto_reten.errors, status: :unprocessable_entity }
+  #     end
+  #   end
+  # end
 
-  # DELETE /impuesto_retens/1
-  # DELETE /impuesto_retens/1.json
-  def destroy
-    @impuesto_reten.destroy
-    respond_to do |format|
-      format.html { redirect_to impuesto_retens_url }
-      format.json { head :no_content }
-    end
-  end
+  # # DELETE /impuesto_retens/1
+  # # DELETE /impuesto_retens/1.json
+  # def destroy
+  #   @impuesto_reten.destroy
+  #   respond_to do |format|
+  #     format.html { redirect_to impuesto_retens_url }
+  #     format.json { head :no_content }
+  #   end
+  # end
 
   private
     # Use callbacks to share common setup or constraints between actions.
