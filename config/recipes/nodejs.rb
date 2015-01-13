@@ -2,7 +2,7 @@ namespace :nodejs do
   desc "Install the latest relase of Node.js"
   task :install, roles: :app do
     run "#{sudo} add-apt-repository ppa:chris-lea/node.js" do |ch, stream, data|
-      if data =~ /Pulse.\[Intro\].para.continuar.o.ctrl-c.para.cancelar/
+      if data =~ /Press \[ENTER\] to continue or ctrl-c to cancel adding it/
         ch.send_data("\n")
       else
         # Use the default handler for all other text

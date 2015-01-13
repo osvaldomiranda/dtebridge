@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<EnvioDTE xmlns="http://www.sii.cl/SiiDte" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sii.cl/SiiDte EnvioDTE_v10.xsd" version="1.0">
+<SetDTE ID="SetDoc">
+<Caratula version="1.0">
+<RutEmisor>77888630-8</RutEmisor>
+<RutEnvia>05682509-6</RutEnvia>
+<RutReceptor>60803000-K</RutReceptor>
+<FchResol>2014-08-22</FchResol>
+<NroResol>80</NroResol>
+<TmstFirmaEnv>2014-10-22T22:25:00</TmstFirmaEnv>
+<SubTotDTE>
+<TpoDTE>33</TpoDTE>
+<NroDTE>1</NroDTE>
+</SubTotDTE>
+</Caratula>
+<DTE version="1.0">
+<Documento ID="F179T33">
+<Encabezado>
+<IdDoc> 
+<TipoDTE>33</TipoDTE>
+<Folio>179</Folio> 
+<FchEmis>2015-01-06</FchEmis>
+</IdDoc>
+<Emisor>
+<RUTEmisor>77888630-8</RUTEmisor>
+<RznSoc>COMERCIAL LUBBA LIMITADA</RznSoc>
+<GiroEmis>VENTA DE CONFITES, HELADOS, CIGARRILLOS, ABARROTES Y BAZAR</GiroEmis>
+<Acteco>512240</Acteco>
+<CdgSIISucur>63635210</CdgSIISucur>
+<DirOrigen>ABEL GONZALEZ 42 Ciudad:Santiago Comuna: La Cisterna</DirOrigen>
+<CmnaOrigen>LA CISTERNA</CmnaOrigen>
+<CiudadOrigen>SANTIAGO</CiudadOrigen>
+</Emisor>
+<Receptor>
+<RUTRecep>09389383-2</RUTRecep>
+<RznSocRecep>BAZAR</RznSocRecep>
+<GiroRecep>BAZAR Y ABARROTES</GiroRecep>
+<DirRecep>CALLE ASUNCION 2719</DirRecep>
+<CmnaRecep>CALERA DE TANGO</CmnaRecep>
+<CiudadRecep>SANTIAGO</CiudadRecep>
+</Receptor>
+<Totales>
+<MntNeto>47656</MntNeto>
+<TasaIVA>19</TasaIVA>
+<IVA>9055</IVA>
+<MntTotal>56711</MntTotal>
+</Totales>
+</Encabezado>
+<Detalle>
+<NroLinDet>1</NroLinDet>
+<CdgItem>
+<TpoCodigo>PLU</TpoCodigo>
+<VlrCodigo>19858</VlrCodigo>
+</CdgItem>
+<NmbItem>PAN CENA BLANCO GRANDE 580 GR</NmbItem>
+<QtyItem>3</QtyItem>
+<UnmdItem>C/U</UnmdItem>
+<PrcItem>924.3697</PrcItem>
+<MontoItem>2773</MontoItem>
+</Detalle>
+<Detalle>
+<NroLinDet>2</NroLinDet>
+<CdgItem>
+<TpoCodigo>PLU</TpoCodigo>
+<VlrCodigo>4142</VlrCodigo>
+</CdgItem>
+<NmbItem>PAPEL HIGIENICO MAGIKLIN ECON 28MTS 8UND</NmbItem>
+<QtyItem>3</QtyItem>
+<UnmdItem>C/U</UnmdItem>
+<PrcItem>714.2857</PrcItem>
+<MontoItem>2143</MontoItem>
+</Detalle>
+<Detalle>
+<NroLinDet>3</NroLinDet>
+<CdgItem>
+<TpoCodigo>PLU</TpoCodigo>
+<VlrCodigo>15694</VlrCodigo>
+</CdgItem>
+<NmbItem>HIG CONFORT 30MT DOBLE HOJA 4UNI</NmbItem>
+<QtyItem>3</QtyItem>
+<UnmdItem>C/U</UnmdItem>
+<PrcItem>747.8992</PrcItem>
+<MontoItem>2244</MontoItem>
+</Detalle>
+<Detalle>
+<NroLinDet>4</NroLinDet>
+<CdgItem>
+<TpoCodigo>PLU</TpoCodigo>
+<VlrCodigo>20289</VlrCodigo>
+</CdgItem>
+<NmbItem>SIX PACK NECTAR ANDINA DAMASCO 200 CC</NmbItem>
+<QtyItem>2</QtyItem>
+<UnmdItem>C/U</UnmdItem>
+<PrcItem>806.7227</PrcItem>
+<MontoItem>1613</MontoItem>
+</Detalle>
+<Detalle>
+<NroLinDet>5</NroLinDet>
+<CdgItem>
+<TpoCodigo>PLU</TpoCodigo>
+<VlrCodigo>10355</VlrCodigo>
+</CdgItem>
+<NmbItem>AGUA MINERAL VITALS/GAS 1.6LT</NmbItem>
+<QtyItem>12</QtyItem>
+<UnmdItem>C/U</UnmdItem>
+<PrcItem>294.1176</PrcItem>
+<MontoItem>3529</MontoItem>
+</Detalle>
+<Detalle>
+<NroLinDet>6</NroLinDet>
+<CdgItem>
+<TpoCodigo>PLU</TpoCodigo>
+<VlrCodigo>19592</VlrCodigo>
+</CdgItem>
+<NmbItem>OMO MULTIACCION 200 GRS</NmbItem>
+<QtyItem>6</QtyItem>
+<UnmdItem>C/U</UnmdItem>
+<PrcItem>378.1513</PrcItem>
+<MontoItem>2269</MontoItem>
+</Detalle>
+<Detalle>
+<NroLinDet>7</NroLinDet>
+<CdgItem>
+<TpoCodigo>PLU</TpoCodigo>
+<VlrCodigo>2281</VlrCodigo>
+</CdgItem>
+<NmbItem>POSTRE BONGELATA CLASICO TRENDY 1L</NmbItem>
+<QtyItem>4</QtyItem>
+<UnmdItem>C/U</UnmdItem>
+<PrcItem>1134.454</PrcItem>
+<MontoItem>4538</MontoItem>
+</Detalle>
+<Detalle>
+<NroLinDet>8</NroLinDet>
+<CdgItem>
+<TpoCodigo>PLU</TpoCodigo>
+<VlrCodigo>22763</VlrCodigo>
+</CdgItem>
+<NmbItem>PALETA MANJAR CROCANTE PANDA 42 UNID.</NmbItem>
+<QtyItem>2</QtyItem>
+<UnmdItem>C/U</UnmdItem>
+<PrcItem>3705.882</PrcItem>
+<MontoItem>7412</MontoItem>
+</Detalle>
+<Detalle>
+<NroLinDet>9</NroLinDet>
+<CdgItem>
+<TpoCodigo>PLU</TpoCodigo>
+<VlrCodigo>19304</VlrCodigo>
+</CdgItem>
+<NmbItem>PALETA PIÑA DOBLE 42 UNID.</NmbItem>
+<QtyItem>1</QtyItem>
+<UnmdItem>C/U</UnmdItem>
+<PrcItem>2047.059</PrcItem>
+<MontoItem>2047</MontoItem>
+</Detalle>
+<Detalle>
+<NroLinDet>10</NroLinDet>
+<CdgItem>
+<TpoCodigo>PLU</TpoCodigo>
+<VlrCodigo>1455</VlrCodigo>
+</CdgItem>
+<NmbItem>GALL MCKAY SODA CLASICA 123G</NmbItem>
+<QtyItem>6</QtyItem>
+<UnmdItem>C/U</UnmdItem>
+<PrcItem>352.9412</PrcItem>
+<MontoItem>2118</MontoItem>
+</Detalle>
+<Detalle>
+<NroLinDet>11</NroLinDet>
+<CdgItem>
+<TpoCodigo>PLU</TpoCodigo>
+<VlrCodigo>10754</VlrCodigo>
+</CdgItem>
+<NmbItem>GALL TRITON  VAINILLA  MCKAY 126 G X 32 </NmbItem>
+<QtyItem>8</QtyItem>
+<UnmdItem>C/U</UnmdItem>
+<PrcItem>294.1176</PrcItem>
+<MontoItem>2353</MontoItem>
+</Detalle>
+<Detalle>
+<NroLinDet>12</NroLinDet>
+<CdgItem>
+<TpoCodigo>PLU</TpoCodigo>
+<VlrCodigo>1423</VlrCodigo>
+</CdgItem>
+<NmbItem>GALLETA KUKY CLASICA MCKAY NESTLE 120G</NmbItem>
+<QtyItem>3</QtyItem>
+<UnmdItem>C/U</UnmdItem>
+<PrcItem>407.563</PrcItem>
+<MontoItem>1223</MontoItem>
+</Detalle>
+<Detalle>
+<NroLinDet>13</NroLinDet>
+<CdgItem>
+<TpoCodigo>PLU</TpoCodigo>
+<VlrCodigo>1620</VlrCodigo>
+</CdgItem>
+<NmbItem>LIMPIADOR LIQUIDO POETT PRIMAVERA BOT 25</NmbItem>
+<QtyItem>6</QtyItem>
+<UnmdItem>C/U</UnmdItem>
+<PrcItem>294.1176</PrcItem>
+<MontoItem>1765</MontoItem>
+</Detalle>
+<Detalle>
+<NroLinDet>14</NroLinDet>
+<CdgItem>
+<TpoCodigo>PLU</TpoCodigo>
+<VlrCodigo>20063</VlrCodigo>
+</CdgItem>
+<NmbItem>CLORO SAPOLIO 250 CC</NmbItem>
+<QtyItem>10</QtyItem>
+<UnmdItem>C/U</UnmdItem>
+<PrcItem>83.1933</PrcItem>
+<MontoItem>832</MontoItem>
+</Detalle>
+<Detalle>
+<NroLinDet>15</NroLinDet>
+<CdgItem>
+<TpoCodigo>PLU</TpoCodigo>
+<VlrCodigo>1613</VlrCodigo>
+</CdgItem>
+<NmbItem>CLORINDA CONCENT BT 250CC</NmbItem>
+<QtyItem>5</QtyItem>
+<UnmdItem>C/U</UnmdItem>
+<PrcItem>226.8908</PrcItem>
+<MontoItem>1134</MontoItem>
+</Detalle>
+<Detalle>
+<NroLinDet>16</NroLinDet>
+<CdgItem>
+<TpoCodigo>PLU</TpoCodigo>
+<VlrCodigo>12</VlrCodigo>
+</CdgItem>
+<NmbItem>PROMOCION GALLETAS $ 1000</NmbItem>
+<QtyItem>1</QtyItem>
+<UnmdItem>C/U</UnmdItem>
+<PrcItem>840.3361</PrcItem>
+<MontoItem>840</MontoItem>
+</Detalle>
+<Detalle>
+<NroLinDet>17</NroLinDet>
+<CdgItem>
+<TpoCodigo>PLU</TpoCodigo>
+<VlrCodigo>20195</VlrCodigo>
+</CdgItem>
+<NmbItem>GALLETA TODDY 210 GRS</NmbItem>
+<QtyItem>5</QtyItem>
+<UnmdItem>C/U</UnmdItem>
+<PrcItem>714.2857</PrcItem>
+<MontoItem>3571</MontoItem>
+</Detalle>
+<Detalle>
+<NroLinDet>18</NroLinDet>
+<CdgItem>
+<TpoCodigo>PLU</TpoCodigo>
+<VlrCodigo>10364</VlrCodigo>
+</CdgItem>
+<NmbItem>GALL MC KAY ALTEZA FRUT 140G</NmbItem>
+<QtyItem>10</QtyItem>
+<UnmdItem>C/U</UnmdItem>
+<PrcItem>525.2101</PrcItem>
+<MontoItem>5252</MontoItem>
+</Detalle>
+<TED version="1.0">
+<DD><RE>77888630-8</RE><TD>33</TD><F>179</F><FE>2015-01-06</FE><RR>09389383-2</RR><RSR>BAZAR</RSR><MNT>56711</MNT><IT1>PAN CENA BLANCO GRANDE 580 GR</IT1><CAF version="1.0"><DA><RE>77888630-8</RE><RS>COMERCIAL LUBBA LIMITADA</RS><TD>33</TD><RNG><D>1</D><H>500</H></RNG><FA>2014-11-13</FA><RSAPK><M>xroKBMLLqE1nD4eOZoykrijZI5+1xfMO/hh6gbuDB/2Loi9hFW0o/zjlRO1+NYTyaIJME94qC/0rgVAxnEnMrw==</M><E>Aw==</E></RSAPK><IDK>100</IDK></DA><FRMA algoritmo="SHA1withRSA">eCiZEU71YFFEcccdSg5TfyLM1E2emZL6FM2cNp52kwolKqxhWdEHQOoQLbk+Yzdl+kHs/l9s6nHveQv5WV5XhA==</FRMA></CAF><TSTED>2015-01-10T16:43:32</TSTED></DD><FRMT algoritmo="SHA1withRSA">ejCXOPCRhsMxpYXAItyXb7T4HVhelTPrNyn+qgdHpAy93nhsVUU1clm413UQLWHF8CfDA7QYJz4ffcjhxibsOA==</FRMT>
+</TED>
+<TmstFirma>2015-01-10T16:43:32</TmstFirma>
+</Documento>
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" /><DigestValue>yYoEJOXApvvEoCMBmPKLeTgJCvI=</DigestValue></Reference></SignedInfo><SignatureValue>Yd4Z2BFoywRTzg7BZF15na5sNLq1EJg2DJMpCdBEujSiG0npwRv/JRFYdbKYL5LGNqWKqm9G705MCgnJp8yQVhoXtXdsUGrwr9QWlAAqKG+jLfU1r5TIsbQ9GHKdFw4iu3bZKbkHoDF3pqarLTrjc7AZNUGgKoGs3yGk7QrCQ0c=</SignatureValue><KeyInfo><KeyValue><RSAKeyValue><Modulus>o9cYdRTMB/zpZJCop13dtvR+DYkMQLQ56rr2kFpPvjmDKSXZMLr4QCew9u8uwkkWzw1tdNv4KoN2KzqIoI+8bBn79e3U0YdCcEJmobnljBJT3XCZOsyRrBeWHkMbcux+amTxAhcr45Ezse1t3bPq+xOy1JRdAKRRsQSn+9C8Bwk=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><X509Data><X509Certificate>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</X509Certificate></X509Data></KeyInfo></Signature></DTE>
+</SetDTE>
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" /><DigestValue>hjdgVngBy7BNSdWP9nHgPvDUZ7A=</DigestValue></Reference></SignedInfo><SignatureValue>M+z05h/tRTzdS+zz2pFn3XcfBTnt9/NRT/JG40DuItpNZBlrxhB2PZ/cXXvl7wUdvxy1WtqPq5wa9ciEAPGw8QlFGxRHLWUHsvRGjrA1qa1ig93RhLqKqEb2PMPDLauJfYlSv9QdLug/xgX3rb6/IQoof3ZYrFDPrwLH/JlHHY8=</SignatureValue><KeyInfo><KeyValue><RSAKeyValue><Modulus>o9cYdRTMB/zpZJCop13dtvR+DYkMQLQ56rr2kFpPvjmDKSXZMLr4QCew9u8uwkkWzw1tdNv4KoN2KzqIoI+8bBn79e3U0YdCcEJmobnljBJT3XCZOsyRrBeWHkMbcux+amTxAhcr45Ezse1t3bPq+xOy1JRdAKRRsQSn+9C8Bwk=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><X509Data><X509Certificate>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</X509Certificate></X509Data></KeyInfo></Signature></EnvioDTE>
+

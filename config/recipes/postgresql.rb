@@ -7,7 +7,7 @@ namespace :postgresql do
   desc "Install the latest stable release of PostgreSQL."
   task :install, roles: :db, only: {primary: true} do
     run "#{sudo} add-apt-repository ppa:pitti/postgresql" do |ch, stream, data|
-      if data =~ /Pulse.\[Intro\].para.continuar.o.ctrl-c.para.cancelar/
+      if data =~  /Press \[ENTER\] to continue or ctrl-c to cancel adding it/
         ch.send_data("\n")
       else
         # Use the default handler for all other text

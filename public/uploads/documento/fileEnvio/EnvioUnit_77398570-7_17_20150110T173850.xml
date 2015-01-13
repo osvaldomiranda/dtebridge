@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<EnvioDTE xmlns="http://www.sii.cl/SiiDte" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sii.cl/SiiDte EnvioDTE_v10.xsd" version="1.0">
+<SetDTE ID="SetDoc">
+<Caratula version="1.0">
+<RutEmisor>77398570-7</RutEmisor>
+<RutEnvia>05682509-6</RutEnvia>
+<RutReceptor>60803000-K</RutReceptor>
+<FchResol>2014-08-22</FchResol>
+<NroResol>80</NroResol>
+<TmstFirmaEnv>2014-10-22T22:25:00</TmstFirmaEnv>
+<SubTotDTE>
+<TpoDTE>33</TpoDTE>
+<NroDTE>1</NroDTE>
+</SubTotDTE>
+</Caratula>
+<DTE version="1.0">
+<Documento ID="F17T33">
+<Encabezado>
+<IdDoc> 
+<TipoDTE>33</TipoDTE>
+<Folio>17</Folio> 
+<FchEmis>2014-12-16</FchEmis>
+</IdDoc>
+<Emisor>
+<RUTEmisor>77398570-7</RUTEmisor>
+<RznSoc>COMERCIAL LUBBA LIMITADA</RznSoc>
+<GiroEmis>VENTA DE CONFITES, HELADOS, CIGARRILLOS, ABARROTES Y BAZAR</GiroEmis>
+<Acteco>51224</Acteco>
+<CdgSIISucur>41272801</CdgSIISucur>
+<DirOrigen>ABEL GONZALEZ 42 Ciudad:Santiago Comuna: La Cisterna</DirOrigen>
+<CmnaOrigen>LA CISTERNA</CmnaOrigen>
+<CiudadOrigen>SANTIAGO</CiudadOrigen>
+</Emisor>
+<Receptor>
+<RUTRecep>76020983-K</RUTRecep>
+<RznSocRecep>ESCUELA DE LENGUAJE NUEVA ESPERANZA</RznSocRecep>
+<GiroRecep>EDUCACION</GiroRecep>
+<DirRecep>PJE BAHIA NASSAU 2203</DirRecep>
+<CmnaRecep>MAIPU</CmnaRecep>
+<CiudadRecep>SANTIAGO</CiudadRecep>
+</Receptor>
+<Totales>
+<MntNeto>135216</MntNeto>
+<TasaIVA>19</TasaIVA>
+<IVA>25691</IVA>
+<MntTotal>160907</MntTotal>
+</Totales>
+</Encabezado>
+<Detalle>
+<NroLinDet>1</NroLinDet>
+<CdgItem>
+<TpoCodigo>PLU</TpoCodigo>
+<VlrCodigo>1606</VlrCodigo>
+</CdgItem>
+<NmbItem>MAST AMB MASTICANDY SURT BL 450GR 100UND</NmbItem>
+<QtyItem>3</QtyItem>
+<UnmdItem>BLS</UnmdItem>
+<PrcItem>831.9328</PrcItem>
+<MontoItem>2496</MontoItem>
+</Detalle>
+<Detalle>
+<NroLinDet>2</NroLinDet>
+<CdgItem>
+<TpoCodigo>PLU</TpoCodigo>
+<VlrCodigo>14426</VlrCodigo>
+</CdgItem>
+<NmbItem>RAMITA EVERC. SALADA 42 GRS. MANGA X 10</NmbItem>
+<QtyItem>70</QtyItem>
+<UnmdItem>C/U</UnmdItem>
+<PrcItem>234.4538</PrcItem>
+<MontoItem>16412</MontoItem>
+</Detalle>
+<Detalle>
+<NroLinDet>3</NroLinDet>
+<CdgItem>
+<TpoCodigo>PLU</TpoCodigo>
+<VlrCodigo>18730</VlrCodigo>
+</CdgItem>
+<NmbItem>HELADO GLOTON CARNAVAL X 12</NmbItem>
+<QtyItem>1</QtyItem>
+<UnmdItem>C/U</UnmdItem>
+<PrcItem>1084.034</PrcItem>
+<MontoItem>1084</MontoItem>
+</Detalle>
+<Detalle>
+<NroLinDet>4</NroLinDet>
+<CdgItem>
+<TpoCodigo>PLU</TpoCodigo>
+<VlrCodigo>14101</VlrCodigo>
+</CdgItem>
+<NmbItem>LOLY CHOC PRINCESA DSP.24UND</NmbItem>
+<QtyItem>4</QtyItem>
+<UnmdItem>C/U</UnmdItem>
+<PrcItem>1302.521</PrcItem>
+<MontoItem>5210</MontoItem>
+</Detalle>
+<Detalle>
+<NroLinDet>5</NroLinDet>
+<CdgItem>
+<TpoCodigo>PLU</TpoCodigo>
+<VlrCodigo>17614</VlrCodigo>
+</CdgItem>
+<NmbItem>GOMITAS MINI BURGER BOLSA 36 UNID</NmbItem>
+<QtyItem>3</QtyItem>
+<UnmdItem>C/U</UnmdItem>
+<PrcItem>1420.168</PrcItem>
+<MontoItem>4261</MontoItem>
+</Detalle>
+<Detalle>
+<NroLinDet>6</NroLinDet>
+<CdgItem>
+<TpoCodigo>PLU</TpoCodigo>
+<VlrCodigo>22716</VlrCodigo>
+</CdgItem>
+<NmbItem>MINI PIZZA MABU 36 UN</NmbItem>
+<QtyItem>2</QtyItem>
+<UnmdItem>C/U</UnmdItem>
+<PrcItem>1420.168</PrcItem>
+<MontoItem>2840</MontoItem>
+</Detalle>
+<Detalle>
+<NroLinDet>7</NroLinDet>
+<CdgItem>
+<TpoCodigo>PLU</TpoCodigo>
+<VlrCodigo>20749</VlrCodigo>
+</CdgItem>
+<NmbItem>CHOCMELOS XL COLOMBINA X 15 UN</NmbItem>
+<QtyItem>3</QtyItem>
+<UnmdItem>C/U</UnmdItem>
+<PrcItem>1420.168</PrcItem>
+<MontoItem>4261</MontoItem>
+</Detalle>
+<Detalle>
+<NroLinDet>8</NroLinDet>
+<CdgItem>
+<TpoCodigo>PLU</TpoCodigo>
+<VlrCodigo>21298</VlrCodigo>
+</CdgItem>
+<NmbItem>CANDY CHAT C/IMAN DISPL. X 30 UN</NmbItem>
+<QtyItem>3</QtyItem>
+<UnmdItem>C/U</UnmdItem>
+<PrcItem>1974.79</PrcItem>
+<MontoItem>5924</MontoItem>
+</Detalle>
+<Detalle>
+<NroLinDet>9</NroLinDet>
+<CdgItem>
+<TpoCodigo>PLU</TpoCodigo>
+<VlrCodigo>15793</VlrCodigo>
+</CdgItem>
+<NmbItem>GOMITA AMBERRIES DSP 20 UNIDAD</NmbItem>
+<QtyItem>4</QtyItem>
+<UnmdItem>DSP</UnmdItem>
+<PrcItem>1504.202</PrcItem>
+<MontoItem>6017</MontoItem>
+</Detalle>
+<Detalle>
+<NroLinDet>10</NroLinDet>
+<CdgItem>
+<TpoCodigo>PLU</TpoCodigo>
+<VlrCodigo>22573</VlrCodigo>
+</CdgItem>
+<NmbItem>PAPA LAYS 38 GRS</NmbItem>
+<QtyItem>1</QtyItem>
+<UnmdItem>C/U</UnmdItem>
+<PrcItem>2773.109</PrcItem>
+<MontoItem>2773</MontoItem>
+</Detalle>
+<Detalle>
+<NroLinDet>11</NroLinDet>
+<CdgItem>
+<TpoCodigo>PLU</TpoCodigo>
+<VlrCodigo>12987</VlrCodigo>
+</CdgItem>
+<NmbItem>NECTAR ANDINA NARANJA 6U X 200CC</NmbItem>
+<QtyItem>6</QtyItem>
+<UnmdItem>C/U</UnmdItem>
+<PrcItem>806.7227</PrcItem>
+<MontoItem>4840</MontoItem>
+</Detalle>
+<Detalle>
+<NroLinDet>12</NroLinDet>
+<CdgItem>
+<TpoCodigo>PLU</TpoCodigo>
+<VlrCodigo>12988</VlrCodigo>
+</CdgItem>
+<NmbItem>NECTAR ANDINA PIÑA  6U X 200CC</NmbItem>
+<QtyItem>6</QtyItem>
+<UnmdItem>C/U</UnmdItem>
+<PrcItem>806.7227</PrcItem>
+<MontoItem>4840</MontoItem>
+</Detalle>
+<Detalle>
+<NroLinDet>13</NroLinDet>
+<CdgItem>
+<TpoCodigo>PLU</TpoCodigo>
+<VlrCodigo>22783</VlrCodigo>
+</CdgItem>
+<NmbItem>BASTON DE CARAMELO NAVIDAD AMBROSOLI 12 </NmbItem>
+<QtyItem>6</QtyItem>
+<UnmdItem>C/U</UnmdItem>
+<PrcItem>630.2521</PrcItem>
+<MontoItem>3782</MontoItem>
+</Detalle>
+<Detalle>
+<NroLinDet>14</NroLinDet>
+<CdgItem>
+<TpoCodigo>PLU</TpoCodigo>
+<VlrCodigo>1445</VlrCodigo>
+</CdgItem>
+<NmbItem>GALLETA MINI KUKY MCKAY NESTLE BL.40GR</NmbItem>
+<QtyItem>80</QtyItem>
+<UnmdItem>C/U</UnmdItem>
+<PrcItem>92.437</PrcItem>
+<MontoItem>7395</MontoItem>
+</Detalle>
+<Detalle>
+<NroLinDet>15</NroLinDet>
+<CdgItem>
+<TpoCodigo>PLU</TpoCodigo>
+<VlrCodigo>1546</VlrCodigo>
+</CdgItem>
+<NmbItem>CHUPETE BUTTER CREAM 2EN1 432G</NmbItem>
+<QtyItem>4</QtyItem>
+<UnmdItem>BLS</UnmdItem>
+<PrcItem>949.5798</PrcItem>
+<MontoItem>3798</MontoItem>
+</Detalle>
+<Detalle>
+<NroLinDet>16</NroLinDet>
+<CdgItem>
+<TpoCodigo>PLU</TpoCodigo>
+<VlrCodigo>20193</VlrCodigo>
+</CdgItem>
+<NmbItem>MARSHMALLOWS MAXIMUSS X 30UN</NmbItem>
+<QtyItem>5</QtyItem>
+<UnmdItem>C/U</UnmdItem>
+<PrcItem>831.9328</PrcItem>
+<MontoItem>4160</MontoItem>
+</Detalle>
+<Detalle>
+<NroLinDet>17</NroLinDet>
+<CdgItem>
+<TpoCodigo>PLU</TpoCodigo>
+<VlrCodigo>22553</VlrCodigo>
+</CdgItem>
+<NmbItem>MINI FRUGELE 6X20X25GR</NmbItem>
+<QtyItem>4</QtyItem>
+<UnmdItem>C/U</UnmdItem>
+<PrcItem>1504.202</PrcItem>
+<MontoItem>6017</MontoItem>
+</Detalle>
+<Detalle>
+<NroLinDet>18</NroLinDet>
+<CdgItem>
+<TpoCodigo>PLU</TpoCodigo>
+<VlrCodigo>11472</VlrCodigo>
+</CdgItem>
+<NmbItem>CARAM AMB BUTTER KREM 430G</NmbItem>
+<QtyItem>4</QtyItem>
+<UnmdItem>C/U</UnmdItem>
+<PrcItem>823.5294</PrcItem>
+<MontoItem>3294</MontoItem>
+</Detalle>
+<Detalle>
+<NroLinDet>19</NroLinDet>
+<CdgItem>
+<TpoCodigo>PLU</TpoCodigo>
+<VlrCodigo>3954</VlrCodigo>
+</CdgItem>
+<NmbItem>LOLY NAVIDAD AMB TIRA X 10 UN</NmbItem>
+<QtyItem>8</QtyItem>
+<UnmdItem>C/U</UnmdItem>
+<PrcItem>445.3782</PrcItem>
+<MontoItem>3563</MontoItem>
+</Detalle>
+<Detalle>
+<NroLinDet>20</NroLinDet>
+<CdgItem>
+<TpoCodigo>PLU</TpoCodigo>
+<VlrCodigo>25</VlrCodigo>
+</CdgItem>
+<NmbItem>PROMOCION 390</NmbItem>
+<QtyItem>50</QtyItem>
+<UnmdItem>C/U</UnmdItem>
+<PrcItem>84.0336</PrcItem>
+<MontoItem>4202</MontoItem>
+</Detalle>
+<Detalle>
+<NroLinDet>21</NroLinDet>
+<CdgItem>
+<TpoCodigo>PLU</TpoCodigo>
+<VlrCodigo>1449</VlrCodigo>
+</CdgItem>
+<NmbItem>GALL MCKAY CRIOLLITA 100G</NmbItem>
+<QtyItem>3</QtyItem>
+<UnmdItem>C/U</UnmdItem>
+<PrcItem>546.2185</PrcItem>
+<MontoItem>1639</MontoItem>
+</Detalle>
+<Detalle>
+<NroLinDet>22</NroLinDet>
+<CdgItem>
+<TpoCodigo>PLU</TpoCodigo>
+<VlrCodigo>672</VlrCodigo>
+</CdgItem>
+<NmbItem>DOBLON BOLSA X 30 UNID.X 480G</NmbItem>
+<QtyItem>3</QtyItem>
+<UnmdItem>C/U</UnmdItem>
+<PrcItem>1252.101</PrcItem>
+<MontoItem>3756</MontoItem>
+</Detalle>
+<Detalle>
+<NroLinDet>23</NroLinDet>
+<CdgItem>
+<TpoCodigo>PLU</TpoCodigo>
+<VlrCodigo>926</VlrCodigo>
+</CdgItem>
+<NmbItem>SUPER 8 NESTLE DSP 696 GR 24 UNI</NmbItem>
+<QtyItem>4</QtyItem>
+<UnmdItem>DSP</UnmdItem>
+<PrcItem>2394.958</PrcItem>
+<MontoItem>9580</MontoItem>
+</Detalle>
+<Detalle>
+<NroLinDet>24</NroLinDet>
+<CdgItem>
+<TpoCodigo>PLU</TpoCodigo>
+<VlrCodigo>19697</VlrCodigo>
+</CdgItem>
+<NmbItem>SUSTANCIA CARNAVAL 10 UN</NmbItem>
+<QtyItem>2</QtyItem>
+<UnmdItem>C/U</UnmdItem>
+<PrcItem>663.8655</PrcItem>
+<MontoItem>1328</MontoItem>
+</Detalle>
+<Detalle>
+<NroLinDet>25</NroLinDet>
+<CdgItem>
+<TpoCodigo>PLU</TpoCodigo>
+<VlrCodigo>21843</VlrCodigo>
+</CdgItem>
+<NmbItem>PAPA LAYS STAX ORIGINAL 40 GRS</NmbItem>
+<QtyItem>75</QtyItem>
+<UnmdItem>C/U</UnmdItem>
+<PrcItem>289.916</PrcItem>
+<MontoItem>21744</MontoItem>
+</Detalle>
+<TED version="1.0">
+<DD><RE>77398570-7</RE><TD>33</TD><F>17</F><FE>2014-12-16</FE><RR>76020983-K</RR><RSR>ESCUELA DE LENGUAJE NUEVA ESPERANZA</RSR><MNT>160907</MNT><IT1>MAST AMB MASTICANDY SURT BL 450GR 100UND</IT1><CAF version="1.0"><DA><RE>77398570-7</RE><RS>COMERCIAL LUBBA LIMITADA</RS><TD>33</TD><RNG><D>1</D><H>100</H></RNG><FA>2014-10-08</FA><RSAPK><M>yA0FipeLjCz8YNPhL6740jK4zLtEEbklyYHz0mlxNgMRbP/YevgPTxMcCyW1PFMrrRAV0nJziwuSxVKIo+ysXw==</M><E>Aw==</E></RSAPK><IDK>100</IDK></DA><FRMA algoritmo="SHA1withRSA">lZGpuChURVfxlMTVeYzcj94CoqREI+ncSLnqWCZ5PL9+KqEuWVq1zsEYZ213IxYGU+KRxKOIWyEQC05L2zUZuw==</FRMA></CAF><TSTED>2015-01-10T17:38:50</TSTED></DD><FRMT algoritmo="SHA1withRSA">m0eIuuHCMTNI3vpuLnRef6cHZaUrqsGGPx2gmSmE7l5Ymx/byLkOLzjEKKPvyB+tO9+iTDtUgIDURzxkuAM0GQ==</FRMT>
+</TED>
+<TmstFirma>2015-01-10T17:38:50</TmstFirma>
+</Documento>
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" /><DigestValue>TUnT+YQ8eMhjqAAelKOqTjjhSAo=</DigestValue></Reference></SignedInfo><SignatureValue>NDJeazqjxe/XM2e3lliT24l/ZRh2W1+2UQfy6T2yJ3QJRsKD3T/VZaWnV/koyeop14PWIlkXUX/NEjCAqbP3ycI14jT7rCYEvxV+dhhyab6ABL99JeeSnqal0KvX4OSBlTWJ3BZ/BJLqV6mAAgbF+3RZC2Gqamev0zcasRM2AOY=</SignatureValue><KeyInfo><KeyValue><RSAKeyValue><Modulus>o9cYdRTMB/zpZJCop13dtvR+DYkMQLQ56rr2kFpPvjmDKSXZMLr4QCew9u8uwkkWzw1tdNv4KoN2KzqIoI+8bBn79e3U0YdCcEJmobnljBJT3XCZOsyRrBeWHkMbcux+amTxAhcr45Ezse1t3bPq+xOy1JRdAKRRsQSn+9C8Bwk=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><X509Data><X509Certificate>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</X509Certificate></X509Data></KeyInfo></Signature></DTE>
+</SetDTE>
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" /><DigestValue>B30+9/HXrrBCfxoDtc7u5JSoZJ0=</DigestValue></Reference></SignedInfo><SignatureValue>IaBm75IcUaZAXUli3II5q1P2I9TI6xwVGT+5Ezo0JBJPin4u7VdT2gIlA6rMrvFcNkVwwoQn58MNo6eB+hCT1PVIZu0oAJZS4QQkgz4UVY5f23nAvvR6qENPDz7wVPL/JlMpCaqEFdZ9KF7nkdlaMyuNa64FrPpHCdQABRGAUd4=</SignatureValue><KeyInfo><KeyValue><RSAKeyValue><Modulus>o9cYdRTMB/zpZJCop13dtvR+DYkMQLQ56rr2kFpPvjmDKSXZMLr4QCew9u8uwkkWzw1tdNv4KoN2KzqIoI+8bBn79e3U0YdCcEJmobnljBJT3XCZOsyRrBeWHkMbcux+amTxAhcr45Ezse1t3bPq+xOy1JRdAKRRsQSn+9C8Bwk=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><X509Data><X509Certificate>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</X509Certificate></X509Data></KeyInfo></Signature></EnvioDTE>
+
