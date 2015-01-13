@@ -27,11 +27,11 @@
   - @documentos.each do |documento|
     %tr
       %td= documento.TipoDTE
-      %td= documento.MntNeto
-      %td= documento.MntExe
-      %td= documento.IVA
+      %td= documento.mntneto
+      %td= documento.mntexe
+      %td= documento.iva
       %td
-      %td= documento.MntTotal
+      %td= documento.mnttotal
       %td= link_to "Ver Detalle", "", class: "btn btn-primary btn-xs"
 
 %br
