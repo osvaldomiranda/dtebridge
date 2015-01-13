@@ -1,6 +1,6 @@
 class LibroVentaController < ApplicationController
   def index
-    @documentos = Documento.select('"TipoDTE", sum("MntNeto") as MntNeto,sum("MntExe") as MntExe, sum("IVA") as IVA, sum("MntTotal") as MntTotal ').group('"TipoDTE"') 
-    @otrosImps = ImpuestoReten.select('"TipoImp", "TasaImp", sum("MontoImp") as MontoImp').group('"TipoImp","TasaImp"')
+    @documentos = Documento.select('"TipoDTE", sum("MntNeto") as mntneto,sum("MntExe") as mntexe, sum("IVA") as iva, sum("MntTotal") as mnttotal ').group('"TipoDTE"') 
+    @otrosImps = ImpuestoReten.select('"TipoImp" as tipoimp, "TasaImp" as tasaimp, sum("MontoImp") as montoimp').group('"TipoImp","TasaImp"')
   end
 end
