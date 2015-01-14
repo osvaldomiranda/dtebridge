@@ -9,8 +9,9 @@
     = label_tag :empresa, 'Empresa:'
     %input{name: 'empresa', type: 'text', list: 'Empresa'}
     %datalist#Empresa
-      %option Lubba Santiago 
-      %option Lubba Regiones
+      - @empresas.each do |empresa|
+        %option= empresa.rznsocial
+        
     = label_tag :sucursal, 'Sucursal:'
     %input{name: 'sucursal', type: 'text', list: 'Sucursal'}
     %datalist#Sucursal

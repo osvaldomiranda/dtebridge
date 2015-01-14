@@ -19,7 +19,6 @@ class Documento < ActiveRecord::Base
   mount_uploader :fileEnvio, PdfsUploader 
 
   attr_reader :sucursal
-
   def sucursal
     sucursales = { 75047210 => "VINA DEL MAR",  
                    63635210 => "OVALLE",  
@@ -32,9 +31,4 @@ class Documento < ActiveRecord::Base
 
     sucursales[self.CdgSIISucur]
   end
-
-  def otros_imptos
-    return self.impuesto_retens.sum('"MontoImp"')
-  end  
-
 end

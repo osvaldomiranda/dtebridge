@@ -1,6 +1,10 @@
 Dtebridge::Application.routes.draw do
 
  
+  resources :sucursals
+
+  resources :empresas
+
   resources :subdsctos
   resources :cdgitems
   resources :comisioncompras
@@ -28,6 +32,7 @@ Dtebridge::Application.routes.draw do
 
   get "home/index"
   get "libro_venta/index"
+  post "buscarLibrovta", to: "libro_venta#find"
   get "doccompras_aprob/index"
   get "doccompras_rech/index"
   get "get_siitoken", to: "connectsii#get_token"

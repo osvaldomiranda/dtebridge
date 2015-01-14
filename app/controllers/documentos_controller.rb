@@ -4,12 +4,12 @@ class DocumentosController < ApplicationController
 
   def index
     @documentos = Documento.order(created_at: :desc).paginate(:page => params[:page], :per_page => 15 )
-    puts "*****************"
-    puts @documentos
-    puts "*****************"
+    @empresas = Empresa.all
   end
 
   def find
+    @empresas = Empresa.all
+
     if params[:empresa] == 'Lubba Regiones'
       rut = "77888630-8"  
     else

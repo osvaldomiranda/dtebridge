@@ -1,52 +1,120 @@
 %h2 Resumen Libro de Ventas
-
+%br
+%h3 Documentos Electronicos
 %p.text-danger Facturas no incluidas en libros anteriores.
 
-= form_tag '/buscarDoc' do
+= form_tag "/buscarLibrovta" do
   = field_set_tag do
     = label_tag :empresa, 'Empresa:'
-    %input{name: 'empresa', type: 'text', list: 'Empresa'}
-    %datalist#Empresa
-      %option Lubba Santiago 
-      %option Lubba Regiones
+    = select_tag "empresa", options_from_collection_for_select(@empresas, "rut", "rznsocial")
+
     = label_tag :Mes, 'Mes:'
-    = text_field_tag :Mes
+    = month_field_tag "Mes", value = DateTime.now , options = {} 
+  
     = submit_tag 'Buscar'
 %br
 
 %table.table.table-striped
   %tr
-    %th Tipodte
-    %th Mntneto
-    %th MntExe
-    %th MntIva
-    %th Impuestos
-    %th MntTotal
+    %th{:style => 'text-align: right;'} Tipodte
+    %th{:style => 'text-align: right;'} Dtos
+    %th{:style => 'text-align: right;'} Mntneto
+    %th{:style => 'text-align: right;'} MntExe
+    %th{:style => 'text-align: right;'} MntIva
+    %th{:style => 'text-align: right;'} Impuestos
+    %th{:style => 'text-align: right;'} MntTotal
     %th 
 
   - @documentos.each do |documento|
     %tr
-      %td= documento.TipoDTE
-      %td= documento.mntneto
-      %td= documento.mntexe
-      %td= documento.iva
-      %td
-      %td= documento.mnttotal
-      %td= link_to "Ver Detalle", "", class: "btn btn-primary btn-xs"
-
-%br
-%br
-%br
-%h4 Resumen Otros Impuestos
-%table.table.table-striped{:style=>"width: 40%", :align=>"left"}
+      %td{:style => 'text-align: right;'}= documento.TipoDTE
+      %td{:style => 'text-align: right;'}= documento.count
+      - if(documento.TipoDTE==61) 
+        %td{:style => 'text-align: right;'}= '('+number_to_currency(documento.mntneto , precision: 0, delimiter: "." )+')' 
+        %td{:style => 'text-align: right;'}= '('+number_to_currency(documento.mntexe , precision: 0, delimiter: "." )+')'
+        %td{:style => 'text-align: right;'}= '('+number_to_currency(documento.iva , precision: 0, delimiter: "." )+')'
+        %td{:style => 'text-align: right;'}= '('+number_to_currency(documento.otrosimp , precision: 0, delimiter: "." )+')'
+        %td{:style => 'text-align: right;'}= '('+number_to_currency(documento.mnttotal , precision: 0, delimiter: "." )+')'
+      -else
+        %td{:style => 'text-align: right;'}= number_to_currency(documento.mntneto , precision: 0, delimiter: "." )+"&nbsp;".html_safe 
+        %td{:style => 'text-align: right;'}= number_to_currency(documento.mntexe , precision: 0, delimiter: "." )+"&nbsp;".html_safe
+        %td{:style => 'text-align: right;'}= number_to_currency(documento.iva , precision: 0, delimiter: "." )+"&nbsp;".html_safe
+        %td{:style => 'text-align: right;'}= number_to_currency(documento.otrosimp , precision: 0, delimiter: "." )+"&nbsp;".html_safe
+        %td{:style => 'text-align: right;'}= number_to_currency(documento.mnttotal , precision: 0, delimiter: "." )+"&nbsp;".html_safe
+      %td= link_to "Ver Detalle", "", class: "btn btn-primary btn-xs" 
   %tr
-    %th TipoImp
-    %th TasaImp
-    %th MontoImp
-  
+    %th{:style => 'text-align: right;'}= 'TOTALES'
+    %td{:style => 'text-align: right;'}= @totFact.count + @totCred.count 
+    %td{:style => 'text-align: right;'}= number_to_currency(@totFact.mntneto.to_i - @totCred.mntneto.to_i , precision: 0, delimiter: "." )+"&nbsp;".html_safe 
+    %td{:style => 'text-align: right;'}= number_to_currency(@totFact.mntexe.to_i - @totCred.mntexe.to_i , precision: 0, delimiter: "." )+"&nbsp;".html_safe
+    %td{:style => 'text-align: right;'}= number_to_currency(@totFact.iva.to_i - @totCred.iva.to_i , precision: 0, delimiter: "." )+"&nbsp;".html_safe
+    %td{:style => 'text-align: right;'}= number_to_currency(@totFact.otrosimp.to_i - @totCred.otrosimp.to_i , precision: 0, delimiter: "." )+"&nbsp;".html_safe
+    %td{:style => 'text-align: right;'}= number_to_currency(@totFact.mnttotal.to_i - @totCred.mnttotal.to_i, precision: 0, delimiter: "." )+"&nbsp;".html_safe  
 
-  - @otrosImps.each do |otroImp|
+%br
+%br
+%br
+%div.col-md-6
+  %h4 Resumen Otros Impuestos 
+  %table.table.table-striped{:style=>"width: 50%"}
     %tr
-      %td= otroImp.tipoimp
-      %td= otroImp.tasaimp
-      %td= otroImp.montoimp
+      %th TipoDcto
+      %th TipoImp
+      %th TasaImp
+      %th MontoImp
+    - @otrosImps.each do |otroImp|
+      %tr
+        %td= otroImp.TipoDTE
+        %td= otroImp.tipoimp
+        %td= number_to_percentage(otroImp.tasaimp, precision: 1, delimiter: "," )
+        %td= number_to_currency(otroImp.montoimp, precision: 0, delimiter: "." )
+
+%div.col-md-6
+  %h4 Resumen Otros Impuestos Credito 
+  %table.table.table-striped{:style=>"width: 50%"}
+    %tr
+      %th TipoDcto
+      %th TipoImp
+      %th TasaImp
+      %th MontoImp
+    - @otrosImpsCred.each do |otroImp|
+      %tr
+        - if(otroImp.montoimp>0)
+          %td= otroImp.TipoDTE
+          %td= otroImp.tipoimp
+          %td= number_to_percentage(otroImp.tasaimp, precision: 1, delimiter: "," )
+          %td= '('+number_to_currency(otroImp.montoimp, precision: 0, delimiter: "." )+')'
+%br
+%br
+%h3 Documentos Manuales
+%br
+
+%table.table.table-striped
+  %tr
+    %th{:style => 'text-align: right;'} Tipodte
+    %th{:style => 'text-align: right;'} Dtos
+    %th{:style => 'text-align: right;'} Mntneto
+    %th{:style => 'text-align: right;'} MntExe
+    %th{:style => 'text-align: right;'} MntIva
+    %th{:style => 'text-align: right;'} Impuestos
+    %th{:style => 'text-align: right;'} MntTotal
+    %th 
+%br
+%div.col-md-6
+  %h4 Resumen Otros Impuestos 
+  %table.table.table-striped{:style=>"width: 50%"}
+    %tr
+      %th TipoDcto
+      %th TipoImp
+      %th TasaImp
+      %th MontoImp
+
+%div.col-md-6
+  %h4 Resumen Otros Impuestos Credito 
+  %table.table.table-striped{:style=>"width: 50%"}
+    %tr
+      %th TipoDcto
+      %th TipoImp
+      %th TasaImp
+      %th MontoImp      
+        

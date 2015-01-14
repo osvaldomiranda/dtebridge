@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141230191129) do
+ActiveRecord::Schema.define(version: 20150114005048) do
 
   create_table "cdgitems", force: true do |t|
     t.string   "TpoCodigo"
@@ -352,6 +352,13 @@ ActiveRecord::Schema.define(version: 20141230191129) do
 
   add_index "dscrcgglobalcompras", ["doccompra_id"], name: "index_dscrcgglobalcompras_on_doccompra_id"
 
+  create_table "empresas", force: true do |t|
+    t.string   "rznsocial"
+    t.string   "rut"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "iat_logs", force: true do |t|
     t.text     "description"
     t.integer  "iat_id"
@@ -486,6 +493,16 @@ ActiveRecord::Schema.define(version: 20141230191129) do
   end
 
   add_index "subdsctos", ["detcompra_id"], name: "index_subdsctos_on_detcompra_id"
+
+  create_table "sucursals", force: true do |t|
+    t.string   "nombre"
+    t.string   "cdgsiisucur"
+    t.integer  "empresa_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "sucursals", ["empresa_id"], name: "index_sucursals_on_empresa_id"
 
   create_table "users", force: true do |t|
     t.string   "email"

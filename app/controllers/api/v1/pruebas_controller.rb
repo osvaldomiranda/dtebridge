@@ -1,9 +1,6 @@
 class Api::V1::PruebasController < Api::V1::ApiController
 
 	def create
-	  puts "============="
-		puts params
-		puts "============="
 		@prueba = Prueba.new
 		@prueba.rut = params[:prueba][:rut]
 		@prueba.nombre = params[:prueba][:nombre]

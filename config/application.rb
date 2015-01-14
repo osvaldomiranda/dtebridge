@@ -44,6 +44,7 @@ module Dtebridge
     #config.encoding = "ISO-8859-1"
     # config.action_controller.default_charset = 'ISO-8859-1'
     # config.action_dispatch.default_charset = 'ISO-8859-1'
+    config.i18n.default_locale = :es
 
     end
   end
