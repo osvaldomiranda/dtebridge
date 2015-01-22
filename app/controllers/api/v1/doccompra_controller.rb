@@ -23,6 +23,7 @@ class Api::V1::DoccompraController < Api::V1::ApiController
   end
 
   def procesadoc(dte, docEmail)
+    begin
         doc = dte['Documento']
 
         idDoc = doc['Encabezado']['IdDoc']
@@ -141,5 +142,9 @@ class Api::V1::DoccompraController < Api::V1::ApiController
           docEmail.estado = 'PROCESADO'
           docEmail.save
         end  
+    rescue 
+      docEmail.estado = 'ERROR'
+      docEmail.save
+    end    
   end
 end

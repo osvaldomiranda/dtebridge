@@ -1,0 +1,46 @@
+%h3 Documentos Manuales
+
+%table.table.table-striped
+  %thead
+    %tr
+      %th Tipodoc
+      %th Folio
+      %th Fchemis
+      %th Rutemisor
+      %th Rutrecep
+      %th Rznsocrecep
+      %th Mntneto
+      %th Mntexe
+      %th Mntiva
+      %th Otrosimpto
+      %th Mnttotal
+      %th Estado
+      %th
+      %th
+      %th
+      
+  %tbody
+    - @docmanuals.each do |docmanual|
+      %tr
+        %td= docmanual.tipodoc
+        %td= docmanual.folio
+        %td= docmanual.fchemis
+        %td= docmanual.rutemisor
+        %td= docmanual.rutrecep
+        %td= docmanual.rznsocrecep
+        %td= docmanual.mntneto
+        %td= docmanual.mntexe
+        %td= docmanual.mntiva
+        %td= docmanual.otrosimpto
+        %td= docmanual.mnttotal
+        %td= docmanual.estado
+        %td= link_to 'Eliminar', docmanual, :method => :delete, :data => { :confirm => 'Seguro que desea eliminar?' }, class: "btn btn-primary btn-xs" 
+
+%br
+
+/  = link_to 'New Docmanual', new_docmanual_path
+%h2 Importar Documentos
+= form_tag import_docmanuals_path, multipart: true do 
+  = file_field_tag :file 
+  = submit_tag "Importar" 
+

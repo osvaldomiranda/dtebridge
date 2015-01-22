@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150114005048) do
+ActiveRecord::Schema.define(version: 20150121021834) do
 
   create_table "cdgitems", force: true do |t|
     t.string   "TpoCodigo"
@@ -212,6 +212,27 @@ ActiveRecord::Schema.define(version: 20150114005048) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "VlrPagar"
+  end
+
+  create_table "docmanuals", force: true do |t|
+    t.integer  "tipodoc"
+    t.integer  "folio"
+    t.string   "fchemis"
+    t.string   "rutemisor"
+    t.string   "rutrecep"
+    t.string   "rznsocrecep"
+    t.integer  "mntneto"
+    t.integer  "mntexe"
+    t.float    "mntiva"
+    t.float    "otrosimpto"
+    t.integer  "mnttotal"
+    t.float    "impto18"
+    t.float    "impto10"
+    t.float    "impto25"
+    t.float    "impto30"
+    t.string   "estado"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "docsemails", force: true do |t|
@@ -442,6 +463,17 @@ ActiveRecord::Schema.define(version: 20150114005048) do
   end
 
   add_index "mpagocompras", ["doccompra_id"], name: "index_mpagocompras_on_doccompra_id"
+
+  create_table "otrosimpmanuals", force: true do |t|
+    t.string   "TipoImp"
+    t.float    "TasaImp"
+    t.integer  "MontoImp"
+    t.integer  "docmanual_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "otrosimpmanuals", ["docmanual_id"], name: "index_otrosimpmanuals_on_docmanual_id"
 
   create_table "pruebas", force: true do |t|
     t.string   "rut"

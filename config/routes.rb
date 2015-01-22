@@ -1,6 +1,12 @@
 Dtebridge::Application.routes.draw do
 
  
+  resources :docmanuals do
+    collection { post :import }
+  end
+
+  resources :otrosimpmanuals
+
   resources :sucursals
 
   resources :empresas
