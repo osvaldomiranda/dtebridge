@@ -8,33 +8,16 @@ class DocmanualsController < ApplicationController
     respond_with(@docmanuals)
   end
 
-  def show
-    respond_with(@docmanual)
-  end
-
-  def new
-    @docmanual = Docmanual.new
-    respond_with(@docmanual)
-  end
-
-  def edit
-  end
-
-  def create
-    @docmanual = Docmanual.new(docmanual_params)
-    @docmanual.save
-    respond_with(@docmanual)
-  end
-
-  def update
-    @docmanual.update(docmanual_params)
-    respond_with(@docmanual)
-  end
-
   def destroy
     @docmanual.destroy
     respond_with(@docmanual)
   end
+
+  def import
+    Docmanual.import(params[:file])
+    redirect_to root_url, notice: "Products imported."
+  end
+
 
   private
     def set_docmanual
