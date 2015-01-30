@@ -41,15 +41,15 @@
         %td{:style => 'text-align: right;'}= number_to_currency(documento.iva , precision: 0, delimiter: "." )+"&nbsp;".html_safe
         %td{:style => 'text-align: right;'}= number_to_currency(documento.otrosimp , precision: 0, delimiter: "." )+"&nbsp;".html_safe
         %td{:style => 'text-align: right;'}= number_to_currency(documento.mnttotal , precision: 0, delimiter: "." )+"&nbsp;".html_safe
-      / %td= link_to "Ver Detalle", "", class: "btn btn-primary btn-xs" 
-  / %tr
-  /   %th{:style => 'text-align: right;'}= 'TOTALES'
-  /   %td{:style => 'text-align: right;'}= @totFact.count + @totCred.count 
-  /   %td{:style => 'text-align: right;'}= number_to_currency(@totFact.mntneto.to_i - @totCred.mntneto.to_i , precision: 0, delimiter: "." )+"&nbsp;".html_safe 
-  /   %td{:style => 'text-align: right;'}= number_to_currency(@totFact.mntexe.to_i - @totCred.mntexe.to_i , precision: 0, delimiter: "." )+"&nbsp;".html_safe
-  /   %td{:style => 'text-align: right;'}= number_to_currency(@totFact.iva.to_i - @totCred.iva.to_i , precision: 0, delimiter: "." )+"&nbsp;".html_safe
-  /   %td{:style => 'text-align: right;'}= number_to_currency(@totFact.otrosimp.to_i - @totCred.otrosimp.to_i , precision: 0, delimiter: "." )+"&nbsp;".html_safe
-  /   %td{:style => 'text-align: right;'}= number_to_currency(@totFact.mnttotal.to_i - @totCred.mnttotal.to_i, precision: 0, delimiter: "." )+"&nbsp;".html_safe  
+      %td= link_to "Ver Detalle", "", class: "btn btn-primary btn-xs" 
+  %tr
+    %th{:style => 'text-align: right;'}= 'TOTALES'
+    %td{:style => 'text-align: right;'}= @totFact.count + @totCred.count 
+    %td{:style => 'text-align: right;'}= number_to_currency(@totFact.mntneto.to_i - @totCred.mntneto.to_i , precision: 0, delimiter: "." )+"&nbsp;".html_safe 
+    %td{:style => 'text-align: right;'}= number_to_currency(@totFact.mntexe.to_i - @totCred.mntexe.to_i , precision: 0, delimiter: "." )+"&nbsp;".html_safe
+    %td{:style => 'text-align: right;'}= number_to_currency(@totFact.iva.to_i - @totCred.iva.to_i , precision: 0, delimiter: "." )+"&nbsp;".html_safe
+    %td{:style => 'text-align: right;'}= number_to_currency(@totFact.otrosimp.to_i - @totCred.otrosimp.to_i , precision: 0, delimiter: "." )+"&nbsp;".html_safe
+    %td{:style => 'text-align: right;'}= number_to_currency(@totFact.mnttotal.to_i - @totCred.mnttotal.to_i, precision: 0, delimiter: "." )+"&nbsp;".html_safe  
 
 %br
 %br
@@ -128,14 +128,14 @@
         %td{:style => 'text-align: right;'}= number_to_currency(documento.iva , precision: 0, delimiter: "." )+"&nbsp;".html_safe
         %td{:style => 'text-align: right;'}= number_to_currency(documento.otrosimp , precision: 0, delimiter: "." )+"&nbsp;".html_safe
         %td{:style => 'text-align: right;'}= number_to_currency(documento.mnttotal , precision: 0, delimiter: "." )+"&nbsp;".html_safe
-  / %tr
-  /   %th{:style => 'text-align: right;'}= 'TOTALES'
-  /   %td{:style => 'text-align: right;'}= @totFmanual.count + @totCredManual.count 
-  /   %td{:style => 'text-align: right;'}= number_to_currency(@totFmanual.mntneto.to_i - @totCredManual.mntneto.to_i , precision: 0, delimiter: "." )+"&nbsp;".html_safe 
-  /   %td{:style => 'text-align: right;'}= number_to_currency(@totFmanual.mntexe.to_i - @totCredManual.mntexe.to_i , precision: 0, delimiter: "." )+"&nbsp;".html_safe
-  /   %td{:style => 'text-align: right;'}= number_to_currency(@totFmanual.iva.to_i - @totCredManual.iva.to_i , precision: 0, delimiter: "." )+"&nbsp;".html_safe
-  /   %td{:style => 'text-align: right;'}= number_to_currency(@totFmanual.otrosimp.to_i - @totCredManual.otrosimp.to_i , precision: 0, delimiter: "." )+"&nbsp;".html_safe
-  /   %td{:style => 'text-align: right;'}= number_to_currency(@totFmanual.mnttotal.to_i - @totCredManual.mnttotal.to_i, precision: 0, delimiter: "." )+"&nbsp;".html_safe 
+  %tr
+    %th{:style => 'text-align: right;'}= 'TOTALES'
+    %td{:style => 'text-align: right;'}= @totFmanual.count + @totCredManual.count 
+    %td{:style => 'text-align: right;'}= number_to_currency(@totFmanual.mntneto.to_i - @totCredManual.mntneto.to_i , precision: 0, delimiter: "." )+"&nbsp;".html_safe 
+    %td{:style => 'text-align: right;'}= number_to_currency(@totFmanual.mntexe.to_i - @totCredManual.mntexe.to_i , precision: 0, delimiter: "." )+"&nbsp;".html_safe
+    %td{:style => 'text-align: right;'}= number_to_currency(@totFmanual.iva.to_i - @totCredManual.iva.to_i , precision: 0, delimiter: "." )+"&nbsp;".html_safe
+    %td{:style => 'text-align: right;'}= number_to_currency(@totFmanual.otrosimp.to_i - @totCredManual.otrosimp.to_i , precision: 0, delimiter: "." )+"&nbsp;".html_safe
+    %td{:style => 'text-align: right;'}= number_to_currency(@totFmanual.mnttotal.to_i - @totCredManual.mnttotal.to_i, precision: 0, delimiter: "." )+"&nbsp;".html_safe 
 %br
 %div.col-md-6
   %h4 Resumen Otros Impuestos 

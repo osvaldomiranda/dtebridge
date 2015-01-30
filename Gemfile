@@ -42,8 +42,6 @@ gem 'bcrypt-ruby', '~> 3.1.2'
 # For pagination
 gem 'will_paginate', '~> 3.0'
 
-gem 'rb-readline'
-
 # For monitoring sidekiq queues
 gem 'sinatra', require: false
 gem 'slim'
