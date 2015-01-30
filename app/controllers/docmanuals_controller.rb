@@ -5,7 +5,7 @@ class DocmanualsController < ApplicationController
 
   def index
     @docmanuals = Docmanual.where(estado: "PREVIO")
-    @totFmanual = Docmanual.select('sum("mntneto") as mntneto,sum("mntexe") as mntexe, sum("mntiva") as iva, sum("mnttotal") as mnttotal,sum(impto10+impto18+impto25+impto30) as otrosimp, count(*) as count').where('"tipodoc" <> 52 and "tipodoc"<>60').first
+    # @totFmanual = Docmanual.select('sum("mntneto") as mntneto,sum("mntexe") as mntexe, sum("mntiva") as iva, sum("mnttotal") as mnttotal,sum(impto10+impto18+impto25+impto30) as otrosimp, count(*) as count').where('"tipodoc" <> 52 and "tipodoc"<>60').first
 
     respond_with(@docmanuals)
   end
@@ -20,7 +20,7 @@ class DocmanualsController < ApplicationController
       @docmanuals = Docmanual.where(estado: "PREVIO")
       Docmanual.import(params[:file])
 
-      @totFmanual = Docmanual.select('sum("mntneto") as mntneto,sum("mntexe") as mntexe, sum("mntiva") as iva, sum("mnttotal") as mnttotal,sum(impto10+impto18+impto25+impto30) as otrosimp, count(*) as count').where('"tipodoc" <> 52 and "tipodoc"<>60').first
+      # @totFmanual = Docmanual.select('sum("mntneto") as mntneto,sum("mntexe") as mntexe, sum("mntiva") as iva, sum("mnttotal") as mnttotal,sum(impto10+impto18+impto25+impto30) as otrosimp, count(*) as count').where('"tipodoc" <> 52 and "tipodoc"<>60').first
 
       respond_to do |format|
         format.html { render action: 'index'}
