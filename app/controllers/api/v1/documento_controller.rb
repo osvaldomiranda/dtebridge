@@ -25,11 +25,11 @@ class Api::V1::DocumentoController < Api::V1::ApiController
     @invoice.fileEnvio = params[:xmlFile]
    
     if @invoice.save
-      # if !params[:conEnvio].present? || params[:conEnvio] == "S"
-      #   @invoice.estadoxml = postsii(@invoice.id)
-      #   @invoice.save       
-      #   estadoStr(@invoice)
-      # end
+      if !params[:conEnvio].present? || params[:conEnvio] == "S"
+        @invoice.estadoxml = postsii(@invoice.id)
+        @invoice.save       
+        estadoStr(@invoice)
+      end
 
       render 'api/v1/invoices/create' 
     else
@@ -37,7 +37,17 @@ class Api::V1::DocumentoController < Api::V1::ApiController
     end
   end 
 
- 
+  def resend
+    @invoice = Documento.where(estado: "CREADO").where("created_at::date = ?", Date.today).first
+    @invoice.estadoxml = postsii(@invoice.id)
+    @invoice.save   
+    if @invoice.save    
+      estadoStr(@invoice)
+      render 'api/v1/invoices/create' 
+    else
+      render format.json { render json: @invoice.errors, status: :unprocessable_entity }
+    end  
+  end 
 
   def postsii(idDoc)
     @doc  = Documento.find(idDoc)

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150121021834) do
+ActiveRecord::Schema.define(version: 20150127225020) do
 
   create_table "cdgitems", force: true do |t|
     t.string   "TpoCodigo"
@@ -50,6 +50,27 @@ ActiveRecord::Schema.define(version: 20150121021834) do
   end
 
   add_index "comisions", ["documento_id"], name: "index_comisions_on_documento_id"
+
+  create_table "compmanuals", force: true do |t|
+    t.integer  "tipodoc"
+    t.integer  "folio"
+    t.string   "fchemis"
+    t.string   "rutemisor"
+    t.string   "rutrecep"
+    t.string   "rznsoemisor"
+    t.integer  "mntneto"
+    t.integer  "mntexe"
+    t.float    "mntiva"
+    t.float    "otrosimpto"
+    t.integer  "mnttotal"
+    t.float    "impto18"
+    t.float    "impto10"
+    t.float    "impto25"
+    t.float    "impto30"
+    t.string   "estado"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "detalles", force: true do |t|
     t.integer  "NroLinDet"
@@ -233,6 +254,7 @@ ActiveRecord::Schema.define(version: 20150121021834) do
     t.string   "estado"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "anulado"
   end
 
   create_table "docsemails", force: true do |t|
@@ -464,6 +486,17 @@ ActiveRecord::Schema.define(version: 20150121021834) do
 
   add_index "mpagocompras", ["doccompra_id"], name: "index_mpagocompras_on_doccompra_id"
 
+  create_table "otrosimpcompmanuals", force: true do |t|
+    t.string   "TipoImp"
+    t.float    "TasaImp"
+    t.integer  "MontoImp"
+    t.integer  "compmanual_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "otrosimpcompmanuals", ["compmanual_id"], name: "index_otrosimpcompmanuals_on_compmanual_id"
+
   create_table "otrosimpmanuals", force: true do |t|
     t.string   "TipoImp"
     t.float    "TasaImp"
@@ -535,6 +568,13 @@ ActiveRecord::Schema.define(version: 20150121021834) do
   end
 
   add_index "sucursals", ["empresa_id"], name: "index_sucursals_on_empresa_id"
+
+  create_table "tipodtes", force: true do |t|
+    t.integer  "tipodte"
+    t.string   "nombre"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "email"

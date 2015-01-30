@@ -1,16 +1,21 @@
 Dtebridge::Application.routes.draw do
 
- 
+  get "detlibrovta/index"
+  get "uploadformat/index"
+  get "libro_compra/index"
+  resources :compmanuals do
+    collection { post :import }
+  end
+
   resources :docmanuals do
     collection { post :import }
   end
 
   resources :otrosimpmanuals
+  resources :otrosimpcompmanuals
 
   resources :sucursals
-
   resources :empresas
-
   resources :subdsctos
   resources :cdgitems
   resources :comisioncompras
@@ -62,16 +67,17 @@ Dtebridge::Application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      post '/pruebas', to: "pruebas#create"
+      post "/pruebas", to: "pruebas#create"
       post "/iat_doc", to: "iat#iat_doc"
       post "/invoice", to: "documento#create_doc"
-      get '/pruebas', to: "pruebas#index"
+      get  "/pruebas", to: "pruebas#index"
       get "/iat_login", to: "iat#login"
       get "/iat_ping/:id", to: "iat#ping"
       get "/gettoken", to: "documento#get_token"
       get "/procestado", to: "documento#procesoEstado"
       get "/notification", to: "notification#send_notif"
       get "/procesarecibo", to: "doccompra#procesarecibo"
+      get "/resend", to: "documento#resend"
      end
   end
 

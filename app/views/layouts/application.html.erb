@@ -1,6 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="es">
+
+<% flash.each do |name, msg| %>
+  <%= content_tag :div, msg, class: "alert alert-info" %>
+<% end %>
 
 <head>
 	<title>Dtebridge</title>
@@ -55,7 +58,8 @@
       </a>
       <ul class="dropdown-menu">
         <li><%= link_to "Ventas Upload CSV","/docmanuals"%></li>
-        <li><%= link_to "Compras Upload CSV","/doccompras_aprob"%></li>
+        <li><%= link_to "Compras Upload CSV","/compmanuals"%></li>
+        <li><%= link_to "Formato","/uploadformat/index"%></li>
       </ul>
     </li>
     <li class="dropdown">
@@ -64,7 +68,7 @@
       </a>
       <ul class="dropdown-menu">
         <li><%= link_to "Ventas","/libro_venta/index" %></li>
-        <li><a href="#">Compra</a></li>
+        <li><%= link_to "Compras","/libro_compra/index" %></li>
       </ul>
     </li>
 
