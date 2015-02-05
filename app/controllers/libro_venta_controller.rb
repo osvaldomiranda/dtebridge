@@ -3,9 +3,10 @@ class LibroVentaController < ApplicationController
     @empresas = Empresa.all
 
     rut = ""
- 
     mes = "0001/01"
  
+    @empresa = ""
+    @fecha = ""
     desde = Date.strptime("#{mes}/01", "%Y/%m/%d")
     hasta = Date.strptime("#{mes}/30", "%Y/%m/%d")
     
@@ -51,12 +52,24 @@ class LibroVentaController < ApplicationController
 
     rut = params[:empresa]
     mes = params[:Mes].gsub('-','/')
+    @fecha = mes
     if params[:Mes] == ""
         mes = "0001/01"
+        @fecha = ""
     end
 
+    emp = Empresa.where(rut: rut).first
+    @empresa = emp.rznsocial
+   
     desde = Date.strptime("#{mes}/01", "%Y/%m/%d")
-    hasta = Date.strptime("#{mes}/30", "%Y/%m/%d")
+
+    
+    if mes[5..7] == "02"
+        hasta = Date.strptime("#{mes}/28", "%Y/%m/%d")
+    else
+        hasta = Date.strptime("#{mes}/30", "%Y/%m/%d")
+    end    
+
     
     @empresas = Empresa.all
     @documentos =  Documento.select('"TipoDTE", sum("MntNeto") as mntneto,sum("MntExe") as mntexe, sum("IVA") as iva, sum("MntTotal") as mnttotal, sum("impuesto_retens"."MontoImp") as otrosimp, count(*) as count').joins('LEFT OUTER JOIN "impuesto_retens" ON "impuesto_retens"."documento_id" = "documentos"."id"').where('"TipoDTE" <> 52 and "RUTEmisor"=? and "FchEmis" > ? AND "FchEmis" < ?', rut, desde, hasta ).group('"TipoDTE"')
