@@ -76,8 +76,8 @@ class LibroVentaController < ApplicationController
     totFman.map {|e| @totFmanual = e}
     totCManual.map {|e| @totCredManual  = e}
 
-    @otrosImpsMan = Docmanual.select('"tipodoc",otrosimpmanuals.TipoImp as tipoimp, otrosimpmanuals.TasaImp as tasaimp, sum(otrosimpmanuals.MontoImp) as montoimp').where('"tipodoc" <> 52 and "tipodoc"<>60 and "rutemisor"=? ', rut).joins(:otrosimpmanuals).group('"tipodoc",otrosimpmanuals.TipoImp,otrosimpmanuals.TasaImp')
-    @otrosImpsCredMan = Docmanual.select('"tipodoc",otrosimpmanuals.TipoImp as tipoimp, otrosimpmanuals.TasaImp as tasaimp, sum(otrosimpmanuals.MontoImp) as montoimp').where('"tipodoc" <> 52 and "tipodoc"<>30 and "rutemisor"=? ', rut ).joins(:otrosimpmanuals).group('"tipodoc",otrosimpmanuals.TipoImp,otrosimpmanuals.TasaImp')
+    @otrosImpsMan = Docmanual.select('"tipodoc","otrosimpmanuals"."TipoImp" as tipoimp, "otrosimpmanuals"."TasaImp" as tasaimp, sum("otrosimpmanuals"."MontoImp") as montoimp').where('"tipodoc" <> 52 and "tipodoc"<>60 and "rutemisor"=? ', rut).joins(:otrosimpmanuals).group('"tipodoc","otrosimpmanuals"."TipoImp","otrosimpmanuals"."TasaImp"')
+    @otrosImpsCredMan = Docmanual.select('"tipodoc","otrosimpmanuals"."TipoImp" as tipoimp, "otrosimpmanuals"."TasaImp" as tasaimp, sum("otrosimpmanuals"."MontoImp") as montoimp').where('"tipodoc" <> 52 and "tipodoc"<>30 and "rutemisor"=? ', rut ).joins(:otrosimpmanuals).group('"tipodoc","otrosimpmanuals"."TipoImp","otrosimpmanuals"."TasaImp"')
    
     respond_to do |format|
       format.html { render action: 'index' }
