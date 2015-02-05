@@ -33,19 +33,19 @@
         %td{:style => 'text-align: right;'}= number_to_currency(docmanual.mnttotal, precision: 0, delimiter: "." )+"&nbsp;".html_safe
         %td= docmanual.estado
         %td= link_to 'Eliminar', docmanual, :method => :delete, :data => { :confirm => 'Seguro que desea eliminar?' }, class: "btn btn-primary btn-xs" 
-  / %tr
-  /   %th
-  /   %th
-  /   %th
-  /   %th
-  /   %th
-  /   %th{:style => 'text-align: right;'}= 'TOTALES'
-  /   / %td{:style => 'text-align: right;'}= @totFmanual.count
-  /   %td{:style => 'text-align: right;'}= number_to_currency(@totFmanual.mntneto.to_i, precision: 0, delimiter: "." )+"&nbsp;".html_safe 
-  /   %td{:style => 'text-align: right;'}= number_to_currency(@totFmanual.mntexe.to_i, precision: 0, delimiter: "." )+"&nbsp;".html_safe
-  /   %td{:style => 'text-align: right;'}= number_to_currency(@totFmanual.iva.to_i, precision: 0, delimiter: "." )+"&nbsp;".html_safe
-  /   %td{:style => 'text-align: right;'}= number_to_currency(@totFmanual.otrosimp.to_i, precision: 0, delimiter: "." )+"&nbsp;".html_safe
-  /   %td{:style => 'text-align: right;'}= number_to_currency(@totFmanual.mnttotal.to_i, precision: 0, delimiter: "." )+"&nbsp;".html_safe 
+  %tr
+    %th
+    %th
+    %th
+    %th
+    %th
+    %th{:style => 'text-align: right;'}= 'TOTALES'
+    / %td{:style => 'text-align: right;'}= @totFmanual.count
+    %td{:style => 'text-align: right;'}= number_to_currency(@totFmanual.mntneto.to_i, precision: 0, delimiter: "." )+"&nbsp;".html_safe 
+    %td{:style => 'text-align: right;'}= number_to_currency(@totFmanual.mntexe.to_i, precision: 0, delimiter: "." )+"&nbsp;".html_safe
+    %td{:style => 'text-align: right;'}= number_to_currency(@totFmanual.iva.to_i, precision: 0, delimiter: "." )+"&nbsp;".html_safe
+    %td{:style => 'text-align: right;'}= number_to_currency(@totFmanual.otrosimp.to_i, precision: 0, delimiter: "." )+"&nbsp;".html_safe
+    %td{:style => 'text-align: right;'}= number_to_currency(@totFmanual.mnttotal.to_i, precision: 0, delimiter: "." )+"&nbsp;".html_safe 
 %br
 
 /  = link_to 'New Docmanual', new_docmanual_path

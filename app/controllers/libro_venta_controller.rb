@@ -40,8 +40,8 @@ class LibroVentaController < ApplicationController
     totFmanual.map {|e| @totFmanual = e}
     totCredManual.map {|e| @totCredManual = e}   
 
-    @otrosImpsMan = Docmanual.select('"tipodoc",otrosimpmanuals.TipoImp as tipoimp, otrosimpmanuals.TasaImp as tasaimp, sum(otrosimpmanuals.MontoImp) as montoimp').where('"tipodoc" <> 52 and "tipodoc"<>60 and "RUTEmisor"=? ', rut).joins(:otrosimpmanuals).group('"tipodoc",otrosimpmanuals.TipoImp,otrosimpmanuals.TasaImp')
-    @otrosImpsCredMan = Docmanual.select('"tipodoc",otrosimpmanuals.TipoImp as tipoimp, otrosimpmanuals.TasaImp as tasaimp, sum(otrosimpmanuals.MontoImp) as montoimp').where('"tipodoc" <> 52 and "tipodoc"<>30 and "RUTEmisor"=? ', rut ).joins(:otrosimpmanuals).group('"tipodoc",otrosimpmanuals.TipoImp,otrosimpmanuals.TasaImp')
+    @otrosImpsMan = Docmanual.select('"tipodoc","otrosimpmanuals"."TipoImp" as tipoimp, "otrosimpmanuals"."TasaImp" as tasaimp, sum("otrosimpmanuals"."MontoImp") as montoimp').where('"tipodoc" <> 52 and "tipodoc"<>60 and "RUTEmisor"=? ', rut).joins(:otrosimpmanuals).group('"tipodoc","otrosimpmanuals"."TipoImp","otrosimpmanuals"."TasaImp"')
+    @otrosImpsCredMan = Docmanual.select('"tipodoc","otrosimpmanuals"."TipoImp" as tipoimp, "otrosimpmanuals"."TasaImp" as tasaimp, sum("otrosimpmanuals"."MontoImp") as montoimp').where('"tipodoc"=60 and "RUTEmisor"=? ', rut ).joins(:otrosimpmanuals).group('"tipodoc","otrosimpmanuals"."TipoImp","otrosimpmanuals"."TasaImp"')
 
   end
 
