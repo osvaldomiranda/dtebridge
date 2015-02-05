@@ -41,7 +41,6 @@
         %td{:style => 'text-align: right;'}= number_to_currency(documento.iva , precision: 0, delimiter: "." )+"&nbsp;".html_safe
         %td{:style => 'text-align: right;'}= number_to_currency(documento.otrosimp , precision: 0, delimiter: "." )+"&nbsp;".html_safe
         %td{:style => 'text-align: right;'}= number_to_currency(documento.mnttotal , precision: 0, delimiter: "." )+"&nbsp;".html_safe
-      %td= link_to "Ver Detalle", "", class: "btn btn-primary btn-xs" 
   %tr
     %th{:style => 'text-align: right;'}= 'TOTALES'
     %td{:style => 'text-align: right;'}= @totFact.count + @totCred.count 
