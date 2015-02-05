@@ -71,9 +71,10 @@ class LibroVentaController < ApplicationController
 
     @docmanuals = Docmanual.select('"tipodoc", sum("mntneto") as mntneto,sum("mntexe") as mntexe, sum("mntiva") as iva, sum("mnttotal") as mnttotal,  sum(impto10+impto18+impto25+impto30) as otrosimp, count(*) as count').where('"tipodoc" <> 52 and "rutemisor"=? ', rut ).group('"tipodoc"')
     totFman = Docmanual.select('sum("mntneto") as mntneto,sum("mntexe") as mntexe, sum("mntiva") as iva, sum("mnttotal") as mnttotal,sum(impto10+impto18+impto25+impto30) as otrosimp, count(*) as count').where('"tipodoc" <> 52 and "tipodoc"<>60 and "rutemisor"=? ', rut)
-    @totFmanual = totFman.first
     totCManual = Docmanual.select('sum("mntneto") as mntneto,sum("mntexe") as mntexe, sum("mntiva") as iva, sum("mnttotal") as mnttotal,sum(impto10+impto18+impto25+impto30) as otrosimp,  count(*) as count').where('"tipodoc"=60 and "rutemisor"=? ', rut )
-    @totCredManual = totCManual.first
+
+    totFman.map {|e| @totFmanual = e}
+    totCManual.map {|e| @totCredManual  = e}
 
     @otrosImpsMan = Docmanual.select('"tipodoc",otrosimpmanuals.TipoImp as tipoimp, otrosimpmanuals.TasaImp as tasaimp, sum(otrosimpmanuals.MontoImp) as montoimp').where('"tipodoc" <> 52 and "tipodoc"<>60 and "rutemisor"=? ', rut).joins(:otrosimpmanuals).group('"tipodoc",otrosimpmanuals.TipoImp,otrosimpmanuals.TasaImp')
     @otrosImpsCredMan = Docmanual.select('"tipodoc",otrosimpmanuals.TipoImp as tipoimp, otrosimpmanuals.TasaImp as tasaimp, sum(otrosimpmanuals.MontoImp) as montoimp').where('"tipodoc" <> 52 and "tipodoc"<>30 and "rutemisor"=? ', rut ).joins(:otrosimpmanuals).group('"tipodoc",otrosimpmanuals.TipoImp,otrosimpmanuals.TasaImp')
