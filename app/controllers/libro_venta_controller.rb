@@ -63,7 +63,6 @@ class LibroVentaController < ApplicationController
    
     desde = Date.strptime("#{mes}/01", "%Y/%m/%d")
 
-    
     if mes[5..7] == "02"
         hasta = Date.strptime("#{mes}/28", "%Y/%m/%d")
     else
@@ -96,6 +95,69 @@ class LibroVentaController < ApplicationController
       format.html { render action: 'index' }
     end
   end
+
+  def generalibro
+    # buscar libro, si existe, hacer destroy (el detalle debe estar dependent destroy)
+    rut = params[:empresa]
+    mes = params[:Mes]
+    libro = Libro.where(rut: rut).where(idenvio: mes).where(tipo: "VENTA")
+    if !libro.nil?
+        if libro.enviado = "NO"
+            libro.destroy
+            create(rut, mes)
+        end
+    end
+        
+
+  end
+
+  def create (rut, mes)
+    # registrar libro con sus datos
+    libro = Libro.new
+    libro.rut = rut
+    libro.tipo = "VENTA"
+    libro.fecha = mes
+    libro.idenvio = mes.gsub('/','')
+    libro.enviado = "NO"
+    libro.save
+
+    desde = Date.strptime("#{mes}/01", "%Y/%m/%d")
+    if mes[5..7] == "02"
+        hasta = Date.strptime("#{mes}/28", "%Y/%m/%d")
+    else
+        hasta = Date.strptime("#{mes}/30", "%Y/%m/%d")
+    end   
+
+    # llenar detalle libro con doc electronicos
+    dtes = Documento.where('"TipoDTE" <> 52 and "RUTEmisor"=? and "FchEmis" > ? AND "FchEmis" < ?', rut, desde, hasta )
+    dtes.map { |e|  
+        detlibro = Detlibro.new
+        detlibro.tipo = e.TipoDTE
+        detlibro.rut = e.RUTEmisor
+        detlibro.folio = e.folio
+        detlibro.mnttotal = e.MntTotal
+        detlibro.id_libro = libro.id 
+        detlibro.save
+    }
+
+    # llenar detalle libro con doc manuales
+    docmanual = Docmanual.where('"tipodoc" <> 52 and "rutemisor"=? ', rut )
+    docmanual.map { |e|  
+        detlibro = Detlibro.new
+        detlibro.tipo = e.TipoDTE
+        detlibro.rut = e.RUTEmisor
+        detlibro.folio = e.folio
+        detlibro.mnttotal = e.MntTotal
+        detlibro.id_libro = libro.id 
+        detlibro.save
+    }    
+
+    # crear xml formado
+    # guardar url de xml en registro del libro
+    libro.xml(mes,rut)
+
+  end
+
 
 
 end

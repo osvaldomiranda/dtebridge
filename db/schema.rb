@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150127225020) do
+ActiveRecord::Schema.define(version: 20150217133915) do
 
   create_table "cdgitems", force: true do |t|
     t.string   "TpoCodigo"
@@ -135,6 +135,18 @@ ActiveRecord::Schema.define(version: 20150127225020) do
   end
 
   add_index "detcompras", ["doccompra_id"], name: "index_detcompras_on_doccompra_id"
+
+  create_table "detlibros", force: true do |t|
+    t.integer  "tipodte"
+    t.integer  "folio"
+    t.string   "rutemis"
+    t.integer  "mnttotal"
+    t.integer  "libro_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "detlibros", ["libro_id"], name: "index_detlibros_on_libro_id"
 
   create_table "doccompras", force: true do |t|
     t.integer  "TipoDTE"
@@ -466,6 +478,18 @@ ActiveRecord::Schema.define(version: 20150127225020) do
   add_index "installs", ["email"], name: "index_installs_on_email", unique: true
   add_index "installs", ["reset_password_token"], name: "index_installs_on_reset_password_token", unique: true
 
+  create_table "libros", force: true do |t|
+    t.string   "rut"
+    t.string   "tipo"
+    t.string   "fecha"
+    t.string   "idenvio"
+    t.string   "xml"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "enviado"
+    t.string   "fchenvio"
+  end
+
   create_table "monto_pagos", force: true do |t|
     t.string   "FchPago"
     t.integer  "MntPago"
@@ -570,7 +594,7 @@ ActiveRecord::Schema.define(version: 20150127225020) do
   add_index "sucursals", ["empresa_id"], name: "index_sucursals_on_empresa_id"
 
   create_table "tipodtes", force: true do |t|
-    t.integer  "tipodte"
+    t.integer  "tipo"
     t.string   "nombre"
     t.datetime "created_at"
     t.datetime "updated_at"

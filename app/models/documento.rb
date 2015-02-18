@@ -18,7 +18,9 @@ class Documento < ActiveRecord::Base
   mount_uploader :pdft, PdfsUploader 
   mount_uploader :fileEnvio, PdfsUploader 
 
+
   attr_reader :sucursal
+  attr_reader :nombre_doc
   def sucursal
     sucursales = { 75047210 => "VINA DEL MAR",  
                    63635210 => "OVALLE",  
@@ -30,5 +32,10 @@ class Documento < ActiveRecord::Base
                   }
 
     sucursales[self.CdgSIISucur]
+  end
+
+  def nombre_doc
+    tipo = Tipodte.where(tipo: self.TipoDTE).first 
+    return (tipo.nil? ? self.TipoDTE : tipo.nombre)
   end
 end

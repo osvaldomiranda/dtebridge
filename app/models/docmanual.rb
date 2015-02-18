@@ -3,6 +3,12 @@ class Docmanual < ActiveRecord::Base
 
   has_many :otrosimpmanuals, dependent: :destroy
 
+  attr_reader :nombre_doc
+  def nombre_doc
+    tipo = Tipodte.where(tipo: self.tipodoc).first 
+    return (tipo.nil? ? self.tipodoc : tipo.nombre)
+  end
+
   def self.import(file)
     CSV.foreach(file.path, col_sep: ';', headers: true) do |row|
       rowHash = row.to_hash

@@ -1,5 +1,7 @@
 Dtebridge::Application.routes.draw do
 
+  resources :tipodtes
+
   get "detlibrovta/index"
   get "uploadformat/index"
   get "libro_compra/index"
