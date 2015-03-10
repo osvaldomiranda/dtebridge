@@ -1,5 +1,7 @@
 Dtebridge::Application.routes.draw do
 
+  resources :contribuyentes
+
   resources :tipodtes
 
   get "detlibrovta/index"

@@ -23,6 +23,9 @@ class Api::V1::DocumentoController < Api::V1::ApiController
     @invoice.pdfs = params[:pdfCed]
     @invoice.pdft = params[:pdfTrib]
     @invoice.fileEnvio = params[:xmlFile]
+    @invoice.fileCliente = params[:fileCliente]
+    @invoice.fileFactura = params[:fileFactura]
+    @invoice.fileJson = params[:fileJson]
    
     if @invoice.save
       if !params[:conEnvio].present? || params[:conEnvio] == "S"
@@ -33,7 +36,7 @@ class Api::V1::DocumentoController < Api::V1::ApiController
 
       render 'api/v1/invoices/create' 
     else
-       render format.json { render json: @invoice.errors, status: :unprocessable_entity }
+      render 'api/v1/invoices/error'
     end
   end 
 
@@ -305,6 +308,10 @@ class Api::V1::DocumentoController < Api::V1::ApiController
       end
     end
     d.save  
+    if aceptados == "1" || reparos == "1"
+      enviaEmailCliente(d.RUTRecep)
+    end
+
   end
 
   def consultaEnvio( docId, rut, dv, estadoxml, token)
@@ -338,5 +345,13 @@ class Api::V1::DocumentoController < Api::V1::ApiController
     end
     render "/api/v1/iat/ping"  
   end  
+
+  def enviaEmailCliente(rut)
+    #Busca email en modelo contribuyentes
+    contrib = Contribuyente.find_by_rut(rut)
+    if contrib.exist?
+      NotificationMailer.notification_email(contrib.email, id).deliver
+    end
+  end
 end
 

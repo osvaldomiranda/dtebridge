@@ -14,7 +14,6 @@ class PdftUploader < CarrierWave::Uploader::Base
   # This is a sensible default for uploaders that are meant to be mounted:
   def store_dir
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}"
-
     # "/#{model.id}"
   end
 
@@ -41,7 +40,7 @@ class PdftUploader < CarrierWave::Uploader::Base
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
   # def extension_white_list
-    %w(xml pdf)
+    %w(xml pdf json)
   # end
 
   # Override the filename of the uploaded files:

@@ -1,4 +1,7 @@
 es:
+  errors:
+    messages:
+      extension_white_list_error: "You are not allowed to upload %{extension} files, allowed types: %{allowed_types}"
   date:
     formats:
       # Use the strftime parameters for formats.

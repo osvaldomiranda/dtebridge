@@ -1,0 +1,25 @@
+%h1 Listing contribuyentes
+
+%table
+  %thead
+    %tr
+      %th Rut
+      %th Nombre
+      %th Email
+      %th
+      %th
+      %th
+      
+  %tbody
+    - @contribuyentes.each do |contribuyente|
+      %tr
+        %td= contribuyente.rut
+        %td= contribuyente.nombre
+        %td= contribuyente.email
+        %td= link_to 'Show', contribuyente
+        %td= link_to 'Edit', edit_contribuyente_path(contribuyente)
+        %td= link_to 'Destroy', contribuyente, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Contribuyente', new_contribuyente_path

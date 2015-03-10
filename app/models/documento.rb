@@ -15,9 +15,11 @@ class Documento < ActiveRecord::Base
   accepts_nested_attributes_for :ref_detalles
 
   mount_uploader :pdfs, PdfsUploader # Tells rails to use this uploader for this model.
-  mount_uploader :pdft, PdfsUploader 
-  mount_uploader :fileEnvio, PdfsUploader 
-
+  mount_uploader :pdft, PdftUploader 
+  mount_uploader :fileEnvio, FileEnvioUploader
+  mount_uploader :fileCliente, PdfsUploader 
+  mount_uploader :fileFactura, PdfsUploader
+  mount_uploader :fileJson, PdfsUploader
 
   attr_reader :sucursal
   attr_reader :nombre_doc

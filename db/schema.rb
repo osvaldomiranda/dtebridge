@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150217133915) do
+ActiveRecord::Schema.define(version: 20150302205733) do
 
   create_table "cdgitems", force: true do |t|
     t.string   "TpoCodigo"
@@ -68,6 +68,14 @@ ActiveRecord::Schema.define(version: 20150217133915) do
     t.float    "impto25"
     t.float    "impto30"
     t.string   "estado"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "contribuyentes", force: true do |t|
+    t.string   "rut"
+    t.string   "nombre"
+    t.string   "email"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -377,6 +385,9 @@ ActiveRecord::Schema.define(version: 20150217133915) do
     t.text     "estadoxml"
     t.string   "pdft"
     t.text     "estadoEnvioXml"
+    t.string   "fileCliente"
+    t.string   "fileFactura"
+    t.string   "fileJson"
   end
 
   create_table "dsc_rcg_globals", force: true do |t|

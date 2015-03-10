@@ -11,4 +11,16 @@ class NotificationMailer < ActionMailer::Base
 
     mail(to: email, subject: 'Notificación InvoiceDigital')
   end
+
+  def notification_email(email,id)
+    doc = Documento.find(id)
+    @user = doc.RznSocRecep
+    @url  = 'http://www.invoicedigital.cl'
+    attachments[doc.pdfs] = File.read("#{Rails.root}/public/uploads/documento/pdfs/#{doc.pdfs}")
+    attachments[doc.pdft] = File.read("#{Rails.root}/public/uploads/documento/pdft/#{doc.pdft}")
+    attachments[doc.fileCliente] = File.read("#{Rails.root}/public/uploads/documento/fileCliente/#{doc.fileCliente}").force_encoding('iso-8859-1').encode('utf-8')
+
+    mail(to: email, subject: 'Intercambio Contribuyentes DTE InvoiceDigital')
+  end
+
 end
