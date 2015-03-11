@@ -23,9 +23,20 @@ class Api::V1::DocumentoController < Api::V1::ApiController
     @invoice.pdfs = params[:pdfCed]
     @invoice.pdft = params[:pdfTrib]
     @invoice.fileEnvio = params[:xmlFile]
-    @invoice.fileCliente = params[:fileCliente]
-    @invoice.fileFactura = params[:fileFactura]
-    @invoice.fileJson = params[:fileJson]
+
+    if params[:fileCliente].present?
+      @invoice.fileCliente = params[:fileCliente] 
+    end
+
+    if params[:fileFactura].present?
+      @invoice.fileFactura = params[:fileFactura]
+    end  
+    
+    if params[:filejson].present?
+      @invoice.fileJson = params[:fileJson]
+    end
+   
+    
    
     if @invoice.save
       if !params[:conEnvio].present? || params[:conEnvio] == "S"
