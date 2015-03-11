@@ -1,28 +1,16 @@
-== README
+== Database dump, from production
+From the terminal:
+* sudo su postgres
+* Password: lubba10580
+* pg_dump dtebridge_production -h localhost -U dtebridge -W > ~/dtebridge_production.dump
+* Password: lubba10580
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+== Create database for development
+* psql -h localhost
+* create role dtebridge with password 'lubba10580';
+* create database dtebridge_development with owner=dtebridge encoding='utf8';
+* grant all privileges on database dtebridge_development to dtebridge;
+* alter role dtebridge LOGIN;
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+== Populate database for development, from production dump
+* psql -h localhost -f dtebridge_production.dump -U dtebridge dtebridge_development

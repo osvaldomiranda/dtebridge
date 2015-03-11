@@ -13,7 +13,7 @@ class Libro < ActiveRecord::Base
     tosign_xml+="<RutEnvia>5682509-6</RutEnvia>"
     tosign_xml+="<PeriodoTributario>#{mes}</PeriodoTributario>"
     tosign_xml+="<FchResol>2014-09-10</FchResol>"
-    tosign_xml+="<NroResol>0</NroResol>"
+    tosign_xml+="<NroResol>80</NroResol>"
     tosign_xml+="<TipoOperacion>VENTA</TipoOperacion>"
     tosign_xml+="<TipoLibro>ESPECIAL</TipoLibro>"
     tosign_xml+="<TipoEnvio>TOTAL</TipoEnvio>"
@@ -21,18 +21,28 @@ class Libro < ActiveRecord::Base
     tosign_xml+="</Caratula>"
 
     #Resumen
+
+    documentos =  Documento.select('"TipoDTE", sum("MntNeto") as mntneto,sum("MntExe") as mntexe, 
+        sum("IVA") as iva, sum("MntTotal") as mnttotal, sum("impuesto_retens"."MontoImp") as otrosimp, 
+        count(*) as count').joins('LEFT OUTER JOIN "impuesto_retens" ON 
+        "impuesto_retens"."documento_id" = "documentos"."id"')
+        .where('"TipoDTE" = 33 and "RUTEmisor"=? and "FchEmis" > ? AND "FchEmis" < ?', 
+        rut, desde, hasta ).group('"TipoDTE"')
+
+
     tosign_xml+="<ResumenPeriodo>"
 
     #Documentos electronicos
-    tosign_xml+="<TotalesPeriodo>"
-    tosign_xml+="<TpoDoc>33</TpoDoc>"
-    tosign_xml+="<TotDoc>4</TotDoc>"
-    tosign_xml+="<TotMntExe>48928</TotMntExe>"
-    tosign_xml+="<TotMntNeto>11381375</TotMntNeto>"
-    tosign_xml+="<TotMntIVA>2162461</TotMntIVA>"
-    tosign_xml+="<TotMntTotal>13592764</TotMntTotal>"
-    tosign_xml+="</TotalesPeriodo>"
-
+    documentos.each do | doc|
+      tosign_xml+="<TotalesPeriodo>"
+      tosign_xml+="<TpoDoc>#{doc.TipoDTE}</TpoDoc>"
+      tosign_xml+="<TotDoc>#{doc.count}</TotDoc>"
+      tosign_xml+="<TotMntExe>#{doc.mntexe}</TotMntExe>"
+      tosign_xml+="<TotMntNeto>#{doc.mntneto}</TotMntNeto>"
+      tosign_xml+="<TotMntIVA>#{doc.iva}</TotMntIVA>"
+      tosign_xml+="<TotMntTotal>#{doc.mnttotal}</TotMntTotal>"
+      tosign_xml+="</TotalesPeriodo>"
+    end
     #Documentos Manuales
 
     tosign_xml+="</ResumenPeriodo>"

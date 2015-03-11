@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20150302205733) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "cdgitems", force: true do |t|
     t.string   "TpoCodigo"
     t.string   "VlrCodigo"
@@ -21,7 +24,7 @@ ActiveRecord::Schema.define(version: 20150302205733) do
     t.datetime "updated_at"
   end
 
-  add_index "cdgitems", ["detcompra_id"], name: "index_cdgitems_on_detcompra_id"
+  add_index "cdgitems", ["detcompra_id"], name: "index_cdgitems_on_detcompra_id", using: :btree
 
   create_table "comisioncompras", force: true do |t|
     t.integer  "NroLinCom"
@@ -35,7 +38,7 @@ ActiveRecord::Schema.define(version: 20150302205733) do
     t.datetime "updated_at"
   end
 
-  add_index "comisioncompras", ["doccompra_id"], name: "index_comisioncompras_on_doccompra_id"
+  add_index "comisioncompras", ["doccompra_id"], name: "index_comisioncompras_on_doccompra_id", using: :btree
 
   create_table "comisions", force: true do |t|
     t.integer  "NroLinCom"
@@ -49,7 +52,7 @@ ActiveRecord::Schema.define(version: 20150302205733) do
     t.datetime "updated_at"
   end
 
-  add_index "comisions", ["documento_id"], name: "index_comisions_on_documento_id"
+  add_index "comisions", ["documento_id"], name: "index_comisions_on_documento_id", using: :btree
 
   create_table "compmanuals", force: true do |t|
     t.integer  "tipodoc"
@@ -109,7 +112,7 @@ ActiveRecord::Schema.define(version: 20150302205733) do
     t.datetime "updated_at"
   end
 
-  add_index "detalles", ["documento_id"], name: "index_detalles_on_documento_id"
+  add_index "detalles", ["documento_id"], name: "index_detalles_on_documento_id", using: :btree
 
   create_table "detcompras", force: true do |t|
     t.integer  "NroLinDet"
@@ -142,7 +145,7 @@ ActiveRecord::Schema.define(version: 20150302205733) do
     t.float    "ValorDscto"
   end
 
-  add_index "detcompras", ["doccompra_id"], name: "index_detcompras_on_doccompra_id"
+  add_index "detcompras", ["doccompra_id"], name: "index_detcompras_on_doccompra_id", using: :btree
 
   create_table "detlibros", force: true do |t|
     t.integer  "tipodte"
@@ -154,7 +157,7 @@ ActiveRecord::Schema.define(version: 20150302205733) do
     t.datetime "updated_at"
   end
 
-  add_index "detlibros", ["libro_id"], name: "index_detlibros_on_libro_id"
+  add_index "detlibros", ["libro_id"], name: "index_detlibros_on_libro_id", using: :btree
 
   create_table "doccompras", force: true do |t|
     t.integer  "TipoDTE"
@@ -402,7 +405,7 @@ ActiveRecord::Schema.define(version: 20150302205733) do
     t.datetime "updated_at"
   end
 
-  add_index "dsc_rcg_globals", ["documento_id"], name: "index_dsc_rcg_globals_on_documento_id"
+  add_index "dsc_rcg_globals", ["documento_id"], name: "index_dsc_rcg_globals_on_documento_id", using: :btree
 
   create_table "dscrcgglobalcompras", force: true do |t|
     t.integer  "NroLinDR"
@@ -416,7 +419,7 @@ ActiveRecord::Schema.define(version: 20150302205733) do
     t.datetime "updated_at"
   end
 
-  add_index "dscrcgglobalcompras", ["doccompra_id"], name: "index_dscrcgglobalcompras_on_doccompra_id"
+  add_index "dscrcgglobalcompras", ["doccompra_id"], name: "index_dscrcgglobalcompras_on_doccompra_id", using: :btree
 
   create_table "empresas", force: true do |t|
     t.string   "rznsocial"
@@ -432,7 +435,7 @@ ActiveRecord::Schema.define(version: 20150302205733) do
     t.datetime "updated_at"
   end
 
-  add_index "iat_logs", ["iat_id"], name: "index_iat_logs_on_iat_id"
+  add_index "iat_logs", ["iat_id"], name: "index_iat_logs_on_iat_id", using: :btree
 
   create_table "iats", force: true do |t|
     t.string   "nombre"
@@ -447,7 +450,7 @@ ActiveRecord::Schema.define(version: 20150302205733) do
     t.datetime "updated_at"
   end
 
-  add_index "iats", ["user_id"], name: "index_iats_on_user_id"
+  add_index "iats", ["user_id"], name: "index_iats_on_user_id", using: :btree
 
   create_table "imptoretencompras", force: true do |t|
     t.string   "TipoImp"
@@ -458,7 +461,7 @@ ActiveRecord::Schema.define(version: 20150302205733) do
     t.datetime "updated_at"
   end
 
-  add_index "imptoretencompras", ["doccompra_id"], name: "index_imptoretencompras_on_doccompra_id"
+  add_index "imptoretencompras", ["doccompra_id"], name: "index_imptoretencompras_on_doccompra_id", using: :btree
 
   create_table "impuesto_retens", force: true do |t|
     t.string   "TipoImp"
@@ -469,7 +472,7 @@ ActiveRecord::Schema.define(version: 20150302205733) do
     t.datetime "updated_at"
   end
 
-  add_index "impuesto_retens", ["documento_id"], name: "index_impuesto_retens_on_documento_id"
+  add_index "impuesto_retens", ["documento_id"], name: "index_impuesto_retens_on_documento_id", using: :btree
 
   create_table "installs", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -486,8 +489,8 @@ ActiveRecord::Schema.define(version: 20150302205733) do
     t.datetime "updated_at"
   end
 
-  add_index "installs", ["email"], name: "index_installs_on_email", unique: true
-  add_index "installs", ["reset_password_token"], name: "index_installs_on_reset_password_token", unique: true
+  add_index "installs", ["email"], name: "index_installs_on_email", unique: true, using: :btree
+  add_index "installs", ["reset_password_token"], name: "index_installs_on_reset_password_token", unique: true, using: :btree
 
   create_table "libros", force: true do |t|
     t.string   "rut"
@@ -509,7 +512,7 @@ ActiveRecord::Schema.define(version: 20150302205733) do
     t.datetime "updated_at"
   end
 
-  add_index "monto_pagos", ["documento_id"], name: "index_monto_pagos_on_documento_id"
+  add_index "monto_pagos", ["documento_id"], name: "index_monto_pagos_on_documento_id", using: :btree
 
   create_table "mpagocompras", force: true do |t|
     t.string   "FchPago"
@@ -519,7 +522,7 @@ ActiveRecord::Schema.define(version: 20150302205733) do
     t.datetime "updated_at"
   end
 
-  add_index "mpagocompras", ["doccompra_id"], name: "index_mpagocompras_on_doccompra_id"
+  add_index "mpagocompras", ["doccompra_id"], name: "index_mpagocompras_on_doccompra_id", using: :btree
 
   create_table "otrosimpcompmanuals", force: true do |t|
     t.string   "TipoImp"
@@ -530,7 +533,7 @@ ActiveRecord::Schema.define(version: 20150302205733) do
     t.datetime "updated_at"
   end
 
-  add_index "otrosimpcompmanuals", ["compmanual_id"], name: "index_otrosimpcompmanuals_on_compmanual_id"
+  add_index "otrosimpcompmanuals", ["compmanual_id"], name: "index_otrosimpcompmanuals_on_compmanual_id", using: :btree
 
   create_table "otrosimpmanuals", force: true do |t|
     t.string   "TipoImp"
@@ -541,7 +544,7 @@ ActiveRecord::Schema.define(version: 20150302205733) do
     t.datetime "updated_at"
   end
 
-  add_index "otrosimpmanuals", ["docmanual_id"], name: "index_otrosimpmanuals_on_docmanual_id"
+  add_index "otrosimpmanuals", ["docmanual_id"], name: "index_otrosimpmanuals_on_docmanual_id", using: :btree
 
   create_table "pruebas", force: true do |t|
     t.string   "rut"
@@ -565,7 +568,7 @@ ActiveRecord::Schema.define(version: 20150302205733) do
     t.datetime "updated_at"
   end
 
-  add_index "ref_detalles", ["documento_id"], name: "index_ref_detalles_on_documento_id"
+  add_index "ref_detalles", ["documento_id"], name: "index_ref_detalles_on_documento_id", using: :btree
 
   create_table "refdetcompras", force: true do |t|
     t.integer  "NroLinRef"
@@ -582,7 +585,7 @@ ActiveRecord::Schema.define(version: 20150302205733) do
     t.datetime "updated_at"
   end
 
-  add_index "refdetcompras", ["doccompra_id"], name: "index_refdetcompras_on_doccompra_id"
+  add_index "refdetcompras", ["doccompra_id"], name: "index_refdetcompras_on_doccompra_id", using: :btree
 
   create_table "subdsctos", force: true do |t|
     t.string   "TipoDscto"
@@ -592,7 +595,7 @@ ActiveRecord::Schema.define(version: 20150302205733) do
     t.datetime "updated_at"
   end
 
-  add_index "subdsctos", ["detcompra_id"], name: "index_subdsctos_on_detcompra_id"
+  add_index "subdsctos", ["detcompra_id"], name: "index_subdsctos_on_detcompra_id", using: :btree
 
   create_table "sucursals", force: true do |t|
     t.string   "nombre"
@@ -602,7 +605,7 @@ ActiveRecord::Schema.define(version: 20150302205733) do
     t.datetime "updated_at"
   end
 
-  add_index "sucursals", ["empresa_id"], name: "index_sucursals_on_empresa_id"
+  add_index "sucursals", ["empresa_id"], name: "index_sucursals_on_empresa_id", using: :btree
 
   create_table "tipodtes", force: true do |t|
     t.integer  "tipo"
@@ -630,7 +633,7 @@ ActiveRecord::Schema.define(version: 20150302205733) do
     t.datetime "updated_at"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
 end

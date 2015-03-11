@@ -360,7 +360,7 @@ class Api::V1::DocumentoController < Api::V1::ApiController
   def enviaEmailCliente(rut)
     #Busca email en modelo contribuyentes
     contrib = Contribuyente.find_by_rut(rut)
-    if contrib.exist?
+    unless contrib.nil?
       NotificationMailer.notification_email(contrib.email, id).deliver
     end
   end
