@@ -32,7 +32,7 @@ class Api::V1::DocumentoController < Api::V1::ApiController
       @invoice.fileFactura = params[:fileFactura]
     end  
     
-    if params[:filejson].present?
+    if params[:fileJson].present?
       @invoice.fileJson = params[:fileJson]
     end
    
