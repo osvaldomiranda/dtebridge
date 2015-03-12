@@ -16,7 +16,6 @@
 %br
 %h3= @empresa 
 %h4= @fecha 
-%br
 %table.table.table-striped
   %tr
     %th{:style => 'text-align: right;'} Tipodte
@@ -168,4 +167,19 @@
           %td= otroImp.tipoimp
           %td= number_to_percentage(otroImp.tasaimp, precision: 1, delimiter: "," )
           %td= '('+number_to_currency(otroImp.montoimp, precision: 0, delimiter: "." )+')'
+%br
+%br
+%br
+%br
+%br
+=link_to "Generar Libro de Ventas", :controller => "libro_venta", :action => "generalibro" , :rut => @rut, :mes => @fecha
+%br
+%br
+%br
+%br
+%br
+%br
+
+
+
         

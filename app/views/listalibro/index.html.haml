@@ -1,0 +1,25 @@
+%h2 Libros de Venta 
+%table.table.table-striped
+  %tr
+    %th Rut
+    %th Empresa
+    %th Id Envio
+    %th Fecha
+    %th Tipo
+    %th Estado
+    %th Enviado a SII
+    %th
+    %th
+    %th
+  - @libro.each do |libro|
+    %tr
+      %td= libro.rut
+      %td= libro.empresa
+      %td= libro.idenvio
+      %td= libro.fecha
+      %td= libro.tipo
+      %td= libro.estado
+      %td= libro.enviado
+      %td= link_to 'XML', ""
+      %td= link_to "Generar", "", class: "btn btn-primary btn-xs"
+      %td= link_to "Enviar", "", class: "btn btn-primary btn-xs"

@@ -1,17 +1,22 @@
 class Libro < ActiveRecord::Base
   has_many :detlibro, dependent: :destroy
 
+  def empresa
+      Empresa.find_by_rut(self.rut).rznsocial
+  end
 
-  def xml(mes, rut)
+  def xml(id)
 
     #Caratula   
+    libro = Libro.find(id)
+
     tosign_xml="<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>"
     tosign_xml+="<LibroCompraVenta xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.sii.cl/SiiDte LibroCV_v10.xsd\" version=\"1.0\" xmlns=\"http://www.sii.cl/SiiDte\">"
-    tosign_xml+="<EnvioLibro ID=\"ID#{mes}\">"
+    tosign_xml+="<EnvioLibro ID=\"ID#{libro.idenvio}\">"
     tosign_xml+="<Caratula>"
-    tosign_xml+="<RutEmisorLibro>#{rut}</RutEmisorLibro>"
+    tosign_xml+="<RutEmisorLibro>#{libro.rut}</RutEmisorLibro>"
     tosign_xml+="<RutEnvia>5682509-6</RutEnvia>"
-    tosign_xml+="<PeriodoTributario>#{mes}</PeriodoTributario>"
+    tosign_xml+="<PeriodoTributario>#{libro.idenvio}</PeriodoTributario>"
     tosign_xml+="<FchResol>2014-09-10</FchResol>"
     tosign_xml+="<NroResol>80</NroResol>"
     tosign_xml+="<TipoOperacion>VENTA</TipoOperacion>"
@@ -22,50 +27,86 @@ class Libro < ActiveRecord::Base
 
     #Resumen
 
-    documentos =  Documento.select('"TipoDTE", sum("MntNeto") as mntneto,sum("MntExe") as mntexe, 
-        sum("IVA") as iva, sum("MntTotal") as mnttotal, sum("impuesto_retens"."MontoImp") as otrosimp, 
-        count(*) as count').joins('LEFT OUTER JOIN "impuesto_retens" ON 
-        "impuesto_retens"."documento_id" = "documentos"."id"')
-        .where('"TipoDTE" = 33 and "RUTEmisor"=? and "FchEmis" > ? AND "FchEmis" < ?', 
-        rut, desde, hasta ).group('"TipoDTE"')
+    tipos = Tipodte.all
 
 
     tosign_xml+="<ResumenPeriodo>"
 
     #Documentos electronicos
-    documentos.each do | doc|
-      tosign_xml+="<TotalesPeriodo>"
-      tosign_xml+="<TpoDoc>#{doc.TipoDTE}</TpoDoc>"
-      tosign_xml+="<TotDoc>#{doc.count}</TotDoc>"
-      tosign_xml+="<TotMntExe>#{doc.mntexe}</TotMntExe>"
-      tosign_xml+="<TotMntNeto>#{doc.mntneto}</TotMntNeto>"
-      tosign_xml+="<TotMntIVA>#{doc.iva}</TotMntIVA>"
-      tosign_xml+="<TotMntTotal>#{doc.mnttotal}</TotMntTotal>"
-      tosign_xml+="</TotalesPeriodo>"
+    tipos.each do | t |
+
+      cantidad = libro.detlibro.where(tipodte: t.tipo).sum(:mntneto)
+      mntexe = libro.detlibro.where(tipodte: t.tipo).sum(:mntneto)
+      mntneto = libro.detlibro.where(tipodte: t.tipo).sum(:mntneto)
+      iva = libro.detlibro.where(tipodte: t.tipo).sum(:mntneto) 
+      mnttotal = libro.detlibro.where(tipodte: t.tipo).sum(:mntneto) 
+
+      if cantidad > 0 
+        tosign_xml+="<TotalesPeriodo>"
+        tosign_xml+="<TpoDoc>#{t.tipo}</TpoDoc>"
+        tosign_xml+="<TotDoc>#{cantidad}</TotDoc>"
+        tosign_xml+="<TotMntExe>#{mntexe}</TotMntExe>"
+        tosign_xml+="<TotMntNeto>#{mntneto}</TotMntNeto>"
+        tosign_xml+="<TotMntIVA>#{iva}</TotMntIVA>"
+        tosign_xml+="<TotMntTotal>#{mnttotal}</TotMntTotal>"
+        tosign_xml+="</TotalesPeriodo>"
+      end
     end
     #Documentos Manuales
 
+    tiposmanuales = Tipodte.where(manual: "S")
+
     tosign_xml+="</ResumenPeriodo>"
 
-    #Detalle
-    tosign_xml+="<Detalle>"
-    tosign_xml+="<TpoDoc>30</TpoDoc>"
-    tosign_xml+="<NroDoc>1000</NroDoc>"
-    tosign_xml+="<TasaImp>19</TasaImp>"
-    tosign_xml+="<FchDoc>2013-05-10</FchDoc>"
-    tosign_xml+="<RUTDoc>77398570-7</RUTDoc>"
-    tosign_xml+="<RznSoc>COMERCIAL LUBBA LTDA.</RznSoc>"
-    tosign_xml+="<MntExe>0</MntExe>"
-    tosign_xml+="<MntNeto>5000</MntNeto>"
-    tosign_xml+="<MntIVA>950</MntIVA>"
-    tosign_xml+="<OtrosImp>"
-    tosign_xml+="<CodImp>27</CodImp>"
-    tosign_xml+="<TasaImp>15</TasaImp>"
-    tosign_xml+="<MntImp>750</MntImp>"
-    tosign_xml+="</OtrosImp>"
-    tosign_xml+="<MntTotal>6700</MntTotal>"
-    tosign_xml+="</Detalle>"
+    tiposmanuales.each do |t|
+      #Detalle
+      detlibro = libro.detlibro.where(tipodte: t.tipo)
 
+      detlibro.eacch do |det| 
+
+        doc = Docmanual.where(folio: det.folio).where(rutemisor: det.rutemis).first
+        tosign_xml+="<Detalle>"
+        tosign_xml+="<TpoDoc>#{doc.tipodte}</TpoDoc>"
+        tosign_xml+="<NroDoc>#{doc.folio}</NroDoc>"
+        tosign_xml+="<TasaImp>19</TasaImp>"
+        tosign_xml+="<FchDoc>#{doc.fchemis}</FchDoc>"
+        tosign_xml+="<RUTDoc>#{doc.rutemisor}</RUTDoc>"
+        tosign_xml+="<RznSoc>#{doc.rznsocrecep}</RznSoc>"
+        tosign_xml+="<MntExe>#{doc.mntexe}</MntExe>"
+        tosign_xml+="<MntNeto>#{doc.mntneto}</MntNeto>"
+        tosign_xml+="<MntIVA>#{doc.iva}</MntIVA>"
+        if doc.impto18 > 0
+          tosign_xml+="<OtrosImp>"
+          tosign_xml+="<CodImp>27</CodImp>"
+          tosign_xml+="<TasaImp>18</TasaImp>"
+          tosign_xml+="<MntImp>#{doc.impto18}</MntImp>"
+          tosign_xml+="</OtrosImp>"
+        end
+        if doc.impto10 > 0
+          tosign_xml+="<OtrosImp>"
+          tosign_xml+="<CodImp>27</CodImp>"
+          tosign_xml+="<TasaImp>10</TasaImp>"
+          tosign_xml+="<MntImp>#{doc.impto10}</MntImp>"
+          tosign_xml+="</OtrosImp>"
+        end
+        if doc.impto25 > 0
+          tosign_xml+="<OtrosImp>"
+          tosign_xml+="<CodImp>27</CodImp>"
+          tosign_xml+="<TasaImp>25</TasaImp>"
+          tosign_xml+="<MntImp>#{doc.impto25}</MntImp>"
+          tosign_xml+="</OtrosImp>"
+        end
+        if doc.impto30 > 0
+          tosign_xml+="<OtrosImp>"
+          tosign_xml+="<CodImp>27</CodImp>"
+          tosign_xml+="<TasaImp>30</TasaImp>"
+          tosign_xml+="<MntImp>#{doc.impto30}</MntImp>"
+          tosign_xml+="</OtrosImp>"
+        end
+        tosign_xml+="<MntTotal>#{doc.mnttotal}</MntTotal>"
+        tosign_xml+="</Detalle>"
+      end
+    end
     #Fin EnvioLibro
     tosign_xml+="<TmstFirma>2015-01-20T16:35:14</TmstFirma>"
     tosign_xml+="</EnvioLibro>"
@@ -97,6 +138,16 @@ class Libro < ActiveRecord::Base
     #Fin Libro  
     tosign_xml+= "</LibroCompraVenta>"
 
+    File.open("libro_ventatosing#{libro.idenvio}.xml", 'w') { |file| file.puts tosign_xml}
+
+    sleep 1
+     
+    system("./comando libro_ventatosing#{libro.idenvio}.xml libro_venta#{libro.idenvio}.xml")
+      
+   # lib = File.read "doc-signed#{t}.xml"
+
+    system("rm libro_ventatosing#{libro.idenvio}.xml") 
+   
   end
 
 end

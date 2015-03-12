@@ -1,12 +1,7 @@
 Dtebridge::Application.routes.draw do
 
-  resources :contribuyentes
 
-  resources :tipodtes
 
-  get "detlibrovta/index"
-  get "uploadformat/index"
-  get "libro_compra/index"
   resources :compmanuals do
     collection { post :import }
   end
@@ -17,7 +12,8 @@ Dtebridge::Application.routes.draw do
 
   resources :otrosimpmanuals
   resources :otrosimpcompmanuals
-
+  resources :contribuyentes
+  resources :tipodtes
   resources :sucursals
   resources :empresas
   resources :subdsctos
@@ -39,12 +35,16 @@ Dtebridge::Application.routes.draw do
   resources :iat_logs
   resources :iats
 
-  get "estadistica/index"
+  
   devise_for :installs
 
 
   devise_for :users
 
+  get "detlibrovta/index"
+  get "uploadformat/index"
+  get "libro_compra/index"
+  get "listalibro/index"
   get "home/index"
   get "libro_venta/index"
   post "buscarLibrovta", to: "libro_venta#find"
@@ -56,7 +56,10 @@ Dtebridge::Application.routes.draw do
   get "respIntercam" , to: "connectsii#resp_intercambio"
   get "recepMercaderia" , to: "connectsii#recep_mercaderia"
   get "aprobComercial" , to: "connectsii#aprob_comercial"
+  get "estadistica/index"
   get "estadistica", to: "estadistica#index"
+  get "libro_venta/generalibro", to: "libro_venta#generalibro"
+
   get "detcompras/:id", to: "detcompras#index"
   
   get "doccompras/rechazar/:id", to: "doccompras#rechazar"
