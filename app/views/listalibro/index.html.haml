@@ -20,6 +20,6 @@
       %td= libro.tipo
       %td= libro.estado
       %td= libro.enviado
-      %td= link_to 'XML', ""
-      %td= link_to "Generar", "", class: "btn btn-primary btn-xs"
+      %td= link_to 'Ver Detalle', ""
+      %td= link_to "Generar", "/listalibro/genxml/#{libro.id}", class: "btn btn-primary btn-xs"
       %td= link_to "Enviar", "", class: "btn btn-primary btn-xs"

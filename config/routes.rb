@@ -59,6 +59,7 @@ Dtebridge::Application.routes.draw do
   get "estadistica/index"
   get "estadistica", to: "estadistica#index"
   get "libro_venta/generalibro", to: "libro_venta#generalibro"
+  get "listalibro/genxml/:id", to: "listalibro#genxml"
 
   get "detcompras/:id", to: "detcompras#index"
   
@@ -68,6 +69,7 @@ Dtebridge::Application.routes.draw do
   get "doccompras_rech/aprobar/:id", to: "doccompras_rech#aprobar"
   get "doccompras_aprob", to: "doccompras_aprob#index"
   get "doccompras_rech", to: "doccompras_rech#index"
+
   post "buscarDoc", to: "documentos#find"
 
   root to: "home#index"
