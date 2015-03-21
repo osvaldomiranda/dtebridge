@@ -2,6 +2,8 @@ Dtebridge::Application.routes.draw do
 
 
 
+
+  get "detlibro/index"
   resources :compmanuals do
     collection { post :import }
   end
@@ -10,6 +12,7 @@ Dtebridge::Application.routes.draw do
     collection { post :import }
   end
 
+  resources :log_iats
   resources :otrosimpmanuals
   resources :otrosimpcompmanuals
   resources :contribuyentes
@@ -37,8 +40,6 @@ Dtebridge::Application.routes.draw do
 
   
   devise_for :installs
-
-
   devise_for :users
 
   get "detlibrovta/index"
@@ -60,6 +61,7 @@ Dtebridge::Application.routes.draw do
   get "estadistica", to: "estadistica#index"
   get "libro_venta/generalibro", to: "libro_venta#generalibro"
   get "listalibro/genxml/:id", to: "listalibro#genxml"
+  get "detlibro/index/:id", to: "detlibro#index"
 
   get "detcompras/:id", to: "detcompras#index"
   
@@ -82,6 +84,7 @@ Dtebridge::Application.routes.draw do
       get  "/pruebas", to: "pruebas#index"
       get "/iat_login", to: "iat#login"
       get "/iat_ping/:id", to: "iat#ping"
+      get "/iat_offline", to: "iat#isoffline"
       get "/gettoken", to: "documento#get_token"
       get "/procestado", to: "documento#procesoEstado"
       get "/notification", to: "notification#send_notif"

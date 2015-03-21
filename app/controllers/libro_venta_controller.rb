@@ -66,7 +66,7 @@ class LibroVentaController < ApplicationController
     if mes[5..7] == "02"
         hasta = Date.strptime("#{mes}/28", "%Y/%m/%d")
     else
-        hasta = Date.strptime("#{mes}/30", "%Y/%m/%d")
+        hasta = Date.strptime("#{mes}/31", "%Y/%m/%d")
     end    
 
     

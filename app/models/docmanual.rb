@@ -12,6 +12,7 @@ class Docmanual < ActiveRecord::Base
   def self.import(file)
     CSV.foreach(file.path, col_sep: ';', headers: true) do |row|
       rowHash = row.to_hash
+
       doc = Docmanual.new(rowHash)
 
       if doc.rutrecep.index('-').nil?  

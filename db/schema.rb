@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150312182646) do
+ActiveRecord::Schema.define(version: 20150321200454) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -400,6 +400,14 @@ ActiveRecord::Schema.define(version: 20150312182646) do
     t.string   "fileCliente"
     t.string   "fileFactura"
     t.string   "fileJson"
+    t.string   "NomVendedor"
+    t.string   "DirRegionalSII"
+    t.string   "NombreCertificado"
+    t.string   "FchResol"
+    t.string   "BodEmis"
+    t.string   "BodRecep"
+    t.string   "TelRecep"
+    t.string   "DirMatriz"
   end
 
   create_table "dsc_rcg_globals", force: true do |t|
@@ -512,6 +520,18 @@ ActiveRecord::Schema.define(version: 20150312182646) do
     t.string   "enviado"
     t.string   "fchenvio"
     t.string   "estado"
+  end
+
+  create_table "log_iats", force: true do |t|
+    t.string   "sucursal"
+    t.string   "rut"
+    t.date     "ultimo_ping"
+    t.integer  "tipo_dte"
+    t.integer  "ultimo_folio"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "udtejson"
+    t.datetime "ultimoping"
   end
 
   create_table "monto_pagos", force: true do |t|

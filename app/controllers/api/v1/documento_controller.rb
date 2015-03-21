@@ -40,9 +40,9 @@ class Api::V1::DocumentoController < Api::V1::ApiController
    
     if @invoice.save
       if !params[:conEnvio].present? || params[:conEnvio] == "S"
-        @invoice.estadoxml = postsii(@invoice.id)
+      #  @invoice.estadoxml = postsii(@invoice.id)
         @invoice.save       
-        estadoStr(@invoice)
+      #  estadoStr(@invoice)
       end
 
       render 'api/v1/invoices/create' 
@@ -52,15 +52,15 @@ class Api::V1::DocumentoController < Api::V1::ApiController
   end 
 
   def resend
-    @invoice = Documento.where(estado: "CREADO").where("created_at::date = ?", Date.today).first
-    @invoice.estadoxml = postsii(@invoice.id)
-    @invoice.save   
-    if @invoice.save    
-      estadoStr(@invoice)
-      render 'api/v1/invoices/create' 
-    else
-      render format.json { render json: @invoice.errors, status: :unprocessable_entity }
-    end  
+    invoices = Documento.where(estado: "CREADO").where(:created_at => 10.days.ago..Time.now)
+    invoices.each do |invoice| 
+      invoice.estadoxml = postsii(invoice.id)
+      invoice.save   
+      if invoice.save    
+        estadoStr(@invoice)
+      end  
+    end
+    render 'api/v1/invoices/create' 
   end 
 
   def postsii(idDoc)
@@ -230,7 +230,7 @@ class Api::V1::DocumentoController < Api::V1::ApiController
   def getseed
     begin
       # ambiente sii pruebas 
-     #  client = Savon.client(wsdl:"https://maullin2.sii.cl/DTEWS/CrSeed.jws?WSDL") 
+      # client = Savon.client(wsdl:"https://maullin2.sii.cl/DTEWS/CrSeed.jws?WSDL") 
       #produccion
       client = Savon.client(wsdl:"https://palena.sii.cl/DTEWS/CrSeed.jws?WSDL") 
       seed_xml = client.call(:get_seed)

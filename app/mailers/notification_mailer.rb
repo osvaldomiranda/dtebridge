@@ -23,4 +23,10 @@ class NotificationMailer < ActionMailer::Base
     mail(to: email, subject: 'Intercambio Contribuyentes DTE InvoiceDigital')
   end
 
+  def alert_iat_email(email, sucursal, empresa)
+    @user = "Precioso"
+    @url  = 'http://www.invoicedigital.cl'
+    mail(to: email, subject: "IAT offline en sucursal : #{sucursal}, #{empresa}" )
+  end
+
 end
