@@ -36,13 +36,12 @@ class Api::V1::DocumentoController < Api::V1::ApiController
       @invoice.fileJson = params[:fileJson]
     end
    
-    
    
     if @invoice.save
       if !params[:conEnvio].present? || params[:conEnvio] == "S"
-      #  @invoice.estadoxml = postsii(@invoice.id)
+        @invoice.estadoxml = postsii(@invoice.id)
         @invoice.save       
-      #  estadoStr(@invoice)
+        estadoStr(@invoice)
       end
 
       render 'api/v1/invoices/create' 
