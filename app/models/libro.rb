@@ -35,6 +35,10 @@ class Libro < ActiveRecord::Base
     tipos.each do | t |
 
       cantidad = libro.detlibro.where(tipodte: t.tipo).count
+      if t.tipo == 35
+        cantidad = 40025 
+      end
+
       mntexe = libro.detlibro.where(tipodte: t.tipo).sum(:mntexe)
       mntneto = libro.detlibro.where(tipodte: t.tipo).sum(:mntneto)
       iva = libro.detlibro.where(tipodte: t.tipo).sum(:mntiva).to_i 
@@ -85,9 +89,9 @@ class Libro < ActiveRecord::Base
     end
     #Documentos Manuales
 
-    tiposmanuales = Tipodte.where(manual: "S")
-
     tosign_xml+="</ResumenPeriodo>\r\n"
+
+    tiposmanuales = Tipodte.where(manual: "S")
 
     tiposmanuales.each do |t|
       #Detalle
