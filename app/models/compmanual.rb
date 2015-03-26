@@ -2,7 +2,8 @@ class Compmanual < ActiveRecord::Base
   require 'csv'
 
   def self.import(file)
-    CSV.foreach(file.path, headers: true) do |row|
+    
+    CSV.foreach(file.path, col_sep: ';', headers: true) do |row|
       Compmanual.create! row.to_hash
     end
   end

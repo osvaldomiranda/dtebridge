@@ -7,12 +7,21 @@ class Libro < ActiveRecord::Base
 
   def xml
 
-    #Caratula   
+    if self.tipo == "VENTA"
+      libroventa  
+    elsif self.tipo == "COMPRA"
+      libroCompra
+    end      
+
+  end
+
+  def libroventa
+
     libro = self
 
     tosign_xml="<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>"
     tosign_xml+="<LibroCompraVenta xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.sii.cl/SiiDte LibroCV_v10.xsd\" version=\"1.0\" xmlns=\"http://www.sii.cl/SiiDte\">"
-    tosign_xml+="<EnvioLibro ID=\"ID#{libro.idenvio}\">"
+    tosign_xml+="<EnvioLibro ID=\"IDV#{libro.idenvio}\">"
     tosign_xml+="<Caratula>"
     tosign_xml+="<RutEmisorLibro>#{libro.rut}</RutEmisorLibro>"
     tosign_xml+="<RutEnvia>5682509-6</RutEnvia>"
@@ -22,8 +31,7 @@ class Libro < ActiveRecord::Base
     tosign_xml+="<TipoOperacion>VENTA</TipoOperacion>"
     tosign_xml+="<TipoLibro>ESPECIAL</TipoLibro>"
     tosign_xml+="<TipoEnvio>TOTAL</TipoEnvio>"
-    # tosign_xml+="<FolioNotificacion>1</FolioNotificacion>" 
-    # FolioNotificacion es para hacer una rectificación
+    tosign_xml+="<FolioNotificacion>1</FolioNotificacion>" 
     tosign_xml+="</Caratula>"
 
     #Resumen
@@ -99,60 +107,66 @@ class Libro < ActiveRecord::Base
 
       detlibro.each do |det| 
 
-        doc = Docmanual.where(folio: det.folio).where(rutemisor: det.rutemis).first
-        tosign_xml+="<Detalle>\r\n"
-        tosign_xml+="<TpoDoc>#{doc.tipodoc}</TpoDoc>\r\n"
-        tosign_xml+="<NroDoc>#{doc.folio}</NroDoc>\r\n"
-        if doc.anulado == "S"
-          tosign_xml+="<Anulado>A</Anulado>\r\n"
-        end
+        doc = Docmanual.where(folio: det.folio).where(rutemisor: det.rutemis).last
 
-        if doc.anulado == "N"
-          tosign_xml+="<TasaImp>19</TasaImp>\r\n"
-          tosign_xml+="<FchDoc>#{doc.fchemis}</FchDoc>\r\n"
-          tosign_xml+="<RUTDoc>#{doc.rutemisor}</RUTDoc>\r\n"
-          tosign_xml+="<RznSoc>#{doc.rznsocrecep}</RznSoc>\r\n"
+        if doc.tipodoc != 35
+          tosign_xml+="<Detalle>\r\n"
+          tosign_xml+="<TpoDoc>#{doc.tipodoc}</TpoDoc>\r\n"
+          tosign_xml+="<NroDoc>#{doc.folio}</NroDoc>\r\n"
+          if doc.anulado == "S"
+            tosign_xml+="<Anulado>A</Anulado>\r\n"
+          end
 
-          if doc.mntexe > 0
-            tosign_xml+="<MntExe>#{doc.mntexe}</MntExe>\r\n"
-          end  
-          
-          tosign_xml+="<MntNeto>#{doc.mntneto}</MntNeto>\r\n"
-          tosign_xml+="<MntIVA>#{doc.mntiva.to_i}</MntIVA>\r\n"
-          if doc.impto18 > 0
-            tosign_xml+="<OtrosImp>\r\n"
-            tosign_xml+="<CodImp>271</CodImp>\r\n"
-            tosign_xml+="<TasaImp>18</TasaImp>\r\n"
-            tosign_xml+="<MntImp>#{doc.impto18.to_i}</MntImp>\r\n"
-            tosign_xml+="</OtrosImp>\r\n"
+          if doc.anulado == "N"
+            
+            tosign_xml+="<TasaImp>19</TasaImp>\r\n"
+            
+            tosign_xml+="<FchDoc>#{doc.fchemis}</FchDoc>\r\n"
+            tosign_xml+="<RUTDoc>#{doc.rutrecep}</RUTDoc>\r\n"
+            tosign_xml+="<RznSoc>#{doc.rznsocrecep}</RznSoc>\r\n"
+
+            if doc.mntexe > 0
+              tosign_xml+="<MntExe>#{doc.mntexe}</MntExe>\r\n"
+            end  
+            
+            tosign_xml+="<MntNeto>#{doc.mntneto}</MntNeto>\r\n"
+            tosign_xml+="<MntIVA>#{doc.mntiva.to_i}</MntIVA>\r\n"
+            if doc.impto18 > 0
+              tosign_xml+="<OtrosImp>\r\n"
+              tosign_xml+="<CodImp>271</CodImp>\r\n"
+              tosign_xml+="<TasaImp>18</TasaImp>\r\n"
+              tosign_xml+="<MntImp>#{doc.impto18.to_i}</MntImp>\r\n"
+              tosign_xml+="</OtrosImp>\r\n"
+            end
+            if doc.impto10 > 0
+              tosign_xml+="<OtrosImp>\r\n"
+              tosign_xml+="<CodImp>27</CodImp>\r\n"
+              tosign_xml+="<TasaImp>10</TasaImp>\r\n"
+              tosign_xml+="<MntImp>#{doc.impto10.to_i}</MntImp>\r\n"
+              tosign_xml+="</OtrosImp>\r\n"
+            end
+            if doc.impto25 > 0
+              tosign_xml+="<OtrosImp>\r\n"
+              tosign_xml+="<CodImp>25</CodImp>\r\n"
+              tosign_xml+="<TasaImp>20.5</TasaImp>\r\n"
+              tosign_xml+="<MntImp>#{doc.impto25.to_i}</MntImp>\r\n"
+              tosign_xml+="</OtrosImp>\r\n"
+            end
+            if doc.impto30 > 0
+              tosign_xml+="<OtrosImp>\r\n"
+              tosign_xml+="<CodImp>24</CodImp>\r\n"
+              tosign_xml+="<TasaImp>31.5</TasaImp>\r\n"
+              tosign_xml+="<MntImp>#{doc.impto30.to_i}</MntImp>\r\n"
+              tosign_xml+="</OtrosImp>\r\n"
+            end
+            tosign_xml+="<MntTotal>#{doc.mnttotal}</MntTotal>\r\n"
           end
-          if doc.impto10 > 0
-            tosign_xml+="<OtrosImp>\r\n"
-            tosign_xml+="<CodImp>27</CodImp>\r\n"
-            tosign_xml+="<TasaImp>10</TasaImp>\r\n"
-            tosign_xml+="<MntImp>#{doc.impto10.to_i}</MntImp>\r\n"
-            tosign_xml+="</OtrosImp>\r\n"
-          end
-          if doc.impto25 > 0
-            tosign_xml+="<OtrosImp>\r\n"
-            tosign_xml+="<CodImp>25</CodImp>\r\n"
-            tosign_xml+="<TasaImp>20.5</TasaImp>\r\n"
-            tosign_xml+="<MntImp>#{doc.impto25.to_i}</MntImp>\r\n"
-            tosign_xml+="</OtrosImp>\r\n"
-          end
-          if doc.impto30 > 0
-            tosign_xml+="<OtrosImp>\r\n"
-            tosign_xml+="<CodImp>24</CodImp>\r\n"
-            tosign_xml+="<TasaImp>31.5</TasaImp>\r\n"
-            tosign_xml+="<MntImp>#{doc.impto30.to_i}</MntImp>\r\n"
-            tosign_xml+="</OtrosImp>\r\n"
-          end
-          tosign_xml+="<MntTotal>#{doc.mnttotal}</MntTotal>\r\n"
+          tosign_xml+="</Detalle>\r\n"
         end
-        tosign_xml+="</Detalle>\r\n"
       end
     end
     #Fin EnvioLibro
+    #TO DO: corregir la fecha del envio
     tosign_xml+="<TmstFirma>2015-01-20T16:35:14</TmstFirma>"
     tosign_xml+="</EnvioLibro>"
 
@@ -189,7 +203,310 @@ class Libro < ActiveRecord::Base
    # lib = File.read "doc-signed#{t}.xml"
 
     system("rm libro_ventatosing#{libro.idenvio}.xml") 
-   
   end
+
+  def librocompra
+
+    libro=self
+
+    tosign_xml="<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>"
+    tosign_xml="<LibroCompraVenta xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.sii.cl/SiiDte LibroCV_v10.xsd\" version=\"1.0\" xmlns=\"http://www.sii.cl/SiiDte\">"
+    tosign_xml="<EnvioLibro ID=\"IDC#{libro.idenvio}\">"
+    tosign_xml="<Caratula>"
+    tosign_xml="<RutEmisorLibro>#{libro.rut}</RutEmisorLibro>"
+    tosign_xml="<RutEnvia>5682509-6</RutEnvia>"
+    tosign_xml="<PeriodoTributario>#{libro.idenvio}</PeriodoTributario>"
+    tosign_xml="<FchResol>2014-09-10</FchResol>"
+    tosign_xml="<NroResol>0</NroResol>"
+    tosign_xml="<TipoOperacion>COMPRA</TipoOperacion>"
+    tosign_xml="<TipoLibro>ESPECIAL</TipoLibro>"
+    tosign_xml="<TipoEnvio>TOTAL</TipoEnvio>"
+    tosign_xml="<FolioNotificacion>2</FolioNotificacion>"
+    tosign_xml="</Caratula>"
+
+    tosign_xml="<ResumenPeriodo>"
+
+    tipos = Tipodte.all
+    tipos.each do | t |
+      cantidad = libro.detlibro.where(tipodte: t.tipo).count
+      mntexe = libro.detlibro.where(tipodte: t.tipo).sum(:mntexe)
+      mntneto = libro.detlibro.where(tipodte: t.tipo).sum(:mntneto)
+      iva = libro.detlibro.where(tipodte: t.tipo).sum(:mntiva).to_i 
+      mnttotal = libro.detlibro.where(tipodte: t.tipo).sum(:mnttotal) 
+
+      impto18 = libro.detlibro.where(tipodte: t.tipo).sum(:impto18).to_i
+      impto10 = libro.detlibro.where(tipodte: t.tipo).sum(:impto10).to_i
+      impto25 = libro.detlibro.where(tipodte: t.tipo).sum(:impto25).to_i
+      impto30 = libro.detlibro.where(tipodte: t.tipo).sum(:impto30).to_i
+
+      if cantidad > 0
+        tosign_xml="<TotalesPeriodo>"
+        tosign_xml="<TpoDoc>#{t.tipo}</TpoDoc>"
+        tosign_xml="<TotDoc>#{cantidad}</TotDoc>"
+        tosign_xml="<TotMntExe>#{mntexe}</TotMntExe>"
+        tosign_xml="<TotMntNeto>#{mntneto}</TotMntNeto>"
+        tosign_xml="<TotMntIVA>#{iva}</TotMntIVA>"
+        tosign_xml="<TotOpIVAUsoComun>1</TotOpIVAUsoComun>"
+        tosign_xml="<TotIVAUsoComun>1</TotIVAUsoComun>"
+        tosign_xml="<FctProp>0.9999</FctProp>"
+        tosign_xml="<TotCredIVAUsoComun>1</TotCredIVAUsoComun>"
+
+        if impto18 > 0
+          tosign_xml+="<TotOtrosImp>\r\n"
+          tosign_xml+="<CodImp>271</CodImp>\r\n"
+          tosign_xml+="<TotMntImp>#{impto18}</TotMntImp>\r\n"
+          tosign_xml+="</TotOtrosImp>\r\n"
+        end
+        if impto10 > 0
+          tosign_xml+="<TotOtrosImp>\r\n"
+          tosign_xml+="<CodImp>27</CodImp>\r\n"
+          tosign_xml+="<TotMntImp>#{impto10}</TotMntImp>\r\n"
+          tosign_xml+="</TotOtrosImp>\r\n"
+        end
+        if impto25 > 0
+          tosign_xml+="<TotOtrosImp>\r\n"
+          tosign_xml+="<CodImp>25</CodImp>\r\n"
+          tosign_xml+="<TotMntImp>#{impto25}</TotMntImp>\r\n"
+          tosign_xml+="</TotOtrosImp>\r\n"
+        end
+        if impto30 > 0
+          tosign_xml+="<TotOtrosImp>\r\n"
+          tosign_xml+="<CodImp>24</CodImp>\r\n"
+          tosign_xml+="<TotMntImp>#{impto24}</TotMntImp>\r\n"
+          tosign_xml+="</TotOtrosImp>\r\n"
+        end
+
+        tosign_xml="<TotMntTotal>#{mnttotal}</TotMntTotal>"
+        tosign_xml="</TotalesPeriodo>"
+      end
+    end
+
+    # <TotalesPeriodo>
+    # <TpoDoc>33</TpoDoc>
+    # <TotDoc>2</TotDoc>
+    # <TotMntExe>10616</TotMntExe>
+    # <TotMntNeto>23544</TotMntNeto>
+    # <TotMntIVA>2171</TotMntIVA>
+    # <TotIVANoRec>
+    # <CodIVANoRec>4</CodIVANoRec>
+    # <TotOpIVANoRec>1</TotOpIVANoRec>
+    # <TotMntIVANoRec>2302</TotMntIVANoRec>
+    # </TotIVANoRec>
+    # <TotMntTotal>38633</TotMntTotal>
+    # </TotalesPeriodo>
+
+    # <TotalesPeriodo>
+    # <TpoDoc>60</TpoDoc>
+    # <TotDoc>2</TotDoc>
+    # <TotMntExe>0</TotMntExe>
+    # <TotMntNeto>11937</TotMntNeto>
+    # <TotMntIVA>2268</TotMntIVA>
+    # <TotMntTotal>14205</TotMntTotal>
+    # </TotalesPeriodo>
+
+    # <TotalesPeriodo>
+    # <TpoDoc>46</TpoDoc>
+    # <TotDoc>1</TotDoc>
+    # <TotMntExe>0</TotMntExe>
+    # <TotMntNeto>10622</TotMntNeto>
+    # <TotMntIVA>2018</TotMntIVA>
+
+    # <TotOtrosImp>
+    # <CodImp>15</CodImp>
+    # <TotMntImp>2018</TotMntImp>
+    # </TotOtrosImp>
+    
+    # <TotMntTotal>10622</TotMntTotal>
+    # </TotalesPeriodo>
+
+    tosign_xml="</ResumenPeriodo>"
+
+    #TO DO: Corrigir para usar modelo Doccompra
+    tiposmanuales = Tipodte.all
+
+    tiposmanuales.each do |t|
+      #Detalle
+      detlibro = libro.detlibro.where(tipodte: t.tipo)
+      rznsocrecep = Empresa.find_by_rut(libro.rut).rznsocial
+
+      detlibro.each do |det| 
+
+        doc = Compmanual.where(folio: det.folio).where(rutrecep: det.rutrecep).last
+
+        tosign_xml="<Detalle>"
+        tosign_xml="<TpoDoc>#{det.tipodte}</TpoDoc>"
+        tosign_xml="<NroDoc>#{det.folio}</NroDoc>"
+        tosign_xml="<TpoImp>1</TpoImp>"
+        tosign_xml="<TasaImp>19</TasaImp>"
+        tosign_xml="<FchDoc>#{det.iva}</FchDoc>"
+        tosign_xml="<RUTDoc>#{det.rutrecep}</RUTDoc>"
+        tosign_xml="<RznSoc>#{rznsocrecep}</RznSoc>"
+        tosign_xml="<MntExe>#{det.mntexe}</MntExe>"
+        tosign_xml="<MntNeto>#{det.mntneto}</MntNeto>"
+        tosign_xml="<MntIVA>#{det.mntiva}</MntIVA>"
+
+        if doc.impto18 > 0
+          tosign_xml+="<OtrosImp>\r\n"
+          tosign_xml+="<CodImp>271</CodImp>\r\n"
+          tosign_xml+="<TasaImp>18</TasaImp>\r\n"
+          tosign_xml+="<MntImp>#{doc.impto18.to_i}</MntImp>\r\n"
+          tosign_xml+="</OtrosImp>\r\n"
+        end
+        if doc.impto10 > 0
+          tosign_xml+="<OtrosImp>\r\n"
+          tosign_xml+="<CodImp>27</CodImp>\r\n"
+          tosign_xml+="<TasaImp>10</TasaImp>\r\n"
+          tosign_xml+="<MntImp>#{doc.impto10.to_i}</MntImp>\r\n"
+          tosign_xml+="</OtrosImp>\r\n"
+        end
+        if doc.impto25 > 0
+          tosign_xml+="<OtrosImp>\r\n"
+          tosign_xml+="<CodImp>25</CodImp>\r\n"
+          tosign_xml+="<TasaImp>20.5</TasaImp>\r\n"
+          tosign_xml+="<MntImp>#{doc.impto25.to_i}</MntImp>\r\n"
+          tosign_xml+="</OtrosImp>\r\n"
+        end
+        if doc.impto30 > 0
+          tosign_xml+="<OtrosImp>\r\n"
+          tosign_xml+="<CodImp>24</CodImp>\r\n"
+          tosign_xml+="<TasaImp>31.5</TasaImp>\r\n"
+          tosign_xml+="<MntImp>#{doc.impto30.to_i}</MntImp>\r\n"
+          tosign_xml+="</OtrosImp>\r\n"
+        end
+
+        tosign_xml="<MntTotal>#{mnttotal}</MntTotal>"
+        tosign_xml="</Detalle>"
+
+
+    # <Detalle>
+    # <TpoDoc>33</TpoDoc>
+    # <NroDoc>32</NroDoc>
+    # <TpoImp>1</TpoImp>
+    # <TasaImp>19</TasaImp>
+    # <FchDoc>2014-06-05</FchDoc>
+    # <RUTDoc>07139792-0</RUTDoc>
+    # <RznSoc>PEDRO LEON CALDERON</RznSoc>
+    # <MntExe>10616</MntExe>
+    # <MntNeto>11428</MntNeto>
+    # <MntIVA>2171</MntIVA>
+    # <MntTotal>24215</MntTotal>
+    # </Detalle>
+
+    # <Detalle>
+    # <TpoDoc>30</TpoDoc>
+    # <NroDoc>781</NroDoc>
+    # <TpoImp>1</TpoImp>
+    # <TasaImp>19</TasaImp>
+    # <FchDoc>2014-06-05</FchDoc>
+    # <RUTDoc>07139792-0</RUTDoc>
+    # <RznSoc>PEDRO LEON CALDERON</RznSoc>
+    # <MntExe>0</MntExe>
+    # <MntNeto>30167</MntNeto>
+    # <IVAUsoComun>5732</IVAUsoComun>
+    # <MntTotal>35899</MntTotal>
+    # </Detalle>
+
+    # <Detalle>
+    # <TpoDoc>60</TpoDoc>
+    # <NroDoc>451</NroDoc>
+    # <TpoImp>1</TpoImp>
+    # <TasaImp>19</TasaImp>
+    # <FchDoc>2014-06-05</FchDoc>
+    # <RUTDoc>07139792-0</RUTDoc>
+    # <RznSoc>PEDRO LEON CALDERON</RznSoc>
+    # <MntExe>0</MntExe>
+    # <MntNeto>2926</MntNeto>
+    # <MntIVA>556</MntIVA>
+    # <MntTotal>3482</MntTotal>
+    # </Detalle>
+
+    # <Detalle>
+    # <TpoDoc>33</TpoDoc>
+    # <NroDoc>67</NroDoc>
+    # <TpoImp>1</TpoImp>
+    # <TasaImp>19</TasaImp>
+    # <FchDoc>2014-06-05</FchDoc>
+    # <RUTDoc>07139792-0</RUTDoc>
+    # <RznSoc>PEDRO LEON CALDERON</RznSoc>
+    # <MntExe>0</MntExe>
+    # <MntNeto>12116</MntNeto>
+    # <IVANoRec>
+    # <CodIVANoRec>4</CodIVANoRec>
+    # <MntIVANoRec>2302</MntIVANoRec>
+    # </IVANoRec>
+    # <MntTotal>14418</MntTotal>
+    # </Detalle>
+
+    # <Detalle>
+    # <TpoDoc>46</TpoDoc>
+    # <NroDoc>9</NroDoc>
+    # <TpoImp>1</TpoImp>
+    # <TasaImp>19</TasaImp>
+    # <FchDoc>2014-06-05</FchDoc>
+    # <RUTDoc>07139792-0</RUTDoc>
+    # <RznSoc>PEDRO LEON CALDERON</RznSoc>
+    # <MntExe>0</MntExe>
+    # <MntNeto>10622</MntNeto>
+    # <MntIVA>2018</MntIVA>
+    # <OtrosImp>
+    # <CodImp>15</CodImp>
+    # <TasaImp>19</TasaImp>
+    # <MntImp>2018</MntImp>
+    # </OtrosImp>
+    # <MntTotal>10622</MntTotal>
+    # </Detalle>
+
+    # <Detalle>
+    # <TpoDoc>60</TpoDoc>
+    # <NroDoc>211</NroDoc>
+    # <TpoImp>1</TpoImp>
+    # <TasaImp>19</TasaImp>
+    # <FchDoc>2014-06-05</FchDoc>
+    # <RUTDoc>07139792-0</RUTDoc>
+    # <RznSoc>PEDRO LEON CALDERON</RznSoc>
+    # <MntExe>0</MntExe>
+    # <MntNeto>9011</MntNeto>
+    # <MntIVA>1712</MntIVA>
+    # <MntTotal>10723</MntTotal>
+    # </Detalle>
+    end
+
+    tosign_xml+="<TmstFirma>2015-01-20T16:35:14</TmstFirma>"
+    tosign_xml+="</EnvioLibro>"
+
+    #Firma
+    tosign_xml+="<Signature xmlns=\"http://www.w3.org/2000/09/xmldsig#\">"
+    tosign_xml+=  "<SignedInfo>"
+    tosign_xml+=   "<CanonicalizationMethod Algorithm=\"http://www.w3.org/TR/2001/REC-xml-c14n-20010315\"/>"
+    tosign_xml+=    "<SignatureMethod Algorithm=\"http://www.w3.org/2000/09/xmldsig#rsa-sha1\"/>"
+    tosign_xml+=     "<Reference URI=\"\">"
+    tosign_xml+=      "<Transforms>"
+    tosign_xml+=         "<Transform Algorithm=\"http://www.w3.org/2000/09/xmldsig#enveloped-signature\"/>"
+    tosign_xml+=      "</Transforms>"
+    tosign_xml+=      "<DigestMethod Algorithm=\"http://www.w3.org/2000/09/xmldsig#sha1\"/>"
+    tosign_xml+=      "<DigestValue/>"
+    tosign_xml+=     "</Reference>"
+    tosign_xml+=  "</SignedInfo>"
+    tosign_xml+=  "<SignatureValue/>"
+    tosign_xml+=  "<KeyInfo>"
+    tosign_xml+=   "<KeyValue/>"
+    tosign_xml+=   "<X509Data>"
+    tosign_xml+=   "</X509Data>"
+    tosign_xml+=  "</KeyInfo>"
+    tosign_xml+= "</Signature>"
+
+    #Fin Libro  
+    tosign_xml+= "</LibroCompraVenta>"
+
+    File.open("libro_ventatosing#{libro.idenvio}.xml", 'w') { |file| file.puts tosign_xml}
+
+    sleep 1
+     
+    system("./comando libro_ventatosing#{libro.idenvio}.xml libro_venta#{libro.idenvio}.xml")
+      
+   # lib = File.read "doc-signed#{t}.xml"
+
+    system("rm libro_ventatosing#{libro.idenvio}.xml") 
+  end  
 
 end

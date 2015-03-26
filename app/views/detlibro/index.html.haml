@@ -18,7 +18,7 @@
       %tr
         %td= detalle.nombre_doc
         %td= detalle.folio
-        %td= detalle.rutemis
+        %td= detalle.rutrecep
         / %td= detalle.rznsocrecep
         %td{:style => 'text-align: right;'}= number_to_currency(detalle.mntneto, precision: 0, delimiter: "." )+"&nbsp;".html_safe
         %td{:style => 'text-align: right;'}= number_to_currency(detalle.mntexe, precision: 0, delimiter: "." )+"&nbsp;".html_safe

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150321200454) do
+ActiveRecord::Schema.define(version: 20150324133907) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -163,6 +163,7 @@ ActiveRecord::Schema.define(version: 20150321200454) do
     t.float    "impto10"
     t.float    "impto25"
     t.float    "impto30"
+    t.string   "rutrecep"
   end
 
   add_index "detlibros", ["libro_id"], name: "index_detlibros_on_libro_id", using: :btree

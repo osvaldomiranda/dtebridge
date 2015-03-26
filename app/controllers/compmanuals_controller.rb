@@ -13,18 +13,18 @@ class CompmanualsController < ApplicationController
   end
 
   def import
-    begin
+    # begin
       @compmanuals = Compmanual.all
       Compmanual.import(params[:file])
       respond_to do |format|
         format.html { render action: 'index', notice: "Documentos Ok"}
       end   
-    rescue
-      flash[:notice] = "Archivo con formato incorrecto"
-      respond_to do |format|
-        format.html { render action: 'index'}
-      end  
-    end 
+    # rescue
+    #   flash[:notice] = "Archivo con formato incorrecto"
+    #   respond_to do |format|
+    #     format.html { render action: 'index'}
+    #   end  
+    # end 
   end
 
   def destroy

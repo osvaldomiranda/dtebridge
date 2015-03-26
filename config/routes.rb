@@ -1,8 +1,5 @@
 Dtebridge::Application.routes.draw do
 
-
-
-
   get "detlibro/index"
   resources :compmanuals do
     collection { post :import }
@@ -37,18 +34,23 @@ Dtebridge::Application.routes.draw do
   resources :documentos
   resources :iat_logs
   resources :iats
-
   
   devise_for :installs
   devise_for :users
 
   get "detlibrovta/index"
   get "uploadformat/index"
+
   get "libro_compra/index"
+  post "buscarLibroCompra", to: "libro_compra#find"
+  get "libro_compra/generalibro", to: "libro_compra#generalibro"
+
   get "listalibro/index"
   get "home/index"
   get "libro_venta/index"
   post "buscarLibrovta", to: "libro_venta#find"
+  get "libro_venta/generalibro", to: "libro_venta#generalibro"
+ 
   get "doccompras_aprob/index"
   get "doccompras_rech/index"
   get "get_siitoken", to: "connectsii#get_token"
@@ -59,7 +61,7 @@ Dtebridge::Application.routes.draw do
   get "aprobComercial" , to: "connectsii#aprob_comercial"
   get "estadistica/index"
   get "estadistica", to: "estadistica#index"
-  get "libro_venta/generalibro", to: "libro_venta#generalibro"
+ 
   get "listalibro/genxml/:id", to: "listalibro#genxml"
   get "detlibro/index/:id", to: "detlibro#index"
 
