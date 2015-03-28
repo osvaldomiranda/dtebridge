@@ -10,7 +10,7 @@ class Libro < ActiveRecord::Base
     if self.tipo == "VENTA"
       libroventa  
     elsif self.tipo == "COMPRA"
-      libroCompra
+      librocompra
     end      
 
   end
@@ -210,21 +210,21 @@ class Libro < ActiveRecord::Base
     libro=self
 
     tosign_xml="<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>"
-    tosign_xml="<LibroCompraVenta xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.sii.cl/SiiDte LibroCV_v10.xsd\" version=\"1.0\" xmlns=\"http://www.sii.cl/SiiDte\">"
-    tosign_xml="<EnvioLibro ID=\"IDC#{libro.idenvio}\">"
-    tosign_xml="<Caratula>"
-    tosign_xml="<RutEmisorLibro>#{libro.rut}</RutEmisorLibro>"
-    tosign_xml="<RutEnvia>5682509-6</RutEnvia>"
-    tosign_xml="<PeriodoTributario>#{libro.idenvio}</PeriodoTributario>"
-    tosign_xml="<FchResol>2014-09-10</FchResol>"
-    tosign_xml="<NroResol>0</NroResol>"
-    tosign_xml="<TipoOperacion>COMPRA</TipoOperacion>"
-    tosign_xml="<TipoLibro>ESPECIAL</TipoLibro>"
-    tosign_xml="<TipoEnvio>TOTAL</TipoEnvio>"
-    tosign_xml="<FolioNotificacion>2</FolioNotificacion>"
-    tosign_xml="</Caratula>"
+    tosign_xml+="<LibroCompraVenta xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.sii.cl/SiiDte LibroCV_v10.xsd\" version=\"1.0\" xmlns=\"http://www.sii.cl/SiiDte\">"
+    tosign_xml+="<EnvioLibro ID=\"IDC#{libro.idenvio}\">\r\n"
+    tosign_xml+="<Caratula>\r\n"
+    tosign_xml+="<RutEmisorLibro>#{libro.rut}</RutEmisorLibro>\r\n"
+    tosign_xml+="<RutEnvia>5682509-6</RutEnvia>\r\n"
+    tosign_xml+="<PeriodoTributario>#{libro.idenvio}</PeriodoTributario>\r\n"
+    tosign_xml+="<FchResol>2014-09-10</FchResol>\r\n"
+    tosign_xml+="<NroResol>0</NroResol>\r\n"
+    tosign_xml+="<TipoOperacion>COMPRA</TipoOperacion>\r\n"
+    tosign_xml+="<TipoLibro>ESPECIAL</TipoLibro>\r\n"
+    tosign_xml+="<TipoEnvio>TOTAL</TipoEnvio>\r\n"
+    tosign_xml+="<FolioNotificacion>2</FolioNotificacion>\r\n"
+    tosign_xml+="</Caratula>"
 
-    tosign_xml="<ResumenPeriodo>"
+    tosign_xml+="<ResumenPeriodo>\r\n"
 
     tipos = Tipodte.all
     tipos.each do | t |
@@ -240,16 +240,16 @@ class Libro < ActiveRecord::Base
       impto30 = libro.detlibro.where(tipodte: t.tipo).sum(:impto30).to_i
 
       if cantidad > 0
-        tosign_xml="<TotalesPeriodo>"
-        tosign_xml="<TpoDoc>#{t.tipo}</TpoDoc>"
-        tosign_xml="<TotDoc>#{cantidad}</TotDoc>"
-        tosign_xml="<TotMntExe>#{mntexe}</TotMntExe>"
-        tosign_xml="<TotMntNeto>#{mntneto}</TotMntNeto>"
-        tosign_xml="<TotMntIVA>#{iva}</TotMntIVA>"
-        tosign_xml="<TotOpIVAUsoComun>1</TotOpIVAUsoComun>"
-        tosign_xml="<TotIVAUsoComun>1</TotIVAUsoComun>"
-        tosign_xml="<FctProp>0.9999</FctProp>"
-        tosign_xml="<TotCredIVAUsoComun>1</TotCredIVAUsoComun>"
+        tosign_xml+="<TotalesPeriodo>\r\n"
+        tosign_xml+="<TpoDoc>#{t.tipo}</TpoDoc>\r\n"
+        tosign_xml+="<TotDoc>#{cantidad}</TotDoc>\r\n"
+        tosign_xml+="<TotMntExe>#{mntexe}</TotMntExe>\r\n"
+        tosign_xml+="<TotMntNeto>#{mntneto}</TotMntNeto>\r\n"
+        tosign_xml+="<TotMntIVA>#{iva}</TotMntIVA>\r\n"
+        tosign_xml+="<TotOpIVAUsoComun>1</TotOpIVAUsoComun>\r\n"
+        tosign_xml+="<TotIVAUsoComun>1</TotIVAUsoComun>\r\n"
+        tosign_xml+="<FctProp>0.999</FctProp>\r\n"
+        tosign_xml+="<TotCredIVAUsoComun>1</TotCredIVAUsoComun>\r\n"
 
         if impto18 > 0
           tosign_xml+="<TotOtrosImp>\r\n"
@@ -276,8 +276,8 @@ class Libro < ActiveRecord::Base
           tosign_xml+="</TotOtrosImp>\r\n"
         end
 
-        tosign_xml="<TotMntTotal>#{mnttotal}</TotMntTotal>"
-        tosign_xml="</TotalesPeriodo>"
+        tosign_xml+="<TotMntTotal>#{mnttotal}</TotMntTotal>\r\n"
+        tosign_xml+="</TotalesPeriodo>\r\n"
       end
     end
 
@@ -319,7 +319,7 @@ class Libro < ActiveRecord::Base
     # <TotMntTotal>10622</TotMntTotal>
     # </TotalesPeriodo>
 
-    tosign_xml="</ResumenPeriodo>"
+    tosign_xml+="</ResumenPeriodo>"
 
     #TO DO: Corrigir para usar modelo Doccompra
     tiposmanuales = Tipodte.all
@@ -327,23 +327,22 @@ class Libro < ActiveRecord::Base
     tiposmanuales.each do |t|
       #Detalle
       detlibro = libro.detlibro.where(tipodte: t.tipo)
-      rznsocrecep = Empresa.find_by_rut(libro.rut).rznsocial
 
       detlibro.each do |det| 
 
         doc = Compmanual.where(folio: det.folio).where(rutrecep: det.rutrecep).last
 
-        tosign_xml="<Detalle>"
-        tosign_xml="<TpoDoc>#{det.tipodte}</TpoDoc>"
-        tosign_xml="<NroDoc>#{det.folio}</NroDoc>"
-        tosign_xml="<TpoImp>1</TpoImp>"
-        tosign_xml="<TasaImp>19</TasaImp>"
-        tosign_xml="<FchDoc>#{det.iva}</FchDoc>"
-        tosign_xml="<RUTDoc>#{det.rutrecep}</RUTDoc>"
-        tosign_xml="<RznSoc>#{rznsocrecep}</RznSoc>"
-        tosign_xml="<MntExe>#{det.mntexe}</MntExe>"
-        tosign_xml="<MntNeto>#{det.mntneto}</MntNeto>"
-        tosign_xml="<MntIVA>#{det.mntiva}</MntIVA>"
+        tosign_xml+="<Detalle>\r\n"
+        tosign_xml+="<TpoDoc>#{det.tipodte}</TpoDoc>\r\n"
+        tosign_xml+="<NroDoc>#{det.folio}</NroDoc>\r\n"
+        tosign_xml+="<TpoImp>1</TpoImp>\r\n"
+        tosign_xml+="<TasaImp>19</TasaImp>\r\n"
+        tosign_xml+="<FchDoc>#{doc.fchemis}</FchDoc>\r\n"
+        tosign_xml+="<RUTDoc>#{doc.rutemisor}</RUTDoc>\r\n"
+        tosign_xml+="<RznSoc>#{doc.rznsoemisor}</RznSoc>\r\n"
+        tosign_xml+="<MntExe>#{det.mntexe}</MntExe>\r\n"
+        tosign_xml+="<MntNeto>#{det.mntneto}</MntNeto>\r\n"
+        tosign_xml+="<MntIVA>#{det.mntiva.to_i}</MntIVA>"
 
         if doc.impto18 > 0
           tosign_xml+="<OtrosImp>\r\n"
@@ -374,9 +373,9 @@ class Libro < ActiveRecord::Base
           tosign_xml+="</OtrosImp>\r\n"
         end
 
-        tosign_xml="<MntTotal>#{mnttotal}</MntTotal>"
-        tosign_xml="</Detalle>"
-
+        tosign_xml+="<MntTotal>#{det.mnttotal}</MntTotal>\r\n"
+        tosign_xml+="</Detalle>\r\n"
+      end  
 
     # <Detalle>
     # <TpoDoc>33</TpoDoc>
@@ -471,8 +470,8 @@ class Libro < ActiveRecord::Base
     # </Detalle>
     end
 
-    tosign_xml+="<TmstFirma>2015-01-20T16:35:14</TmstFirma>"
-    tosign_xml+="</EnvioLibro>"
+    tosign_xml+="<TmstFirma>2015-01-20T16:35:14</TmstFirma>\r\n"
+    tosign_xml+="</EnvioLibro>\r\n"
 
     #Firma
     tosign_xml+="<Signature xmlns=\"http://www.w3.org/2000/09/xmldsig#\">"
@@ -498,15 +497,15 @@ class Libro < ActiveRecord::Base
     #Fin Libro  
     tosign_xml+= "</LibroCompraVenta>"
 
-    File.open("libro_ventatosing#{libro.idenvio}.xml", 'w') { |file| file.puts tosign_xml}
+    File.open("libro_compratosing#{libro.idenvio}.xml", 'w') { |file| file.puts tosign_xml}
 
     sleep 1
      
-    system("./comando libro_ventatosing#{libro.idenvio}.xml libro_venta#{libro.idenvio}.xml")
+    system("./comando libro_compratosing#{libro.idenvio}.xml libro_compra#{libro.idenvio}.xml")
       
    # lib = File.read "doc-signed#{t}.xml"
 
-    system("rm libro_ventatosing#{libro.idenvio}.xml") 
+    system("rm libro_compratosing#{libro.idenvio}.xml") 
   end  
 
 end

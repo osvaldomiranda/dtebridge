@@ -56,7 +56,7 @@ class Api::V1::DocumentoController < Api::V1::ApiController
       invoice.estadoxml = postsii(invoice.id)
       invoice.save   
       if invoice.save    
-        estadoStr(@invoice)
+        estadoStr(invoice)
       end  
     end
     render 'api/v1/invoices/create' 
