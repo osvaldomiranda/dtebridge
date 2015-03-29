@@ -22,4 +22,5 @@
       %td= libro.enviado
       %td= link_to 'Ver Detalle', "/detlibro/index/#{libro.id}", class: "btn btn-primary btn-xs"
       %td= link_to "Generar", "/listalibro/genxml/#{libro.id}", class: "btn btn-primary btn-xs"
+      %td= link_to "XML", "/listalibro/sendxml/#{libro.id}", class: "btn btn-primary btn-xs"
       %td= link_to "Enviar", "", class: "btn btn-primary btn-xs"

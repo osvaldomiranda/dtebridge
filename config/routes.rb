@@ -63,6 +63,7 @@ Dtebridge::Application.routes.draw do
   get "estadistica", to: "estadistica#index"
  
   get "listalibro/genxml/:id", to: "listalibro#genxml"
+  get "listalibro/sendxml/:id", to: "listalibro#sendxml"
   get "detlibro/index/:id", to: "detlibro#index"
 
   get "detcompras/:id", to: "detcompras#index"

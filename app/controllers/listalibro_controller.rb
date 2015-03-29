@@ -15,4 +15,9 @@ class ListalibroController < ApplicationController
       format.html { render action: 'index' }
     end 
   end
+
+  def sendxml
+    libro = Libro.find(params[:id])
+    send_file "#{Rails.root}/libro_compra#{libro.idenvio}.xml"
+  end  
 end
