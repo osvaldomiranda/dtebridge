@@ -17,6 +17,39 @@ class LibroCompraController < ApplicationController
     emp = Empresa.where(rut: @rut).first
     @empresa = emp.rznsocial
 
+
+    desde = Date.strptime("#{mes}/01", "%Y/%m/%d")
+
+    if mes[5..7] == "02"
+        hasta = Date.strptime("#{mes}/28", "%Y/%m/%d")
+    else
+        hasta = Date.strptime("#{mes}/31", "%Y/%m/%d")
+    end    
+    
+    @empresas = Empresa.all
+    @documentos =  Doccompra.select('"TipoDTE", sum("MntNeto") as mntneto,sum("MntExe") as mntexe, sum("IVA") as iva, sum("MntTotal") as mnttotal, count(*) as count').where('estado <> ? AND "TipoDTE" <> 52 and "RUTEmisor"=? and "FchEmis" >= ? AND "FchEmis" <= ?',"Rechazado SII",  @rut, desde, hasta ).group('"TipoDTE"')
+    totFact = Doccompra.select('sum("MntNeto") as mntneto,sum("MntExe") as mntexe, sum("IVA") as iva, sum("MntTotal") as mnttotal, count(*) as count').where('estado <> ? AND "TipoDTE" <> 52 and "TipoDTE"<>61 and "RUTEmisor"=? and "FchEmis" >= ? AND "FchEmis" <= ?',"Rechazado SII",  @rut, desde, hasta )
+    totCred = Doccompra.select('sum("MntNeto") as mntneto,sum("MntExe") as mntexe, sum("IVA") as iva, sum("MntTotal") as mnttotal, count(*) as count').where('estado <> ? AND "TipoDTE"=61 and "RUTEmisor"=? and "FchEmis" >= ? AND "FchEmis" <= ?',"Rechazado SII",  @rut, desde, hasta )
+ 
+    totFact.map {|e| @totFact = e}
+    totCred.map {|e| @totCred = e}
+
+
+    @otrosImps = Doccompra.select('"TipoDTE","imptoretencompras"."TipoImp" as tipoimp, "imptoretencompras"."TasaImp" as tasaimp, sum("imptoretencompras"."MontoImp") as montoimp').where('estado <> ? AND  "TipoDTE" <> 52 and "TipoDTE"<>61 and "RUTEmisor"=? and "FchEmis" >= ? AND "FchEmis" <= ?',"Rechazado SII",  @rut, desde, hasta ).joins(:imptoretencompras).group('"TipoDTE","imptoretencompras"."TipoImp","imptoretencompras"."TasaImp"')
+    @otrosImpsCred = Doccompra.select('"TipoDTE","imptoretencompras"."TipoImp" as tipoimp, "imptoretencompras"."TasaImp" as tasaimp, sum("imptoretencompras"."MontoImp") as montoimp').where('estado <> ? AND  "TipoDTE"=61 and "RUTEmisor"=? and "FchEmis" > ? AND "FchEmis" < ?',"Rechazado SII",  @rut, desde, hasta ).joins(:imptoretencompras).group('"TipoDTE","imptoretencompras"."TipoImp","imptoretencompras"."TasaImp"')
+
+
+    @docmanuals = Compmanual.select('"tipodoc", sum("mntneto") as mntneto,sum("mntexe") as mntexe, sum("mntiva") as iva, sum("mnttotal") as mnttotal,  sum(impto10+impto18+impto25+impto30) as otrosimp, count(*) as count').where('"tipodoc" <> 52 and "rutrecep"=? ', @rut ).group('"tipodoc"')
+    totFman = Compmanual.select('sum("mntneto") as mntneto,sum("mntexe") as mntexe, sum("mntiva") as iva, sum("mnttotal") as mnttotal,sum(impto10+impto18+impto25+impto30) as otrosimp, count(*) as count').where('"tipodoc" <> 52 and "tipodoc"<>60 and "rutrecep"=? ', @rut)
+    totCManual = Compmanual.select('sum("mntneto") as mntneto,sum("mntexe") as mntexe, sum("mntiva") as iva, sum("mnttotal") as mnttotal,sum(impto10+impto18+impto25+impto30) as otrosimp,  count(*) as count').where('"tipodoc"=60 and "rutrecep"=? ', @rut )
+
+    totFman.map {|e| @totFmanual = e}
+    totCManual.map {|e| @totCredManual  = e}
+
+    @otrosImpsMan = Compmanual.select('"tipodoc","otrosimpcompmanuals"."TipoImp" as tipoimp, "otrosimpcompmanuals"."TasaImp" as tasaimp, sum("otrosimpcompmanuals"."MontoImp") as montoimp').where('"tipodoc" <> 52 and "tipodoc"<>60 and "rutrecep"=? ', @rut).joins(:otrosimpcompmanuals).group('"tipodoc","otrosimpcompmanuals"."TipoImp","otrosimpcompmanuals"."TasaImp"')
+    @otrosImpsCredMan = Compmanual.select('"tipodoc","otrosimpcompmanuals"."TipoImp" as tipoimp, "otrosimpcompmanuals"."TasaImp" as tasaimp, sum("otrosimpcompmanuals"."MontoImp") as montoimp').where('"tipodoc" <> 52 and "tipodoc"<>30 and "rutrecep"=? ', @rut ).joins(:otrosimpcompmanuals).group('"tipodoc","otrosimpcompmanuals"."TipoImp","otrosimpcompmanuals"."TasaImp"')
+   
+
     respond_to do |format|
       format.html { render action: 'index' }
     end
