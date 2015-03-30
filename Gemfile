@@ -115,6 +115,8 @@ group :development, :test do
 end
 
 group :production, :staging do
+  # For making rails console work
+  gem 'rb-readline'
   # For postgres
   gem 'pg'
 end
