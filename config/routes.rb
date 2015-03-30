@@ -1,5 +1,6 @@
 Dtebridge::Application.routes.draw do
 
+  get "newuser/index"
   get "detlibro/index"
   resources :compmanuals do
     collection { post :import }
@@ -76,6 +77,13 @@ Dtebridge::Application.routes.draw do
   get "doccompras_rech", to: "doccompras_rech#index"
 
   post "buscarDoc", to: "documentos#find"
+
+  get "/daradmin/permisos", to: "daradmin#index"
+  get "/daradmin/:id", to: "daradmin#daradmin"
+  get "/daradmin/quitaradmin/:id", to: "daradmin#quitaradmin"
+
+  get "/newuser/index", to: "newuser#index"
+  post "/newuser/new", to: "newuser#new"
 
   root to: "home#index"
 

@@ -24,7 +24,12 @@ class Documento < ActiveRecord::Base
   attr_reader :sucursal
   attr_reader :nombre_doc
   def sucursal
-    Sucursal.where(cdgsiisucur: "#{self.CdgSIISucur}" ).first.nombre
+    nombre = " "
+    sucursal = Sucursal.where(cdgsiisucur: "#{self.CdgSIISucur}" ).first
+    unless sucursal.nil?
+      nombre = sucursal.nombre
+    end
+    return nombre
   end
 
   def nombre_doc

@@ -1,7 +1,12 @@
 class LogIat < ActiveRecord::Base
 
   def empresa
-    Empresa.find_by_rut(self.rut).rznsocial
+    rznsocial = " "
+    empresa = Empresa.find_by_rut(self.rut)
+    unless  empresa.nil?
+      rznsocial = empresa.rznsocial
+    end
+    return rznsocial
   end
 
   def nomsucursal

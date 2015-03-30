@@ -36,3 +36,8 @@ Tipodte.find_or_create_by_tipo(tipo: 812, manual: "S",nombre: "Resolucion del SN
 Tipodte.find_or_create_by_tipo(tipo: 813, manual: "S",nombre: "Pasaporte")
 Tipodte.find_or_create_by_tipo(tipo: 814, manual: "S",nombre: "Certificado de Deposito Bolsa Prod. Chile.")
 Tipodte.find_or_create_by_tipo(tipo: 815, manual: "S",nombre: "Vale de Prenda Bolsa Prod. Chile")
+
+
+User.find_or_create_by_email(email: "admin@invoicedigital.cl" , password: "invoice1234", password_confirmation: "invoice1234")
+Admin.find_or_create_by_email(email: "admin@invoicedigital.cl" )
+

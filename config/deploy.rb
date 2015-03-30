@@ -21,7 +21,7 @@ load "config/recipes/libxslt"
 load "config/recipes/imagemagick"
 load "config/recipes/image_compression"
 
-set :stages, %w( staging production )
+set :stages, %w( staging production elsultan )
 set :default_stage, "staging"
 
 # Application info
