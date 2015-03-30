@@ -24,16 +24,7 @@ class Documento < ActiveRecord::Base
   attr_reader :sucursal
   attr_reader :nombre_doc
   def sucursal
-    sucursales = { 75047210 => "VINA DEL MAR",  
-                   63635210 => "OVALLE",  
-                   64409688 => "LA SERENA",  
-                   63635200 => "ABEL GONZALEZ 042",
-                   41272801 => "MONUMENTO",    
-                   78139472 => "5 DE ABRIL 412", 
-                   41271651 => "ABEL GONZALEZ 44"  
-                  }
-
-    sucursales[self.CdgSIISucur]
+    Sucursal.where(cdgsiisucur: "#{self.CdgSIISucur}" ).first.nombre
   end
 
   def nombre_doc

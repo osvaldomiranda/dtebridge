@@ -107,6 +107,7 @@ class LibroVentaController < ApplicationController
     dtes.map { |e|  
       detlibro = Detlibro.new
       detlibro.tipodte = e.TipoDTE
+      detlibro.cantidad = 1
       detlibro.rutemis = e.RUTEmisor
       detlibro.folio = e.Folio
       detlibro.mnttotal = e.MntTotal
@@ -141,6 +142,7 @@ class LibroVentaController < ApplicationController
       detlibro = Detlibro.new
       detlibro.tipodte = e.tipodoc
       detlibro.rutemis = e.rutemisor
+      detlibro.cantidad = e.cantidad
       detlibro.rutrecep = e.rutrecep
       detlibro.folio = e.folio
       detlibro.mnttotal = e.mnttotal

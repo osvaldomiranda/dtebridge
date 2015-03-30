@@ -44,7 +44,7 @@ class Libro < ActiveRecord::Base
 
       cantidad = libro.detlibro.where(tipodte: t.tipo).count
       if t.tipo == 35
-        cantidad = 40025 
+        cantidad = libro.detlibro.where(tipodte: t.tipo).sum(:cantidad)
       end
 
       mntexe = libro.detlibro.where(tipodte: t.tipo).sum(:mntexe)

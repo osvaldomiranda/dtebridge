@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150329140339) do
+ActiveRecord::Schema.define(version: 20150330140830) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -164,6 +164,7 @@ ActiveRecord::Schema.define(version: 20150329140339) do
     t.float    "impto25"
     t.float    "impto30"
     t.string   "rutrecep"
+    t.integer  "cantidad"
   end
 
   add_index "detlibros", ["libro_id"], name: "index_detlibros_on_libro_id", using: :btree
@@ -287,6 +288,7 @@ ActiveRecord::Schema.define(version: 20150329140339) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "anulado"
+    t.integer  "cantidad"
   end
 
   create_table "docsemails", force: true do |t|
