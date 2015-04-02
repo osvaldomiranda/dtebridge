@@ -31,7 +31,8 @@ class Libro < ActiveRecord::Base
     tosign_xml+="<TipoOperacion>VENTA</TipoOperacion>"
     tosign_xml+="<TipoLibro>MENSUAL</TipoLibro>"
     tosign_xml+="<TipoEnvio>TOTAL</TipoEnvio>"
-    tosign_xml+="<FolioNotificacion>1</FolioNotificacion>" 
+   # Solo para certificación 
+   # tosign_xml+="<FolioNotificacion>1</FolioNotificacion>" 
     tosign_xml+="</Caratula>"
 
     #Resumen
