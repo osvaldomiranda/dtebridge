@@ -26,8 +26,8 @@ class Libro < ActiveRecord::Base
     tosign_xml+="<RutEmisorLibro>#{libro.rut}</RutEmisorLibro>"
     tosign_xml+="<RutEnvia>5682509-6</RutEnvia>"
     tosign_xml+="<PeriodoTributario>#{libro.idenvio}</PeriodoTributario>"
-    tosign_xml+="<FchResol>2014-09-10</FchResol>"
-    tosign_xml+="<NroResol>0</NroResol>"
+    tosign_xml+="<FchResol>2014-08-22</FchResol>"
+    tosign_xml+="<NroResol>80</NroResol>"
     tosign_xml+="<TipoOperacion>VENTA</TipoOperacion>"
     tosign_xml+="<TipoLibro>ESPECIAL</TipoLibro>"
     tosign_xml+="<TipoEnvio>TOTAL</TipoEnvio>"
@@ -109,7 +109,7 @@ class Libro < ActiveRecord::Base
 
         doc = Docmanual.where(folio: det.folio).where(rutemisor: det.rutemis).last
 
-        if doc.tipodoc != 35
+        if doc.tipodoc != 35 &&  doc.tipodoc != 38
           tosign_xml+="<Detalle>\r\n"
           tosign_xml+="<TpoDoc>#{doc.tipodoc}</TpoDoc>\r\n"
           tosign_xml+="<NroDoc>#{doc.folio}</NroDoc>\r\n"

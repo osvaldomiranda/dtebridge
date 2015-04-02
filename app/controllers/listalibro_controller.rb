@@ -18,6 +18,10 @@ class ListalibroController < ApplicationController
 
   def sendxml
     libro = Libro.find(params[:id])
-    send_file "#{Rails.root}/libro_compra#{libro.idenvio}.xml"
+    if libro.tipo = "VENTA"
+      send_file "#{Rails.root}/libro_venta#{libro.idenvio}.xml"
+    else
+      send_file "#{Rails.root}/libro_compra#{libro.idenvio}.xml"
+    end
   end  
 end
