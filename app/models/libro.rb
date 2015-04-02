@@ -29,7 +29,7 @@ class Libro < ActiveRecord::Base
     tosign_xml+="<FchResol>2014-08-22</FchResol>"
     tosign_xml+="<NroResol>80</NroResol>"
     tosign_xml+="<TipoOperacion>VENTA</TipoOperacion>"
-    tosign_xml+="<TipoLibro>ESPECIAL</TipoLibro>"
+    tosign_xml+="<TipoLibro>MENSUAL</TipoLibro>"
     tosign_xml+="<TipoEnvio>TOTAL</TipoEnvio>"
     tosign_xml+="<FolioNotificacion>1</FolioNotificacion>" 
     tosign_xml+="</Caratula>"
