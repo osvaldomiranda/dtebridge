@@ -153,13 +153,13 @@ class Api::V1::DocumentoController < Api::V1::ApiController
 
   def get_token
    
-    i=0
-    while(@seed.nil? && i<50)
-      @seed= getseed
-      sleep 1
-      i+=1
-    end
-
+    # i=0
+    # while(@seed.nil? && i<50)
+    #   @seed= getseed
+    #   sleep 1
+    #   i+=1
+    # end
+    @seed = 1
 
     unless @seed.nil?
    
@@ -197,8 +197,8 @@ class Api::V1::DocumentoController < Api::V1::ApiController
       
       doc = File.read "doc-signed#{t}.xml"
 
-      system("rm tosign_xml#{t}.xml") 
-      system("rm doc-signed#{t}.xml")
+      # system("rm tosign_xml#{t}.xml") 
+      # system("rm doc-signed#{t}.xml")
 
       i=0
       while(@token.nil? && i<50)
