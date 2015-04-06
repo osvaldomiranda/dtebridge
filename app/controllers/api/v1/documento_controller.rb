@@ -75,8 +75,8 @@ class Api::V1::DocumentoController < Api::V1::ApiController
 
       @BOUNDARY = "9022632e1130lc4"
    
-     # uri = URI.parse("https://palena.sii.cl/cgi_dte/UPL/DTEUpload") 
-      uri = URI.parse("https://maullin2.sii.cl/cgi_dte/UPL/DTEUpload") 
+      uri = URI.parse("https://palena.sii.cl/cgi_dte/UPL/DTEUpload") 
+     # uri = URI.parse("https://maullin2.sii.cl/cgi_dte/UPL/DTEUpload") 
 
       http = Net::HTTP.new(uri.host, uri.port)
       http.use_ssl = true
@@ -153,13 +153,12 @@ class Api::V1::DocumentoController < Api::V1::ApiController
 
   def get_token
    
-    # i=0
-    # while(@seed.nil? && i<50)
-    #   @seed= getseed
-    #   sleep 1
-    #   i+=1
-    # end
-    @seed = 1
+    i=0
+    while(@seed.nil? && i<50)
+      @seed= getseed
+      sleep 1
+      i+=1
+    end
 
     unless @seed.nil?
    
@@ -197,8 +196,8 @@ class Api::V1::DocumentoController < Api::V1::ApiController
       
       doc = File.read "doc-signed#{t}.xml"
 
-      # system("rm tosign_xml#{t}.xml") 
-      # system("rm doc-signed#{t}.xml")
+      system("rm tosign_xml#{t}.xml") 
+      system("rm doc-signed#{t}.xml")
 
       i=0
       while(@token.nil? && i<50)
@@ -229,9 +228,9 @@ class Api::V1::DocumentoController < Api::V1::ApiController
   def getseed
     begin
       # ambiente sii pruebas 
-       client = Savon.client(wsdl:"https://maullin2.sii.cl/DTEWS/CrSeed.jws?WSDL") 
+      #client = Savon.client(wsdl:"https://maullin2.sii.cl/DTEWS/CrSeed.jws?WSDL") 
       #produccion
-      #client = Savon.client(wsdl:"https://palena.sii.cl/DTEWS/CrSeed.jws?WSDL") 
+      client = Savon.client(wsdl:"https://palena.sii.cl/DTEWS/CrSeed.jws?WSDL") 
       seed_xml = client.call(:get_seed)
 
       seed= seed_xml.to_s[seed_xml.to_s.index('SEMILLA')+11..seed_xml.to_s.index('SEMILLA')+22]
