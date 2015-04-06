@@ -5,28 +5,18 @@ class DocumentosController < ApplicationController
   def index
     @documentos = Documento.order(created_at: :desc).paginate(:page => params[:page], :per_page => 15 )
     @empresas = Empresa.all
+    @sucursales = Sucursal.all
   end
 
   def find
     @empresas = Empresa.all
+    @sucursales = Sucursal.all
 
-    if params[:empresa] == 'Lubba Regiones'
-      rut = "77888630-8"  
-    else
-      rut = "77398570-7"      
-    end
+    empresa = Empresa.find_by_rznsocial(params[:empresa]) || Empresa.last
+    rut = empresa.rut
 
-    sucursales = { 
-      "(Regiones) VINA DEL MAR" => 75047210,
-      "(Regiones) OVALLE" => 63635210 ,  
-      "(Regiones) LA SERENA" => 64409688,  
-      "(Regiones) ABEL GONZALEZ 042" => 63635200,
-      "(Stgo) MONUMENTO" => 41272801,    
-      "(Stgo) 5 DE ABRIL 412" => 78139472, 
-      "(Stgo) ABEL GONZALEZ 44" => 41271651}
-
-
-    suc = sucursales[params[:sucursal]]
+    sucursal = Sucursal.find_by_nombre(params[:sucursal]) || Sucursal.last
+    suc = sucursal.cdgsiisucur
 
     if params[:sucursal]==""
       if params[:Folio]== ""
