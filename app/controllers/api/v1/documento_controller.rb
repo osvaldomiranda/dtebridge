@@ -193,7 +193,7 @@ class Api::V1::DocumentoController < Api::V1::ApiController
       sleep 1
      
       # Se agregará un comando para cada cliente mientras se resuelve como solucionar
-      if @invoice.RUTEmisor == "80790400-0"
+      if Empresa.first.rut == "80790400-0"
         system("./comandoElSultan tosign_xml#{t}.xml doc-signed#{t}.xml")
       else  
         system("./comando tosign_xml#{t}.xml doc-signed#{t}.xml")
