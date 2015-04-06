@@ -39,9 +39,9 @@ class Api::V1::DocumentoController < Api::V1::ApiController
    
     if @invoice.save
       if !params[:conEnvio].present? || params[:conEnvio] == "S"
-      #   @invoice.estadoxml = postsii(@invoice.id)
-      #   @invoice.save       
-      #   estadoStr(@invoice)
+        @invoice.estadoxml = postsii(@invoice.id)
+        @invoice.save       
+        estadoStr(@invoice)
       end
 
       render 'api/v1/invoices/create' 
@@ -71,82 +71,82 @@ class Api::V1::DocumentoController < Api::V1::ApiController
     @dv  = @doc.RUTEmisor[9..9]
 
 
-    unless @token.nil?
+    # unless @token.nil?
 
-      @BOUNDARY = "9022632e1130lc4"
+    #   @BOUNDARY = "9022632e1130lc4"
    
-      uri = URI.parse("https://palena.sii.cl/cgi_dte/UPL/DTEUpload") 
-     # uri = URI.parse("https://maullin2.sii.cl/cgi_dte/UPL/DTEUpload") 
+    #   uri = URI.parse("https://palena.sii.cl/cgi_dte/UPL/DTEUpload") 
+    #  # uri = URI.parse("https://maullin2.sii.cl/cgi_dte/UPL/DTEUpload") 
 
-      http = Net::HTTP.new(uri.host, uri.port)
-      http.use_ssl = true
-      http.verify_mode = OpenSSL::SSL::VERIFY_PEER
+    #   http = Net::HTTP.new(uri.host, uri.port)
+    #   http.use_ssl = true
+    #   http.verify_mode = OpenSSL::SSL::VERIFY_PEER
 
-      request = Net::HTTP::Post.new(uri.request_uri) 
+    #   request = Net::HTTP::Post.new(uri.request_uri) 
 
-      post_body = []
+    #   post_body = []
 
-      post_body << "--9022632e1130lc4\r\n"
-      post_body << "Content-Disposition: form-data; name=\"rutSender\"\r\n"
-      post_body << "Content-Type: text/plain; charset=US-ASCII\r\n"
-      post_body << "Content-Transfer-Encoding: 8Bit\r\n"
-      post_body << "\r\n"
-      post_body << "05682509\r\n"
-      post_body << "--9022632e1130lc4\r\n"
-      post_body << "Content-Disposition: form-data; name=\"dvSender\"\r\n"
-      post_body << "Content-Type: text/plain; charset=US-ASCII\r\n"
-      post_body << "Content-Transfer-Encoding: 8Bit\r\n"
-      post_body << "\r\n"
-      post_body << "6\r\n"
-      post_body << "--9022632e1130lc4\r\n"
-      post_body << "Content-Disposition: form-data; name=\"rutCompany\"\r\n"
-      post_body << "Content-Type: text/plain; charset=US-ASCII\r\n"
-      post_body << "Content-Transfer-Encoding: 8Bit\r\n"
-      post_body << "\r\n"
-      post_body << "#{@rut}\r\n"
-      post_body << "--9022632e1130lc4\r\n"
-      post_body << "Content-Disposition: form-data; name=\"dvCompany\"\r\n"
-      post_body << "Content-Type: text/plain; charset=US-ASCII\r\n"
-      post_body << "Content-Transfer-Encoding: 8Bit\r\n"
-      post_body << "\r\n"
-      post_body << "#{@dv}\r\n"
+    #   post_body << "--9022632e1130lc4\r\n"
+    #   post_body << "Content-Disposition: form-data; name=\"rutSender\"\r\n"
+    #   post_body << "Content-Type: text/plain; charset=US-ASCII\r\n"
+    #   post_body << "Content-Transfer-Encoding: 8Bit\r\n"
+    #   post_body << "\r\n"
+    #   post_body << "05682509\r\n"
+    #   post_body << "--9022632e1130lc4\r\n"
+    #   post_body << "Content-Disposition: form-data; name=\"dvSender\"\r\n"
+    #   post_body << "Content-Type: text/plain; charset=US-ASCII\r\n"
+    #   post_body << "Content-Transfer-Encoding: 8Bit\r\n"
+    #   post_body << "\r\n"
+    #   post_body << "6\r\n"
+    #   post_body << "--9022632e1130lc4\r\n"
+    #   post_body << "Content-Disposition: form-data; name=\"rutCompany\"\r\n"
+    #   post_body << "Content-Type: text/plain; charset=US-ASCII\r\n"
+    #   post_body << "Content-Transfer-Encoding: 8Bit\r\n"
+    #   post_body << "\r\n"
+    #   post_body << "#{@rut}\r\n"
+    #   post_body << "--9022632e1130lc4\r\n"
+    #   post_body << "Content-Disposition: form-data; name=\"dvCompany\"\r\n"
+    #   post_body << "Content-Type: text/plain; charset=US-ASCII\r\n"
+    #   post_body << "Content-Transfer-Encoding: 8Bit\r\n"
+    #   post_body << "\r\n"
+    #   post_body << "#{@dv}\r\n"
 
           
-      post_body << "--9022632e1130lc4\r\n"
-      post_body << "Content-Disposition: form-data; name=\"archivo\"; filename=\"#{@doc.fileEnvio}\"\r\n"
-      post_body << "Content-Type: /xml\r\n" 
+    #   post_body << "--9022632e1130lc4\r\n"
+    #   post_body << "Content-Disposition: form-data; name=\"archivo\"; filename=\"#{@doc.fileEnvio}\"\r\n"
+    #   post_body << "Content-Type: /xml\r\n" 
 
-      envio_xml = @doc.fileEnvio.read
+    #   envio_xml = @doc.fileEnvio.read
        
-      post_body << "\r\n"
-      post_body << envio_xml
-      post_body << "\r\n"
-      post_body << "--9022632e1130lc4--\r\n"
+    #   post_body << "\r\n"
+    #   post_body << envio_xml
+    #   post_body << "\r\n"
+    #   post_body << "--9022632e1130lc4--\r\n"
     
-      request.body = post_body.join
+    #   request.body = post_body.join
 
-      request["Accept"]          = "image/gif, image/x-xbitmap, image/jpeg, image/pjpeg, application/vnd.ms-powerpoint, application/ms-excel, application/msword, */*"
-      request["Referer"]         = "http://www.lubba.cl"
-      request["Accept-Language"] = "es-cl"
-      request["Content-Type"]    = "multipart/form-data: boundary=#{@BOUNDARY}"
-      request["Accept-Encoding"] = "gzip, deflate"
-      request["User-Agent"]      = "Mozilla/4.0 (compatible; PROG 1.0; Windows NT 5.0; YComp 5.0.2.4)"
-      request["Content-Length"]  = request.body.length
-      request["Connection"]      = "Keep-Alive"
-      request["Cache-Control"]   = "no-cache"
-      request["Cookie"]          = "TOKEN=#{@tokenOk}"
+    #   request["Accept"]          = "image/gif, image/x-xbitmap, image/jpeg, image/pjpeg, application/vnd.ms-powerpoint, application/ms-excel, application/msword, */*"
+    #   request["Referer"]         = "http://www.lubba.cl"
+    #   request["Accept-Language"] = "es-cl"
+    #   request["Content-Type"]    = "multipart/form-data: boundary=#{@BOUNDARY}"
+    #   request["Accept-Encoding"] = "gzip, deflate"
+    #   request["User-Agent"]      = "Mozilla/4.0 (compatible; PROG 1.0; Windows NT 5.0; YComp 5.0.2.4)"
+    #   request["Content-Length"]  = request.body.length
+    #   request["Connection"]      = "Keep-Alive"
+    #   request["Cache-Control"]   = "no-cache"
+    #   request["Cookie"]          = "TOKEN=#{@tokenOk}"
     
-      responce = http.request(request)
-      puts "===================================="
-      puts request.body
-      puts "===================================="
-      puts responce.body
-      puts "===================================="
+    #   responce = http.request(request)
+    #   puts "===================================="
+    #   puts request.body
+    #   puts "===================================="
+    #   puts responce.body
+    #   puts "===================================="
 
-      return responce.body
-    else
-      return "ERROR"
-    end    
+    #   return responce.body
+    # else
+    #   return "ERROR"
+    # end    
   end
 
 
@@ -198,7 +198,7 @@ class Api::V1::DocumentoController < Api::V1::ApiController
       doc = File.read "doc-signed#{t}.xml"
 
       system("rm tosign_xml#{t}.xml") 
-      system("rm doc-signed#{t}.xml")
+      # system("rm doc-signed#{t}.xml")
 
       i=0
       while(@token.nil? && i<50)
