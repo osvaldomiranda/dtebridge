@@ -207,8 +207,8 @@ class Api::V1::DocumentoController < Api::V1::ApiController
 
       doc = File.read "doc-signed#{t}.xml"
 
-      # system("rm tosign_xml#{t}.xml") 
-      # system("rm doc-signed#{t}.xml")
+      system("rm tosign_xml#{t}.xml") 
+      system("rm doc-signed#{t}.xml")
 
       i=0
       while(@token.nil? && i<50)
