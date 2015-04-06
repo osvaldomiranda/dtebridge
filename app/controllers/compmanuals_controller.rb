@@ -4,7 +4,7 @@ class CompmanualsController < ApplicationController
   respond_to :html
 
   def index
-    @compmanuals = Compmanual.all
+    @compmanuals = Compmanual.where(estado: "PREVIO")
     respond_with(@compmanuals)
   end
 

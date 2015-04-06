@@ -5,7 +5,7 @@ class DocmanualsController < ApplicationController
 
   def index
     @docmanuals = Docmanual.where(estado: "PREVIO")
-    totFmanual = Docmanual.select('sum("mntneto") as mntneto,sum("mntexe") as mntexe, sum("mntiva") as iva, sum("mnttotal") as mnttotal,sum(impto10+impto18+impto25+impto30) as otrosimp, count(*) as count').where('"tipodoc" <> 52 and "tipodoc"<>60')
+    totFmanual = Docmanual.select('sum("mntneto") as mntneto,sum("mntexe") as mntexe, sum("mntiva") as iva, sum("mnttotal") as mnttotal,sum(impto10+impto18+impto25+impto30) as otrosimp, count(*) as count').where('"estado" = ? AND "tipodoc" <> 52 and "tipodoc"<>60', "PREVIO")
     totFmanual.map { |e| @totFmanual = e }
     
     respond_with(@docmanuals)

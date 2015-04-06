@@ -36,7 +36,6 @@
           %td{:style => 'text-align: right;'}= '('+number_to_currency(documento.mntneto , precision: 0, delimiter: "." )+')' 
           %td{:style => 'text-align: right;'}= '('+number_to_currency(documento.mntexe , precision: 0, delimiter: "." )+')'
           %td{:style => 'text-align: right;'}= '('+number_to_currency(documento.iva , precision: 0, delimiter: "." )+')'
-          %td{:style => 'text-align: right;'}= '('+number_to_currency(documento.otrosimp , precision: 0, delimiter: "." )+')'
           %td{:style => 'text-align: right;'}= '('+number_to_currency(documento.mnttotal , precision: 0, delimiter: "." )+')'
         -else
           %td{:style => 'text-align: right;'}= number_to_currency(documento.mntneto , precision: 0, delimiter: "." )+"&nbsp;".html_safe 

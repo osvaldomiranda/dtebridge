@@ -19,12 +19,7 @@ class LibroCompraController < ApplicationController
 
 
     desde = Date.strptime("#{mes}/01", "%Y/%m/%d")
-
-    if mes[5..7] == "02"
-        hasta = Date.strptime("#{mes}/28", "%Y/%m/%d")
-    else
-        hasta = Date.strptime("#{mes}/31", "%Y/%m/%d")
-    end    
+    hasta = Date.strptime("#{mes}/#{desde.end_of_month.day}", "%Y/%m/%d")  
     
     @empresas = Empresa.all
     @documentos =  Doccompra.select('"TipoDTE", sum("MntNeto") as mntneto,sum("MntExe") as mntexe, sum("IVA") as iva, sum("MntTotal") as mnttotal, count(*) as count').where('estado <> ? AND "TipoDTE" <> 52 and "RUTEmisor"=? and "FchEmis" >= ? AND "FchEmis" <= ?',"Rechazado SII",  @rut, desde, hasta ).group('"TipoDTE"')
@@ -39,15 +34,15 @@ class LibroCompraController < ApplicationController
     @otrosImpsCred = Doccompra.select('"TipoDTE","imptoretencompras"."TipoImp" as tipoimp, "imptoretencompras"."TasaImp" as tasaimp, sum("imptoretencompras"."MontoImp") as montoimp').where('estado <> ? AND  "TipoDTE"=61 and "RUTEmisor"=? and "FchEmis" > ? AND "FchEmis" < ?',"Rechazado SII",  @rut, desde, hasta ).joins(:imptoretencompras).group('"TipoDTE","imptoretencompras"."TipoImp","imptoretencompras"."TasaImp"')
 
 
-    @docmanuals = Compmanual.select('"tipodoc", sum("mntneto") as mntneto,sum("mntexe") as mntexe, sum("mntiva") as iva, sum("mnttotal") as mnttotal,  sum(impto10+impto18+impto25+impto30) as otrosimp, count(*) as count').where('"tipodoc" <> 52 and "rutrecep"=? ', @rut ).group('"tipodoc"')
-    totFman = Compmanual.select('sum("mntneto") as mntneto,sum("mntexe") as mntexe, sum("mntiva") as iva, sum("mnttotal") as mnttotal,sum(impto10+impto18+impto25+impto30) as otrosimp, count(*) as count').where('"tipodoc" <> 52 and "tipodoc"<>60 and "rutrecep"=? ', @rut)
-    totCManual = Compmanual.select('sum("mntneto") as mntneto,sum("mntexe") as mntexe, sum("mntiva") as iva, sum("mnttotal") as mnttotal,sum(impto10+impto18+impto25+impto30) as otrosimp,  count(*) as count').where('"tipodoc"=60 and "rutrecep"=? ', @rut )
+    @docmanuals = Compmanual.select('"tipodoc", sum("mntneto") as mntneto,sum("mntexe") as mntexe, sum("mntiva") as iva, sum("mnttotal") as mnttotal,  sum(impto10+impto18+impto25+impto30) as otrosimp, count(*) as count').where('tipodoc" <> 52 and "rutrecep"=? and "fchemis" > ? AND "fchemis" < ?', @rut, desde, hasta ).group('"tipodoc"')
+    totFman = Compmanual.select('sum("mntneto") as mntneto,sum("mntexe") as mntexe, sum("mntiva") as iva, sum("mnttotal") as mnttotal,sum(impto10+impto18+impto25+impto30) as otrosimp, count(*) as count').where('tipodoc" <> 52 and "tipodoc"<>60 and "rutrecep"=? and "fchemis" > ? AND "fchemis" < ?', @rut, desde, hasta)
+    totCManual = Compmanual.select('sum("mntneto") as mntneto,sum("mntexe") as mntexe, sum("mntiva") as iva, sum("mnttotal") as mnttotal,sum(impto10+impto18+impto25+impto30) as otrosimp,  count(*) as count').where('tipodoc"=60 and "rutrecep"=? and "fchemis" > ? AND "fchemis" < ?', @rut, desde, hasta )
 
     totFman.map {|e| @totFmanual = e}
     totCManual.map {|e| @totCredManual  = e}
 
-    @otrosImpsMan = Compmanual.select('"tipodoc","otrosimpcompmanuals"."TipoImp" as tipoimp, "otrosimpcompmanuals"."TasaImp" as tasaimp, sum("otrosimpcompmanuals"."MontoImp") as montoimp').where('"tipodoc" <> 52 and "tipodoc"<>60 and "rutrecep"=? ', @rut).joins(:otrosimpcompmanuals).group('"tipodoc","otrosimpcompmanuals"."TipoImp","otrosimpcompmanuals"."TasaImp"')
-    @otrosImpsCredMan = Compmanual.select('"tipodoc","otrosimpcompmanuals"."TipoImp" as tipoimp, "otrosimpcompmanuals"."TasaImp" as tasaimp, sum("otrosimpcompmanuals"."MontoImp") as montoimp').where('"tipodoc" <> 52 and "tipodoc"<>30 and "rutrecep"=? ', @rut ).joins(:otrosimpcompmanuals).group('"tipodoc","otrosimpcompmanuals"."TipoImp","otrosimpcompmanuals"."TasaImp"')
+    @otrosImpsMan = Compmanual.select('"tipodoc","otrosimpcompmanuals"."TipoImp" as tipoimp, "otrosimpcompmanuals"."TasaImp" as tasaimp, sum("otrosimpcompmanuals"."MontoImp") as montoimp').where('tipodoc" <> 52 and "tipodoc"<>60 and "rutrecep"=? and "fchemis" > ? AND "fchemis" < ?', @rut, desde, hasta).joins(:otrosimpcompmanuals).group('"tipodoc","otrosimpcompmanuals"."TipoImp","otrosimpcompmanuals"."TasaImp"')
+    @otrosImpsCredMan = Compmanual.select('"tipodoc","otrosimpcompmanuals"."TipoImp" as tipoimp, "otrosimpcompmanuals"."TasaImp" as tasaimp, sum("otrosimpcompmanuals"."MontoImp") as montoimp').where('"tipodoc" <> 52 and "tipodoc"<>30 and "rutrecep"=? and "fchemis" > ? AND "fchemis" < ?', @rut, desde, hasta ).joins(:otrosimpcompmanuals).group('"tipodoc","otrosimpcompmanuals"."TipoImp","otrosimpcompmanuals"."TasaImp"')
    
 
     respond_to do |format|
@@ -61,11 +56,14 @@ class LibroCompraController < ApplicationController
     @mes = params[:mes]
     libro = Libro.where(rut: @rut).where(idenvio: @mes).where(tipo: "COMPRA").first
 
-    if !libro.nil?
-        if libro.enviado = "NO"
-            libro.destroy
+    unless libro.nil?
+        if libro.enviado == "NO"
+          libro.destroy
+          if !create(@rut, @mes)
+            @msg = "Libro NO generado" 
+          end   
         else
-            @msg = "Libro ya se ha enviado a SII" 
+            @msg = "Libro ya se ha generado y enviado a SII, no se puede volver a generar" 
         end
     else
         if !create(@rut, @mes)
@@ -93,12 +91,8 @@ class LibroCompraController < ApplicationController
     libro.enviado = "NO"
     libro.save
 
-    # desde = Date.strptime("#{mes}/01", "%Y/%m/%d")
-    # if mes[5..7] == "02"
-    #     hasta = Date.strptime("#{mes}/28", "%Y/%m/%d")
-    # else
-    #     hasta = Date.strptime("#{mes}/31", "%Y/%m/%d")
-    # end   
+    desde = Date.strptime("#{mes}/01", "%Y/%m/%d")
+    hasta = Date.strptime("#{mes}/#{desde.end_of_month.day}", "%Y/%m/%d")
 
     # llenar detalle libro con doc electronicos
     # dtes = Doccompra.where('estado <> ? AND "TipoDTE" <> 52 and "RUTEmisor"=? and "FchEmis" >= ? AND "FchEmis" <= ?',"Rechazado SII",  rut, desde, hasta )
@@ -134,7 +128,7 @@ class LibroCompraController < ApplicationController
     # }
 
     # llenar detalle libro con doc manuales
-    docmanual = Compmanual.where( rutrecep: rut )
+    docmanual = Compmanual.where('"rutrecep"=? and "fchemis" > ? AND "fchemis" < ?',  rut, desde, hasta )
     docmanual.map { |e|  
       detlibro = Detlibro.new
       detlibro.tipodte = e.tipodoc
