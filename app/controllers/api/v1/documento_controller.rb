@@ -192,8 +192,13 @@ class Api::V1::DocumentoController < Api::V1::ApiController
       File.open("tosign_xml#{t}.xml", 'w') { |file| file.puts tosign_xml}
       sleep 1
      
-      system("./comando tosign_xml#{t}.xml doc-signed#{t}.xml")
-      
+      # Se agregará un comando para cada cliente mientras se resuelve como solucionar
+      if @invoice.RUTEmisor == "80790400-0"
+        system("./comandoElSultan tosign_xml#{t}.xml doc-signed#{t}.xml")
+      else  
+        system("./comando tosign_xml#{t}.xml doc-signed#{t}.xml")
+      end
+
       doc = File.read "doc-signed#{t}.xml"
 
       system("rm tosign_xml#{t}.xml") 
