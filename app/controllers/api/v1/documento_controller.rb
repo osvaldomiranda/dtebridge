@@ -193,16 +193,22 @@ class Api::V1::DocumentoController < Api::V1::ApiController
       sleep 1
      
       # Se agregará un comando para cada cliente mientras se resuelve como solucionar
-      if Empresa.first.rut == "80790400-0"
+      if Empresa.last.rut == "80790400-0"
+        puts "============"
+        puts "ElSultan"
+        puts "============"
         system("./comandoElSultan tosign_xml#{t}.xml doc-signed#{t}.xml")
       else  
         system("./comando tosign_xml#{t}.xml doc-signed#{t}.xml")
+        puts "============"
+        puts "Otros"
+        puts "============"
       end
 
       doc = File.read "doc-signed#{t}.xml"
 
-      system("rm tosign_xml#{t}.xml") 
-      system("rm doc-signed#{t}.xml")
+      # system("rm tosign_xml#{t}.xml") 
+      # system("rm doc-signed#{t}.xml")
 
       i=0
       while(@token.nil? && i<50)
