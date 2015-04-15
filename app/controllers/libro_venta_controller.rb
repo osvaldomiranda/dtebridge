@@ -35,15 +35,15 @@ class LibroVentaController < ApplicationController
     @otrosImpsCred = Documento.select('"TipoDTE","impuesto_retens"."TipoImp" as tipoimp, "impuesto_retens"."TasaImp" as tasaimp, sum("impuesto_retens"."MontoImp") as montoimp').where('estado <> ? AND  "TipoDTE"=61 and "RUTEmisor"=? and "FchEmis" > ? AND "FchEmis" < ?',"Rechazado SII",  @rut, desde, hasta ).joins(:impuesto_retens).group('"TipoDTE","impuesto_retens"."TipoImp","impuesto_retens"."TasaImp"')
 
 
-    @docmanuals = Docmanual.select('"tipodoc", sum("mntneto") as mntneto,sum("mntexe") as mntexe, sum("mntiva") as iva, sum("mnttotal") as mnttotal,  sum(impto10+impto18+impto25+impto30) as otrosimp, count(*) as count').where('"tipodoc" <> 52  and "rutemisor"=? and "fchemis" > ? AND "fchemis" < ?',  @rut , desde, hasta ).group('"tipodoc"')
-    totFman = Docmanual.select('sum("mntneto") as mntneto,sum("mntexe") as mntexe, sum("mntiva") as iva, sum("mnttotal") as mnttotal,sum(impto10+impto18+impto25+impto30) as otrosimp, count(*) as count').where('"tipodoc" <> 52 and "tipodoc"<>60  and "rutemisor"=? and "fchemis" > ? AND "fchemis" < ?',  @rut, desde, hasta )
-    totCManual = Docmanual.select('sum("mntneto") as mntneto,sum("mntexe") as mntexe, sum("mntiva") as iva, sum("mnttotal") as mnttotal,sum(impto10+impto18+impto25+impto30) as otrosimp,  count(*) as count').where(' "tipodoc"=60  and "rutemisor"=? and "fchemis" > ? AND "fchemis" < ? ',  @rut, desde, hasta )
+    @docmanuals = Docmanual.select('"tipodoc", sum("mntneto") as mntneto,sum("mntexe") as mntexe, sum("mntiva") as iva, sum("mnttotal") as mnttotal,  sum(impto10+impto18+impto25+impto30) as otrosimp, count(*) as count').where('"tipodoc" <> 52  and "rutemisor"=? and "fchemis" >= ? AND "fchemis" <= ?',  @rut , desde, hasta ).group('"tipodoc"')
+    totFman = Docmanual.select('sum("mntneto") as mntneto,sum("mntexe") as mntexe, sum("mntiva") as iva, sum("mnttotal") as mnttotal,sum(impto10+impto18+impto25+impto30) as otrosimp, count(*) as count').where('"tipodoc" <> 52 and "tipodoc"<>60  and "rutemisor"=? and "fchemis" >= ? AND "fchemis" <= ?',  @rut, desde, hasta )
+    totCManual = Docmanual.select('sum("mntneto") as mntneto,sum("mntexe") as mntexe, sum("mntiva") as iva, sum("mnttotal") as mnttotal,sum(impto10+impto18+impto25+impto30) as otrosimp,  count(*) as count').where(' "tipodoc"=60  and "rutemisor"=? and "fchemis" >= ? AND "fchemis" <= ? ',  @rut, desde, hasta )
 
     totFman.map {|e| @totFmanual = e}
     totCManual.map {|e| @totCredManual  = e}
 
-    @otrosImpsMan = Docmanual.select('"tipodoc","otrosimpmanuals"."TipoImp" as tipoimp, "otrosimpmanuals"."TasaImp" as tasaimp, sum("otrosimpmanuals"."MontoImp") as montoimp').where('"tipodoc" <> 52 and "tipodoc"<>60 and "rutemisor"=? and "fchemis" > ? AND "fchemis" < ?', @rut, desde, hasta ).joins(:otrosimpmanuals).group('"tipodoc","otrosimpmanuals"."TipoImp","otrosimpmanuals"."TasaImp"')
-    @otrosImpsCredMan = Docmanual.select('"tipodoc","otrosimpmanuals"."TipoImp" as tipoimp, "otrosimpmanuals"."TasaImp" as tasaimp, sum("otrosimpmanuals"."MontoImp") as montoimp').where('"tipodoc" <> 52 and "tipodoc"<>30 and "rutemisor"=? and "fchemis" > ? AND "fchemis" < ?' , @rut, desde, hasta ).joins(:otrosimpmanuals).group('"tipodoc","otrosimpmanuals"."TipoImp","otrosimpmanuals"."TasaImp"')
+    @otrosImpsMan = Docmanual.select('"tipodoc","otrosimpmanuals"."TipoImp" as tipoimp, "otrosimpmanuals"."TasaImp" as tasaimp, sum("otrosimpmanuals"."MontoImp") as montoimp').where('"tipodoc" <> 52 and "tipodoc"<>60 and "rutemisor"=? and "fchemis" >= ? AND "fchemis" <= ?', @rut, desde, hasta ).joins(:otrosimpmanuals).group('"tipodoc","otrosimpmanuals"."TipoImp","otrosimpmanuals"."TasaImp"')
+    @otrosImpsCredMan = Docmanual.select('"tipodoc","otrosimpmanuals"."TipoImp" as tipoimp, "otrosimpmanuals"."TasaImp" as tasaimp, sum("otrosimpmanuals"."MontoImp") as montoimp').where('"tipodoc" <> 52 and "tipodoc"<>30 and "rutemisor"=? and "fchemis" >= ? AND "fchemis" <= ?' , @rut, desde, hasta ).joins(:otrosimpmanuals).group('"tipodoc","otrosimpmanuals"."TipoImp","otrosimpmanuals"."TasaImp"')
    
     respond_to do |format|
       format.html { render action: 'index' }
@@ -132,7 +132,7 @@ class LibroVentaController < ApplicationController
     }
 
     # llenar detalle libro con doc manuales
-    docmanual = Docmanual.where('"rutemisor"=? and "fchemis" > ? AND "fchemis" < ?',  rut, desde, hasta )
+    docmanual = Docmanual.where('"rutemisor"=? and "fchemis" >= ? AND "fchemis" <= ?',  rut, desde, hasta )
     docmanual.map { |e|  
       detlibro = Detlibro.new
       detlibro.tipodte = e.tipodoc

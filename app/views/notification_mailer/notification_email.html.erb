@@ -4,15 +4,33 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h1>Welcome to InvoiceDigital, </h1>
 
-    <p>
-      este es un correo de pruebas para el envío de notificaciones<br>
+<h3>Sres: <%= @destinatario %>:</h3>
 
-    </p>
-    <p>
-      Visita nuestra pagina <%= @url %>.
-    </p>
-    <p>Gracias y que tengas un excelente día!</p>
-  </body>
+<p> En el presente correo se les adjunta el siguiente documento tributario electrónico: </p>
+
+<p>
+Emisor     : <%= @rut %>
+             <%= @empresa %> 
+</p>
+<p>
+Documento  : <%= @documento %>
+</p>
+<p>
+Folio      : <%= @folio %>
+ </p>
+
+ <p>
+NOTA: Este correo fue generado en forma automática. No responda este mail
+porque su respuesta será ignorada.
+ </p>
+
+ <p>
+---
+</p>
+<p>
+Sistema DteBridge
+http://www.invoicedigital.cl
+ </p>
+</body>
 </html>

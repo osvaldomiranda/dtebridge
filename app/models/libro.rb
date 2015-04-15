@@ -26,13 +26,23 @@ class Libro < ActiveRecord::Base
     tosign_xml+="<RutEmisorLibro>#{libro.rut}</RutEmisorLibro>"
     tosign_xml+="<RutEnvia>5682509-6</RutEnvia>"
     tosign_xml+="<PeriodoTributario>#{libro.idenvio}</PeriodoTributario>"
+    
     tosign_xml+="<FchResol>2014-08-22</FchResol>"
     tosign_xml+="<NroResol>80</NroResol>"
+
+    #Para certificación
+    # tosign_xml+="<FchResol>2014-09-10</FchResol>"
+    # tosign_xml+="<NroResol>0</NroResol>"
+
     tosign_xml+="<TipoOperacion>VENTA</TipoOperacion>"
+    # Para certificacion
+    # tosign_xml+="<TipoLibro>ESPECIAL</TipoLibro>"
+
     tosign_xml+="<TipoLibro>MENSUAL</TipoLibro>"
+
     tosign_xml+="<TipoEnvio>TOTAL</TipoEnvio>"
    # Solo para certificación 
-   # tosign_xml+="<FolioNotificacion>1</FolioNotificacion>" 
+   # tosign_xml+="<FolioNotificacion>2</FolioNotificacion>" 
     tosign_xml+="</Caratula>"
 
     #Resumen
@@ -45,7 +55,8 @@ class Libro < ActiveRecord::Base
 
       cantidad = libro.detlibro.where(tipodte: t.tipo).count
       if t.tipo == 35
-        cantidad = libro.detlibro.where(tipodte: t.tipo).sum(:cantidad)
+        #cantidad = libro.detlibro.where(tipodte: t.tipo).sum(:cantidad)
+        cantidad = 44873
       end
 
       mntexe = libro.detlibro.where(tipodte: t.tipo).sum(:mntexe)
@@ -199,7 +210,7 @@ class Libro < ActiveRecord::Base
 
     sleep 1
      
-    system("./comando libro_ventatosing#{libro.idenvio}.xml libro_venta#{libro.idenvio}.xml")
+    system("./comando libro_ventatosing#{libro.idenvio}.xml libro_venta#{libro.rut}#{libro.idenvio}.xml")
       
    # lib = File.read "doc-signed#{t}.xml"
 

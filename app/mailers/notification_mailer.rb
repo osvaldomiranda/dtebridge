@@ -1,6 +1,6 @@
 ## encoding: UTF-8
 class NotificationMailer < ActionMailer::Base
-  default from: "notificaciones@lubba.cl"
+  default from: "dte_santiago@lubba.cl"
  
   def notification_email(email)
     @user = "user Osvaldo"
@@ -15,12 +15,24 @@ class NotificationMailer < ActionMailer::Base
   def notification_email(email,id)
     doc = Documento.find(id)
     @user = doc.RznSocRecep
+    @destinatario = doc.RznSocRecep
+    @rut = doc.RUTEmisor
+    @empresa = doc.RznSoc
+    @documento = Tipodte.find_by_tipo(doc.TipoDTE).nombre
+    @folio = doc.Folio 
     @url  = 'http://www.invoicedigital.cl'
-    attachments[doc.pdfs] = File.read("#{Rails.root}/public/uploads/documento/pdfs/#{doc.pdfs}")
-    attachments[doc.pdft] = File.read("#{Rails.root}/public/uploads/documento/pdft/#{doc.pdft}")
-    attachments[doc.fileCliente] = File.read("#{Rails.root}/public/uploads/documento/fileCliente/#{doc.fileCliente}").force_encoding('iso-8859-1').encode('utf-8')
 
-    mail(to: email, subject: 'Intercambio Contribuyentes DTE InvoiceDigital')
+    attachments["#{doc.Folio}_cliente.xml"] =  File.read("#{Rails.root}/public#{doc.fileCliente}").force_encoding('iso-8859-1').encode('utf-8')
+
+    mail(to: email, subject: "DTE #{@folio} #{@empresa}", from:  Empresa.find_by_rut(doc.RUTEmisor).from)
+
+    envio = Enviocliente.new
+    envio.folio = @folio
+    envio.rut = doc.RUTRecep
+    envio.tipo = doc.TipoDTE
+    envio.rznsoc = doc.RznSocRecep
+    envio.save
+
   end
 
   def alert_iat_email(email, sucursal, empresa)

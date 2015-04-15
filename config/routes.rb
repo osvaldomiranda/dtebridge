@@ -1,5 +1,7 @@
 Dtebridge::Application.routes.draw do
 
+  resources :envioclientes
+
   get "newuser/index"
   get "detlibro/index"
   resources :compmanuals do
@@ -101,6 +103,7 @@ Dtebridge::Application.routes.draw do
       get "/notification", to: "notification#send_notif"
       get "/procesarecibo", to: "doccompra#procesarecibo"
       get "/resend", to: "documento#resend"
+      get "/sendclient", to: "documento#sendclient"
      end
   end
 
