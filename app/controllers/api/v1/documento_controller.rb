@@ -321,11 +321,11 @@ class Api::V1::DocumentoController < Api::V1::ApiController
         d.estado = "Rechazado SII"
       end  
       if aceptados == "1"
-        d.estado = "Aceptado Ok SII"
-        if reparos == "1"
-          d.estado = "Aceptado con Reparos"
-        end  
+        d.estado = "Aceptado Ok SII" 
       end
+      if reparos == "1"
+        d.estado = "Aceptado con Reparos"
+      end 
     end
     d.save  
     if aceptados == "1" || reparos == "1"
