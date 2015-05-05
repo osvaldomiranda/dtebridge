@@ -34,7 +34,7 @@
     %th EstadoEnvio
     %th Cedible
     %th Tributable
-    %th XML Cliente
+    %th XML
   - @documentos.each do |documento|
     %tr
       %td= documento.nombre_doc
@@ -53,7 +53,7 @@
       -else
         %td
       -if(documento.fileCliente?)
-        %td= link_to 'XML', documento.fileCliente
+        %td= link_to 'XML', documento.fileCliente_url
       -else
         %td   
 
