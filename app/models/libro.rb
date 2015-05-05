@@ -230,11 +230,15 @@ class Libro < ActiveRecord::Base
     tosign_xml+="<PeriodoTributario>#{libro.idenvio}</PeriodoTributario>\r\n"
     tosign_xml+="<FchResol>2014-08-22</FchResol>\r\n"
     tosign_xml+="<NroResol>80</NroResol>\r\n"
+    #Para certificación
+     # tosign_xml+="<FchResol>2014-09-10</FchResol>"
+     # tosign_xml+="<NroResol>0</NroResol>"
     tosign_xml+="<TipoOperacion>COMPRA</TipoOperacion>\r\n"
+    # tosign_xml+="<TipoLibro>ESPECIAL</TipoLibro>\r\n"
     tosign_xml+="<TipoLibro>MENSUAL</TipoLibro>\r\n"
     tosign_xml+="<TipoEnvio>TOTAL</TipoEnvio>\r\n"
   #  esto solo para certificacióm  
-  #  tosign_xml+="<FolioNotificacion>2</FolioNotificacion>\r\n"
+    # tosign_xml+="<FolioNotificacion>2</FolioNotificacion>\r\n"
     tosign_xml+="</Caratula>"
 
     tosign_xml+="<ResumenPeriodo>\r\n"
@@ -285,7 +289,7 @@ class Libro < ActiveRecord::Base
         if impto30 > 0
           tosign_xml+="<TotOtrosImp>\r\n"
           tosign_xml+="<CodImp>24</CodImp>\r\n"
-          tosign_xml+="<TotMntImp>#{impto24}</TotMntImp>\r\n"
+          tosign_xml+="<TotMntImp>#{impto30}</TotMntImp>\r\n"
           tosign_xml+="</TotOtrosImp>\r\n"
         end
 
@@ -514,7 +518,7 @@ class Libro < ActiveRecord::Base
 
     sleep 1
      
-    system("./comando libro_compratosing#{libro.idenvio}.xml libro_compra#{libro.idenvio}.xml")
+    system("./comando libro_compratosing#{libro.idenvio}.xml libro_compra#{libro.rut}#{libro.idenvio}.xml")
       
    # lib = File.read "doc-signed#{t}.xml"
 

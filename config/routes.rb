@@ -15,7 +15,6 @@ Dtebridge::Application.routes.draw do
   resources :log_iats
   resources :otrosimpmanuals
   resources :otrosimpcompmanuals
-  resources :contribuyentes
   resources :tipodtes
   resources :sucursals
   resources :empresas
@@ -64,6 +63,7 @@ Dtebridge::Application.routes.draw do
   get "aprobComercial" , to: "connectsii#aprob_comercial"
   get "estadistica/index"
   get "estadistica", to: "estadistica#index"
+  get "/contribuyentes/upload", to: "contribuyentes#upload"
  
   get "listalibro/genxml/:id", to: "listalibro#genxml"
   get "listalibro/sendxml/:id", to: "listalibro#sendxml"
@@ -88,6 +88,10 @@ Dtebridge::Application.routes.draw do
   post "/newuser/new", to: "newuser#new"
 
   root to: "home#index"
+
+  resources :contribuyentes do
+    collection { post :import }
+  end
 
   namespace :api do
     namespace :v1 do

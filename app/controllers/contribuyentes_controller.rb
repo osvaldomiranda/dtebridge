@@ -1,5 +1,5 @@
 class ContribuyentesController < ApplicationController
-  before_action :set_contribuyente, only: [:show, :edit, :update, :destroy]
+ # before_action :set_contribuyente, only: [:show, :edit, :update, :destroy]
 
   respond_to :html
 
@@ -34,6 +34,19 @@ class ContribuyentesController < ApplicationController
   def destroy
     @contribuyente.destroy
     respond_with(@contribuyente)
+  end
+
+  def upload
+    respond_to do |format|
+      format.html { render '/contribuyentes/upload' }
+    end  
+  end
+
+  def import
+    Contribuyente.import(params[:file])
+
+    @contribuyentes = Contribuyente.all
+    respond_with(@contribuyentes)
   end
 
   private
