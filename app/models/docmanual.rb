@@ -15,6 +15,7 @@ class Docmanual < ActiveRecord::Base
 
       doc = Docmanual.new(rowHash)
 
+
       if doc.rutrecep.index('-').nil?  
         doc.rutrecep = doc.rutrecep.insert(8, '-') 
       end  

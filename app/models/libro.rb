@@ -18,21 +18,23 @@ class Libro < ActiveRecord::Base
   def libroventa
 
     libro = self
+    rutEnvia = Empresda.find_by_rut(libro.rut).rutenvia
 
     tosign_xml="<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>"
     tosign_xml+="<LibroCompraVenta xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.sii.cl/SiiDte LibroCV_v10.xsd\" version=\"1.0\" xmlns=\"http://www.sii.cl/SiiDte\">"
     tosign_xml+="<EnvioLibro ID=\"IDV#{libro.idenvio}\">"
     tosign_xml+="<Caratula>"
     tosign_xml+="<RutEmisorLibro>#{libro.rut}</RutEmisorLibro>"
-    tosign_xml+="<RutEnvia>5682509-6</RutEnvia>"
+
+    tosign_xml+="<RutEnvia>#{rutEnvia}</RutEnvia>"
     tosign_xml+="<PeriodoTributario>#{libro.idenvio}</PeriodoTributario>"
     
     tosign_xml+="<FchResol>2014-08-22</FchResol>"
     tosign_xml+="<NroResol>80</NroResol>"
 
     #Para certificación
-    # tosign_xml+="<FchResol>2014-09-10</FchResol>"
-    # tosign_xml+="<NroResol>0</NroResol>"
+     # tosign_xml+="<FchResol>2014-09-10</FchResol>"
+     # tosign_xml+="<NroResol>0</NroResol>"
 
     tosign_xml+="<TipoOperacion>VENTA</TipoOperacion>"
     # Para certificacion
@@ -41,8 +43,8 @@ class Libro < ActiveRecord::Base
     tosign_xml+="<TipoLibro>MENSUAL</TipoLibro>"
 
     tosign_xml+="<TipoEnvio>TOTAL</TipoEnvio>"
-   # Solo para certificación 
-   # tosign_xml+="<FolioNotificacion>2</FolioNotificacion>" 
+    # Solo para certificación 
+    # tosign_xml+="<FolioNotificacion>1</FolioNotificacion>" 
     tosign_xml+="</Caratula>"
 
     #Resumen
@@ -56,7 +58,7 @@ class Libro < ActiveRecord::Base
       cantidad = libro.detlibro.where(tipodte: t.tipo).count
       if t.tipo == 35
         #cantidad = libro.detlibro.where(tipodte: t.tipo).sum(:cantidad)
-        cantidad = 44873
+        cantidad = 3776
       end
 
       mntexe = libro.detlibro.where(tipodte: t.tipo).sum(:mntexe)
@@ -206,12 +208,24 @@ class Libro < ActiveRecord::Base
     #Fin Libro  
     tosign_xml+= "</LibroCompraVenta>"
 
+    
     File.open("libro_ventatosing#{libro.idenvio}.xml", 'w') { |file| file.puts tosign_xml}
 
     sleep 1
      
-    system("./comando libro_ventatosing#{libro.idenvio}.xml libro_venta#{libro.rut}#{libro.idenvio}.xml")
-      
+    if Empresa.last.rut == "80790400-0"
+      puts "============"
+      puts "ElSultan"
+      puts "============"
+      system("./comandoElSultan libro_ventatosing#{libro.idenvio}.xml libro_venta#{libro.idenvio}.xml")
+    else  
+      system("./comando libro_ventatosing#{libro.idenvio}.xml libro_venta#{libro.idenvio}.xml")
+      puts "============"
+      puts "Otros"
+      puts "============"
+    end  
+
+
    # lib = File.read "doc-signed#{t}.xml"
 
     system("rm libro_ventatosing#{libro.idenvio}.xml") 
