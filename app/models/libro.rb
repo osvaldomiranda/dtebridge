@@ -208,7 +208,7 @@ class Libro < ActiveRecord::Base
     tosign_xml+= "</LibroCompraVenta>"
 
     
-    File.open("libro_ventatosing#{libro.idenvio}.xml", 'w') { |file| file.puts tosign_xml}
+    File.open("libro_ventatosing#{libro.rut}#{libro.idenvio}.xml", 'w') { |file| file.puts tosign_xml}
 
     sleep 1
      
