@@ -216,9 +216,9 @@ class Libro < ActiveRecord::Base
       puts "============"
       puts "ElSultan"
       puts "============"
-      system("./comandoElSultan libro_ventatosing#{libro.idenvio}.xml libro_venta#{libro.idenvio}.xml")
+      system("./comandoElSultan libro_ventatosing#{libro.rut}#{libro.idenvio}.xml libro_venta#{libro.rut}#{libro.idenvio}.xml")
     else  
-      system("./comando libro_ventatosing#{libro.idenvio}.xml libro_venta#{libro.idenvio}.xml")
+      system("./comando libro_ventatosing#{libro.rut}#{libro.idenvio}.xml libro_venta#{libro.rut}#{libro.idenvio}.xml")
       puts "============"
       puts "Otros"
       puts "============"
