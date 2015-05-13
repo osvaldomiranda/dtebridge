@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<LibroCompraVenta xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.sii.cl/SiiDte" xsi:schemaLocation="http://www.sii.cl/SiiDte LibroCV_v10.xsd" version="1.0"><EnvioLibro ID="IDV2015-04"><Caratula><RutEmisorLibro>80790400-0</RutEmisorLibro><RutEnvia>5682509-6</RutEnvia><PeriodoTributario>2015-04</PeriodoTributario><FchResol>2014-09-10</FchResol><NroResol>0</NroResol><TipoLibro>ESPECIAL</TipoLibro><TipoLibro>MENSUAL</TipoLibro><TipoEnvio>TOTAL</TipoEnvio><FolioNotificacion>1</FolioNotificacion></Caratula><ResumenPeriodo>
+<LibroCompraVenta xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.sii.cl/SiiDte" xsi:schemaLocation="http://www.sii.cl/SiiDte LibroCV_v10.xsd" version="1.0"><EnvioLibro ID="IDV2015-04"><Caratula><RutEmisorLibro>80790400-0</RutEmisorLibro><RutEnvia>08473325-3</RutEnvia><PeriodoTributario>2015-04</PeriodoTributario><FchResol>2015-02-09</FchResol><NroResol>0</NroResol><TipoOperacion>VENTA</TipoOperacion><TipoLibro>ESPECIAL</TipoLibro><TipoEnvio>TOTAL</TipoEnvio><FolioNotificacion>1</FolioNotificacion></Caratula><ResumenPeriodo>
 <TotalesPeriodo>
 <TpoDoc>30</TpoDoc>
 <TotDoc>399</TotDoc><TotMntExe>0</TotMntExe>
@@ -8,15 +8,9 @@
 </TotalesPeriodo>
 <TotalesPeriodo>
 <TpoDoc>35</TpoDoc>
-<TotDoc>3776</TotDoc><TotMntExe>0</TotMntExe>
-<TotMntNeto>0</TotMntNeto>
-<TotMntIVA>0</TotMntIVA><TotMntTotal>0</TotMntTotal>
-</TotalesPeriodo>
-<TotalesPeriodo>
-<TpoDoc>38</TpoDoc>
-<TotDoc>1</TotDoc><TotMntExe>0</TotMntExe>
-<TotMntNeto>29076906</TotMntNeto>
-<TotMntIVA>5524612</TotMntIVA><TotMntTotal>34601518</TotMntTotal>
+<TotDoc>4051</TotDoc><TotMntExe>0</TotMntExe>
+<TotMntNeto>27339082</TotMntNeto>
+<TotMntIVA>5194426</TotMntIVA><TotMntTotal>32533508</TotMntTotal>
 </TotalesPeriodo>
 <TotalesPeriodo>
 <TpoDoc>33</TpoDoc>
@@ -31,17 +25,6 @@
 <TotMntIVA>385352</TotMntIVA><TotMntTotal>2413527</TotMntTotal>
 </TotalesPeriodo>
 </ResumenPeriodo>
-<Detalle>
-<TpoDoc>30</TpoDoc>
-<NroDoc>1326457</NroDoc>
-<TasaImp>19</TasaImp>
-<FchDoc>2015-04-01</FchDoc>
-<RUTDoc>07145636-6</RUTDoc>
-<RznSoc>SOnIA RIOS GALVEZ</RznSoc>
-<MntNeto>220046</MntNeto>
-<MntIVA>41809</MntIVA>
-<MntTotal>261855</MntTotal>
-</Detalle>
 <Detalle>
 <TpoDoc>30</TpoDoc>
 <NroDoc>1326458</NroDoc>
@@ -74,17 +57,6 @@
 <MntNeto>96553</MntNeto>
 <MntIVA>18345</MntIVA>
 <MntTotal>114898</MntTotal>
-</Detalle>
-<Detalle>
-<TpoDoc>30</TpoDoc>
-<NroDoc>1326430</NroDoc>
-<TasaImp>19</TasaImp>
-<FchDoc>2015-04-01</FchDoc>
-<RUTDoc>09764446-2</RUTDoc>
-<RznSoc>HECTOR CRISTIAN CERDA MUNOZ</RznSoc>
-<MntNeto>85639</MntNeto>
-<MntIVA>16271</MntIVA>
-<MntTotal>101910</MntTotal>
 </Detalle>
 <Detalle>
 <TpoDoc>30</TpoDoc>
@@ -286,17 +258,6 @@
 </Detalle>
 <Detalle>
 <TpoDoc>30</TpoDoc>
-<NroDoc>1326468</NroDoc>
-<TasaImp>19</TasaImp>
-<FchDoc>2015-04-01</FchDoc>
-<RUTDoc>76156968-6</RUTDoc>
-<RznSoc>BAZAR SILVIA URREJOLA EIRL</RznSoc>
-<MntNeto>67892</MntNeto>
-<MntIVA>12899</MntIVA>
-<MntTotal>80791</MntTotal>
-</Detalle>
-<Detalle>
-<TpoDoc>30</TpoDoc>
 <NroDoc>1326483</NroDoc>
 <TasaImp>19</TasaImp>
 <FchDoc>2015-04-01</FchDoc>
@@ -473,28 +434,6 @@
 </Detalle>
 <Detalle>
 <TpoDoc>30</TpoDoc>
-<NroDoc>1326494</NroDoc>
-<TasaImp>19</TasaImp>
-<FchDoc>2015-04-01</FchDoc>
-<RUTDoc>08584479-2</RUTDoc>
-<RznSoc>LAURA MATILDE PIEROLA MEZA</RznSoc>
-<MntNeto>3025</MntNeto>
-<MntIVA>575</MntIVA>
-<MntTotal>3600</MntTotal>
-</Detalle>
-<Detalle>
-<TpoDoc>30</TpoDoc>
-<NroDoc>1326495</NroDoc>
-<TasaImp>19</TasaImp>
-<FchDoc>2015-04-01</FchDoc>
-<RUTDoc>16088151-8</RUTDoc>
-<RznSoc>MARISEL ORELLANA MUNOZ</RznSoc>
-<MntNeto>202588</MntNeto>
-<MntIVA>38492</MntIVA>
-<MntTotal>241080</MntTotal>
-</Detalle>
-<Detalle>
-<TpoDoc>30</TpoDoc>
 <NroDoc>1326488</NroDoc>
 <TasaImp>19</TasaImp>
 <FchDoc>2015-04-01</FchDoc>
@@ -536,17 +475,6 @@
 <MntNeto>76240</MntNeto>
 <MntIVA>14486</MntIVA>
 <MntTotal>90726</MntTotal>
-</Detalle>
-<Detalle>
-<TpoDoc>30</TpoDoc>
-<NroDoc>1326499</NroDoc>
-<TasaImp>19</TasaImp>
-<FchDoc>2015-04-01</FchDoc>
-<RUTDoc>14186899-3</RUTDoc>
-<RznSoc>CAROLINA URBINA TAPIA</RznSoc>
-<MntNeto>29723</MntNeto>
-<MntIVA>5647</MntIVA>
-<MntTotal>35370</MntTotal>
 </Detalle>
 <Detalle>
 <TpoDoc>30</TpoDoc>
@@ -726,17 +654,6 @@
 </Detalle>
 <Detalle>
 <TpoDoc>30</TpoDoc>
-<NroDoc>1326521</NroDoc>
-<TasaImp>19</TasaImp>
-<FchDoc>2015-04-02</FchDoc>
-<RUTDoc>10322919-7</RUTDoc>
-<RznSoc>ROSA VALENZUELA CASTILLO</RznSoc>
-<MntNeto>15790</MntNeto>
-<MntIVA>3000</MntIVA>
-<MntTotal>18790</MntTotal>
-</Detalle>
-<Detalle>
-<TpoDoc>30</TpoDoc>
 <NroDoc>1326522</NroDoc>
 <TasaImp>19</TasaImp>
 <FchDoc>2015-04-02</FchDoc>
@@ -902,17 +819,6 @@
 </Detalle>
 <Detalle>
 <TpoDoc>30</TpoDoc>
-<NroDoc>1326534</NroDoc>
-<TasaImp>19</TasaImp>
-<FchDoc>2015-04-02</FchDoc>
-<RUTDoc>04411075-K</RUTDoc>
-<RznSoc>CARLOS ENRIQUE CORNEJO CATALAN</RznSoc>
-<MntNeto>5677</MntNeto>
-<MntIVA>1079</MntIVA>
-<MntTotal>6756</MntTotal>
-</Detalle>
-<Detalle>
-<TpoDoc>30</TpoDoc>
 <NroDoc>1326535</NroDoc>
 <TasaImp>19</TasaImp>
 <FchDoc>2015-04-02</FchDoc>
@@ -932,17 +838,6 @@
 <MntNeto>31011</MntNeto>
 <MntIVA>5892</MntIVA>
 <MntTotal>36903</MntTotal>
-</Detalle>
-<Detalle>
-<TpoDoc>30</TpoDoc>
-<NroDoc>1326537</NroDoc>
-<TasaImp>19</TasaImp>
-<FchDoc>2015-04-02</FchDoc>
-<RUTDoc>05902694-1</RUTDoc>
-<RznSoc>LUIS GUSTAVO VEGA TAPIA</RznSoc>
-<MntNeto>15176</MntNeto>
-<MntIVA>2883</MntIVA>
-<MntTotal>18059</MntTotal>
 </Detalle>
 <Detalle>
 <TpoDoc>30</TpoDoc>
@@ -1108,17 +1003,6 @@
 <MntNeto>29547</MntNeto>
 <MntIVA>5614</MntIVA>
 <MntTotal>35161</MntTotal>
-</Detalle>
-<Detalle>
-<TpoDoc>30</TpoDoc>
-<NroDoc>1326520</NroDoc>
-<TasaImp>19</TasaImp>
-<FchDoc>2015-04-02</FchDoc>
-<RUTDoc>76251793-0</RUTDoc>
-<RznSoc>COM Y DIST E INVERSIONES APPROVAL LTDA</RznSoc>
-<MntNeto>68747</MntNeto>
-<MntIVA>13062</MntIVA>
-<MntTotal>81809</MntTotal>
 </Detalle>
 <Detalle>
 <TpoDoc>30</TpoDoc>
@@ -1320,17 +1204,6 @@
 </Detalle>
 <Detalle>
 <TpoDoc>30</TpoDoc>
-<NroDoc>1326570</NroDoc>
-<TasaImp>19</TasaImp>
-<FchDoc>2015-04-02</FchDoc>
-<RUTDoc>08403711-7</RUTDoc>
-<RznSoc>PAULA SEGUEL RIQUELME </RznSoc>
-<MntNeto>73204</MntNeto>
-<MntIVA>13909</MntIVA>
-<MntTotal>87113</MntTotal>
-</Detalle>
-<Detalle>
-<TpoDoc>30</TpoDoc>
 <NroDoc>1326571</NroDoc>
 <TasaImp>19</TasaImp>
 <FchDoc>2015-04-02</FchDoc>
@@ -1372,17 +1245,6 @@
 <MntNeto>59524</MntNeto>
 <MntIVA>11310</MntIVA>
 <MntTotal>70834</MntTotal>
-</Detalle>
-<Detalle>
-<TpoDoc>30</TpoDoc>
-<NroDoc>1326575</NroDoc>
-<TasaImp>19</TasaImp>
-<FchDoc>2015-04-02</FchDoc>
-<RUTDoc>08403711-7</RUTDoc>
-<RznSoc>PAULA SEGUEL RIQUELME </RznSoc>
-<MntNeto>20626</MntNeto>
-<MntIVA>3919</MntIVA>
-<MntTotal>24545</MntTotal>
 </Detalle>
 <Detalle>
 <TpoDoc>30</TpoDoc>
@@ -1471,17 +1333,6 @@
 <MntNeto>86377</MntNeto>
 <MntIVA>16412</MntIVA>
 <MntTotal>102789</MntTotal>
-</Detalle>
-<Detalle>
-<TpoDoc>30</TpoDoc>
-<NroDoc>1326585</NroDoc>
-<TasaImp>19</TasaImp>
-<FchDoc>2015-04-02</FchDoc>
-<RUTDoc>07200568-6</RUTDoc>
-<RznSoc>ANA DONOSO ARAVENA</RznSoc>
-<MntNeto>139494</MntNeto>
-<MntIVA>26504</MntIVA>
-<MntTotal>165998</MntTotal>
 </Detalle>
 <Detalle>
 <TpoDoc>30</TpoDoc>
@@ -1644,17 +1495,6 @@
 </Detalle>
 <Detalle>
 <TpoDoc>30</TpoDoc>
-<NroDoc>1326599</NroDoc>
-<TasaImp>19</TasaImp>
-<FchDoc>2015-04-06</FchDoc>
-<RUTDoc>77771600-K</RUTDoc>
-<RznSoc>SILVA VILLEGAS LTDA</RznSoc>
-<MntNeto>5168</MntNeto>
-<MntIVA>982</MntIVA>
-<MntTotal>6150</MntTotal>
-</Detalle>
-<Detalle>
-<TpoDoc>30</TpoDoc>
 <NroDoc>1326600</NroDoc>
 <TasaImp>19</TasaImp>
 <FchDoc>2015-04-06</FchDoc>
@@ -1680,7 +1520,7 @@
 <NroDoc>1326602</NroDoc>
 <TasaImp>19</TasaImp>
 <FchDoc>2015-04-06</FchDoc>
-<RUTDoc>12323958-k</RUTDoc>
+<RUTDoc>12323958-K</RUTDoc>
 <RznSoc>RICHARD MUNOZ JARA </RznSoc>
 <MntNeto>39933</MntNeto>
 <MntIVA>7587</MntIVA>
@@ -1820,17 +1660,6 @@
 </Detalle>
 <Detalle>
 <TpoDoc>30</TpoDoc>
-<NroDoc>1326609</NroDoc>
-<TasaImp>19</TasaImp>
-<FchDoc>2015-04-06</FchDoc>
-<RUTDoc>06870340-9</RUTDoc>
-<RznSoc>MARIA CALQUIN CALQUIN</RznSoc>
-<MntNeto>9303</MntNeto>
-<MntIVA>1768</MntIVA>
-<MntTotal>11071</MntTotal>
-</Detalle>
-<Detalle>
-<TpoDoc>30</TpoDoc>
 <NroDoc>1326610</NroDoc>
 <TasaImp>19</TasaImp>
 <FchDoc>2015-04-06</FchDoc>
@@ -1900,7 +1729,7 @@
 <NroDoc>1326615</NroDoc>
 <TasaImp>19</TasaImp>
 <FchDoc>2015-04-06</FchDoc>
-<RUTDoc>07573896-k</RUTDoc>
+<RUTDoc>07573896-K</RUTDoc>
 <RznSoc>CELIA ROGEL IBANEZ</RznSoc>
 <MntNeto>15231</MntNeto>
 <MntIVA>2894</MntIVA>
@@ -1938,17 +1767,6 @@
 <MntNeto>85013</MntNeto>
 <MntIVA>16152</MntIVA>
 <MntTotal>101165</MntTotal>
-</Detalle>
-<Detalle>
-<TpoDoc>30</TpoDoc>
-<NroDoc>1326628</NroDoc>
-<TasaImp>19</TasaImp>
-<FchDoc>2015-04-06</FchDoc>
-<RUTDoc>76271501-5</RUTDoc>
-<RznSoc>GOMEZ Y MULLER LTDA</RznSoc>
-<MntNeto>32593</MntNeto>
-<MntIVA>6193</MntIVA>
-<MntTotal>38786</MntTotal>
 </Detalle>
 <Detalle>
 <TpoDoc>30</TpoDoc>
@@ -2098,7 +1916,7 @@
 <NroDoc>1326650</NroDoc>
 <TasaImp>19</TasaImp>
 <FchDoc>2015-04-07</FchDoc>
-<RUTDoc>13235202-k</RUTDoc>
+<RUTDoc>13235202-K</RUTDoc>
 <RznSoc>RUTH MAGDALENA CONTRERAS CISTERNA </RznSoc>
 <MntNeto>126609</MntNeto>
 <MntIVA>24056</MntIVA>
@@ -2114,17 +1932,6 @@
 <MntNeto>118320</MntNeto>
 <MntIVA>22481</MntIVA>
 <MntTotal>140801</MntTotal>
-</Detalle>
-<Detalle>
-<TpoDoc>30</TpoDoc>
-<NroDoc>1326652</NroDoc>
-<TasaImp>19</TasaImp>
-<FchDoc>2015-04-07</FchDoc>
-<RUTDoc>06242870-8</RUTDoc>
-<RznSoc>RAQUEL DE LOURDES RIOS MUNOZ</RznSoc>
-<MntNeto>180177</MntNeto>
-<MntIVA>34234</MntIVA>
-<MntTotal>214411</MntTotal>
 </Detalle>
 <Detalle>
 <TpoDoc>30</TpoDoc>
@@ -2219,7 +2026,7 @@
 <NroDoc>1326637</NroDoc>
 <TasaImp>19</TasaImp>
 <FchDoc>2015-04-07</FchDoc>
-<RUTDoc>07004921-k</RUTDoc>
+<RUTDoc>07004921-K</RUTDoc>
 <RznSoc>JUAN GUTIERREZ PEREZ</RznSoc>
 <MntNeto>3441</MntNeto>
 <MntIVA>654</MntIVA>
@@ -2268,28 +2075,6 @@
 <MntNeto>12290</MntNeto>
 <MntIVA>2335</MntIVA>
 <MntTotal>14625</MntTotal>
-</Detalle>
-<Detalle>
-<TpoDoc>30</TpoDoc>
-<NroDoc>1326642</NroDoc>
-<TasaImp>19</TasaImp>
-<FchDoc>2015-04-07</FchDoc>
-<RUTDoc>14726406-2</RUTDoc>
-<RznSoc>YUYAN CHEN</RznSoc>
-<MntNeto>11092</MntNeto>
-<MntIVA>2107</MntIVA>
-<MntTotal>13199</MntTotal>
-</Detalle>
-<Detalle>
-<TpoDoc>30</TpoDoc>
-<NroDoc>1326643</NroDoc>
-<TasaImp>19</TasaImp>
-<FchDoc>2015-04-07</FchDoc>
-<RUTDoc>06740648-6</RUTDoc>
-<RznSoc>MARIA ANGELICA ALBORNOZ YANEZ</RznSoc>
-<MntNeto>36991</MntNeto>
-<MntIVA>7028</MntIVA>
-<MntTotal>44019</MntTotal>
 </Detalle>
 <Detalle>
 <TpoDoc>30</TpoDoc>
@@ -2477,17 +2262,6 @@
 <MntNeto>169840</MntNeto>
 <MntIVA>32270</MntIVA>
 <MntTotal>202110</MntTotal>
-</Detalle>
-<Detalle>
-<TpoDoc>30</TpoDoc>
-<NroDoc>1326675</NroDoc>
-<TasaImp>19</TasaImp>
-<FchDoc>2015-04-07</FchDoc>
-<RUTDoc>12126178-2</RUTDoc>
-<RznSoc>SANDRA ISABEL MUNOZ SAAVEDRA</RznSoc>
-<MntNeto>45619</MntNeto>
-<MntIVA>8668</MntIVA>
-<MntTotal>54287</MntTotal>
 </Detalle>
 <Detalle>
 <TpoDoc>30</TpoDoc>
@@ -2689,17 +2463,6 @@
 </Detalle>
 <Detalle>
 <TpoDoc>30</TpoDoc>
-<NroDoc>1326685</NroDoc>
-<TasaImp>19</TasaImp>
-<FchDoc>2015-04-07</FchDoc>
-<RUTDoc>09214124-1</RUTDoc>
-<RznSoc>OLGA ATABALES BUSTAMANTE</RznSoc>
-<MntNeto>21872</MntNeto>
-<MntIVA>4156</MntIVA>
-<MntTotal>26028</MntTotal>
-</Detalle>
-<Detalle>
-<TpoDoc>30</TpoDoc>
 <NroDoc>1326686</NroDoc>
 <TasaImp>19</TasaImp>
 <FchDoc>2015-04-07</FchDoc>
@@ -2719,17 +2482,6 @@
 <MntNeto>64453</MntNeto>
 <MntIVA>12246</MntIVA>
 <MntTotal>76699</MntTotal>
-</Detalle>
-<Detalle>
-<TpoDoc>30</TpoDoc>
-<NroDoc>1326697</NroDoc>
-<TasaImp>19</TasaImp>
-<FchDoc>2015-04-07</FchDoc>
-<RUTDoc>76323806-7</RUTDoc>
-<RznSoc>SOC COMERCIAL ANDINA LTDA</RznSoc>
-<MntNeto>12463</MntNeto>
-<MntIVA>2368</MntIVA>
-<MntTotal>14831</MntTotal>
 </Detalle>
 <Detalle>
 <TpoDoc>30</TpoDoc>
@@ -2791,7 +2543,7 @@
 <NroDoc>1326702</NroDoc>
 <TasaImp>19</TasaImp>
 <FchDoc>2015-04-07</FchDoc>
-<RUTDoc>10388683-k</RUTDoc>
+<RUTDoc>10388683-K</RUTDoc>
 <RznSoc>GLADYS SUSANA BEROIZA SARIEGO</RznSoc>
 <MntNeto>21206</MntNeto>
 <MntIVA>4029</MntIVA>
@@ -2829,17 +2581,6 @@
 <MntNeto>57176</MntNeto>
 <MntIVA>10863</MntIVA>
 <MntTotal>68039</MntTotal>
-</Detalle>
-<Detalle>
-<TpoDoc>30</TpoDoc>
-<NroDoc>1326714</NroDoc>
-<TasaImp>19</TasaImp>
-<FchDoc>2015-04-07</FchDoc>
-<RUTDoc>06592061-1</RUTDoc>
-<RznSoc>GUSTAVO ALEJANDRO VILLALOBOS MIRANDA</RznSoc>
-<MntNeto>18634</MntNeto>
-<MntIVA>3540</MntIVA>
-<MntTotal>22174</MntTotal>
 </Detalle>
 <Detalle>
 <TpoDoc>30</TpoDoc>
@@ -3035,17 +2776,6 @@
 </Detalle>
 <Detalle>
 <TpoDoc>30</TpoDoc>
-<NroDoc>1326727</NroDoc>
-<TasaImp>19</TasaImp>
-<FchDoc>2015-04-07</FchDoc>
-<RUTDoc>09148311-4</RUTDoc>
-<RznSoc>GROCILIA DEL CARMEN BARRA VEJAR</RznSoc>
-<MntNeto>21568</MntNeto>
-<MntIVA>4098</MntIVA>
-<MntTotal>25666</MntTotal>
-</Detalle>
-<Detalle>
-<TpoDoc>30</TpoDoc>
 <NroDoc>1326719</NroDoc>
 <TasaImp>19</TasaImp>
 <FchDoc>2015-04-07</FchDoc>
@@ -3153,28 +2883,6 @@
 <MntNeto>3319</MntNeto>
 <MntIVA>631</MntIVA>
 <MntTotal>3950</MntTotal>
-</Detalle>
-<Detalle>
-<TpoDoc>30</TpoDoc>
-<NroDoc>1326761</NroDoc>
-<TasaImp>19</TasaImp>
-<FchDoc>2015-04-08</FchDoc>
-<RUTDoc>07723224-9</RUTDoc>
-<RznSoc>YOLANDA QUINTEROS ZUNIGA</RznSoc>
-<MntNeto>121256</MntNeto>
-<MntIVA>23039</MntIVA>
-<MntTotal>144295</MntTotal>
-</Detalle>
-<Detalle>
-<TpoDoc>30</TpoDoc>
-<NroDoc>1326762</NroDoc>
-<TasaImp>19</TasaImp>
-<FchDoc>2015-04-08</FchDoc>
-<RUTDoc>07723224-9</RUTDoc>
-<RznSoc>YOLANDA QUINTEROS ZUNIGA</RznSoc>
-<MntNeto>80688</MntNeto>
-<MntIVA>15331</MntIVA>
-<MntTotal>96019</MntTotal>
 </Detalle>
 <Detalle>
 <TpoDoc>30</TpoDoc>
@@ -3365,17 +3073,6 @@
 </Detalle>
 <Detalle>
 <TpoDoc>30</TpoDoc>
-<NroDoc>1326744</NroDoc>
-<TasaImp>19</TasaImp>
-<FchDoc>2015-04-08</FchDoc>
-<RUTDoc>04557143-2</RUTDoc>
-<RznSoc>MARIO MORENO AGUILERA</RznSoc>
-<MntNeto>94231</MntNeto>
-<MntIVA>17904</MntIVA>
-<MntTotal>112135</MntTotal>
-</Detalle>
-<Detalle>
-<TpoDoc>30</TpoDoc>
 <NroDoc>1326745</NroDoc>
 <TasaImp>19</TasaImp>
 <FchDoc>2015-04-08</FchDoc>
@@ -3541,17 +3238,6 @@
 </Detalle>
 <Detalle>
 <TpoDoc>30</TpoDoc>
-<NroDoc>1326771</NroDoc>
-<TasaImp>19</TasaImp>
-<FchDoc>2015-04-08</FchDoc>
-<RUTDoc>79546340-2</RUTDoc>
-<RznSoc>SOC. COM. GESTECNICA LTDA.</RznSoc>
-<MntNeto>136659</MntNeto>
-<MntIVA>25965</MntIVA>
-<MntTotal>162624</MntTotal>
-</Detalle>
-<Detalle>
-<TpoDoc>30</TpoDoc>
 <NroDoc>1326773</NroDoc>
 <TasaImp>19</TasaImp>
 <FchDoc>2015-04-08</FchDoc>
@@ -3604,17 +3290,6 @@
 <MntNeto>17851</MntNeto>
 <MntIVA>3392</MntIVA>
 <MntTotal>21243</MntTotal>
-</Detalle>
-<Detalle>
-<TpoDoc>30</TpoDoc>
-<NroDoc>1326776</NroDoc>
-<TasaImp>19</TasaImp>
-<FchDoc>2015-04-08</FchDoc>
-<RUTDoc>10060151-6</RUTDoc>
-<RznSoc>ISABEL MARGARITA VERGARA FUENTES</RznSoc>
-<MntNeto>24720</MntNeto>
-<MntIVA>4697</MntIVA>
-<MntTotal>29417</MntTotal>
 </Detalle>
 <Detalle>
 <TpoDoc>30</TpoDoc>
@@ -3703,17 +3378,6 @@
 <MntNeto>280908</MntNeto>
 <MntIVA>53373</MntIVA>
 <MntTotal>334281</MntTotal>
-</Detalle>
-<Detalle>
-<TpoDoc>30</TpoDoc>
-<NroDoc>1326785</NroDoc>
-<TasaImp>19</TasaImp>
-<FchDoc>2015-04-08</FchDoc>
-<RUTDoc>07014723-8</RUTDoc>
-<RznSoc>SOLANGE ELIZABETH HAAS CASTRO</RznSoc>
-<MntNeto>46403</MntNeto>
-<MntIVA>8817</MntIVA>
-<MntTotal>55220</MntTotal>
 </Detalle>
 <Detalle>
 <TpoDoc>30</TpoDoc>
@@ -3893,17 +3557,6 @@
 </Detalle>
 <Detalle>
 <TpoDoc>30</TpoDoc>
-<NroDoc>1326794</NroDoc>
-<TasaImp>19</TasaImp>
-<FchDoc>2015-04-08</FchDoc>
-<RUTDoc>59188020-9</RUTDoc>
-<RznSoc>GRUP. CANT. ALIMENTACION S.L.AGEN EN CHILE</RznSoc>
-<MntNeto>33829</MntNeto>
-<MntIVA>6428</MntIVA>
-<MntTotal>40257</MntTotal>
-</Detalle>
-<Detalle>
-<TpoDoc>30</TpoDoc>
 <NroDoc>1326806</NroDoc>
 <TasaImp>19</TasaImp>
 <FchDoc>2015-04-08</FchDoc>
@@ -4058,14 +3711,14 @@
 </Detalle>
 <Detalle>
 <TpoDoc>30</TpoDoc>
-<NroDoc>1326811</NroDoc>
+<NroDoc>1326457</NroDoc>
 <TasaImp>19</TasaImp>
-<FchDoc>2015-04-08</FchDoc>
-<RUTDoc>76344905-k</RUTDoc>
-<RznSoc>JUAN IGNACIO ARAYA ARANCIBIA EIRL</RznSoc>
-<MntNeto>13009</MntNeto>
-<MntIVA>2472</MntIVA>
-<MntTotal>15481</MntTotal>
+<FchDoc>2015-04-01</FchDoc>
+<RUTDoc>07145636-6</RUTDoc>
+<RznSoc>SOnIA RIOS GALVEZ</RznSoc>
+<MntNeto>220046</MntNeto>
+<MntIVA>41809</MntIVA>
+<MntTotal>261855</MntTotal>
 </Detalle>
 <Detalle>
 <TpoDoc>30</TpoDoc>
@@ -4226,7 +3879,7 @@
 <NroDoc>1326836</NroDoc>
 <TasaImp>19</TasaImp>
 <FchDoc>2015-04-08</FchDoc>
-<RUTDoc>17622567-k</RUTDoc>
+<RUTDoc>17622567-K</RUTDoc>
 <RznSoc>NORITA CRYSTAL SALGADO BRAVO</RznSoc>
 <MntNeto>66895</MntNeto>
 <MntIVA>12710</MntIVA>
@@ -4237,22 +3890,11 @@
 <NroDoc>1326837</NroDoc>
 <TasaImp>19</TasaImp>
 <FchDoc>2015-04-08</FchDoc>
-<RUTDoc>17622567-k</RUTDoc>
+<RUTDoc>17622567-K</RUTDoc>
 <RznSoc>NORITA CRYSTAL SALGADO BRAVO</RznSoc>
 <MntNeto>1832</MntNeto>
 <MntIVA>348</MntIVA>
 <MntTotal>2180</MntTotal>
-</Detalle>
-<Detalle>
-<TpoDoc>30</TpoDoc>
-<NroDoc>1326832</NroDoc>
-<TasaImp>19</TasaImp>
-<FchDoc>2015-04-08</FchDoc>
-<RUTDoc>06592061-1</RUTDoc>
-<RznSoc>GUSTAVO ALEJANDRO VILLALOBOS MIRANDA</RznSoc>
-<MntNeto>51324</MntNeto>
-<MntIVA>9752</MntIVA>
-<MntTotal>61076</MntTotal>
 </Detalle>
 <Detalle>
 <TpoDoc>30</TpoDoc>
@@ -4408,53 +4050,405 @@
 <MntIVA>16861</MntIVA>
 <MntTotal>105605</MntTotal>
 </Detalle>
-<TmstFirma>2015-01-20T16:35:14</TmstFirma></EnvioLibro><Signature xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"/><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/><DigestValue>mLfnVrGNmEYQiUHYGZ7qWWpqChg=</DigestValue></Reference></SignedInfo><SignatureValue>d74k2E0PB1NA0qI8UghMZ5v9uDgr7IgXZQQO1m3VRMgQiouyUHBcPsW/QMdqWnXJ
-SF2U9ht4ZLc69FcVIvhDgSkaTJeELedCi76b+oHujgYoGoxxtpfIjxB9DpSvoD2T
-gntmn0g1XiNdlX4Lae5s5ESFfkEF30TK/U72dmKCuQ4=</SignatureValue><KeyInfo><KeyValue>
+<Detalle>
+<TpoDoc>30</TpoDoc>
+<NroDoc>1326430</NroDoc>
+<TasaImp>19</TasaImp>
+<FchDoc>2015-04-01</FchDoc>
+<RUTDoc>09764446-2</RUTDoc>
+<RznSoc>HECTOR CRISTIAN CERDA MUNOZ</RznSoc>
+<MntNeto>85639</MntNeto>
+<MntIVA>16271</MntIVA>
+<MntTotal>101910</MntTotal>
+</Detalle>
+<Detalle>
+<TpoDoc>30</TpoDoc>
+<NroDoc>1326468</NroDoc>
+<TasaImp>19</TasaImp>
+<FchDoc>2015-04-01</FchDoc>
+<RUTDoc>76156968-6</RUTDoc>
+<RznSoc>BAZAR SILVIA URREJOLA EIRL</RznSoc>
+<MntNeto>67892</MntNeto>
+<MntIVA>12899</MntIVA>
+<MntTotal>80791</MntTotal>
+</Detalle>
+<Detalle>
+<TpoDoc>30</TpoDoc>
+<NroDoc>1326494</NroDoc>
+<TasaImp>19</TasaImp>
+<FchDoc>2015-04-01</FchDoc>
+<RUTDoc>08584479-2</RUTDoc>
+<RznSoc>LAURA MATILDE PIEROLA MEZA</RznSoc>
+<MntNeto>3025</MntNeto>
+<MntIVA>575</MntIVA>
+<MntTotal>3600</MntTotal>
+</Detalle>
+<Detalle>
+<TpoDoc>30</TpoDoc>
+<NroDoc>1326495</NroDoc>
+<TasaImp>19</TasaImp>
+<FchDoc>2015-04-01</FchDoc>
+<RUTDoc>16088151-8</RUTDoc>
+<RznSoc>MARISEL ORELLANA MUNOZ</RznSoc>
+<MntNeto>202588</MntNeto>
+<MntIVA>38492</MntIVA>
+<MntTotal>241080</MntTotal>
+</Detalle>
+<Detalle>
+<TpoDoc>30</TpoDoc>
+<NroDoc>1326499</NroDoc>
+<TasaImp>19</TasaImp>
+<FchDoc>2015-04-01</FchDoc>
+<RUTDoc>14186899-3</RUTDoc>
+<RznSoc>CAROLINA URBINA TAPIA</RznSoc>
+<MntNeto>29723</MntNeto>
+<MntIVA>5647</MntIVA>
+<MntTotal>35370</MntTotal>
+</Detalle>
+<Detalle>
+<TpoDoc>30</TpoDoc>
+<NroDoc>1326521</NroDoc>
+<TasaImp>19</TasaImp>
+<FchDoc>2015-04-02</FchDoc>
+<RUTDoc>10322919-7</RUTDoc>
+<RznSoc>ROSA VALENZUELA CASTILLO</RznSoc>
+<MntNeto>15790</MntNeto>
+<MntIVA>3000</MntIVA>
+<MntTotal>18790</MntTotal>
+</Detalle>
+<Detalle>
+<TpoDoc>30</TpoDoc>
+<NroDoc>1326534</NroDoc>
+<TasaImp>19</TasaImp>
+<FchDoc>2015-04-02</FchDoc>
+<RUTDoc>04411075-K</RUTDoc>
+<RznSoc>CARLOS ENRIQUE CORNEJO CATALAN</RznSoc>
+<MntNeto>5677</MntNeto>
+<MntIVA>1079</MntIVA>
+<MntTotal>6756</MntTotal>
+</Detalle>
+<Detalle>
+<TpoDoc>30</TpoDoc>
+<NroDoc>1326537</NroDoc>
+<TasaImp>19</TasaImp>
+<FchDoc>2015-04-02</FchDoc>
+<RUTDoc>05902694-1</RUTDoc>
+<RznSoc>LUIS GUSTAVO VEGA TAPIA</RznSoc>
+<MntNeto>15176</MntNeto>
+<MntIVA>2883</MntIVA>
+<MntTotal>18059</MntTotal>
+</Detalle>
+<Detalle>
+<TpoDoc>30</TpoDoc>
+<NroDoc>1326520</NroDoc>
+<TasaImp>19</TasaImp>
+<FchDoc>2015-04-02</FchDoc>
+<RUTDoc>76251793-0</RUTDoc>
+<RznSoc>COM Y DIST E INVERSIONES APPROVAL LTDA</RznSoc>
+<MntNeto>68747</MntNeto>
+<MntIVA>13062</MntIVA>
+<MntTotal>81809</MntTotal>
+</Detalle>
+<Detalle>
+<TpoDoc>30</TpoDoc>
+<NroDoc>1326570</NroDoc>
+<TasaImp>19</TasaImp>
+<FchDoc>2015-04-02</FchDoc>
+<RUTDoc>08403711-7</RUTDoc>
+<RznSoc>PAULA SEGUEL RIQUELME </RznSoc>
+<MntNeto>73204</MntNeto>
+<MntIVA>13909</MntIVA>
+<MntTotal>87113</MntTotal>
+</Detalle>
+<Detalle>
+<TpoDoc>30</TpoDoc>
+<NroDoc>1326575</NroDoc>
+<TasaImp>19</TasaImp>
+<FchDoc>2015-04-02</FchDoc>
+<RUTDoc>08403711-7</RUTDoc>
+<RznSoc>PAULA SEGUEL RIQUELME </RznSoc>
+<MntNeto>20626</MntNeto>
+<MntIVA>3919</MntIVA>
+<MntTotal>24545</MntTotal>
+</Detalle>
+<Detalle>
+<TpoDoc>30</TpoDoc>
+<NroDoc>1326585</NroDoc>
+<TasaImp>19</TasaImp>
+<FchDoc>2015-04-02</FchDoc>
+<RUTDoc>07200568-6</RUTDoc>
+<RznSoc>ANA DONOSO ARAVENA</RznSoc>
+<MntNeto>139494</MntNeto>
+<MntIVA>26504</MntIVA>
+<MntTotal>165998</MntTotal>
+</Detalle>
+<Detalle>
+<TpoDoc>30</TpoDoc>
+<NroDoc>1326599</NroDoc>
+<TasaImp>19</TasaImp>
+<FchDoc>2015-04-06</FchDoc>
+<RUTDoc>77771600-K</RUTDoc>
+<RznSoc>SILVA VILLEGAS LTDA</RznSoc>
+<MntNeto>5168</MntNeto>
+<MntIVA>982</MntIVA>
+<MntTotal>6150</MntTotal>
+</Detalle>
+<Detalle>
+<TpoDoc>30</TpoDoc>
+<NroDoc>1326609</NroDoc>
+<TasaImp>19</TasaImp>
+<FchDoc>2015-04-06</FchDoc>
+<RUTDoc>06870340-9</RUTDoc>
+<RznSoc>MARIA CALQUIN CALQUIN</RznSoc>
+<MntNeto>9303</MntNeto>
+<MntIVA>1768</MntIVA>
+<MntTotal>11071</MntTotal>
+</Detalle>
+<Detalle>
+<TpoDoc>30</TpoDoc>
+<NroDoc>1326628</NroDoc>
+<TasaImp>19</TasaImp>
+<FchDoc>2015-04-06</FchDoc>
+<RUTDoc>76271501-5</RUTDoc>
+<RznSoc>GOMEZ Y MULLER LTDA</RznSoc>
+<MntNeto>32593</MntNeto>
+<MntIVA>6193</MntIVA>
+<MntTotal>38786</MntTotal>
+</Detalle>
+<Detalle>
+<TpoDoc>30</TpoDoc>
+<NroDoc>1326652</NroDoc>
+<TasaImp>19</TasaImp>
+<FchDoc>2015-04-07</FchDoc>
+<RUTDoc>06242870-8</RUTDoc>
+<RznSoc>RAQUEL DE LOURDES RIOS MUNOZ</RznSoc>
+<MntNeto>180177</MntNeto>
+<MntIVA>34234</MntIVA>
+<MntTotal>214411</MntTotal>
+</Detalle>
+<Detalle>
+<TpoDoc>30</TpoDoc>
+<NroDoc>1326642</NroDoc>
+<TasaImp>19</TasaImp>
+<FchDoc>2015-04-07</FchDoc>
+<RUTDoc>14726406-2</RUTDoc>
+<RznSoc>YUYAN CHEN</RznSoc>
+<MntNeto>11092</MntNeto>
+<MntIVA>2107</MntIVA>
+<MntTotal>13199</MntTotal>
+</Detalle>
+<Detalle>
+<TpoDoc>30</TpoDoc>
+<NroDoc>1326643</NroDoc>
+<TasaImp>19</TasaImp>
+<FchDoc>2015-04-07</FchDoc>
+<RUTDoc>06740648-6</RUTDoc>
+<RznSoc>MARIA ANGELICA ALBORNOZ YANEZ</RznSoc>
+<MntNeto>36991</MntNeto>
+<MntIVA>7028</MntIVA>
+<MntTotal>44019</MntTotal>
+</Detalle>
+<Detalle>
+<TpoDoc>30</TpoDoc>
+<NroDoc>1326675</NroDoc>
+<TasaImp>19</TasaImp>
+<FchDoc>2015-04-07</FchDoc>
+<RUTDoc>12126178-2</RUTDoc>
+<RznSoc>SANDRA ISABEL MUNOZ SAAVEDRA</RznSoc>
+<MntNeto>45619</MntNeto>
+<MntIVA>8668</MntIVA>
+<MntTotal>54287</MntTotal>
+</Detalle>
+<Detalle>
+<TpoDoc>30</TpoDoc>
+<NroDoc>1326685</NroDoc>
+<TasaImp>19</TasaImp>
+<FchDoc>2015-04-07</FchDoc>
+<RUTDoc>09214124-1</RUTDoc>
+<RznSoc>OLGA ATABALES BUSTAMANTE</RznSoc>
+<MntNeto>21872</MntNeto>
+<MntIVA>4156</MntIVA>
+<MntTotal>26028</MntTotal>
+</Detalle>
+<Detalle>
+<TpoDoc>30</TpoDoc>
+<NroDoc>1326697</NroDoc>
+<TasaImp>19</TasaImp>
+<FchDoc>2015-04-07</FchDoc>
+<RUTDoc>76323806-7</RUTDoc>
+<RznSoc>SOC COMERCIAL ANDINA LTDA</RznSoc>
+<MntNeto>12463</MntNeto>
+<MntIVA>2368</MntIVA>
+<MntTotal>14831</MntTotal>
+</Detalle>
+<Detalle>
+<TpoDoc>30</TpoDoc>
+<NroDoc>1326714</NroDoc>
+<TasaImp>19</TasaImp>
+<FchDoc>2015-04-07</FchDoc>
+<RUTDoc>06592061-1</RUTDoc>
+<RznSoc>GUSTAVO ALEJANDRO VILLALOBOS MIRANDA</RznSoc>
+<MntNeto>18634</MntNeto>
+<MntIVA>3540</MntIVA>
+<MntTotal>22174</MntTotal>
+</Detalle>
+<Detalle>
+<TpoDoc>30</TpoDoc>
+<NroDoc>1326727</NroDoc>
+<TasaImp>19</TasaImp>
+<FchDoc>2015-04-07</FchDoc>
+<RUTDoc>09148311-4</RUTDoc>
+<RznSoc>GROCILIA DEL CARMEN BARRA VEJAR</RznSoc>
+<MntNeto>21568</MntNeto>
+<MntIVA>4098</MntIVA>
+<MntTotal>25666</MntTotal>
+</Detalle>
+<Detalle>
+<TpoDoc>30</TpoDoc>
+<NroDoc>1326761</NroDoc>
+<TasaImp>19</TasaImp>
+<FchDoc>2015-04-08</FchDoc>
+<RUTDoc>07723224-9</RUTDoc>
+<RznSoc>YOLANDA QUINTEROS ZUNIGA</RznSoc>
+<MntNeto>121256</MntNeto>
+<MntIVA>23039</MntIVA>
+<MntTotal>144295</MntTotal>
+</Detalle>
+<Detalle>
+<TpoDoc>30</TpoDoc>
+<NroDoc>1326762</NroDoc>
+<TasaImp>19</TasaImp>
+<FchDoc>2015-04-08</FchDoc>
+<RUTDoc>07723224-9</RUTDoc>
+<RznSoc>YOLANDA QUINTEROS ZUNIGA</RznSoc>
+<MntNeto>80688</MntNeto>
+<MntIVA>15331</MntIVA>
+<MntTotal>96019</MntTotal>
+</Detalle>
+<Detalle>
+<TpoDoc>30</TpoDoc>
+<NroDoc>1326744</NroDoc>
+<TasaImp>19</TasaImp>
+<FchDoc>2015-04-08</FchDoc>
+<RUTDoc>04557143-2</RUTDoc>
+<RznSoc>MARIO MORENO AGUILERA</RznSoc>
+<MntNeto>94231</MntNeto>
+<MntIVA>17904</MntIVA>
+<MntTotal>112135</MntTotal>
+</Detalle>
+<Detalle>
+<TpoDoc>30</TpoDoc>
+<NroDoc>1326771</NroDoc>
+<TasaImp>19</TasaImp>
+<FchDoc>2015-04-08</FchDoc>
+<RUTDoc>79546340-2</RUTDoc>
+<RznSoc>SOC. COM. GESTECNICA LTDA.</RznSoc>
+<MntNeto>136659</MntNeto>
+<MntIVA>25965</MntIVA>
+<MntTotal>162624</MntTotal>
+</Detalle>
+<Detalle>
+<TpoDoc>30</TpoDoc>
+<NroDoc>1326776</NroDoc>
+<TasaImp>19</TasaImp>
+<FchDoc>2015-04-08</FchDoc>
+<RUTDoc>10060151-6</RUTDoc>
+<RznSoc>ISABEL MARGARITA VERGARA FUENTES</RznSoc>
+<MntNeto>24720</MntNeto>
+<MntIVA>4697</MntIVA>
+<MntTotal>29417</MntTotal>
+</Detalle>
+<Detalle>
+<TpoDoc>30</TpoDoc>
+<NroDoc>1326785</NroDoc>
+<TasaImp>19</TasaImp>
+<FchDoc>2015-04-08</FchDoc>
+<RUTDoc>07014723-8</RUTDoc>
+<RznSoc>SOLANGE ELIZABETH HAAS CASTRO</RznSoc>
+<MntNeto>46403</MntNeto>
+<MntIVA>8817</MntIVA>
+<MntTotal>55220</MntTotal>
+</Detalle>
+<Detalle>
+<TpoDoc>30</TpoDoc>
+<NroDoc>1326794</NroDoc>
+<TasaImp>19</TasaImp>
+<FchDoc>2015-04-08</FchDoc>
+<RUTDoc>59188020-9</RUTDoc>
+<RznSoc>GRUP. CANT. ALIMENTACION S.L.AGEN EN CHILE</RznSoc>
+<MntNeto>33829</MntNeto>
+<MntIVA>6428</MntIVA>
+<MntTotal>40257</MntTotal>
+</Detalle>
+<Detalle>
+<TpoDoc>30</TpoDoc>
+<NroDoc>1326811</NroDoc>
+<TasaImp>19</TasaImp>
+<FchDoc>2015-04-08</FchDoc>
+<RUTDoc>76344905-K</RUTDoc>
+<RznSoc>JUAN IGNACIO ARAYA ARANCIBIA EIRL</RznSoc>
+<MntNeto>13009</MntNeto>
+<MntIVA>2472</MntIVA>
+<MntTotal>15481</MntTotal>
+</Detalle>
+<Detalle>
+<TpoDoc>30</TpoDoc>
+<NroDoc>1326832</NroDoc>
+<TasaImp>19</TasaImp>
+<FchDoc>2015-04-08</FchDoc>
+<RUTDoc>06592061-1</RUTDoc>
+<RznSoc>GUSTAVO ALEJANDRO VILLALOBOS MIRANDA</RznSoc>
+<MntNeto>51324</MntNeto>
+<MntIVA>9752</MntIVA>
+<MntTotal>61076</MntTotal>
+</Detalle>
+<TmstFirma>2015-05-12T15:26:15</TmstFirma></EnvioLibro><Signature xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"/><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/><DigestValue>HS+KPsOu62ecnKGAkdjht72vPoA=</DigestValue></Reference></SignedInfo><SignatureValue>YHl12fLXe6G5niMPpYUG8ZrKCnkQneSsSHXkDx+dtX8gQ3DpOrt50erMCTLLA/qU
+SsDK13m+DXL5FdZ3RyAQojV7ZNWX2T/YoC3QVELB6aZpITh2/epOJNCNTTL13Br2
+qStk6d9uqzm81iStle1k0naytlekQbqgYq33yYfw5eA=</SignatureValue><KeyInfo><KeyValue>
 <RSAKeyValue>
 <Modulus>
-o9cYdRTMB/zpZJCop13dtvR+DYkMQLQ56rr2kFpPvjmDKSXZMLr4QCew9u8uwkkW
-zw1tdNv4KoN2KzqIoI+8bBn79e3U0YdCcEJmobnljBJT3XCZOsyRrBeWHkMbcux+
-amTxAhcr45Ezse1t3bPq+xOy1JRdAKRRsQSn+9C8Bwk=
+pdRwd5QSP7usXpay60QXCH91u+nRQJDRFfvdWgi9Qg4S5poaWQCoLMCwP2qBoNzH
+767WiDJ3jDGqw+Ee8ATyGiBXkuWTGRRId6uSgheBA878w6dRY3259cDpMhhCow78
+gmCgoqSIqD2P2LcWX1Rva4S2zP7jbZkvj4Yuft0CHWs=
 </Modulus>
 <Exponent>
 AQAB
 </Exponent>
 </RSAKeyValue>
 </KeyValue><X509Data>
-<X509Certificate>MIIGdDCCBVygAwIBAgIKNeG73AAAAAGnEjANBgkqhkiG9w0BAQUFADCB0jELMAkG
+<X509Certificate>MIIGbDCCBVSgAwIBAgIKZ3LzfwAAAAIajDANBgkqhkiG9w0BAQUFADCB0jELMAkG
 A1UEBhMCQ0wxHTAbBgNVBAgTFFJlZ2lvbiBNZXRyb3BvbGl0YW5hMREwDwYDVQQH
 EwhTYW50aWFnbzEUMBIGA1UEChMLRS1DRVJUQ0hJTEUxIDAeBgNVBAsTF0F1dG9y
 aWRhZCBDZXJ0aWZpY2Fkb3JhMTAwLgYDVQQDEydFLUNFUlRDSElMRSBDQSBGSVJN
 QSBFTEVDVFJPTklDQSBTSU1QTEUxJzAlBgkqhkiG9w0BCQEWGHNjbGllbnRlc0Bl
-LWNlcnRjaGlsZS5jbDAeFw0xNDA5MTAyMDE3NTRaFw0xNzA5MDkyMDE3NTRaMIH2
+LWNlcnRjaGlsZS5jbDAeFw0xNTAyMTIyMTMyNDlaFw0xODAyMTEyMTMyNDlaMIHv
 MQswCQYDVQQGEwJDTDEjMCEGA1UECBMaTUVUUk9QT0xJVEFOQSBERSBTQU5USUFH
-TyAxETAPBgNVBAcTCFNhbnRpYWdvMR4wHAYDVQQKExVDT01FUkNJQUwgTFVCQkEg
-TFREQS4xSDBGBgNVBAsTP0RJU1RSSUJVSURPUkEgREUgQ09ORklURVMsQUJBUlJP
-VEVTLENJR0FSUklMTE9TLExJQ09SRVMgWSBPVFJPUzEeMBwGA1UEAxMVTFVJUyBC
-QVJBSE9OQSBNRU5ET1pBMSUwIwYJKoZIhvcNAQkBFhZMVUlTLkJBUkFIT05BQExV
-QkJBLkNMMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCj1xh1FMwH/OlkkKin
-Xd229H4NiQxAtDnquvaQWk++OYMpJdkwuvhAJ7D27y7CSRbPDW102/gqg3YrOoig
-j7xsGfv17dTRh0JwQmahueWMElPdcJk6zJGsF5YeQxty7H5qZPECFyvjkTOx7W3d
-s+r7E7LUlF0ApFGxBKf70LwHCQIDAQABo4ICqDCCAqQwPQYJKwYBBAGCNxUHBDAw
-LgYmKwYBBAGCNxUIgtyDL4WTjGaF1Z0XguLcJ4Hv7DxhgZrnFYav4BUCAWQCAQQw
-HQYDVR0OBBYEFOXBwVeLujme/6Q0cCuc23HrP3OhMAsGA1UdDwQEAwIE8DAfBgNV
-HSMEGDAWgBR44T6f0hKzejyNzTAOU7NDKQezVTA+BgNVHR8ENzA1MDOgMaAvhi1o
-dHRwOi8vY3JsLmUtY2VydGNoaWxlLmNsL2VjZXJ0Y2hpbGVjYUZFUy5jcmwwOwYI
-KwYBBQUHAQEELzAtMCsGCCsGAQUFBzABhh9odHRwOi8vb2NzcC5pbnRlcmNhcGl0
-LmNvbS9vY3NwMCMGA1UdEQQcMBqgGAYIKwYBBAHBAQGgDBYKMDU2ODI1MDktNjAj
-BgNVHRIEHDAaoBgGCCsGAQQBwQECoAwWCjk2OTI4MTgwLTUwggFNBgNVHSAEggFE
-MIIBQDCCATwGCCsGAQQBw1IFMIIBLjAtBggrBgEFBQcCARYhaHR0cDovL3d3dy5l
-LWNlcnRjaGlsZS5jbC9DUFMuaHRtMIH8BggrBgEFBQcCAjCB7x6B7ABDAGUAcgB0
-AGkAZgBpAGMAYQBkAG8AIABGAGkAcgBtAGEAIABTAGkAbQBwAGwAZQAuACAASABh
-ACAAcwBpAGQAbwAgAHYAYQBsAGkAZABhAGQAbwAgAGUAbgAgAGYAbwByAG0AYQAg
-AHAAcgBlAHMAZQBuAGMAaQBhAGwALAAgAHEAdQBlAGQAYQBuAGQAbwAgAGgAYQBi
-AGkAbABpAHQAYQBkAG8AIABlAGwAIABDAGUAcgB0AGkAZgBpAGMAYQBkAG8AIABw
-AGEAcgBhACAAdQBzAG8AIAB0AHIAaQBiAHUAdABhAHIAaQBvMA0GCSqGSIb3DQEB
-BQUAA4IBAQBd1cZ2H7W9EdPJuXxEwmXpHt66OdGqnFd98YYmzZO8BVvjOolwkQaF
-rvuHyqqDaqQzriIl/q54FbfmNNjs7bnUa2g3oTZKAQ4qymz7tUOI8vR0/Pb8DCJi
-QKDuQoxHkw/0sDZqrvlUfg7tf61fY9N1f+mC2HLg5pVeuA2Ro4qhnCmxqeq9SjTS
-j/v0wzDin0rfWNCYl18siI00HcaHms2dLDnSSBegc770DXtXZdpyxhf1y8xeWpGU
-ZFzOWYFvaffnrEnY2y9pLMQ9/lggxoiOEGdDSeHwzVqy5YF0WIdH+WT5r1403lZ/
-ZjNsUbDFvO0IGu+UFHWFggXHuxXL2oyc</X509Certificate>
+TyAxETAPBgNVBAcTCFNhbnRpYWdvMScwJQYDVQQKEx5SRVlTQ0FMTEFIIE5BU0VS
+IFkgSEVSTUFOTyBTIEExODA2BgNVBAsTL0xJQlJFUklBLCBFU0NSSVRPUklPLCBC
+QVpBUiwgUEFRVUVURVJJQSBZIEhPR0FSMR4wHAYDVQQDExVZQU1BSEwgTkFTRVIg
+R09OWkFMRVoxJTAjBgkqhkiG9w0BCQEWFmppbWVuZXptYXVyeUBnbWFpbC5jb20w
+gZ8wDQYJKoZIhvcNAQEBBQADgY0AMIGJAoGBAKXUcHeUEj+7rF6WsutEFwh/dbvp
+0UCQ0RX73VoIvUIOEuaaGlkAqCzAsD9qgaDcx++u1ogyd4wxqsPhHvAE8hogV5Ll
+kxkUSHerkoIXgQPO/MOnUWN9ufXA6TIYQqMO/IJgoKKkiKg9j9i3Fl9Ub2uEtsz+
+422ZL4+GLn7dAh1rAgMBAAGjggKnMIICozA9BgkrBgEEAYI3FQcEMDAuBiYrBgEE
+AYI3FQiC3IMvhZOMZoXVnReC4twnge/sPGGBmucVhq/gFQIBZAIBBDAdBgNVHQ4E
+FgQU/CmsAMAQLpoTfGWgkvAzRbIh9iswCwYDVR0PBAQDAgTwMB8GA1UdIwQYMBaA
+FHjhPp/SErN6PI3NMA5Ts0MpB7NVMD4GA1UdHwQ3MDUwM6AxoC+GLWh0dHA6Ly9j
+cmwuZS1jZXJ0Y2hpbGUuY2wvZWNlcnRjaGlsZWNhRkVTLmNybDA6BggrBgEFBQcB
+AQQuMCwwKgYIKwYBBQUHMAGGHmh0dHA6Ly9vY3NwLmVjZXJ0Y2hpbGUuY2wvb2Nz
+cDAjBgNVHREEHDAaoBgGCCsGAQQBwQEBoAwWCjA4NDczMzI1LTMwIwYDVR0SBBww
+GqAYBggrBgEEAcEBAqAMFgo5NjkyODE4MC01MIIBTQYDVR0gBIIBRDCCAUAwggE8
+BggrBgEEAcNSBTCCAS4wLQYIKwYBBQUHAgEWIWh0dHA6Ly93d3cuZS1jZXJ0Y2hp
+bGUuY2wvQ1BTLmh0bTCB/AYIKwYBBQUHAgIwge8egewAQwBlAHIAdABpAGYAaQBj
+AGEAZABvACAARgBpAHIAbQBhACAAUwBpAG0AcABsAGUALgAgAEgAYQAgAHMAaQBk
+AG8AIAB2AGEAbABpAGQAYQBkAG8AIABlAG4AIABmAG8AcgBtAGEAIABwAHIAZQBz
+AGUAbgBjAGkAYQBsACwAIABxAHUAZQBkAGEAbgBkAG8AIABoAGEAYgBpAGwAaQB0
+AGEAZABvACAAZQBsACAAQwBlAHIAdABpAGYAaQBjAGEAZABvACAAcABhAHIAYQAg
+AHUAcwBvACAAdAByAGkAYgB1AHQAYQByAGkAbzANBgkqhkiG9w0BAQUFAAOCAQEA
+QsmCOEd8GzGCcFPTCnR3VYRP6LlrdxCfcksv1/3bFGoxd2IZcpUnRhgOuYnFCtaM
+Zmgx79odqmgPv5cFu92KUPuL0xq9pXTN5Qx2n1rqAshpD8A33Jc5Ukb+MMzJGCbZ
+1ebnE74wv6Hz8bcHuL9Pfqn83TWwlkb/7NSUCpmBD2BZTYrDtN9DOJOKcuRAvehv
+doITXqQcw9qx/80/vBuQwbf7QLRSZEyI4lyOmxaAlVReIgiqSqlR8qUjGSSAJKH9
+UwvopBCkyxybYg8sOTbZ8MGRbuSMaJFDgGPWxZE/WSwN+Nw3KYJnVSW02GvjtKYS
+FDcnuVGkuQGR3VvJKs5B/Q==</X509Certificate>
 </X509Data></KeyInfo></Signature></LibroCompraVenta>

@@ -18,7 +18,10 @@ class Libro < ActiveRecord::Base
   def libroventa
 
     libro = self
-    rutEnvia = Empresa.find_by_rut(libro.rut).rutenvia
+    empresa = Empresa.find_by_rut(libro.rut)
+    numResolucion = empresa.numerores
+    fchResolucion = empresa.fechares
+    rutEnvia = empresa.rutenvia
 
     tosign_xml="<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>"
     tosign_xml+="<LibroCompraVenta xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.sii.cl/SiiDte LibroCV_v10.xsd\" version=\"1.0\" xmlns=\"http://www.sii.cl/SiiDte\">"
@@ -29,22 +32,18 @@ class Libro < ActiveRecord::Base
     tosign_xml+="<RutEnvia>#{rutEnvia}</RutEnvia>"
     tosign_xml+="<PeriodoTributario>#{libro.idenvio}</PeriodoTributario>"
     
-    tosign_xml+="<FchResol>2014-08-22</FchResol>"
-    tosign_xml+="<NroResol>80</NroResol>"
+    tosign_xml+="<FchResol>#{fchResolucion}</FchResol>"
+    tosign_xml+="<NroResol>#{numResolucion}</NroResol>"
 
-    #Para certificación
-     # tosign_xml+="<FchResol>2014-09-10</FchResol>"
-     # tosign_xml+="<NroResol>0</NroResol>"
-
-    tosign_xml+="<TipoOperacion>VENTA</TipoOperacion>"
+     tosign_xml+="<TipoOperacion>VENTA</TipoOperacion>"
     # Para certificacion
-    # tosign_xml+="<TipoLibro>ESPECIAL</TipoLibro>"
+     # tosign_xml+="<TipoLibro>ESPECIAL</TipoLibro>"
 
     tosign_xml+="<TipoLibro>MENSUAL</TipoLibro>"
-
     tosign_xml+="<TipoEnvio>TOTAL</TipoEnvio>"
+
     # Solo para certificación 
-    # tosign_xml+="<FolioNotificacion>1</FolioNotificacion>" 
+     # tosign_xml+="<FolioNotificacion>1</FolioNotificacion>" 
     tosign_xml+="</Caratula>"
 
     #Resumen
@@ -179,8 +178,8 @@ class Libro < ActiveRecord::Base
       end
     end
     #Fin EnvioLibro
-    #TO DO: corregir la fecha del envio
-    tosign_xml+="<TmstFirma>2015-01-20T16:35:14</TmstFirma>"
+    fchfirma = Date.strptime("#{Date.today.year}/#{Date.today.month}/#{Date.today.day}", "%Y/%m/%d")
+    tosign_xml+="<TmstFirma>#{fchfirma}T15:26:15</TmstFirma>"
     tosign_xml+="</EnvioLibro>"
 
     #Firma
@@ -227,7 +226,7 @@ class Libro < ActiveRecord::Base
 
    # lib = File.read "doc-signed#{t}.xml"
 
-    system("rm libro_ventatosing#{libro.idenvio}.xml") 
+    system("rm libro_ventatosing#{libro.rut}#{libro.idenvio}.xml") 
   end
 
   def librocompra
@@ -500,7 +499,8 @@ class Libro < ActiveRecord::Base
     # </Detalle>
     end
 
-    tosign_xml+="<TmstFirma>2015-01-20T16:35:14</TmstFirma>\r\n"
+    fchfirma = Date.strptime("#{Date.today}T16:35:15", "%Y/%m/%d")
+    tosign_xml+="<TmstFirma>#{fchfirma}</TmstFirma>"
     tosign_xml+="</EnvioLibro>\r\n"
 
     #Firma
@@ -527,15 +527,25 @@ class Libro < ActiveRecord::Base
     #Fin Libro  
     tosign_xml+= "</LibroCompraVenta>"
 
-    File.open("libro_compratosing#{libro.idenvio}.xml", 'w') { |file| file.puts tosign_xml}
+    File.open("libro_compratosing#{libro.rut}#{libro.idenvio}.xml", 'w') { |file| file.puts tosign_xml}
 
     sleep 1
      
-    system("./comando libro_compratosing#{libro.idenvio}.xml libro_compra#{libro.rut}#{libro.idenvio}.xml")
-      
+    if Empresa.last.rut == "80790400-0"
+      puts "============"
+      puts "ElSultan"
+      puts "============"
+      system("./comandoElSultan libro_compratosing#{libro.rut}#{libro.idenvio}.xml libro_compra#{libro.rut}#{libro.idenvio}.xml")
+    else  
+      system("./comando libro_compratosing#{libro.rut}#{libro.idenvio}.xml libro_compra#{libro.rut}#{libro.idenvio}.xml")
+      puts "============"
+      puts "Otros"
+      puts "============"
+    end  
+
    # lib = File.read "doc-signed#{t}.xml"
 
-    system("rm libro_compratosing#{libro.idenvio}.xml") 
+    system("rm libro_compratosing#{libro.rut}#{libro.idenvio}.xml") 
   end  
 
 end
