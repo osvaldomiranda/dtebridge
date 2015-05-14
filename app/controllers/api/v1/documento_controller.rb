@@ -64,7 +64,7 @@ class Api::V1::DocumentoController < Api::V1::ApiController
 
   def postsii(idDoc)
     @doc  = Documento.find(idDoc)
-rou
+
     @tokenOk = get_token 
 
     @rut = @doc.RUTEmisor[0..7]

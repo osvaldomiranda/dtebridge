@@ -6,7 +6,7 @@ require "mailman"
 Mailman.config.pop3 = {
   server: 'pop.gmail.com', port: 995, ssl: true,
   username: 'dteelsultan@gmail.com',
-  password: 'elpreciosodt3'
+  password: 'Yamahl2015'
  }
 
 
