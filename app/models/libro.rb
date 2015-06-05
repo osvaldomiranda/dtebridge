@@ -231,12 +231,12 @@ class Libro < ActiveRecord::Base
 
   def librocompra
 
+    libro=self
+
     empresa = Empresa.find_by_rut(libro.rut)
     numResolucion = empresa.numerores
     fchResolucion = empresa.fechares
     rutEnvia = empresa.rutenvia
-
-    libro=self
 
     tosign_xml="<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>"
     tosign_xml+="<LibroCompraVenta xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.sii.cl/SiiDte LibroCV_v10.xsd\" version=\"1.0\" xmlns=\"http://www.sii.cl/SiiDte\">"
