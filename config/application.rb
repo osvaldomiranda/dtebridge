@@ -48,7 +48,7 @@ module Dtebridge
     config.i18n.default_locale = :es
 
     # for excel import with roo gem
-    require 'iconv'
+  
     end
   end
 end
