@@ -8,8 +8,18 @@ class Compmanual < ActiveRecord::Base
   end
 
   def self.import(file)
+    # spreadsheet = open_spreadsheet(file)
+    # header = spreadsheet.row(1)
+    # (2..spreadsheet.last_row).each do |i|
+
     CSV.foreach(file.path, col_sep: ';', headers: true) do |row|
-    rowHash = row.to_hash
+
+    rowHash = row.to_hash    
+    # if ! rowHash.valid_encoding?
+    #   rowHash = row.encode("UTF-16be", :invalid=>:replace, :replace=>"?").encode('UTF-8')
+    # end
+
+      # rowHash = Hash[[header, spreadsheet.row(i)].transpose]
 
       doc = Compmanual.new(rowHash)
 
@@ -65,4 +75,19 @@ class Compmanual < ActiveRecord::Base
       doc.save
     end
   end
+
+  def self.open_spreadsheet(file)
+
+    # puts "*******************"
+    # puts file.original_filename
+    # puts "*******************"
+
+    # case File.extname(file.original_filename)
+    # when '.csv' then Csv.new(file.path, nil, :ignore)
+    # when '.xls' then Roo::Excel.new(file.path)
+    # when '.xlsx' then Roo::Excelx.new(file.path)
+    # else raise "Unknown file type: #{file.original_filename}"
+    # end
+  end
+
 end

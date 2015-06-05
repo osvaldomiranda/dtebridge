@@ -499,8 +499,9 @@ class Libro < ActiveRecord::Base
     # </Detalle>
     end
 
-    fchfirma = Date.strptime("#{Date.today}T16:35:15", "%Y/%m/%d")
-    tosign_xml+="<TmstFirma>#{fchfirma}</TmstFirma>"
+    fchfirma = Date.strptime("#{Date.today.year}/#{Date.today.month}/#{Date.today.day}", "%Y/%m/%d")
+    tosign_xml+="<TmstFirma>#{fchfirma}T15:26:15</TmstFirma>"
+
     tosign_xml+="</EnvioLibro>\r\n"
 
     #Firma

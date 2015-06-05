@@ -73,8 +73,11 @@ gem 'chartkick'
 
 # For date time group query
 gem 'groupdate'
-
+# for mail incoming
 gem 'mailman', require: false
+
+# for excel import
+gem 'roo'
 
 
 group :development do
