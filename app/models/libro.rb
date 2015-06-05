@@ -231,6 +231,11 @@ class Libro < ActiveRecord::Base
 
   def librocompra
 
+    empresa = Empresa.find_by_rut(libro.rut)
+    numResolucion = empresa.numerores
+    fchResolucion = empresa.fechares
+    rutEnvia = empresa.rutenvia
+
     libro=self
 
     tosign_xml="<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>"
@@ -238,10 +243,10 @@ class Libro < ActiveRecord::Base
     tosign_xml+="<EnvioLibro ID=\"IDC#{libro.idenvio}\">\r\n"
     tosign_xml+="<Caratula>\r\n"
     tosign_xml+="<RutEmisorLibro>#{libro.rut}</RutEmisorLibro>\r\n"
-    tosign_xml+="<RutEnvia>5682509-6</RutEnvia>\r\n"
+    tosign_xml+="<RutEnvia>#{rutEnvia}</RutEnvia>\r\n"
     tosign_xml+="<PeriodoTributario>#{libro.idenvio}</PeriodoTributario>\r\n"
-    tosign_xml+="<FchResol>2014-08-22</FchResol>\r\n"
-    tosign_xml+="<NroResol>80</NroResol>\r\n"
+    tosign_xml+="<FchResol>#{fchResolucion}</FchResol>\r\n"
+    tosign_xml+="<NroResol>#{numResolucion}</NroResol>\r\n"
     #Para certificación
      # tosign_xml+="<FchResol>2014-09-10</FchResol>"
      # tosign_xml+="<NroResol>0</NroResol>"
