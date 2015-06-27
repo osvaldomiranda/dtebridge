@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150513012647) do
+ActiveRecord::Schema.define(version: 20150627190651) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -116,6 +116,9 @@ ActiveRecord::Schema.define(version: 20150513012647) do
     t.integer  "documento_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.float    "PrcBruItem"
+    t.float    "DescuentoBruMonto"
+    t.float    "MontoBruItem"
   end
 
   add_index "detalles", ["documento_id"], name: "index_detalles_on_documento_id", using: :btree
