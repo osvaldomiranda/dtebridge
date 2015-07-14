@@ -1,8 +1,8 @@
 %h3 Documentos
 
-%p
-  Download:
-  = link_to "Excel", send_data @documentos.to_csv(col_sep: "\t") 
+/ %p
+/   Download:
+/   = link_to "Excel", send_data @documentos.to_csv(col_sep: "\t") 
 
 = will_paginate @documentos
 
