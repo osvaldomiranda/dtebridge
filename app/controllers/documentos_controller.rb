@@ -1,11 +1,15 @@
 class DocumentosController < ApplicationController
   before_filter :authenticate_user!
-  before_action :set_documento, only: [:show, :edit, :update, :destroy]
 
   def index
     @documentos = Documento.order(created_at: :desc).paginate(:page => params[:page], :per_page => 15 )
     @empresas = Empresa.all
     @sucursales = Sucursal.all
+
+    respond_to do |format|
+      format.html { render action: 'index' }
+      format.xls { send_data @documentos.to_csv(col_sep: "\t") }
+    end
   end
 
   def find
@@ -35,10 +39,12 @@ class DocumentosController < ApplicationController
     if params[:empresa] == "" && params[:sucursal]=="" && params[:Folio]=="" 
       respond_to do |format|
         format.html { redirect_to "/documentos" }
+        format.xls { send_data @documentos.to_csv(col_sep: "\t") }
       end
     else
       respond_to do |format|
         format.html { render action: 'index' }
+        format.xls { send_data @documentos.to_csv(col_sep: "\t") }
       end
     end  
   end

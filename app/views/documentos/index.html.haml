@@ -1,5 +1,9 @@
 %h3 Documentos
 
+%p
+  Download:
+  = link_to "Excel", send_data @documentos.to_csv(col_sep: "\t") 
+
 = will_paginate @documentos
 
 %p.text-danger Busqueda por folio, debe indicar la Empresa.

@@ -36,4 +36,13 @@ class Documento < ActiveRecord::Base
     tipo = Tipodte.where(tipo: self.TipoDTE).first 
     return (tipo.nil? ? self.TipoDTE : tipo.nombre)
   end
+
+  def self.to_csv(options = {})
+    CSV.generate(options) do |csv|
+      csv << column_names
+      all.each do |document|
+        csv << document.attributes.values_at(*column_names)
+      end
+    end
+  end
 end

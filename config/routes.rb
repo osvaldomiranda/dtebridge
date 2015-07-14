@@ -80,6 +80,8 @@ Dtebridge::Application.routes.draw do
 
   post "buscarDoc", to: "documentos#find"
 
+  get "documentos/download", to: "documentos#download"
+
   get "/daradmin/permisos", to: "daradmin#index"
   get "/daradmin/:id", to: "daradmin#daradmin"
   get "/daradmin/quitaradmin/:id", to: "daradmin#quitaradmin"

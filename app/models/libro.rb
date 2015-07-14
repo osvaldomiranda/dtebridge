@@ -364,7 +364,7 @@ class Libro < ActiveRecord::Base
 
       detlibro.each do |det| 
 
-        doc = Compmanual.where(folio: det.folio).where(rutrecep: det.rutrecep).last
+        doc = Compmanual.where(folio: det.folio).where(rutrecep: det.rutrecep).where(rutemisor: det.rutemis).last
 
         tosign_xml+="<Detalle>\r\n"
         tosign_xml+="<TpoDoc>#{det.tipodte}</TpoDoc>\r\n"

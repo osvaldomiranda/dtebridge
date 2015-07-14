@@ -5,3 +5,5 @@
 # Mime::Type.register_alias "text/html", :iphone
 
 include CarrierWave::MimeTypes
+
+Mime::Type.register "application/xls", :xls
