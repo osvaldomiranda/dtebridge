@@ -34,15 +34,15 @@ class LibroCompraController < ApplicationController
     @otrosImpsCred = Doccompra.select('"TipoDTE","imptoretencompras"."TipoImp" as tipoimp, "imptoretencompras"."TasaImp" as tasaimp, sum("imptoretencompras"."MontoImp") as montoimp').where('estado <> ? AND  "TipoDTE"=61 and "RUTEmisor"=? and "FchEmis" > ? AND "FchEmis" < ?',"Rechazado SII",  @rut, desde, hasta ).joins(:imptoretencompras).group('"TipoDTE","imptoretencompras"."TipoImp","imptoretencompras"."TasaImp"')
 
 
-    @docmanuals = Compmanual.select('"tipodoc", sum("mntneto") as mntneto,sum("mntexe") as mntexe, sum("mntiva") as iva, sum("mnttotal") as mnttotal,  sum(impto10+impto18+impto25+impto30) as otrosimp, count(*) as count').where('"tipodoc" <> 52 and "rutrecep"=? and "fchemis" >= ? AND "fchemis" <= ?', @rut, desde, hasta ).group('"tipodoc"')
-    totFman = Compmanual.select('sum("mntneto") as mntneto,sum("mntexe") as mntexe, sum("mntiva") as iva, sum("mnttotal") as mnttotal,sum(impto10+impto18+impto25+impto30) as otrosimp, count(*) as count').where('"tipodoc" <> 52 and "tipodoc"<>60 and "rutrecep"=? and "fchemis" >= ? AND "fchemis" <= ?', @rut, desde, hasta)
-    totCManual = Compmanual.select('sum("mntneto") as mntneto,sum("mntexe") as mntexe, sum("mntiva") as iva, sum("mnttotal") as mnttotal,sum(impto10+impto18+impto25+impto30) as otrosimp,  count(*) as count').where('"tipodoc"=60 and "rutrecep"=? and "fchemis" >= ? AND "fchemis" <= ?', @rut, desde, hasta )
+    @docmanuals = Compmanual.select('"tipodoc", sum("mntneto") as mntneto,sum("mntexe") as mntexe, sum("mntiva") as iva, sum("mnttotal") as mnttotal,  sum(impto10+impto18+impto25+impto30) as otrosimp, count(*) as count').where('"tipodoc" <> 52 and "rutrecep"=?', @rut).group('"tipodoc"')
+    totFman = Compmanual.select('sum("mntneto") as mntneto,sum("mntexe") as mntexe, sum("mntiva") as iva, sum("mnttotal") as mnttotal,sum(impto10+impto18+impto25+impto30) as otrosimp, count(*) as count').where('"tipodoc" <> 52 and "tipodoc"<>60 and "tipodoc"<>61 and "rutrecep"=?', @rut)
+    totCManual = Compmanual.select('sum("mntneto") as mntneto,sum("mntexe") as mntexe, sum("mntiva") as iva, sum("mnttotal") as mnttotal,sum(impto10+impto18+impto25+impto30) as otrosimp,  count(*) as count').where('("tipodoc"=60 or "tipodoc"=61) and "rutrecep"=?', @rut)
 
     totFman.map {|e| @totFmanual = e}
     totCManual.map {|e| @totCredManual  = e}
 
-    @otrosImpsMan = Compmanual.select('"tipodoc","otrosimpcompmanuals"."TipoImp" as tipoimp, "otrosimpcompmanuals"."TasaImp" as tasaimp, sum("otrosimpcompmanuals"."MontoImp") as montoimp').where('"tipodoc" <> 52 and "tipodoc"<>60 and "rutrecep"=? and "fchemis" >= ? AND "fchemis" <= ?', @rut, desde, hasta).joins(:otrosimpcompmanuals).group('"tipodoc","otrosimpcompmanuals"."TipoImp","otrosimpcompmanuals"."TasaImp"')
-    @otrosImpsCredMan = Compmanual.select('"tipodoc","otrosimpcompmanuals"."TipoImp" as tipoimp, "otrosimpcompmanuals"."TasaImp" as tasaimp, sum("otrosimpcompmanuals"."MontoImp") as montoimp').where('"tipodoc" <> 52 and "tipodoc"<>30 and "rutrecep"=? and "fchemis" >= ? AND "fchemis" <= ?', @rut, desde, hasta ).joins(:otrosimpcompmanuals).group('"tipodoc","otrosimpcompmanuals"."TipoImp","otrosimpcompmanuals"."TasaImp"')
+    @otrosImpsMan = Compmanual.select('"tipodoc","otrosimpcompmanuals"."TipoImp" as tipoimp, "otrosimpcompmanuals"."TasaImp" as tasaimp, sum("otrosimpcompmanuals"."MontoImp") as montoimp').where('"tipodoc" <> 52 and "tipodoc"<>60 and "rutrecep"=?', @rut).joins(:otrosimpcompmanuals).group('"tipodoc","otrosimpcompmanuals"."TipoImp","otrosimpcompmanuals"."TasaImp"')
+    @otrosImpsCredMan = Compmanual.select('"tipodoc","otrosimpcompmanuals"."TipoImp" as tipoimp, "otrosimpcompmanuals"."TasaImp" as tasaimp, sum("otrosimpcompmanuals"."MontoImp") as montoimp').where('"tipodoc" <> 52 and "tipodoc"<>30 and "rutrecep"=?', @rut).joins(:otrosimpcompmanuals).group('"tipodoc","otrosimpcompmanuals"."TipoImp","otrosimpcompmanuals"."TasaImp"')
    
 
     respond_to do |format|

@@ -1,3 +1,4 @@
+# encoding: UTF-8
 class Compmanual < ActiveRecord::Base
   require 'csv'
 
@@ -8,20 +9,51 @@ class Compmanual < ActiveRecord::Base
   end
 
   def self.import(file)
-    # spreadsheet = open_spreadsheet(file)
-    # header = spreadsheet.row(1)
-    # (2..spreadsheet.last_row).each do |i|
+    fileOk = false
+    msg=" "
+    begin
+      CSV.foreach(file.path, col_sep: ';', headers: true) do |row|
+        rowHash = row.to_hash
+       
+        if rowHash["fchemis"][0..3].index("-") != nil || rowHash["fchemis"].index("/") != nil
+          msg = msg + "Documento folio " + rowHash["folio"] +", formato fecha incorrecto, debe ser : aaaa-mm-dd \r\n"
+        end  
 
-    fileOk = true
-    CSV.foreach(file.path, col_sep: ';', headers: true) do |row|
-      # rowHash = row.to_hash 
-    end
+        montotot = rowHash["mntneto"].to_f + rowHash["mntexe"].to_f + rowHash["mntiva"].to_f + rowHash["otrosimpto"].to_f
+        if montotot != rowHash["mnttotal"].to_f 
+          msg =  msg + "Documento folio " + rowHash["folio"] + " montos no cuadran.  \r\n" 
+        end
+
+        if (rowHash["mntneto"].to_f*0.19).round(0) != rowHash["mntiva"].to_f.round(0)
+          msg =  msg + "Documento folio " + rowHash["folio"] + ", monto Iva no cuadra.  \r\n"
+        end
+
+        if msg != " "
+          return msg
+        else
+          fileOk = true
+        end    
+      end
+    rescue
+      msg = msg + "Formato de archivo incorrecto, revise si contiene ñ Ñ o algún otro caracter especial."
+      puts "****************"
+      puts msg
+      puts puts "Error #{$!}"
+      puts "****************"  
+      return msg    
+    end  
+
 
     if fileOk
       CSV.foreach(file.path, col_sep: ';', headers: true) do |row|
 
-      rowHash = row.to_hash    
+        rowHash = row.to_hash    
 
+        rowHash["rznsocemisor"] = rowHash["rznsocemisor"][0..49].gsub('&','')
+        rowHash["rutemisor"] = rowHash["rutemisor"].gsub('.','')
+        rowHash["rutemisor"] = rowHash["rutemisor"].gsub('k','K')
+        rowHash["rutrecep"] = rowHash["rutrecep"].gsub('.','')
+        rowHash["rutrecep"] = rowHash["rutrecep"].gsub('k','K')
 
         doc = Compmanual.new(rowHash)
 
@@ -75,10 +107,11 @@ class Compmanual < ActiveRecord::Base
         end  
         doc.otrosimpto = impto10 + impto18 + impto25 + impto30
         doc.save
-
-      end
+      end  
     end
-  end
+    return msg
+  end  
+
 
   def self.open_spreadsheet(file)
 

@@ -89,6 +89,9 @@ Dtebridge::Application.routes.draw do
   get "/newuser/index", to: "newuser#index"
   post "/newuser/new", to: "newuser#new"
 
+  get "/uploadformat/fileventas", to: "uploadformat#sendfileventas"
+  get "/uploadformat/filecompras", to: "uploadformat#sendfilecompras"
+
   root to: "home#index"
 
   resources :contribuyentes do
