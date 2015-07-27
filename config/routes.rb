@@ -1,9 +1,9 @@
 Dtebridge::Application.routes.draw do
 
+  
   resources :envioclientes
 
-  get "newuser/index"
-  get "detlibro/index"
+
   resources :compmanuals do
     collection { post :import }
   end
@@ -40,8 +40,14 @@ Dtebridge::Application.routes.draw do
   devise_for :installs
   devise_for :users
 
+  get "report/venta"
+  post "report/find", to: "report#find"
+
   get "detlibrovta/index"
   get "uploadformat/index"
+  get "newuser/index"
+  get "detlibro/index"
+
 
   get "libro_compra/index"
   post "buscarLibroCompra", to: "libro_compra#find"
