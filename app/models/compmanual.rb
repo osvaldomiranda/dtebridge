@@ -35,7 +35,7 @@ class Compmanual < ActiveRecord::Base
         end    
       end
     rescue
-      msg = msg + "Formato de archivo incorrecto, revise si contiene ñ Ñ o algún otro caracter especial."
+      msg = msg + "Formato de archivo incorrecto, revise si contiene algún caracter especial."
       puts "****************"
       puts msg
       puts puts "Error #{$!}"
@@ -54,6 +54,39 @@ class Compmanual < ActiveRecord::Base
         rowHash["rutemisor"] = rowHash["rutemisor"].gsub('k','K')
         rowHash["rutrecep"] = rowHash["rutrecep"].gsub('.','')
         rowHash["rutrecep"] = rowHash["rutrecep"].gsub('k','K')
+
+        if rowHash["impto10"]==nil
+          rowHash["impto10"]="0"
+        end  
+
+        if rowHash["impto18"]==nil
+          rowHash["impto18"]="0"
+        end  
+
+        if rowHash["impto25"]==nil
+          rowHash["impto25"]="0"
+        end  
+
+        if rowHash["impto30"]==nil
+          rowHash["impto30"]="0"
+        end  
+
+        if rowHash["mntneto"]==nil
+          rowHash["mntneto"]="0"
+        end 
+
+        if rowHash["mntexe"]==nil
+          rowHash["mntexe"]="0"
+        end 
+
+        if rowHash["mntiva"]==nil
+          rowHash["mntiva"]="0"
+        end 
+
+        if rowHash["otrosimpto"]==nil
+          rowHash["otrosimpto"]="0"
+        end 
+
 
         doc = Compmanual.new(rowHash)
 
