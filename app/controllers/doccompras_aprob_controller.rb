@@ -1,3 +1,4 @@
+# encoding: ISO-8859-1
 class DoccomprasAprobController < ApplicationController
   respond_to :html
   def index

@@ -7,7 +7,7 @@ development:
   adapter: postgresql
   database: dtebridge_development
   host: localhost
-  encoding: utf8
+  encoding: iso-8859-1
   username: dtebridge
   password: lubba10580
   pool: 5

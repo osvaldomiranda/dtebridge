@@ -1,3 +1,4 @@
+# encoding: ISO-8859-1
 class CompmanualsController < ApplicationController
   before_action :set_compmanual, only: [:show, :edit, :update, :destroy]
 
@@ -14,7 +15,7 @@ class CompmanualsController < ApplicationController
 
   def import
     @compmanuals = Compmanual.all
-    @msg = Compmanual.import(params[:file])
+    @msg = Compmanual.import(params[:file]).force_encoding('utf-8')
     respond_to do |format|
       format.html {
         if @msg == " "

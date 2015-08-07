@@ -1,4 +1,4 @@
-# encoding: UTF-8
+# encoding: ISO-8859-1
 class Compmanual < ActiveRecord::Base
   require 'csv'
 
@@ -12,7 +12,7 @@ class Compmanual < ActiveRecord::Base
     fileOk = false
     msg=" "
     begin
-      CSV.foreach(file.path, col_sep: ';', headers: true) do |row|
+      CSV.foreach(file.path, col_sep: ';', headers: true, encoding: "ISO-8859-1" ) do |row|
         rowHash = row.to_hash
        
         if rowHash["fchemis"][0..3].index("-") != nil || rowHash["fchemis"].index("/") != nil

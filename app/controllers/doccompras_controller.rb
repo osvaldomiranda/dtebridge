@@ -1,3 +1,4 @@
+# encoding: ISO-8859-1
 class DoccomprasController < ApplicationController
   before_action :set_doccompra, only: [:show, :edit, :update, :destroy]
 
@@ -7,33 +8,6 @@ class DoccomprasController < ApplicationController
     @doccompras = Doccompra.where(estado: nil)
   end
 
-  # def show
-  #   respond_with(@doccompra)
-  # end
-
-  # def new
-  #   @doccompra = Doccompra.new
-  #   respond_with(@doccompra)
-  # end
-
-  # def edit
-  # end
-
-  # def create
-  #   @doccompra = Doccompra.new(doccompra_params)
-  #   @doccompra.save
-  #   respond_with(@doccompra)
-  # end
-
-  # def update
-  #   @doccompra.update(doccompra_params)
-  #   respond_with(@doccompra)
-  # end
-
-  # def destroy
-  #   @doccompra.destroy
-  #   respond_with(@doccompra)
-  # end
 
   def rechazar
     d = Doccompra.find(params[:id])
