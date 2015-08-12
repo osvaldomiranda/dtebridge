@@ -48,7 +48,7 @@ class Docmanual < ActiveRecord::Base
     if fileOk
       CSV.foreach(file.path, col_sep: ';', headers: true) do |row|
         rowHash = row.to_hash
-        rowHash["rznsocemisor"] = rowHash["rznsocemisor"][0..49].gsub('&','')
+        rowHash["rznsocrecep"] = rowHash["rznsocrecep"][0..49].gsub('&','')
         rowHash["rutemisor"] = rowHash["rutemisor"].gsub('.','')
         rowHash["rutemisor"] = rowHash["rutemisor"].gsub('k','K')
         rowHash["rutrecep"] = rowHash["rutrecep"].gsub('.','')
