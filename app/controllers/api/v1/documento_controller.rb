@@ -319,19 +319,19 @@ class Api::V1::DocumentoController < Api::V1::ApiController
 
       if rechazados == "1"
         d.estado = "Rechazado SII"
+        d.save 
       end  
       if aceptados == "1"
         d.estado = "Aceptado Ok SII" 
+        d.save 
+        enviaEmailCliente(d.RUTRecep,id)
       end
       if reparos == "1"
         d.estado = "Aceptado con Reparos"
+        d.save 
+        enviaEmailCliente(d.RUTRecep,id)
       end 
     end
-    d.save  
-    if aceptados == "1" || reparos == "1"
-      enviaEmailCliente(d.RUTRecep,id)
-    end
-
   end
 
   def consultaEnvio( docId, rut, dv, estadoxml, token)

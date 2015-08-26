@@ -2,7 +2,7 @@ class Contribuyente < ActiveRecord::Base
 
   require 'csv'
   def self.import(file)
-    CSV.foreach(file.path, col_sep: ';', headers: true) do |row|
+    CSV.foreach(file.path, col_sep: ';', headers: true, encoding: "ISO-8859-1" ) do |row|
       rowHash = row.to_hash
       
       puts "================="

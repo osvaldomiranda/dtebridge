@@ -43,6 +43,8 @@ class ContribuyentesController < ApplicationController
   end
 
   def import
+    Contribuyente.destroy_all
+    
     Contribuyente.import(params[:file])
 
     @contribuyentes = Contribuyente.all
