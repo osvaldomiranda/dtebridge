@@ -4,7 +4,7 @@ class ContribuyentesController < ApplicationController
   respond_to :html
 
   def index
-    @contribuyentes = Contribuyente.all
+    @contribuyentes = Contribuyente.count
     respond_with(@contribuyentes)
   end
 
@@ -44,7 +44,7 @@ class ContribuyentesController < ApplicationController
 
   def import
     Contribuyente.destroy_all
-    
+
     Contribuyente.import(params[:file])
 
     @contribuyentes = Contribuyente.all
