@@ -5,7 +5,7 @@ class DoccomprasController < ApplicationController
   respond_to :html
 
   def index
-    @doccompras = Doccompra.where(estado: nil)
+    @doccompras = Doccompra.where(estado: nil).order(created_at: :desc).paginate(:page => params[:page], :per_page => 15 )
   end
 
 
