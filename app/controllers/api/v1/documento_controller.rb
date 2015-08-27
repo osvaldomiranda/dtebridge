@@ -2,8 +2,6 @@
 class Api::V1::DocumentoController < Api::V1::ApiController
   
   def create_doc
-    #TO DO:  pdf y pdfcedible en tabla documento 
-    #para recibir toda la info (Ver si es recomendable el envío por separado)
 
     p = eval(params[:doc].force_encoding('iso-8859-1').encode('utf-8'))
 
@@ -308,7 +306,8 @@ class Api::V1::DocumentoController < Api::V1::ApiController
               "9" => "9 Sistema Bloqueado" ,
               "Otro" => "Error interno SII"
             }
-    d.estado = estado[statusUp]  
+    d.estado = estado[statusUp] 
+    d.save 
             
     if d.estadoEnvioXml.to_s.index('ACEPTADOS').nil?   
       
