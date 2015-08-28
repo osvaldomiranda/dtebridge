@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150627190651) do
+ActiveRecord::Schema.define(version: 20150828040856) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -277,6 +277,8 @@ ActiveRecord::Schema.define(version: 20150627190651) do
     t.integer  "VlrPagar"
   end
 
+  add_index "doccompras", ["RUTEmisor", "Folio", "TipoDTE"], name: "index_doccompras_on_RUTEmisor_and_Folio_and_TipoDTE", unique: true, using: :btree
+
   create_table "docmanuals", force: true do |t|
     t.integer  "tipodoc"
     t.integer  "folio"
@@ -408,6 +410,7 @@ ActiveRecord::Schema.define(version: 20150627190651) do
     t.text     "estadoxml"
     t.string   "pdft"
     t.text     "estadoEnvioXml"
+    t.string   "trackidSII"
     t.string   "fileCliente"
     t.string   "fileFactura"
     t.string   "fileJson"
