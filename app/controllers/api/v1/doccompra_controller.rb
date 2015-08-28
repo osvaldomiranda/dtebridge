@@ -135,6 +135,7 @@ class Api::V1::DoccompraController < Api::V1::ApiController
         puts "============="
         puts p[:documento]
         puts "============="
+
         
         @docCompra = Doccompra.new(p[:documento])
         @docCompra.xmlrecibido = docEmail.xmlrecibido

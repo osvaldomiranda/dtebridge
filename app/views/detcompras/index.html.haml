@@ -22,7 +22,7 @@
       %tr
         %td= detcompra.NroLinDet
         %td= detcompra.VlrCodigo
-        %td= detcompra.NmbItem
+        %td= detcompra.NmbItem.force_encoding('utf-8')
         %td= detcompra.DscItem
         %td= detcompra.QtyItem
         %td= detcompra.UnmdItem
@@ -47,7 +47,10 @@
         %tr
           %td= dscto.NroLinDR
           %td= dscto.TpoMov
-          %td= dscto.GlosaDR
+          - if dscto.GlosaDR.nil?
+            %td
+          - else  
+            %td= dscto.GlosaDR.force_encoding('utf-8')
           %td= dscto.TpoValor
           %td= dscto.ValorDR
           %td= dscto.IndExeDR
@@ -72,12 +75,15 @@
           %td= referencia.NroLinRef
           %td= referencia.TpoDocRef
           %td= referencia.IndGlobal
-          %td= referencia.FolioRef
+          %td= referencia.FolioRef.force_encoding('utf-8')
           %td= referencia.RUTOtr
           %td= referencia.IdAdicOtr
           %td= referencia.FchRef
           %td= referencia.CodRef
-          %td= referencia.RazonRef
+          - if referencia.RazonRef.nil?
+            %td
+          - else
+            %td= referencia.RazonRef.force_encoding('utf-8')
 - unless @imptos[0].TipoImp.nil?
   %br
   %h4 Impuesto Retenido

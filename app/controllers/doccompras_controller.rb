@@ -31,6 +31,10 @@ class DoccomprasController < ApplicationController
     end  
   end  
 
+  def sendxml
+    doccompra = Doccompra.find(params[:id])
+    send_data doccompra.xmlrecibido.force_encoding('iso-8859-1') , :filename => "xml#{doccompra.Folio}.xml"
+  end  
 
   private
     def set_doccompra

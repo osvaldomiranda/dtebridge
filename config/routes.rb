@@ -79,6 +79,7 @@ Dtebridge::Application.routes.draw do
   
   get "doccompras/rechazar/:id", to: "doccompras#rechazar"
   get "doccompras/aprobar/:id", to: "doccompras#aprobar"
+  get "doccompras/sendxml/:id", to: "doccompras#sendxml"
   get "doccompras_aprob/rechazar/:id", to: "doccompras_aprob#rechazar"
   get "doccompras_rech/aprobar/:id", to: "doccompras_rech#aprobar"
   get "doccompras_aprob", to: "doccompras_aprob#index"

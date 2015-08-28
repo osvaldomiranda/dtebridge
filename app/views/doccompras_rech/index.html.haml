@@ -20,9 +20,9 @@
         %td= doccompra.Folio
         %td= doccompra.FchEmis
         %td= doccompra.RUTEmisor
-        %td= doccompra.RznSoc.tr('Ñn','Nn')
+        %td= doccompra.RznSoc.force_encoding('utf-8')
         %td= doccompra.RUTRecep
-        %td= doccompra.RznSocRecep.tr('Ñn','Nn')
+        %td= doccompra.RznSocRecep.force_encoding('utf-8')
         %td= number_to_currency( doccompra.MntTotal, precision: 0, delimiter: "." )
         %td= link_to "Detalle", "/detcompras/#{doccompra.id}", class: "btn btn-primary btn-xs"
         %td= link_to "Aprobar", "/doccompras_rech/aprobar/#{doccompra.id}", class: "btn btn-success btn-xs" 

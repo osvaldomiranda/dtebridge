@@ -37,6 +37,5 @@ Dtebridge::Application.configure do
   authentication:       'plain',
   enable_starttls_auto: false  }
 
- 
 
 end
