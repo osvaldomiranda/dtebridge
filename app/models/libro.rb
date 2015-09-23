@@ -243,21 +243,26 @@ class Libro < ActiveRecord::Base
     tosign_xml+="<EnvioLibro ID=\"IDC#{libro.idenvio}\">\r\n"
     tosign_xml+="<Caratula>\r\n"
     tosign_xml+="<RutEmisorLibro>#{libro.rut}</RutEmisorLibro>\r\n"
-   # tosign_xml+="<RutEnvia>#{rutEnvia}</RutEnvia>\r\n"
-    tosign_xml+="<RutEnvia>5682509-6</RutEnvia>\r\n"
-    tosign_xml+="<PeriodoTributario>#{libro.idenvio}</PeriodoTributario>\r\n"
-  #  tosign_xml+="<FchResol>#{fchResolucion}</FchResol>\r\n"
-  #  tosign_xml+="<NroResol>#{numResolucion}</NroResol>\r\n"
-    #Para certificación
+
+    if Rails.env.production?
+      tosign_xml+="<RutEnvia>#{rutEnvia}</RutEnvia>\r\n"
+      tosign_xml+="<PeriodoTributario>#{libro.idenvio}</PeriodoTributario>\r\n"
+      tosign_xml+="<FchResol>#{fchResolucion}</FchResol>\r\n"
+      tosign_xml+="<NroResol>#{numResolucion}</NroResol>\r\n"
+      tosign_xml+="<TipoOperacion>COMPRA</TipoOperacion>\r\n"
+      tosign_xml+="<TipoLibro>MENSUAL</TipoLibro>\r\n"
+      tosign_xml+="<TipoEnvio>TOTAL</TipoEnvio>\r\n"
+    else 
+      tosign_xml+="<RutEnvia>5682509-6</RutEnvia>\r\n"
+      tosign_xml+="<PeriodoTributario>#{libro.idenvio}</PeriodoTributario>\r\n"
       tosign_xml+="<FchResol>2014-09-10</FchResol>"
       tosign_xml+="<NroResol>0</NroResol>"
-    tosign_xml+="<TipoOperacion>COMPRA</TipoOperacion>\r\n"
+      tosign_xml+="<TipoOperacion>COMPRA</TipoOperacion>\r\n"
       tosign_xml+="<TipoLibro>ESPECIAL</TipoLibro>\r\n"
-    
-   # tosign_xml+="<TipoLibro>MENSUAL</TipoLibro>\r\n"
-    tosign_xml+="<TipoEnvio>TOTAL</TipoEnvio>\r\n"
-  #  esto solo para certificacióm  
-     tosign_xml+="<FolioNotificacion>2</FolioNotificacion>\r\n"
+      tosign_xml+="<TipoEnvio>TOTAL</TipoEnvio>\r\n"
+      tosign_xml+="<FolioNotificacion>2</FolioNotificacion>\r\n"
+    end
+
     tosign_xml+="</Caratula>"
 
     tosign_xml+="<ResumenPeriodo>\r\n"
