@@ -19,13 +19,15 @@ class Compmanual < ActiveRecord::Base
           msg = msg + "Documento folio " + rowHash["folio"] +", formato fecha incorrecto, debe ser : aaaa-mm-dd \r\n"
         end  
 
-        montotot = rowHash["mntneto"].to_f + rowHash["mntexe"].to_f + rowHash["mntiva"].to_f + rowHash["otrosimpto"].to_f + rowHash["impto18"].to_f + rowHash["impto10"].to_f + rowHash["impto25"].to_f + rowHash["impto30"].to_f
-        if montotot != rowHash["mnttotal"].to_f 
-          msg =  msg + "Documento folio " + rowHash["folio"] + " montos no cuadran.  \r\n" 
-        end
+        if rowHash["ivanorec"] == 0 
+          montotot = rowHash["mntneto"].to_f + rowHash["mntexe"].to_f + rowHash["mntiva"].to_f + rowHash["otrosimpto"].to_f + rowHash["impto18"].to_f + rowHash["impto10"].to_f + rowHash["impto25"].to_f + rowHash["impto30"].to_f
+          if montotot != rowHash["mnttotal"].to_f 
+            msg =  msg + "Documento folio " + rowHash["folio"] + " montos no cuadran.  \r\n" 
+          end
 
-        if (rowHash["mntneto"].to_f*0.19).round(0) != rowHash["mntiva"].to_f.round(0)
-          msg =  msg + "Documento folio " + rowHash["folio"] + ", monto Iva no cuadra.  \r\n"
+          if (rowHash["mntneto"].to_f*0.19).round(0) != rowHash["mntiva"].to_f.round(0)
+            msg =  msg + "Documento folio " + rowHash["folio"] + ", monto Iva no cuadra.  \r\n"
+          end
         end
 
         if msg != " "
@@ -45,7 +47,7 @@ class Compmanual < ActiveRecord::Base
 
 
     if fileOk
-      CSV.foreach(file.path, col_sep: ';', headers: true) do |row|
+      CSV.foreach(file.path, col_sep: ';', headers: true, encoding: "ISO-8859-1" ) do |row|
 
         rowHash = row.to_hash    
 

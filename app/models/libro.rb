@@ -243,19 +243,21 @@ class Libro < ActiveRecord::Base
     tosign_xml+="<EnvioLibro ID=\"IDC#{libro.idenvio}\">\r\n"
     tosign_xml+="<Caratula>\r\n"
     tosign_xml+="<RutEmisorLibro>#{libro.rut}</RutEmisorLibro>\r\n"
-    tosign_xml+="<RutEnvia>#{rutEnvia}</RutEnvia>\r\n"
+   # tosign_xml+="<RutEnvia>#{rutEnvia}</RutEnvia>\r\n"
+    tosign_xml+="<RutEnvia>5682509-6</RutEnvia>\r\n"
     tosign_xml+="<PeriodoTributario>#{libro.idenvio}</PeriodoTributario>\r\n"
-    tosign_xml+="<FchResol>#{fchResolucion}</FchResol>\r\n"
-    tosign_xml+="<NroResol>#{numResolucion}</NroResol>\r\n"
+  #  tosign_xml+="<FchResol>#{fchResolucion}</FchResol>\r\n"
+  #  tosign_xml+="<NroResol>#{numResolucion}</NroResol>\r\n"
     #Para certificación
-     # tosign_xml+="<FchResol>2014-09-10</FchResol>"
-     # tosign_xml+="<NroResol>0</NroResol>"
+      tosign_xml+="<FchResol>2014-09-10</FchResol>"
+      tosign_xml+="<NroResol>0</NroResol>"
     tosign_xml+="<TipoOperacion>COMPRA</TipoOperacion>\r\n"
-    # tosign_xml+="<TipoLibro>ESPECIAL</TipoLibro>\r\n"
-    tosign_xml+="<TipoLibro>MENSUAL</TipoLibro>\r\n"
+      tosign_xml+="<TipoLibro>ESPECIAL</TipoLibro>\r\n"
+    
+   # tosign_xml+="<TipoLibro>MENSUAL</TipoLibro>\r\n"
     tosign_xml+="<TipoEnvio>TOTAL</TipoEnvio>\r\n"
   #  esto solo para certificacióm  
-    # tosign_xml+="<FolioNotificacion>2</FolioNotificacion>\r\n"
+     tosign_xml+="<FolioNotificacion>2</FolioNotificacion>\r\n"
     tosign_xml+="</Caratula>"
 
     tosign_xml+="<ResumenPeriodo>\r\n"
@@ -273,6 +275,11 @@ class Libro < ActiveRecord::Base
       impto25 = libro.detlibro.where(tipodte: t.tipo).sum(:impto25).to_i
       impto30 = libro.detlibro.where(tipodte: t.tipo).sum(:impto30).to_i
 
+      ivanorec = libro.detlibro.where(tipodte:t.tipo).sum(:ivanorec).to_i
+      codivanorec = libro.detlibro.where(tipodte:t.tipo).sum(:codivanorec).to_i
+      countivanorec = libro.detlibro.where(tipodte:t.tipo).where("codivanorec > ?", 0).count
+
+
       if cantidad > 0
         tosign_xml+="<TotalesPeriodo>\r\n"
         tosign_xml+="<TpoDoc>#{t.tipo}</TpoDoc>\r\n"
@@ -280,6 +287,17 @@ class Libro < ActiveRecord::Base
         tosign_xml+="<TotMntExe>#{mntexe}</TotMntExe>\r\n"
         tosign_xml+="<TotMntNeto>#{mntneto}</TotMntNeto>\r\n"
         tosign_xml+="<TotMntIVA>#{iva}</TotMntIVA>\r\n"
+        
+        if ivanorec > 0
+          tosign_xml+=" <TotIVANoRec>\r\n"
+          tosign_xml+=" <CodIVANoRec>#{codivanorec}</CodIVANoRec>\r\n"
+          tosign_xml+=" <TotOpIVANoRec>#{countivanorec}</TotOpIVANoRec>\r\n"
+          tosign_xml+=" <TotMntIVANoRec>#{ivanorec}</TotMntIVANoRec>\r\n"
+          tosign_xml+=" </TotIVANoRec>\r\n"
+        end
+
+
+
    #     tosign_xml+="<TotOpIVAUsoComun>1</TotOpIVAUsoComun>\r\n"
    #     tosign_xml+="<TotIVAUsoComun>1</TotIVAUsoComun>\r\n"
    #     tosign_xml+="<FctProp>0.999</FctProp>\r\n"
@@ -378,6 +396,7 @@ class Libro < ActiveRecord::Base
         tosign_xml+="<MntNeto>#{det.mntneto}</MntNeto>\r\n"
         tosign_xml+="<MntIVA>#{det.mntiva.to_i}</MntIVA>"
 
+
         if doc.impto18 > 0
           tosign_xml+="<OtrosImp>\r\n"
           tosign_xml+="<CodImp>271</CodImp>\r\n"
@@ -405,6 +424,13 @@ class Libro < ActiveRecord::Base
           tosign_xml+="<TasaImp>31.5</TasaImp>\r\n"
           tosign_xml+="<MntImp>#{doc.impto30.to_i}</MntImp>\r\n"
           tosign_xml+="</OtrosImp>\r\n"
+        end
+
+        if det.ivanorec > 0
+          tosign_xml+="<IVANoRec>\r\n"
+          tosign_xml+="<CodIVANoRec>#{det.codivanorec}</CodIVANoRec>\r\n"
+          tosign_xml+="<MntIVANoRec>#{det.ivanorec}</MntIVANoRec>\r\n"
+          tosign_xml+="</IVANoRec>\r\n"
         end
 
         tosign_xml+="<MntTotal>#{det.mnttotal}</MntTotal>\r\n"

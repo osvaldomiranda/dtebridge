@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150828040856) do
+ActiveRecord::Schema.define(version: 20150923000535) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -79,6 +79,8 @@ ActiveRecord::Schema.define(version: 20150828040856) do
     t.string   "estado"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "ivanorec"
+    t.integer  "codivanorec"
   end
 
   create_table "contribuyentes", force: true do |t|
@@ -174,6 +176,8 @@ ActiveRecord::Schema.define(version: 20150828040856) do
     t.float    "impto30"
     t.string   "rutrecep"
     t.integer  "cantidad"
+    t.integer  "ivanorec"
+    t.integer  "codivanorec"
   end
 
   add_index "detlibros", ["libro_id"], name: "index_detlibros_on_libro_id", using: :btree

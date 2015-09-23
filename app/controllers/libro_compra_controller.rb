@@ -144,6 +144,8 @@ class LibroCompraController < ApplicationController
       detlibro.impto10 = e.impto10
       detlibro.impto25 = e.impto25
       detlibro.impto30 = e.impto30
+      detlibro.ivanorec = e.ivanorec
+      detlibro.codivanorec = e.codivanorec
 
       detlibro.libro_id = libro.id 
 

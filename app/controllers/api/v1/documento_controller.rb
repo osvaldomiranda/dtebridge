@@ -49,7 +49,7 @@ class Api::V1::DocumentoController < Api::V1::ApiController
   end 
 
   def resend
-    invoices = Documento.where(estado: "CREADO").where(:created_at => 10.days.ago..Time.now)
+    invoices = Documento.where(estado: "CREADO").where(:created_at => 30.days.ago..Time.now)
     invoices.each do |invoice| 
       invoice.estadoxml = postsii(invoice.id)
       invoice.save   
