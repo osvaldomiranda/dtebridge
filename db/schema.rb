@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150923000535) do
+ActiveRecord::Schema.define(version: 20150923054139) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -551,6 +551,7 @@ ActiveRecord::Schema.define(version: 20150923000535) do
     t.string   "enviado"
     t.string   "fchenvio"
     t.string   "estado"
+    t.text     "estadoxml"
   end
 
   create_table "log_iats", force: true do |t|

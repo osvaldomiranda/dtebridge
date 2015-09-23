@@ -58,6 +58,9 @@ Dtebridge::Application.routes.draw do
   get "libro_venta/index"
   post "buscarLibrovta", to: "libro_venta#find"
   get "libro_venta/generalibro", to: "libro_venta#generalibro"
+
+  get "listalibro/sendsii/:id", to: "listalibro#postlibrosii"
+
  
   get "doccompras_aprob/index"
   get "doccompras_rech/index"
