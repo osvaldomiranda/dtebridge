@@ -281,7 +281,8 @@ class Libro < ActiveRecord::Base
       impto30 = libro.detlibro.where(tipodte: t.tipo).sum(:impto30).to_i
 
       ivanorec = libro.detlibro.where(tipodte:t.tipo).sum(:ivanorec).to_i
-      codivanorec = libro.detlibro.where(tipodte:t.tipo).sum(:codivanorec).to_i
+      civanorec = libro.detlibro.where(tipodte:t.tipo).where("codivanorec > ?", 0).last
+      codivanorec = civanorec.codivanorec
       countivanorec = libro.detlibro.where(tipodte:t.tipo).where("codivanorec > ?", 0).count
 
 
