@@ -23,33 +23,40 @@ class ListalibroController < ApplicationController
     else
       send_file "#{Rails.root}/libro_compra#{libro.rut}#{libro.idenvio}.xml"
     end
+
   end  
 
   def sendsii
     libro = Libro.find(params[:id])
-    libro.estadoxml = postsii(libro.id)
-    libro.save
+    if libro.enviado = "NO"
+      libro.estadoxml = postsii(libro.id)
+      libro.enviado = "0 Upload Ok"
+      libro.save
+    end
+    @libro = Libro.all
+    respond_to do |format|
+      format.html { render action: 'index' }
+    end 
   end
 
 
   def postsii(idLibro)
-    @libro  = Libro.find(idLibro)
+    libro  = Libro.find(idLibro)
 
     @tokenOk = get_token 
 
-    @rut = @libro.rut[0..7]
-    @dv  = @libro.rut[9..9]
-
+    @rut = libro.rut[0..7]
+    @dv  = libro.rut[9..9]
 
     unless @token.nil?
 
       @BOUNDARY = "9022632e1130lc4"
    
-      if Rails.env.production?
+      # if Rails.env.production?
         uri = URI.parse("https://palena.sii.cl/cgi_dte/UPL/DTEUpload") 
-      else
-        uri = URI.parse("https://maullin2.sii.cl/cgi_dte/UPL/DTEUpload") 
-      end
+      # else
+      #   uri = URI.parse("https://maullin2.sii.cl/cgi_dte/UPL/DTEUpload") 
+      # end
 
       http = Net::HTTP.new(uri.host, uri.port)
       http.use_ssl = true
@@ -84,18 +91,17 @@ class ListalibroController < ApplicationController
       post_body << "\r\n"
       post_body << "#{@dv}\r\n"
 
-          
-      post_body << "--9022632e1130lc4\r\n"
-      post_body << "Content-Disposition: form-data; name=\"archivo\"; filename=\"#{@doc.fileEnvio}\"\r\n"
-      post_body << "Content-Type: /xml\r\n" 
-
       if libro.tipo == "VENTA"
         fileEnvio = "#{Rails.root}/libro_venta#{libro.rut}#{libro.idenvio}.xml"
       else
         fileEnvio = "#{Rails.root}/libro_compra#{libro.rut}#{libro.idenvio}.xml"
       end
+          
+      post_body << "--9022632e1130lc4\r\n"
+      post_body << "Content-Disposition: form-data; name=\"archivo\"; filename=\"#{fileEnvio}\"\r\n"
+      post_body << "Content-Type: /xml\r\n" 
 
-      envio_xml = fileEnvio.read
+      envio_xml = File.read fileEnvio
        
       post_body << "\r\n"
       post_body << envio_xml
@@ -220,11 +226,11 @@ class ListalibroController < ApplicationController
       # ambiente sii pruebas 
       #client = Savon.client(wsdl:"https://maullin2.sii.cl/DTEWS/CrSeed.jws?WSDL") 
       #produccion
-      if Rails.env.production?
+      # if Rails.env.production?
         client = Savon.client(wsdl:"https://palena.sii.cl/DTEWS/CrSeed.jws?WSDL") 
-      else
-        client = Savon.client(wsdl:"https://maullin2.sii.cl/DTEWS/CrSeed.jws?WSDL")
-      end  
+      # else
+      #   client = Savon.client(wsdl:"https://maullin2.sii.cl/DTEWS/CrSeed.jws?WSDL")
+      # end  
       seed_xml = client.call(:get_seed)
 
       seed= seed_xml.to_s[seed_xml.to_s.index('SEMILLA')+11..seed_xml.to_s.index('SEMILLA')+22]
@@ -254,11 +260,11 @@ class ListalibroController < ApplicationController
       puts seed_xml
       puts "============="
 
-      if Rails.env.production?
+      # if Rails.env.production?
         tokenws = Savon.client(wsdl: "https://palena.sii.cl/DTEWS/GetTokenFromSeed.jws?WSDL")
-      else
-        tokenws = Savon.client(wsdl: "https://maullin2.sii.cl/DTEWS/GetTokenFromSeed.jws?WSDL")
-      end
+      # else
+      #   tokenws = Savon.client(wsdl: "https://maullin2.sii.cl/DTEWS/GetTokenFromSeed.jws?WSDL")
+      # end
       token = tokenws.call( :get_token , message: {string: seed_xml}) 
 
       puts "=====TOKEN========"
