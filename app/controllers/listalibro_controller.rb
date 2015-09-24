@@ -8,6 +8,7 @@ class ListalibroController < ApplicationController
     lib.xml
 
     lib.estado = "XML Generado"
+    lib.enviado = "NO"
     lib.save
     
     @libro = Libro.all

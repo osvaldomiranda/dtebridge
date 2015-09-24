@@ -281,8 +281,6 @@ class Libro < ActiveRecord::Base
       impto30 = libro.detlibro.where(tipodte: t.tipo).sum(:impto30).to_i
 
       ivanorec = libro.detlibro.where(tipodte:t.tipo).sum(:ivanorec).to_i
-      civanorec = libro.detlibro.where(tipodte:t.tipo).where("codivanorec > ?", 0).last
-      codivanorec = civanorec.codivanorec
       countivanorec = libro.detlibro.where(tipodte:t.tipo).where("codivanorec > ?", 0).count
 
 
@@ -295,6 +293,8 @@ class Libro < ActiveRecord::Base
         tosign_xml+="<TotMntIVA>#{iva}</TotMntIVA>\r\n"
         
         if ivanorec > 0
+          civanorec = libro.detlibro.where(tipodte:t.tipo).where("codivanorec > ?", 0).last
+          codivanorec = civanorec.codivanorec
           tosign_xml+=" <TotIVANoRec>\r\n"
           tosign_xml+=" <CodIVANoRec>#{codivanorec}</CodIVANoRec>\r\n"
           tosign_xml+=" <TotOpIVANoRec>#{countivanorec}</TotOpIVANoRec>\r\n"
