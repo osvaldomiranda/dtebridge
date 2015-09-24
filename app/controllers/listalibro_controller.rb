@@ -11,7 +11,7 @@ class ListalibroController < ApplicationController
     lib.enviado = "NO"
     lib.save
     
-    @libro = Libro.all
+    @libro = Libro.all.order(:rut,:idenvio)
     respond_to do |format|
       format.html { render action: 'index' }
     end 
@@ -34,7 +34,7 @@ class ListalibroController < ApplicationController
       libro.enviado = "0 Upload Ok"
       libro.save
     end
-    @libro = Libro.all
+    @libro = Libro.all.order(:rut,:idenvio)
     respond_to do |format|
       format.html { render action: 'index' }
     end 
