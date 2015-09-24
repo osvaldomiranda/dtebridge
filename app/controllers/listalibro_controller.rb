@@ -1,6 +1,6 @@
 class ListalibroController < ApplicationController
   def index
-    @libro = Libro.all
+    @libro = Libro.all.order(:rut,:idenvio)
   end
 
   def genxml
