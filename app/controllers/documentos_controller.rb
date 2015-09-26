@@ -2,51 +2,24 @@ class DocumentosController < ApplicationController
   before_filter :authenticate_user!
 
   def index
-    @documentos = Documento.order(created_at: :desc).paginate(:page => params[:page], :per_page => 15 )
     @empresas = Empresa.all
     @sucursales = Sucursal.all
+
+    searchparams = params["/documentos"]
+    if searchparams.present?
+
+      @search = Documento.search do
+        fulltext searchparams[:search]
+      end
+      @documentos = @search.results
+    else  
+      @documentos = Documento.order(created_at: :desc).paginate(:page => params[:page], :per_page => 15 )
+    end
 
     respond_to do |format|
       format.html { render action: 'index' }
       format.xls { send_data @documentos.to_csv(col_sep: "\t") }
     end
-  end
-
-  def find
-    @empresas = Empresa.all
-    @sucursales = Sucursal.all
-
-    empresa = Empresa.find_by_rznsocial(params[:empresa]) || Empresa.last
-    rut = empresa.rut
-
-    sucursal = Sucursal.find_by_nombre(params[:sucursal]) || Sucursal.last
-    suc = sucursal.cdgsiisucur
-
-    if params[:sucursal]==""
-      if params[:Folio]== ""
-        @documentos = Documento.where(RUTEmisor: rut).order(created_at: :desc).paginate(:page => params[:page], :per_page => 2000 )
-      else  
-        @documentos = Documento.where(Folio: params[:Folio]).paginate(:page => params[:page], :per_page => 2000 )
-      end
-    else
-      if params[:Folio]== ""
-        @documentos = Documento.where(CdgSIISucur: suc).order(created_at: :desc).paginate(:page => params[:page], :per_page => 2000)       
-      else  
-        @documentos = Documento.where(Folio: params[:Folio]).paginate(:page => params[:page], :per_page => 2000 )
-      end
-    end
-
-    if params[:empresa] == "" && params[:sucursal]=="" && params[:Folio]=="" 
-      respond_to do |format|
-        format.html { redirect_to "/documentos" }
-        format.xls { send_data @documentos.to_csv(col_sep: "\t") }
-      end
-    else
-      respond_to do |format|
-        format.html { render action: 'index' }
-        format.xls { send_data @documentos.to_csv(col_sep: "\t") }
-      end
-    end  
   end
 
 

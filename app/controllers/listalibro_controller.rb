@@ -1,6 +1,15 @@
 class ListalibroController < ApplicationController
   def index
-    @libro = Libro.all.order(:rut,:idenvio)
+    searchparams = params["/libros"]
+    if searchparams.present?
+      @search = Libro.search do
+        fulltext searchparams[:search]
+      end
+      @libros = @search.results
+    else  
+      @libros = Libro.all.order(:rut,:idenvio)   
+    end
+
   end
 
   def genxml

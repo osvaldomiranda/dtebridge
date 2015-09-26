@@ -21,6 +21,10 @@ class Documento < ActiveRecord::Base
   mount_uploader :fileFactura, PdfsUploader
   mount_uploader :fileJson, PdfsUploader
 
+  searchable do
+    text :Folio, :sucursal, :FchEmis, :nombre_doc, :estado
+  end
+
   attr_reader :sucursal
   attr_reader :nombre_doc
   def sucursal

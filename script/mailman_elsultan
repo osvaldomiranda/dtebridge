@@ -3,6 +3,8 @@ require "rubygems"
 require "bundler/setup"
 require "mailman"
 
+Mailman.config.logger = Logger.new('mailman_elsultan.log')
+
 Mailman.config.pop3 = {
   server: 'pop.gmail.com', port: 995, ssl: true,
   username: 'recibodteelsultan@gmail.com',
@@ -13,12 +15,6 @@ Mailman.config.pop3 = {
 Mailman::Application.run do
   default do
     begin
-      # puts "============================"
-      # puts message.attachments[0].filename
-      # puts "============================"
-      # puts message.attachments[0].body
-      # puts "============================"
-
       filename = message.attachments[0].filename
 
       unless filename.nil?
@@ -32,8 +28,8 @@ Mailman::Application.run do
         end 
       end 
     rescue
-      # Mailman.logger.error "Exception occurred while receiving message:\n#{message}"
-      # Mailman.logger.error [e, *e.backtrace].join("\n")
+      Mailman.logger.error "Exception occurred while receiving message:\n#{message}"
+      Mailman.logger.error [e, *e.backtrace].join("\n")
     end
   end  
 end

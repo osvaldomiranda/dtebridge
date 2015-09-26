@@ -5,7 +5,15 @@ class DoccomprasController < ApplicationController
   respond_to :html
 
   def index
-    @doccompras = Doccompra.where(estado: nil).order(created_at: :desc).paginate(:page => params[:page], :per_page => 15 )
+    searchparams = params["/doccompras"]
+    if searchparams.present?
+      @search = Doccompra.search do
+        fulltext searchparams[:search]
+      end
+      @doccompras = @search.results
+    else  
+      @doccompras = Doccompra.where(estado: nil).order(created_at: :desc).paginate(:page => params[:page], :per_page => 15 )
+    end
   end
 
 

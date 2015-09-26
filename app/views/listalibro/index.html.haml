@@ -1,4 +1,11 @@
 %h2 Libros 
+= simple_form_for(libros_path, :url => "index" ,:method => :get ) do |f|
+  = f.input :search, label: false, placeholder: "Empresa Tipo Fecha(yyyy-mm) ", :input_html => {:style=> 'width: 300px'}  
+  %p
+  = f.button :submit, "Buscar",  class: "btn btn-primary btn-xs"
+
+%br
+
 %table.table.table-striped
   %tr
     %th Rut
@@ -11,7 +18,7 @@
     %th
     %th
     %th
-  - @libro.each do |libro|
+  - @libros.each do |libro|
     %tr
       %td= libro.rut
       %td= libro.empresa

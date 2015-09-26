@@ -14,6 +14,10 @@ class Doccompra < ActiveRecord::Base
   accepts_nested_attributes_for :comisioncompras
   accepts_nested_attributes_for :refdetcompras
 
+  searchable do
+    text :Folio, :RUTEmisor, :RznSoc
+  end
+
   attr_reader :nombre_doc
   def nombre_doc
     tipo = Tipodte.where(tipo: self.TipoDTE).first 

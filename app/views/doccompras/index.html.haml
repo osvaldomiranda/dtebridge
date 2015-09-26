@@ -1,5 +1,12 @@
 %h3 Documentos Recibidos Proveedor
 
+= simple_form_for(doccompras_path,:method => :get ) do |f|
+  = f.input :search, label: false, placeholder: "Folio, RutEmisor, Rznsoc"  
+  %p
+  = f.button :submit, "Buscar",  class: "btn btn-primary btn-xs"
+
+%br
+
 = will_paginate @doccompras
 
 %table.table.table-striped

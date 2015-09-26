@@ -1,30 +1,12 @@
 %h3 Documentos
 
-/ %p
-/   Download:
-/   = link_to "Excel", send_data @documentos.to_csv(col_sep: "\t") 
+= simple_form_for(documentos_path,:method => :get ) do |f|
+  = f.input :search, label: false, placeholder: "Sucursal TipoDte Folio Fchemis(yyyy-mm-dd) ", :input_html => {:style=> 'width: 400px'}  
+  %p
+  = f.button :submit, "Buscar",  class: "btn btn-primary btn-xs"
 
+%br
 = will_paginate @documentos
-
-%p.text-danger Busqueda por folio, debe indicar la Empresa.
-
-= form_tag '/buscarDoc' do
-  = field_set_tag do
-    = label_tag :empresa, 'Empresa:'
-    %input{name: 'empresa', type: 'text', list: 'Empresa'}
-    %datalist#Empresa
-      - @empresas.each do |empresa|
-        %option= empresa.rznsocial
-        
-    = label_tag :sucursal, 'Sucursal:'
-    %input{name: 'sucursal', type: 'text', list: 'Sucursal'}
-    %datalist#Sucursal
-      - @sucursales.each do |sucursal|
-        %option= sucursal.nombre  
-      
-    = label_tag :Folio, 'Folio:'
-    = text_field_tag :Folio
-    = submit_tag 'Buscar'
 %br
 
 %table.table.table-striped

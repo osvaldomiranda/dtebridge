@@ -36,6 +36,7 @@ Dtebridge::Application.routes.draw do
   resources :documentos
   resources :iat_logs
   resources :iats
+  resources :libros
   
   devise_for :installs
   devise_for :users
