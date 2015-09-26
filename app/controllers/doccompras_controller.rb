@@ -7,10 +7,14 @@ class DoccomprasController < ApplicationController
   def index
     searchparams = params["/doccompras"]
     if searchparams.present?
-      @search = Doccompra.search do
-        fulltext searchparams[:search]
-      end
-      @doccompras = @search.results
+      if searchparams[:search] != ""
+        @search = Doccompra.search do
+          fulltext searchparams[:search]
+        end
+        @doccompras = @search.results
+      else
+        @doccompras = Doccompra.where(estado: nil).order(created_at: :desc).paginate(:page => params[:page], :per_page => 15 )
+      end  
     else  
       @doccompras = Doccompra.where(estado: nil).order(created_at: :desc).paginate(:page => params[:page], :per_page => 15 )
     end

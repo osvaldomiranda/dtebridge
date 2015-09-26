@@ -7,11 +7,14 @@ class DocumentosController < ApplicationController
 
     searchparams = params["/documentos"]
     if searchparams.present?
-
-      @search = Documento.search do
-        fulltext searchparams[:search]
-      end
-      @documentos = @search.results
+      if searchparams[:search] != ""
+        @search = Documento.search do
+          fulltext searchparams[:search]
+        end
+        @documentos = @search.results
+      else
+        @documentos = Documento.order(created_at: :desc).paginate(:page => params[:page], :per_page => 15 )
+      end    
     else  
       @documentos = Documento.order(created_at: :desc).paginate(:page => params[:page], :per_page => 15 )
     end

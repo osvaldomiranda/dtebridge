@@ -2,10 +2,14 @@ class ListalibroController < ApplicationController
   def index
     searchparams = params["/libros"]
     if searchparams.present?
-      @search = Libro.search do
-        fulltext searchparams[:search]
-      end
-      @libros = @search.results
+      if searchparams[:search] != ""
+        @search = Libro.search do
+          fulltext searchparams[:search]
+        end
+        @libros = @search.results
+      else
+        @libros = Libro.all.order(:rut,:idenvio) 
+      end  
     else  
       @libros = Libro.all.order(:rut,:idenvio)   
     end
