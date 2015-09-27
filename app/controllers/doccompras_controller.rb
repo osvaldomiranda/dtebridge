@@ -11,7 +11,8 @@ class DoccomprasController < ApplicationController
         @search = Doccompra.search do
           fulltext searchparams[:search]
         end
-        @doccompras = @search.results
+       # @doccompras = @search.results
+        @doccompras = Documento.where(id: @search.results.map(&:id)).order(created_at: :desc).paginate(:page => params[:page], :per_page => 15 )
       else
         @doccompras = Doccompra.where(estado: nil).order(created_at: :desc).paginate(:page => params[:page], :per_page => 15 )
       end  
