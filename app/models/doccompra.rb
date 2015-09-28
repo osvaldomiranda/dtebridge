@@ -15,6 +15,7 @@ class Doccompra < ActiveRecord::Base
   accepts_nested_attributes_for :refdetcompras
 
   searchable do
+    integer :id
     text :Folio, :RUTEmisor, :RznSoc
   end
 
