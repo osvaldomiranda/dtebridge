@@ -14,7 +14,7 @@ class DoccomprasController < ApplicationController
           paginate :page => 1, :per_page => 500
         end
        # @doccompras = @search.results
-        @doccompras = Documento.where(id: @search.results.map(&:id)).order(created_at: :desc).paginate(:page => params[:page], :per_page => 15 )
+        @doccompras = Doccompra.where(id: @search.results.map(&:id)).order(created_at: :desc).paginate(:page => params[:page], :per_page => 15 )
       else
         @doccompras = Doccompra.where(estado: nil).order(created_at: :desc).paginate(:page => params[:page], :per_page => 15 )
       end  
