@@ -10,7 +10,7 @@ class DoccomprasController < ApplicationController
       if searchparams[:search] != ""
         @search = Doccompra.search do
           fulltext searchparams[:search]
-          order_by(:folio, :desc)
+          order_by(:Folio, :desc)
           paginate :page => 1, :per_page => 500
         end
        # @doccompras = @search.results

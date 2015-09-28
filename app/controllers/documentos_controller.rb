@@ -10,7 +10,7 @@ class DocumentosController < ApplicationController
       if searchparams[:search] != ""
         @search = Documento.search do
           fulltext searchparams[:search]
-          order_by(:folio, :desc)
+          order_by(:Folio, :desc)
           paginate :page => 1, :per_page => 500
         end
         # @documentos = @search.results
