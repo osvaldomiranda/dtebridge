@@ -8,8 +8,10 @@ class DocumentosController < ApplicationController
     searchparams = params["/documentos"]
     if searchparams.present?
       if searchparams[:search] != ""
+        count = Documento.count
         @search = Documento.search do
           fulltext searchparams[:search]
+          paginate :page => 1, :per_page => count
         end
         # @documentos = @search.results
         @documentos = Documento.where(id: @search.results.map(&:id)).order(created_at: :desc).paginate(:page => params[:page], :per_page => 15 )
