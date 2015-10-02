@@ -16,8 +16,9 @@ class Doccompra < ActiveRecord::Base
 
   searchable do
     integer :id
-    text :Folio, :RUTEmisor, :RznSoc
+    text :Folio, :RUTEmisor, :RznSoc, :nombre_doc, :FchEmis
   end
+
 
   attr_reader :nombre_doc
   def nombre_doc

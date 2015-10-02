@@ -43,6 +43,8 @@ Dtebridge::Application.routes.draw do
 
   get "report/venta"
   post "report/find", to: "report#find"
+  get "report/compra"
+  post "report/findCompra", to: "report#findCompra"
 
   get "detlibrovta/index"
   get "uploadformat/index"
