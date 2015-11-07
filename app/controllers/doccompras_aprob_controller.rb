@@ -2,7 +2,7 @@
 class DoccomprasAprobController < ApplicationController
   respond_to :html
   def index
-    @doccompras = Doccompra.where(estado: "APROBADO")
+    @doccompras = Doccompra.where(estado: "APROBADO").where(:RUTRecep => Usuarioempresa.where(useremail:current_user.email).map {|u| u.rutempresa})
   end
 
   def rechazar
@@ -10,7 +10,7 @@ class DoccomprasAprobController < ApplicationController
     d.estado = "RECHAZADO"
     d.save
 
-    @doccompras = Doccompra.where(estado: "APROBADO")
+    @doccompras = Doccompra.where(estado: "APROBADO").where(:RUTRecep => Usuarioempresa.where(useremail:current_user.email).map {|u| u.rutempresa})
     respond_to do |format|
         format.html { render action: 'index'}
     end    

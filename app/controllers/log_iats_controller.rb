@@ -4,7 +4,7 @@ class LogIatsController < ApplicationController
   respond_to :html
 
   def index
-    @log_iats = LogIat.all
+    @log_iats = LogIat.where(:rut => Usuarioempresa.where(useremail:current_user.email).map {|u| u.rutempresa})
     respond_with(@log_iats)
   end
 

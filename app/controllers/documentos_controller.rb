@@ -14,12 +14,12 @@ class DocumentosController < ApplicationController
           paginate :page => 1, :per_page => 500
         end
         # @documentos = @search.results
-        @documentos = Documento.where(id: @search.results.map(&:id)).order(created_at: :desc).paginate(:page => params[:page], :per_page => 15 )
+        @documentos = Documento.where(id: @search.results.map(&:id)).where(:RUTEmisor => Usuarioempresa.where(useremail:current_user.email).map {|u| u.rutempresa}).order(created_at: :desc).paginate(:page => params[:page], :per_page => 15 )
       else
-        @documentos = Documento.order(created_at: :desc).paginate(:page => params[:page], :per_page => 15 )
+        @documentos = Documento.where(:RUTEmisor => Usuarioempresa.where(useremail:current_user.email).map {|u| u.rutempresa}).order(created_at: :desc).paginate(:page => params[:page], :per_page => 15 )
       end    
     else  
-      @documentos = Documento.order(created_at: :desc).paginate(:page => params[:page], :per_page => 15 )
+      @documentos = Documento.where(:RUTEmisor => Usuarioempresa.where(useremail:current_user.email).map {|u| u.rutempresa}).order(created_at: :desc).paginate(:page => params[:page], :per_page => 15 )
     end
 
     respond_to do |format|

@@ -63,7 +63,7 @@ class Api::V1::DocumentoController < Api::V1::ApiController
   def postsii(idDoc)
     @doc  = Documento.find(idDoc)
 
-    @tokenOk = get_token 
+    @tokenOk = get_token(@doc.RUTEmisor) 
 
     @rut = @doc.RUTEmisor[0..7]
     @dv  = @doc.RUTEmisor[9..9]
@@ -149,7 +149,7 @@ class Api::V1::DocumentoController < Api::V1::ApiController
 
 
 
-  def get_token
+  def get_token(rut)
    
     i=0
     while(@seed.nil? && i<50)
@@ -190,18 +190,7 @@ class Api::V1::DocumentoController < Api::V1::ApiController
       File.open("tosign_xml#{t}.xml", 'w') { |file| file.puts tosign_xml}
       sleep 1
      
-      # Se agregará un comando para cada cliente mientras se resuelve como solucionar
-      if Empresa.last.rut == "80790400-0"
-        puts "============"
-        puts "ElSultan"
-        puts "============"
-        system("./comandoElSultan tosign_xml#{t}.xml doc-signed#{t}.xml")
-      else  
-        system("./comando tosign_xml#{t}.xml doc-signed#{t}.xml")
-        puts "============"
-        puts "Otros"
-        puts "============"
-      end
+      system("./comando#{rut} tosign_xml#{t}.xml doc-signed#{t}.xml")
 
       doc = File.read "doc-signed#{t}.xml"
 
@@ -300,7 +289,7 @@ class Api::V1::DocumentoController < Api::V1::ApiController
               "3" => "3 Archivo Cortado",
               "4" => "4 No definido",
               "5" => "5 No esta Autenticado",
-              "6" => "6 Empresa no autorisada",
+              "6" => "6 Empresa no autorizada",
               "7" => "7 Esquema invalido",
               "8" => "8 Error en Firma",
               "9" => "9 Sistema Bloqueado" ,
@@ -354,14 +343,15 @@ class Api::V1::DocumentoController < Api::V1::ApiController
   end
 
   def procesoEstado
-    token = get_token
-    unless  token.nil?
+    
       listDoc = Documento.where(estado: "0 Upload Ok")
       listDoc.each do |doc|
-        consultaEnvio(doc.id, doc.RUTEmisor[0..7], doc.RUTEmisor[9..9], doc.estadoxml,token)
-        estadoStr(doc.id)
-      end      
-    end
+        token = get_token(doc.RUTEmisor)
+        unless  token.nil?
+          consultaEnvio(doc.id, doc.RUTEmisor[0..7], doc.RUTEmisor[9..9], doc.estadoxml,token)
+          estadoStr(doc.id)
+        end      
+      end
     render "/api/v1/iat/ping"  
   end  
 

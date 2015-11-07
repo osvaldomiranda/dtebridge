@@ -4,8 +4,8 @@ class DocmanualsController < ApplicationController
   respond_to :html
 
   def index
-    @docmanuals = Docmanual.where(estado: "PREVIO")
-    totFmanual = Docmanual.select('sum("mntneto") as mntneto,sum("mntexe") as mntexe, sum("mntiva") as iva, sum("mnttotal") as mnttotal,sum(impto10+impto18+impto25+impto30) as otrosimp, count(*) as count').where('"estado" = ? AND "tipodoc" <> 52 and "tipodoc"<>60', "PREVIO")
+    @docmanuals = Docmanual.where(estado: "PREVIO").where(:rutemisor => Usuarioempresa.where(useremail:current_user.email).map {|u| u.rutempresa})
+    totFmanual = Docmanual.select('sum("mntneto") as mntneto,sum("mntexe") as mntexe, sum("mntiva") as iva, sum("mnttotal") as mnttotal,sum(impto10+impto18+impto25+impto30) as otrosimp, count(*) as count').where('"estado" = ? AND "tipodoc" <> 52 and "tipodoc"<>60', "PREVIO").where(:rutemisor => Usuarioempresa.where(useremail:current_user.email).map {|u| u.rutempresa})
     totFmanual.map { |e| @totFmanual = e }
     
     respond_with(@docmanuals)
@@ -17,8 +17,8 @@ class DocmanualsController < ApplicationController
   end
 
   def import
-    @docmanuals = Docmanual.where(estado: "PREVIO")
-    totFmanual = Docmanual.select('sum("mntneto") as mntneto,sum("mntexe") as mntexe, sum("mntiva") as iva, sum("mnttotal") as mnttotal,sum(impto10+impto18+impto25+impto30) as otrosimp, count(*) as count').where('"tipodoc" <> 52 and "tipodoc"<>60')
+    @docmanuals = Docmanual.where(estado: "PREVIO").where(:rutemisor => Usuarioempresa.where(useremail:current_user.email).map {|u| u.rutempresa})
+    totFmanual = Docmanual.select('sum("mntneto") as mntneto,sum("mntexe") as mntexe, sum("mntiva") as iva, sum("mnttotal") as mnttotal,sum(impto10+impto18+impto25+impto30) as otrosimp, count(*) as count').where('"tipodoc" <> 52 and "tipodoc"<>60').where(:rutemisor => Usuarioempresa.where(useremail:current_user.email).map {|u| u.rutempresa})
     totFmanual.map { |e| @totFmanual = e }
    
     @msg = Docmanual.import(params[:file])
