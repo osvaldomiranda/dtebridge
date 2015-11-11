@@ -209,7 +209,7 @@ class Api::V1::DocumentoController < Api::V1::ApiController
       puts "============="
    
       unless @token.nil?
-        if @token.to_s.index('TOKEN') > 0
+        if @token.to_s.index('TOKEN') != nil
           @token= @token.to_s[@token.to_s.index('TOKEN')+9..@token.to_s.index('TOKEN')+21]
         end  
         return @token
