@@ -24,7 +24,7 @@ class ListalibroController < ApplicationController
     lib.enviado = "NO"
     lib.save
     
-    @libro = Libro.all.order(:rut,:idenvio)
+    @libros = Libro.all.order(:rut,:idenvio)
     respond_to do |format|
       format.html { render action: 'index' }
     end 
