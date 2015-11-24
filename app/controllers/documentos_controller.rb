@@ -13,6 +13,7 @@ class DocumentosController < ApplicationController
       if searchtext != ""
         @search = Documento.search do
           fulltext searchtext
+          order_by(:created_at, :desc)
           paginate :page => 1, :per_page => 500
         end
         # @documentos = @search.results

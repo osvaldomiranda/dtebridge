@@ -22,6 +22,7 @@ class Documento < ActiveRecord::Base
   mount_uploader :fileJson, PdfsUploader
 
   searchable do
+    time :created_at
     text :Folio, :sucursal, :FchEmis, :nombre_doc, :estado
   end
 
