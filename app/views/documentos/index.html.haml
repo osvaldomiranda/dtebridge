@@ -1,9 +1,19 @@
 %h3 Documentos
-
-= simple_form_for(documentos_path,:method => :get ) do |f|
-  = f.input :search, label: false, placeholder: "Sucursal TipoDte Folio Fchemis(yyyy-mm-dd) ", :input_html => {:style=> 'width: 400px'}  
-  %p
-  = f.button :submit, "Buscar",  class: "btn btn-primary btn-xs"
+.container-fluid
+  .row
+    .col-md-12
+      = simple_form_for(documentos_path,:method => :get ) do |f|
+        .form-group  
+          .col-sm-2
+            = f.input :sucursal, label: false, placeholder: "Sucursal", :input_html => {:style=> 'width: 150px'}
+          .col-sm-2   
+            = f.input :tipodte, label: false, placeholder: "TipoDte", :input_html => {:style=> 'width: 150px'} 
+          .col-sm-2  
+            = f.input :folio, label: false, placeholder: "Folio", :input_html => {:style=> 'width: 150px'} 
+          .col-sm-2 
+            = f.input :fecha, label: false, placeholder: "Fchemis(yyyy-mm-dd)", :input_html => {:style=> 'width: 150px'} 
+          .col-sm-2  
+            = f.button :submit, "Buscar",  class: "btn btn-primary btn-xs"
 
 %br
 = will_paginate @documentos

@@ -6,12 +6,13 @@ class DocumentosController < ApplicationController
     @sucursales = Sucursal.all
 
     searchparams = params["/documentos"]
-    
+          
 
     if searchparams.present?
-      if searchparams[:search] != ""
+      searchtext = "#{searchparams[:sucursal]} #{searchparams[:tipodte]} #{searchparams[:folio]} #{searchparams[:fecha]}"
+      if searchtext != ""
         @search = Documento.search do
-          fulltext searchparams[:search]
+          fulltext searchtext
           paginate :page => 1, :per_page => 500
         end
         # @documentos = @search.results
