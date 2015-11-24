@@ -1,9 +1,7 @@
 class Libro < ActiveRecord::Base
   has_many :detlibro, dependent: :destroy
 
-  searchable do
-    text :empresa, :tipo, :fecha
-  end
+
 
   def empresa
       Empresa.find_by_rut(self.rut).rznsocial

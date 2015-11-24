@@ -22,7 +22,6 @@ class Documento < ActiveRecord::Base
   mount_uploader :fileJson, PdfsUploader
 
   searchable do
-    integer :id
     text :Folio, :sucursal, :FchEmis, :nombre_doc, :estado
   end
 
