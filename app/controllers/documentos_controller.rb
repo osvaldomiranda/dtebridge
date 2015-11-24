@@ -9,7 +9,7 @@ class DocumentosController < ApplicationController
           
 
     if searchparams.present?
-      searchtext = "#{searchparams[:sucursal]} #{searchparams[:tipodte]} #{searchparams[:folio]} #{searchparams[:fecha]}"
+      searchtext = "#{searchparams[:sucursal]} #{searchparams[:tipodte]} #{searchparams[:folio]}#{searchparams[:fecha]}"
       if searchtext != ""
         @search = Documento.search do
           fulltext searchtext

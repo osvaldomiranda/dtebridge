@@ -49,4 +49,13 @@ class Documento < ActiveRecord::Base
       end
     end
   end
+
+  def self.sucursal_options_for_select(email)
+    empresas = Empresa.where(:rut => Usuarioempresa.where(useremail:email).map {|u| u.rutempresa})
+    Sucursal.where(:empresa_id => empresas.map {|e| e.id}).map {|s| s.nombre}
+  end 
+
+  def self.tipodte_option_for_select
+    Tipodte.all.order(nombre: :asc).map {|t| t.nombre}
+  end  
 end
