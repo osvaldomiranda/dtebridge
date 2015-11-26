@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151107145334) do
+ActiveRecord::Schema.define(version: 20151126125617) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -425,6 +425,7 @@ ActiveRecord::Schema.define(version: 20151107145334) do
     t.string   "BodRecep"
     t.string   "TelRecep"
     t.string   "DirMatriz"
+    t.string   "NroOrdenCompra"
   end
 
   create_table "dsc_rcg_globals", force: true do |t|
