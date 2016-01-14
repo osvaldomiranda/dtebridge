@@ -345,7 +345,6 @@ class Api::V1::DocumentoController < Api::V1::ApiController
   end
 
   def procesoEstado
-    
       listDoc = Documento.where(estado: "0 Upload Ok")
       listDoc.each do |doc|
         token = get_token(doc.RUTEmisor)

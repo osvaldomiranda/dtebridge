@@ -8,10 +8,10 @@ class ListalibroController < ApplicationController
         end
         @libros = @search.results
       else
-        @libros = Libro.all.order(:rut,:idenvio) 
+        @libros = Libro.where(:rut => Usuarioempresa.where(useremail:current_user.email).map {|u| u.rutempresa}).order(:rut,:idenvio) 
       end  
     else  
-      @libros = Libro.all.order(:rut,:idenvio)   
+      @libros = Libro.where(:rut => Usuarioempresa.where(useremail:current_user.email).map {|u| u.rutempresa}).order(:rut,:idenvio)   
     end
 
   end
@@ -24,7 +24,7 @@ class ListalibroController < ApplicationController
     lib.enviado = "NO"
     lib.save
     
-    @libros = Libro.all.order(:rut,:idenvio)
+    @libros = Libro.where(:rut => Usuarioempresa.where(useremail:current_user.email).map {|u| u.rutempresa}).order(:rut,:idenvio)
     respond_to do |format|
       format.html { render action: 'index' }
     end 
@@ -47,7 +47,7 @@ class ListalibroController < ApplicationController
       libro.enviado = "0 Upload Ok"
       libro.save
     end
-    @libro = Libro.all.order(:rut,:idenvio)
+    @libro = Libro.where(:rut => Usuarioempresa.where(useremail:current_user.email).map {|u| u.rutempresa}).order(:rut,:idenvio)
     respond_to do |format|
       format.html { render action: 'index' }
     end 
@@ -57,7 +57,7 @@ class ListalibroController < ApplicationController
   def postsii(idLibro)
     libro  = Libro.find(idLibro)
 
-    @tokenOk = get_token 
+    @tokenOk = get_token(libro.rut) 
 
     @rut = libro.rut[0..7]
     @dv  = libro.rut[9..9]
@@ -150,7 +150,7 @@ class ListalibroController < ApplicationController
 
 
 
-  def get_token
+  def get_token(rut)
    
     i=0
     while(@seed.nil? && i<50)
@@ -191,20 +191,23 @@ class ListalibroController < ApplicationController
       File.open("tosign_xml#{t}.xml", 'w') { |file| file.puts tosign_xml}
       sleep 1
      
-      # Se agregará un comando para cada cliente mientras se resuelve como solucionar
-      if Empresa.last.rut == "80790400-0"
-        puts "============"
-        puts "ElSultan"
-        puts "============"
-        system("./comandoElSultan tosign_xml#{t}.xml doc-signed#{t}.xml")
-      else  
-        system("./comando tosign_xml#{t}.xml doc-signed#{t}.xml")
-        puts "============"
-        puts "Otros"
-        puts "============"
-      end
+     
+      system("./comando#{rut} tosign_xml#{t}.xml doc-signed#{t}.xml")
 
       doc = File.read "doc-signed#{t}.xml"
+
+      # Se agregará un comando para cada cliente mientras se resuelve como solucionar
+      # if Empresa.last.rut == "80790400-0"
+      #   puts "============"
+      #   puts "ElSultan"
+      #   puts "============"
+      #   system("./comandoElSultan tosign_xml#{t}.xml doc-signed#{t}.xml")
+      # else  
+      #   system("./comando tosign_xml#{t}.xml doc-signed#{t}.xml")
+      #   puts "============"
+      #   puts "Otros"
+      #   puts "============"
+      # end
 
       system("rm tosign_xml#{t}.xml") 
       system("rm doc-signed#{t}.xml")
