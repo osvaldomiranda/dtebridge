@@ -33,7 +33,7 @@ class Api::V1::DocumentoController < Api::V1::ApiController
     if params[:fileJson].present?
       @invoice.fileJson = params[:fileJson]
     end
-   
+
    
     if @invoice.save
       if !params[:conEnvio].present? || params[:conEnvio] == "S"
@@ -345,7 +345,7 @@ class Api::V1::DocumentoController < Api::V1::ApiController
   end
 
   def procesoEstado
-      listDoc = Documento.where(estado: "0 Upload Ok")
+      listDoc = Documento.where(estado: "0 Upload Ok").limit(10)
       listDoc.each do |doc|
         token = get_token(doc.RUTEmisor)
         unless  token.nil?

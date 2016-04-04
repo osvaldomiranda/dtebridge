@@ -16,6 +16,7 @@ class Api::V1::DoccompraController < Api::V1::ApiController
             procesadoc(json['EnvioDTE']['SetDTE']['DTE'],demail)
           end
           @doc_xml = "OK"
+
         end
       rescue
         puts "======ERROR======"
@@ -52,15 +53,19 @@ class Api::V1::DoccompraController < Api::V1::ApiController
         detalles = Array.new
         cdgI = Hash.new
         #subD = Hash.new
+
+
         if _detalles .kind_of?(Array)
           _detalles.each do |det|
- 
+
             if det["CdgItem"].kind_of?(Array)
               cdgI = det["CdgItem"].first
             else
               cdgI = det["CdgItem"]
             end   
+
             det.delete("CdgItem")
+            det.delete("IndExe")
           
             subD = det["SubDscto"]
             if subD.nil?
@@ -69,7 +74,10 @@ class Api::V1::DoccompraController < Api::V1::ApiController
               det.delete("SubDscto")
               detalles << subD
             end  
-            detalles << det.merge(cdgI)
+            if cdgI.present?
+              detalles << det.merge(cdgI)
+            end
+            
           end    
         else
           det = _detalles

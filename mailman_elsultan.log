@@ -1,0 +1,97 @@
+# Logfile created on 2016-01-19 21:18:32 -0300 by logger.rb/47272
+I, [2016-01-19T21:18:32.995317 #3420]  INFO -- : Mailman v0.7.2 started
+I, [2016-01-19T21:18:32.995393 #3420]  INFO -- : Rails root found in ., requiring environment...
+I, [2016-01-19T21:18:39.320638 #3420]  INFO -- : POP3 receiver enabled (intercambiodila@gmail.com@pop.gmail.com).
+I, [2016-01-19T21:18:39.363581 #3420]  INFO -- : Polling enabled. Checking every 60 seconds.
+I, [2016-01-19T21:19:53.411737 #3461]  INFO -- : Mailman v0.7.2 started
+I, [2016-01-19T21:19:53.411839 #3461]  INFO -- : Rails root found in ., requiring environment...
+I, [2016-01-19T21:19:57.270674 #3461]  INFO -- : POP3 receiver enabled (intercambiodila@gmail.com@pop.gmail.com).
+I, [2016-01-19T21:19:57.288959 #3461]  INFO -- : Polling enabled. Checking every 60 seconds.
+I, [2016-01-19T21:24:47.761609 #3508]  INFO -- : Mailman v0.7.2 started
+I, [2016-01-19T21:24:47.761714 #3508]  INFO -- : Rails root found in ., requiring environment...
+I, [2016-01-19T21:24:51.306772 #3508]  INFO -- : POP3 receiver enabled (intercambiodila@gmail.com@pop.gmail.com).
+I, [2016-01-19T21:24:51.326436 #3508]  INFO -- : Polling enabled. Checking every 60 seconds.
+I, [2016-01-19T21:26:06.845475 #3551]  INFO -- : Mailman v0.7.2 started
+I, [2016-01-19T21:26:06.845581 #3551]  INFO -- : Rails root found in ., requiring environment...
+I, [2016-01-19T21:26:10.473635 #3551]  INFO -- : POP3 receiver enabled (intercambiodila@gmail.com@pop.gmail.com).
+I, [2016-01-19T21:26:10.496714 #3551]  INFO -- : Polling enabled. Checking every 60 seconds.
+I, [2016-01-19T21:35:30.242178 #3842]  INFO -- : Mailman v0.7.2 started
+I, [2016-01-19T21:35:30.242283 #3842]  INFO -- : Rails root found in ., requiring environment...
+I, [2016-01-19T21:35:33.925214 #3842]  INFO -- : POP3 receiver enabled (recibodteelsultan@gmail.com@pop.gmail.com).
+I, [2016-01-19T21:35:33.940956 #3842]  INFO -- : Polling enabled. Checking every 60 seconds.
+I, [2016-01-19T21:35:37.543606 #3842]  INFO -- : Got new message from 'no-reply@febos.cl' with subject 'Verificacion de casilla'.
+E, [2016-01-19T21:35:37.559446 #3842] ERROR -- : Exception occurred while receiving message:
+Return-Path: <bounce+bb1745.7d7e9-intercambio=elsultan.cl@febos.cl>
+Received: by 10.31.167.21 with SMTP id q21csp2208071vke; Tue, 24 Nov 2015 11:23:56 -0800
+Received: from phx.hn.cl (phx.hn.cl. [190.110.123.76]) by mx.google.com with ESMTPS id v21si17263184qka.79.2015.11.24.11.23.55 for <recibodteelsultan@gmail.com> (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128); Tue, 24 Nov 2015 11:23:56 -0800
+Received: from mail-s67.mailgun.info ([184.173.153.195]:42625) by phx.hn.cl with esmtp (Exim 4.84) (envelope-from <bounce+bb1745.7d7e9-intercambio=elsultan.cl@febos.cl>) id 1a1JBp-001Eay-42 for intercambio@elsultan.cl; Tue, 24 Nov 2015 16:23:55 -0300
+Received: by luna.mailgun.net with HTTP; Tue, 24 Nov 2015 19:23:26 +0000
+Date: Tue, 24 Nov 2015 19:23:27 +0000
+From: Febos <no-reply@febos.cl>
+Sender: no-reply=febos.cl@febos.cl
+To: intercambio@elsultan.cl
+Message-ID: <20151124192326.31387.1453@empresas.febos.cl>
+Subject: Verificacion de casilla
+Mime-Version: 1.0
+Content-Type: text/plain;
+ charset=ascii
+Content-Transfer-Encoding: 7bit
+Delivered-To: recibodteelsultan@gmail.com
+X-Received: by 10.141.23.20 with SMTP id z20mr36630809qhd.52.1448393036325;
+ Tue, 24 Nov 2015 11:23:56 -0800 (PST)
+Received-SPF: softfail (google.com: domain of transitioning
+ bounce+bb1745.7d7e9-intercambio=elsultan.cl@febos.cl does not designate
+ 190.110.123.76 as permitted sender) client-ip=190.110.123.76;
+Authentication-Results: mx.google.com; spf=softfail (google.com: domain of
+ transitioning bounce+bb1745.7d7e9-intercambio=elsultan.cl@febos.cl does not
+ designate 190.110.123.76 as permitted sender)
+ smtp.mailfrom=bounce+bb1745.7d7e9-intercambio=elsultan.cl@febos.cl; dkim=pass
+ header.i=@febos.cl
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=febos.cl; q=dns/txt;
+ s=mx; t=1448393007; h=Content-Transfer-Encoding: Mime-Version: Content-Type:
+ Subject: From: To: Message-Id: Date: Sender;
+ bh=9JdJAkGPD0fVWU2I416DTuwb66uivmJRLhzeFDgJBMs=;
+ b=pHzHK8uf8namqfQhNl895DpvxocbAMKVwyl4sZPAx+JMTyci17Zsr7TPF74GsPtcPwMri9nD
+ 13W999RTwB7t/9CRHNMK9Hoib6UchrVjXpfisw9pFFZFkweFN1p03tkcA+FtdxFomJ1tJlZo
+ QKU6LfyDIKVx7HCFqUPlLiL3p9M=
+DomainKey-Signature: a=rsa-sha1; c=nofws; d=febos.cl; s=mx; q=dns; h=Sender:
+ Date: Message-Id: To: From: Subject: Content-Type: Mime-Version:
+ Content-Transfer-Encoding;
+ b=mvwZB+5ZxdmFVWkWTtrWL2AFAEv9L8k8D8LWCf29yOgUJ2mq6V3zVSCv5M4vm4QIkNRMzM
+ l1iKS47LXmFliUrmguHdkbCXXMg6jx1zeuiFp0YcMmpdOrSaTkqS+UHUaLQHikgaQG6ZhxsE
+ qkOgN8tc0B1acp2YpGcdhUPBLnkxg=
+X-Mailgun-Sid: WyJlZDExZiIsICJpbnRlcmNhbWJpb0BlbHN1bHRhbi5jbCIsICI3ZDdlOSJd
+X-Spam-Status: No, score=-2.0
+X-Spam-Score: -19
+X-Spam-Bar: --
+X-Ham-Report: Spam detection software, running on the system "phx.hn.cl", has
+ NOT identified this incoming email as spam. The original message has been
+ attached to this so you can view it or label similar future email. If you have
+ any questions, see root\@localhost for details. Content preview: Estimado
+ Contribuyente, Estamos validando la existencia de esta casilla de correo
+ registrada en el SII. Este es una aplicacion automatica. No conteste este
+ correo ni haga consultas o comentarios a la direccion de origen. Este texto
+ puede no contener todos los acentos ni caracteres especiales para un
+ despliegue mas claro en cualquier aplicacion. [...] Content analysis details:
+ (-2.0 points, 8.0 required) pts rule name description ----
+ ---------------------- -------------------------------------------------- -0.0
+ RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/, no trust
+ [184.173.153.195 listed in list.dnswl.org] -0.0 SPF_PASS SPF: sender matches
+ SPF record -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1% [score:
+ 0.0000] -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+ author's domain -0.1 DKIM_VALID Message has at least one valid DKIM or DK
+ signature 0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+ valid -0.0 RCVD_IN_MSPIKE_H3 RBL: Good reputation (+3) [184.173.153.195 listed
+ in wl.mailspike.net] -0.0 RCVD_IN_MSPIKE_WL Mailspike good senders
+X-Spam-Flag: NO
+X-AntiAbuse: This header was added to track abuse, please include it with any
+ abuse report
+X-AntiAbuse: Primary Hostname - phx.hn.cl
+X-AntiAbuse: Original Domain - elsultan.cl
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - febos.cl
+X-Get-Message-Sender-Via: phx.hn.cl: redirect/forwarder owner
+ intercambio@elsultan.cl -> recibodteelsultan@gmail.com
+
+Estimado Contribuyente, Estamos validando la existencia de esta casilla de correo registrada en el SII. Este es una aplicacion automatica. No conteste este correo ni haga consultas o comentarios a la direccion de origen. Este texto puede no contener todos los acentos ni caracteres especiales para un despliegue mas claro en cualquier aplicacion.
+

@@ -1,0 +1,128 @@
+# Logfile created on 2016-01-19 21:29:44 -0300 by logger.rb/47272
+I, [2016-01-19T21:29:44.170801 #3596]  INFO -- : Mailman v0.7.2 started
+I, [2016-01-19T21:29:44.170954 #3596]  INFO -- : Rails root found in ., requiring environment...
+I, [2016-01-19T21:29:47.824537 #3596]  INFO -- : POP3 receiver enabled (intercambiodila@gmail.com@pop.gmail.com).
+I, [2016-01-19T21:29:47.843140 #3596]  INFO -- : Polling enabled. Checking every 60 seconds.
+I, [2016-01-19T21:30:22.935392 #3642]  INFO -- : Mailman v0.7.2 started
+I, [2016-01-19T21:30:22.935498 #3642]  INFO -- : Rails root found in ., requiring environment...
+I, [2016-01-19T21:30:26.505750 #3642]  INFO -- : POP3 receiver enabled (intercambiodila@gmail.com@imap.gmail.com).
+I, [2016-01-19T21:30:26.525812 #3642]  INFO -- : Polling enabled. Checking every 60 seconds.
+I, [2016-01-19T21:34:14.777253 #3767]  INFO -- : Mailman v0.7.2 started
+I, [2016-01-19T21:34:14.777355 #3767]  INFO -- : Rails root found in ., requiring environment...
+I, [2016-01-19T21:34:18.259519 #3767]  INFO -- : POP3 receiver enabled (intercambiodila@gmail.com@imap.gmail.com).
+I, [2016-01-19T21:34:18.275180 #3767]  INFO -- : Polling enabled. Checking every 60 seconds.
+I, [2016-01-19T21:35:17.418493 #3805]  INFO -- : Mailman v0.7.2 started
+I, [2016-01-19T21:35:17.418597 #3805]  INFO -- : Rails root found in ., requiring environment...
+I, [2016-01-19T21:35:20.919688 #3805]  INFO -- : POP3 receiver enabled (intercambiodila@gmail.com@imap.gmail.com).
+I, [2016-01-19T21:35:20.937431 #3805]  INFO -- : Polling enabled. Checking every 60 seconds.
+I, [2016-01-19T21:37:48.209836 #3924]  INFO -- : Mailman v0.7.2 started
+I, [2016-01-19T21:37:48.209937 #3924]  INFO -- : Rails root found in ., requiring environment...
+I, [2016-01-19T21:37:51.630167 #3924]  INFO -- : POP3 receiver enabled (intercambiodila@gmail.com@imap.gmail.com).
+I, [2016-01-19T21:37:51.645705 #3924]  INFO -- : Polling enabled. Checking every 60 seconds.
+I, [2016-01-19T21:37:56.500507 #3924]  INFO -- : Got new message from 'no-reply@accounts.google.com' with subject 'Se ha evitado un intento de inicio de sesión.'.
+I, [2016-01-19T21:37:56.884064 #3924]  INFO -- : Got new message from 'maullin03@sii.cl' with subject 'Postulacion DTE'.
+E, [2016-01-19T21:37:56.890935 #3924] ERROR -- : Exception occurred while receiving message:
+Return-Path: <intercambiodila@invoicedigital.cl>
+Received: by 10.13.253.129 with SMTP id n123csp2918827ywf; Tue, 19 Jan 2016 16:25:06 -0800
+Received: from phx.hn.cl (phx.hn.cl. [190.110.123.76]) by mx.google.com with ESMTPS id i131si26140498qhi.26.2016.01.19.16.25.05 for <intercambiodila@gmail.com> (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128); Tue, 19 Jan 2016 16:25:05 -0800
+Received: from localhost ([127.0.0.1]:48317 helo=phx.hn.cl) by phx.hn.cl with esmtpsa (TLSv1:DHE-RSA-AES256-SHA:256) (Exim 4.84) (envelope-from <intercambiodila@invoicedigital.cl>) id 1aLga8-002bFG-I2 for intercambiodila@gmail.com; Tue, 19 Jan 2016 21:25:04 -0300
+Received: from rapel12.sii.cl ([200.10.251.90]:23436 helo=mailin02.sii.cl) by phx.hn.cl with esmtp (Exim 4.84) (envelope-from <maullin03@sii.cl>) id 1ZhUOY-002syj-O6 for intercambiodila@invoicedigital.cl; Thu, 01 Oct 2015 00:19:01 -0300
+Received: from maullin03.sii.cl (HELO maullin03) ([192.168.1.83]) by mailout02.sii.cl with ESMTP; Thu, 01 Oct 2015 00:02:49 -0300
+Resent-Date: Wed, 20 Jan 2016 00:25:04 +0000
+Resent-From: intercambiodila@invoicedigital.cl
+Resent-To: intercambiodila@gmail.com
+Resent-Message-ID: <20160120002504.Horde.FkMFQxq9If6icHHz22_Edg9@www.invoicedigital.cl>
+Date: Wed, 30 Sep 2015 23:18:57 -0400
+From: maullin03@sii.cl
+To: intercambiodila@invoicedigital.cl
+Message-ID: <30146205.1443669537221.JavaMail.nobody@maullin03>
+Subject: Postulacion DTE
+Mime-Version: 1.0
+Content-Type: multipart/mixed;
+ boundary="----=_Part_0_7958910.1443669537044";
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+Delivered-To: intercambiodila@gmail.com
+X-Received: by 10.55.73.85 with SMTP id w82mr42392773qka.52.1453249506036;
+ Tue, 19 Jan 2016 16:25:06 -0800 (PST)
+Received-SPF: neutral (google.com: 190.110.123.76 is neither permitted nor
+ denied by best guess record for domain of intercambiodila@invoicedigital.cl)
+ client-ip=190.110.123.76;
+Authentication-Results: mx.google.com; spf=neutral (google.com: 190.110.123.76
+ is neither permitted nor denied by best guess record for domain of
+ intercambiodila@invoicedigital.cl)
+ smtp.mailfrom=intercambiodila@invoicedigital.cl; dkim=pass
+ header.i=@invoicedigital.cl
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=invoicedigital.cl; s=default;
+ h=Content-Type:Mime-Version:Subject:To:From:Date:Message-ID:Resent-Message-ID:Resent-To:Resent-From:Resent-Date;
+ bh=NMDLlnxzG/qNeV4FgXwImvSC+fggfF7zAd1p/oxZmpM=;
+ b=KXX11tmnZolSGxCrddATeR3pEYDEavxwf6bVDdQ7DyO40lFG7qO/DIGoTtdnilLtaItEicLMZ7Nkm3BfvAJPKJPlM8IpUiCT7i/Ig58VfInKqGpFyly9yHNgROCEFqn1ISnA0Jw7kpjyJv5M99D3/N6BmWzL54h36wpRjs8kFIk=;
+X-IronPort-AV: E=Sophos;i="5.17,615,1437447600"; d="scan'208";a="396648248"
+X-Spam-Status: No, score=-0.6
+X-Spam-Score: -5
+X-Spam-Bar: /
+X-Ham-Report: Spam detection software, running on the system "phx.hn.cl", has
+ NOT identified this incoming email as spam. The original message has been
+ attached to this so you can view it or label similar future email. If you have
+ any questions, see root\@localhost for details. Content preview: Estimado
+ Contribuyente COMERCIALIZADORA Y DISTRIBUIDORA DE PRODUCTOS ALIMENTICIOS DILA
+ LIMITA Rut 76141730-4. [...] Content analysis details: (-0.6 points, 5.0
+ required) pts rule name description ---- ----------------------
+ -------------------------------------------------- 0.0 URIBL_BLOCKED
+ ADMINISTRATOR NOTICE: The query to URIBL was blocked. See
+ http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block for more
+ information. [URIs: sii.cl] -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+ http://www.dnswl.org/, medium trust [200.10.251.90 listed in list.dnswl.org]
+ 0.0 RP_MATCHES_RCVD Envelope sender domain matches handover relay domain 0.0
+ HTML_MESSAGE BODY: HTML included in message 1.1 MIME_HTML_ONLY BODY: Message
+ only has text/html MIME parts 0.6 HTML_MIME_NO_HTML_TAG HTML-only message, but
+ there is no HTML tag
+X-Spam-Flag: NO
+X-AntiAbuse: This header was added to track abuse, please include it with any
+ abuse report
+X-AntiAbuse: Primary Hostname - phx.hn.cl
+X-AntiAbuse: Original Domain - gmail.com
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - invoicedigital.cl
+X-Get-Message-Sender-Via: phx.hn.cl: authenticated_id:
+ intercambiodila@invoicedigital.cl
+
+
+------=_Part_0_7958910.1443669537044
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+Estimado Contribuyente <br><br> COMERCIALIZADORA Y DISTRIBUIDORA DE PRODU=
+CTOS ALIMENTICIOS DILA LIMITA <br><br> Rut 76141730-4.<br><br> Su represe=
+ntante legal don(a)  RODRIGO HUMBERTO MUNOZ ASTORGA RUT 10693121-6 lo ha =
+inscrito para el proceso de certificacion de factura electronica de merca=
+do, proceso que damos por iniciado.<br><br>  El proceso de certificacion =
+consta de cuatro etapas que deben ser sorteadas con exito por el postulan=
+te, etapas que se describen en la pagina web del SII: Factura Electronica=
+ - Procedimiento de postulacion, certificacion y autorizacion. Si usted a=
+dquirio o compro un software de facturacion debe certificarse y prestar a=
+tencion a este proceso, ya que para el SII el responsable final del proce=
+so es usted.<br><br>  Podra encontrar toda la informacion necesaria para =
+poder certificarse con el SII en su pagina web: Factura Electronica - Amb=
+iente de certificacion y prueba (Menu postulantes). Pagina web que adicio=
+nalmente consta con una amplia gama de preguntas frecuentes, en permanent=
+e actualizacion, que permiten satisfacer sus principales dudas. De contin=
+uar con dudas o consultas acerca del proceso de certificacion lo invitamo=
+s a llamar a la Mesa de Ayuda (+56 2 2 395 1115) o utilizar el Contacteno=
+s (icono con sobre y telefono de la parte superior derecha de la pagina d=
+el SII) o a enviarnos un correo electronico a la casilla DTE_certificacio=
+n@sii.cl , casilla que solo respondera consultas de certificacion.<br><br=
+> Atentamente, <br><br> Servicio de Impuestos Internos<br><br>-----------=
+-----------------------------------------------------------------<br><br>=
+Esta es una aplicacion automatica, asi que no conteste este correo ni hag=
+a consultas o comentarios a la direccion de origen.<br><br>Este texto no =
+tiene acentos ni caracteres especiales para un despliegue mas claro en cu=
+alquier aplicacion.=
+
+------=_Part_0_7958910.1443669537044--
+
+I, [2016-01-19T21:37:57.360754 #3924]  INFO -- : Got new message from 'copecrecepcion@custodium.com' with subject 'Envio de DTEs - EnvioDTE-99520000-7-76141730-4-20160102-184225-8C2C48D9'.
+I, [2016-01-19T21:37:57.893648 #3924]  INFO -- : Got new message from 'copecrecepcion@custodium.com' with subject 'Envio de DTEs - EnvioDTE-99520000-7-76141730-4-20160103-062202-8C2C48D9'.
+I, [2016-01-19T21:37:58.366002 #3924]  INFO -- : Got new message from 'copecrecepcion@custodium.com' with subject 'Envio de DTEs - EnvioDTE-99520000-7-76141730-4-20160104-062542-8C2C48D9'.

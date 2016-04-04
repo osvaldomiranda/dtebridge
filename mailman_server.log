@@ -1,0 +1,6 @@
+# Logfile created on 2016-01-19 21:35:56 -0300 by logger.rb/47272
+I, [2016-01-19T21:35:56.631625 #3879]  INFO -- : Mailman v0.7.2 started
+I, [2016-01-19T21:35:56.631698 #3879]  INFO -- : Rails root found in ., requiring environment...
+I, [2016-01-19T21:36:00.116437 #3879]  INFO -- : POP3 receiver enabled (dtelubba@gmail.com@pop.gmail.com).
+I, [2016-01-19T21:36:00.132103 #3879]  INFO -- : Polling enabled. Checking every 60 seconds.
+I, [2016-01-19T21:36:04.475765 #3879]  INFO -- : Got new message from 'evercrisp@facturanet.cl' with subject 'Documento Tributario Electrónico 77.888.630-8'.
