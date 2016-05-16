@@ -21,10 +21,10 @@ class Documento < ActiveRecord::Base
   mount_uploader :fileFactura, PdfsUploader
   mount_uploader :fileJson, PdfsUploader
 
-  searchable do
-    time :created_at
-    text :Folio, :sucursal, :FchEmis, :nombre_doc, :estado
-  end
+  # searchable do
+  #   time :created_at
+  #   text :Folio, :sucursal, :FchEmis, :nombre_doc, :estado
+  # end
 
   attr_reader :sucursal
   attr_reader :nombre_doc

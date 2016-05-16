@@ -79,10 +79,6 @@ gem 'mailman', require: false
 # for excel import
 gem 'roo'
 
-# Sunspot
-gem 'sunspot_rails'
-gem 'sunspot_solr'
-
 
 group :development do
   # Use sqlite3 as the database for development

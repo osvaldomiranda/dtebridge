@@ -14,10 +14,10 @@ class Doccompra < ActiveRecord::Base
   accepts_nested_attributes_for :comisioncompras
   accepts_nested_attributes_for :refdetcompras
 
-  searchable do
-    time :created_at
-    text :Folio, :RUTEmisor, :RznSoc, :nombre_doc, :FchEmis
-  end
+  # searchable do
+  #   time :created_at
+  #   text :Folio, :RUTEmisor, :RznSoc, :nombre_doc, :FchEmis
+  # end
 
 
   attr_reader :nombre_doc
