@@ -7,9 +7,9 @@ class Api::V1::SeparchivoController < Api::V1::ApiController
       system("mkdir #{rut}")
 
       documentos = Documento.where("RUTEmisor= ?", rut)
-      
+
         documentos.each do |documento|
-        system("mv #{documento.pdfs.url}  /#{documento.RUTEmisor}#{documento.pdfs_identifier}") 
+        system("mv #{documento.pdfs.url}  /#{documento.RUTEmisor}/#{documento.pdfs_identifier}") 
       end
     end
 
