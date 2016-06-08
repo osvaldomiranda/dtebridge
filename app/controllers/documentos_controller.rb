@@ -6,23 +6,11 @@ class DocumentosController < ApplicationController
     @sucursales = Sucursal.all
 
     searchparams = params["/documentos"]
-          
 
     if searchparams.present?
-      searchtext = "#{searchparams[:sucursal]} #{searchparams[:tipodte]} #{searchparams[:folio]}#{searchparams[:fecha]}"
-      if searchtext != ""
-        @search = Documento.search do
-          fulltext searchtext
-          order_by(:created_at, :desc)
-          paginate :page => 1, :per_page => 500
-        end
-        # @documentos = @search.results
-        @documentos = Documento.where(id: @search.results.map(&:id)).where(:RUTEmisor => Usuarioempresa.where(useremail:current_user.email).map {|u| u.rutempresa}).order(created_at: :desc).paginate(:page => params[:page], :per_page => 15 )
-      
-      else
-        @documentos = Documento.where(:RUTEmisor => Usuarioempresa.where(useremail:current_user.email).map {|u| u.rutempresa}).order(created_at: :desc).paginate(:page => params[:page], :per_page => 15 )
-      end    
-    else  
+      @search = Documento.sucursal(searchparams["sucursal"]).tipodte(searchparams["tipodte"]).folio(searchparams["folio"])
+      @documentos = Documento.where(id: @search.map(&:id)).where(:RUTEmisor => Usuarioempresa.where(useremail:current_user.email).map {|u| u.rutempresa}).order(created_at: :desc).paginate(:page => params[:page], :per_page => 15 )
+    else
       @documentos = Documento.where(:RUTEmisor => Usuarioempresa.where(useremail:current_user.email).map {|u| u.rutempresa}).order(created_at: :desc).paginate(:page => params[:page], :per_page => 15 )
     end
 

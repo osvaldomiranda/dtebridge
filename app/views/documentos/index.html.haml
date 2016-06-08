@@ -10,8 +10,8 @@
             = f.input :tipodte, label: false, collection:  Documento.tipodte_option_for_select,:input_html => {:style=> 'width: 150px'} 
           .col-sm-2  
             = f.input :folio, label: false, placeholder: "Folio", :input_html => {:style=> 'width: 150px'} 
-          .col-sm-2 
-            = f.input :fecha, label: false, placeholder: "Fchemis(yyyy-mm)", :input_html => {:style=> 'width: 150px'} 
+          / .col-sm-2 
+          /   = f.input :fecha, label: false, placeholder: "Fchemis(yyyy-mm)", :input_html => {:style=> 'width: 150px'} 
           .col-sm-2  
             = f.button :submit, "Buscar",  class: "btn btn-primary btn-xs"
 

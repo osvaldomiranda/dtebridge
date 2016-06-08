@@ -1,10 +1,10 @@
 class LibroCompraController < ApplicationController
   def index
-    @empresas = Empresa.all
+    @empresas = Empresa.where(rut: Usuarioempresa.where(useremail:'admin@invoicedigital.cl').map {|u| u.rutempresa})
   end
 
   def find
-    @empresas = Empresa.all
+    @empresas = Empresa.where(rut: Usuarioempresa.where(useremail:'admin@invoicedigital.cl').map {|u| u.rutempresa})
 
     @rut = params[:empresa]
     mes = params[:Mes].gsub('-','/')

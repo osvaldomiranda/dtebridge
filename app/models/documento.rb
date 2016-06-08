@@ -28,6 +28,13 @@ class Documento < ActiveRecord::Base
 
   attr_reader :sucursal
   attr_reader :nombre_doc
+
+  scope :sucursal, lambda {|sucursal| where('"Sucursal" = ?', sucursal) if sucursal.present? }
+  scope :tipodte, lambda {|tipodte| where('"TipoDTE" = ?',tipodte) if tipodte.present? }
+  scope :folio, lambda {|folio| where('"Folio" = ?', folio) if  folio.present? }
+  scope :fecha, lambda {|fecha| where(fecha: fecha) if fecha.present? }
+ 
+
   def sucursal
     nombre = " "
     sucursal = Sucursal.where(cdgsiisucur: "#{self.CdgSIISucur}" ).first
@@ -57,6 +64,6 @@ class Documento < ActiveRecord::Base
   end 
 
   def self.tipodte_option_for_select
-    Tipodte.all.order(nombre: :asc).map {|t| t.nombre}
+    Tipodte.all.order(nombre: :asc).map {|t| [t.nombre, t.tipo]}
   end  
 end
