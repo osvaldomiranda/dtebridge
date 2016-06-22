@@ -6,9 +6,9 @@ require "mailman"
 Mailman.config.logger = Logger.new('mailman_dila.log')
 
 Mailman.config.pop3 = {
-  server: 'imap.gmail.com', port: 995, ssl: true,
-  username: 'intercambiodila@gmail.com',
-  password: 'elpreciosodt3'
+  server: 'imap.invoicedigital.cl', port: 110, ssl: false,
+  username: 'test@invoicedigital.cl',
+  password: 'paso2011'
  }
 
 

@@ -29,6 +29,67 @@ class DoccomprasController < ApplicationController
     d.estado = "RECHAZADO"
     d.save
 
+    # xml rechazo
+    tosign_xml+="<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>"
+    tosign_xml+="<RespuestaDTE xmlns=\"http://www.sii.cl/SiiDte\" xmlns:ds=\"http://www.w3.org/2000/09/xmldsig\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" version=\"1.0\" xsi:schemaLocation=\"http://www.sii.cl/SiiDte RespuestaEnvioDTE_v10.xsd\">"
+    tosign_xml+="  <Resultado ID=\"ResultadoDTE\">"
+    tosign_xml+="    <Caratula version=\"1.0\">"
+    tosign_xml+="      <RutResponde>"+ d.RUTRecep +"</RutResponde>"
+    tosign_xml+="     <RutRecibe>"+ d.RUTEmisor +"</RutRecibe>"
+    tosign_xml+="      <IdRespuesta>1</IdRespuesta>"
+    tosign_xml+="      <NroDetalles>2</NroDetalles>"
+    tosign_xml+="      <TmstFirmaResp>2014-11-27T00:00:00</TmstFirmaResp>"
+    tosign_xml+="    </Caratula>"
+    tosign_xml+="    <ResultadoDTE>"
+    tosign_xml+="      <TipoDTE>"+ d.TipoDTE +"</TipoDTE>"
+    tosign_xml+="      <Folio>"+ d.Folio +"</Folio>"
+    tosign_xml+="      <FchEmis>"+ d.FchEmis +"</FchEmis>"
+    tosign_xml+="      <RUTEmisor>"+ d.RUTEmisor +"</RUTEmisor>"
+    tosign_xml+="      <RUTRecep>"+ d.RUTRecep +"</RUTRecep>"
+    tosign_xml+="      <MntTotal>"+ d.MntTotal +"</MntTotal>"
+    tosign_xml+="      <CodEnvio>339734</CodEnvio>"
+    tosign_xml+="      <EstadoDTE>3</EstadoDTE>"
+    tosign_xml+="      <RecepDTEGlosa>DTE No Recibido - Error</RecepDTEGlosa>"
+    tosign_xml+="   </ResultadoDTE>"
+    tosign_xml+="  </Resultado>"
+    tosign_xml+="<Signature xmlns=\"http://www.w3.org/2000/09/xmldsig#\">"
+    tosign_xml+=  "<SignedInfo>"
+    tosign_xml+=   "<CanonicalizationMethod Algorithm=\"http://www.w3.org/TR/2001/REC-xml-c14n-20010315\"/>"
+    tosign_xml+=    "<SignatureMethod Algorithm=\"http://www.w3.org/2000/09/xmldsig#rsa-sha1\"/>"
+    tosign_xml+=     "<Reference URI=\"\">"
+    tosign_xml+=      "<Transforms>"
+    tosign_xml+=         "<Transform Algorithm=\"http://www.w3.org/2000/09/xmldsig#enveloped-signature\"/>"
+    tosign_xml+=      "</Transforms>"
+    tosign_xml+=      "<DigestMethod Algorithm=\"http://www.w3.org/2000/09/xmldsig#sha1\"/>"
+    tosign_xml+=      "<DigestValue/>"
+    tosign_xml+=     "</Reference>"
+    tosign_xml+=  "</SignedInfo>"
+    tosign_xml+=  "<SignatureValue/>"
+    tosign_xml+=  "<KeyInfo>"
+    tosign_xml+=   "<KeyValue/>"
+    tosign_xml+=   "<X509Data>"
+    tosign_xml+=    "<X509SubjectName/>"
+    tosign_xml+=    "<X509IssuerSerial/>"
+    tosign_xml+=    "<X509Certificate/>"
+    tosign_xml+=   "</X509Data>"
+    tosign_xml+=  "</KeyInfo>"
+    tosign_xml+= "</Signature>"
+    tosign_xml+="</gettoken>"
+
+    t = Time.now.strftime("%Y%d%m%H%M%S")
+
+    File.open("tosign_xml#{t}.xml", 'w') { |file| file.puts tosign_xml}
+    sleep 1
+     
+    system("./comando#{rut} tosign_xml#{t}.xml doc-signed#{t}.xml")
+
+    doc = File.read "doc-signed#{t}.xml"
+
+    #enviar doc por mail
+
+    system("rm tosign_xml#{t}.xml") 
+    system("rm doc-signed#{t}.xml")
+
     @doccompras = Doccompra.where(estado: nil).where(:RUTRecep => Usuarioempresa.where(useremail:current_user.email).map {|u| u.rutempresa})
     respond_to do |format|
         format.html { render action: 'index'}
@@ -39,6 +100,66 @@ class DoccomprasController < ApplicationController
     d = Doccompra.find(params[:id])
     d.estado = "APROBADO"
     d.save
+
+    # xml Aceptado
+    tosign_xml+="<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>"
+    tosign_xml+="<RespuestaDTE xmlns=\"http://www.sii.cl/SiiDte\" xmlns:ds=\"http://www.w3.org/2000/09/xmldsig\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" version=\"1.0\" xsi:schemaLocation=\"http://www.sii.cl/SiiDte RespuestaEnvioDTE_v10.xsd\">"
+    tosign_xml+="  <Resultado ID=\"ResultadoDTE\">"
+    tosign_xml+="    <Caratula version=\"1.0\">"
+    tosign_xml+="      <RutResponde>"+ d.RUTRecep +"</RutResponde>"
+    tosign_xml+="     <RutRecibe>"+ d.RUTEmisor +"</RutRecibe>"
+    tosign_xml+="      <IdRespuesta>1</IdRespuesta>"
+    tosign_xml+="      <TmstFirmaResp>2014-11-27T00:00:00</TmstFirmaResp>"
+    tosign_xml+="    </Caratula>"
+    tosign_xml+="    <ResultadoDTE>"
+    tosign_xml+="      <TipoDTE>"+ d.TipoDTE +"</TipoDTE>"
+    tosign_xml+="      <Folio>"+ d.Folio +"</Folio>"
+    tosign_xml+="      <FchEmis>"+ d.FchEmis +"</FchEmis>"
+    tosign_xml+="      <RUTEmisor>"+ d.RUTEmisor +"</RUTEmisor>"
+    tosign_xml+="      <RUTRecep>"+ d.RUTRecep +"</RUTRecep>"
+    tosign_xml+="      <MntTotal>"+ d.MntTotal +"</MntTotal>"
+    tosign_xml+="      <CodEnvio>339734</CodEnvio>"
+    tosign_xml+="      <EstadoDTE>0</EstadoDTE>"
+    tosign_xml+="      <RecepDTEGlosa>DTE Aceptado OK</RecepDTEGlosa>"
+    tosign_xml+="   </ResultadoDTE>"
+    tosign_xml+="  </Resultado>"
+    tosign_xml+="<Signature xmlns=\"http://www.w3.org/2000/09/xmldsig#\">"
+    tosign_xml+=  "<SignedInfo>"
+    tosign_xml+=   "<CanonicalizationMethod Algorithm=\"http://www.w3.org/TR/2001/REC-xml-c14n-20010315\"/>"
+    tosign_xml+=    "<SignatureMethod Algorithm=\"http://www.w3.org/2000/09/xmldsig#rsa-sha1\"/>"
+    tosign_xml+=     "<Reference URI=\"\">"
+    tosign_xml+=      "<Transforms>"
+    tosign_xml+=         "<Transform Algorithm=\"http://www.w3.org/2000/09/xmldsig#enveloped-signature\"/>"
+    tosign_xml+=      "</Transforms>"
+    tosign_xml+=      "<DigestMethod Algorithm=\"http://www.w3.org/2000/09/xmldsig#sha1\"/>"
+    tosign_xml+=      "<DigestValue/>"
+    tosign_xml+=     "</Reference>"
+    tosign_xml+=  "</SignedInfo>"
+    tosign_xml+=  "<SignatureValue/>"
+    tosign_xml+=  "<KeyInfo>"
+    tosign_xml+=   "<KeyValue/>"
+    tosign_xml+=   "<X509Data>"
+    tosign_xml+=    "<X509SubjectName/>"
+    tosign_xml+=    "<X509IssuerSerial/>"
+    tosign_xml+=    "<X509Certificate/>"
+    tosign_xml+=   "</X509Data>"
+    tosign_xml+=  "</KeyInfo>"
+    tosign_xml+= "</Signature>"
+    tosign_xml+="</gettoken>"
+
+    t = Time.now.strftime("%Y%d%m%H%M%S")
+
+    File.open("tosign_xml#{t}.xml", 'w') { |file| file.puts tosign_xml}
+    sleep 1
+     
+    system("./comando#{rut} tosign_xml#{t}.xml doc-signed#{t}.xml")
+
+    doc = File.read "doc-signed#{t}.xml"
+
+    #enviar doc por mail
+
+    system("rm tosign_xml#{t}.xml") 
+    system("rm doc-signed#{t}.xml")
 
     @doccompras = Doccompra.where(estado: nil).where(:RUTRecep => Usuarioempresa.where(useremail:current_user.email).map {|u| u.rutempresa})
     respond_to do |format|

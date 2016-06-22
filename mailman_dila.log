@@ -126,3 +126,15 @@ alquier aplicacion.=
 I, [2016-01-19T21:37:57.360754 #3924]  INFO -- : Got new message from 'copecrecepcion@custodium.com' with subject 'Envio de DTEs - EnvioDTE-99520000-7-76141730-4-20160102-184225-8C2C48D9'.
 I, [2016-01-19T21:37:57.893648 #3924]  INFO -- : Got new message from 'copecrecepcion@custodium.com' with subject 'Envio de DTEs - EnvioDTE-99520000-7-76141730-4-20160103-062202-8C2C48D9'.
 I, [2016-01-19T21:37:58.366002 #3924]  INFO -- : Got new message from 'copecrecepcion@custodium.com' with subject 'Envio de DTEs - EnvioDTE-99520000-7-76141730-4-20160104-062542-8C2C48D9'.
+I, [2016-06-20T23:04:47.244370 #5089]  INFO -- : Mailman v0.7.2 started
+I, [2016-06-20T23:04:47.256439 #5089]  INFO -- : Rails root found in ., requiring environment...
+I, [2016-06-20T23:04:56.238533 #5089]  INFO -- : POP3 receiver enabled (test@invoicedigital.cl@imap.invoicedigital.cl).
+I, [2016-06-20T23:04:56.272795 #5089]  INFO -- : Polling enabled. Checking every 60 seconds.
+I, [2016-06-20T23:42:40.003931 #5263]  INFO -- : Mailman v0.7.2 started
+I, [2016-06-20T23:42:40.004905 #5263]  INFO -- : Rails root found in ., requiring environment...
+I, [2016-06-20T23:42:44.442701 #5263]  INFO -- : POP3 receiver enabled (test@invoicedigital.cl@imap.invoicedigital.cl).
+I, [2016-06-20T23:42:44.470006 #5263]  INFO -- : Polling enabled. Checking every 60 seconds.
+I, [2016-06-20T23:43:04.840687 #5300]  INFO -- : Mailman v0.7.2 started
+I, [2016-06-20T23:43:04.840803 #5300]  INFO -- : Rails root found in ., requiring environment...
+I, [2016-06-20T23:43:08.148059 #5300]  INFO -- : POP3 receiver enabled (test@invoicedigital.cl@imap.invoicedigital.cl).
+I, [2016-06-20T23:43:08.159030 #5300]  INFO -- : Polling enabled. Checking every 60 seconds.

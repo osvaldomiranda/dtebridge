@@ -129,6 +129,7 @@ Dtebridge::Application.routes.draw do
       get "/resend", to: "documento#resend"
       get "/sendclient", to: "documento#sendclient"
       get "/separchivo", to: "separchivo#separchivo"
+      get "/readmail", to: "readmail#readmail"
      end
   end
 

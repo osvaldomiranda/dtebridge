@@ -1,10 +1,10 @@
 class LibroVentaController < ApplicationController
   def index
-    @empresas = Empresa.where(rut: Usuarioempresa.where(useremail:'admin@invoicedigital.cl').map {|u| u.rutempresa}) 
+    @empresas = Empresa.where(rut: Usuarioempresa.where(useremail:current_user.email).map {|u| u.rutempresa}) 
   end
 
   def find
-    @empresas = Empresa.where(rut: Usuarioempresa.where(useremail:'admin@invoicedigital.cl').map {|u| u.rutempresa})
+    @empresas = Empresa.where(rut: Usuarioempresa.where(useremail:current_user.email).map {|u| u.rutempresa})
 
     @rut = params[:empresa]
     mes = params[:Mes].gsub('-','/')
@@ -21,7 +21,6 @@ class LibroVentaController < ApplicationController
     hasta = Date.strptime("#{mes}/#{desde.end_of_month.day}", "%Y/%m/%d")
     
     
-    @empresas = Empresa.all
     @documentos =  Documento.select('"TipoDTE", sum("MntNeto") as mntneto,sum("MntExe") as mntexe, sum("IVA") as iva, sum("MntTotal") as mnttotal, count(*) as count').where('estado <> ? AND estado <> ? AND estado <> ? AND  "TipoDTE" <> 52 and "RUTEmisor"=? and "FchEmis" >= ? AND "FchEmis" <= ?',"Rechazado SII","CREADO","0 Upload Ok",  @rut, desde, hasta ).group('"TipoDTE"')
     totFact = Documento.select('sum("MntNeto") as mntneto,sum("MntExe") as mntexe, sum("IVA") as iva, sum("MntTotal") as mnttotal, count(*) as count').where('estado <> ? AND estado <> ? AND estado <> ? AND "TipoDTE" <> 52 and "TipoDTE"<>61 and "RUTEmisor"=? and "FchEmis" >= ? AND "FchEmis" <= ?',"Rechazado SII", "CREADO","0 Upload Ok", @rut, desde, hasta )
     
