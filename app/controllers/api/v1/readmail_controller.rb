@@ -22,6 +22,7 @@ class Api::V1::ReadMailController < Api::V1::ApiController
             if extencion == ".xml"
               d = Docsemail.new
               d.xmlrecibido = attachment.body.decoded
+              d.emailid = mail.message_id
               d.estado = "RECIBIDO"
               d.save
             end

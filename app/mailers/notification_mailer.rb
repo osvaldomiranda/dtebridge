@@ -41,4 +41,17 @@ class NotificationMailer < ActionMailer::Base
     mail(to: email, subject: "IAT offline en sucursal : #{sucursal}, #{empresa}" )
   end
 
+  def send_intercambio(email, id, empresa)
+    doc = Doccompra.find(id)
+    @user = doc.RznSocRecep
+    @destinatario = doc.RznSocRecep
+    @rut = doc.RUTEmisor
+    @empresa = doc.RznSoc
+    @documento = Tipodte.find_by_tipo(doc.TipoDTE).nombre
+    @folio = doc.Folio 
+    @user = "Precioso"
+    @url  = 'http://www.invoicedigital.cl'
+    mail(to: email, subject: "Intercambio DTE, #{empresa}" )
+  end
+
 end
