@@ -215,18 +215,7 @@ class Libro < ActiveRecord::Base
 
     sleep 1
      
-    if Empresa.last.rut == "80790400-0"
-      puts "============"
-      puts "ElSultan"
-      puts "============"
-      system("./comandoElSultan libro_ventatosing#{libro.rut}#{libro.idenvio}.xml libro_venta#{libro.rut}#{libro.idenvio}.xml")
-    else  
-      system("./comando libro_ventatosing#{libro.rut}#{libro.idenvio}.xml libro_venta#{libro.rut}#{libro.idenvio}.xml")
-      puts "============"
-      puts "Otros"
-      puts "============"
-    end  
-
+    system("./comando#{libro.rut} libro_ventatosing#{libro.rut}#{libro.idenvio}.xml libro_venta#{libro.rut}#{libro.idenvio}.xml") 
 
    # lib = File.read "doc-signed#{t}.xml"
 
@@ -572,20 +561,9 @@ class Libro < ActiveRecord::Base
     File.open("libro_compratosing#{libro.rut}#{libro.idenvio}.xml", 'w') { |file| file.puts tosign_xml}
 
     sleep 1
-     
-    if Empresa.last.rut == "80790400-0"
-      puts "============"
-      puts "ElSultan"
-      puts "============"
-      system("./comandoElSultan libro_compratosing#{libro.rut}#{libro.idenvio}.xml libro_compra#{libro.rut}#{libro.idenvio}.xml")
-    else  
-      system("./comando libro_compratosing#{libro.rut}#{libro.idenvio}.xml libro_compra#{libro.rut}#{libro.idenvio}.xml")
-      puts "============"
-      puts "Otros"
-      puts "============"
-    end  
 
-   # lib = File.read "doc-signed#{t}.xml"
+    system("./comando#{libro.rut} libro_compratosing#{libro.rut}#{libro.idenvio}.xml libro_compra#{libro.rut}#{libro.idenvio}.xml") 
+
 
     system("rm libro_compratosing#{libro.rut}#{libro.idenvio}.xml") 
   end  
